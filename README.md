@@ -1,7 +1,9 @@
 # EC528 Project — Computational Storage
 
-**Team:** <names>
+**Team:** Mason Pfeiffer, Ivan Chen, Harshada Lokesh Lnu, Aakash Kumar
+
 **Mentor:** Alex Merenstein, Vasily Tarasov, Anthony Hsu (IBM)
+
 **Project:** <one sentence: what this system does>
 
 ## What this is
