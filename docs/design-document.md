@@ -208,6 +208,10 @@ infra/aws/down.sh                    # deletes everything up.sh created
 ```
 
 Two `m6i.xlarge` cost about $0.38/hour in `us-east-1`; run `infra/aws/down.sh` when done.
+If `up.sh` stops part way, `down.sh` removes whatever it had created. New AWS accounts
+may have an on-demand vCPU quota below the 8 vCPUs needed (`VcpuLimitExceeded`): request
+an increase in Service Quotas, or set `INSTANCE_TYPE=m6i.large` (2 vCPU, 8 GiB per node;
+conversions then take roughly twice as long).
 
 ### Any two Ubuntu 24.04 hosts (NERC, lab machines, ...)
 
