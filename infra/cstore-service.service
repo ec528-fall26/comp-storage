@@ -1,0 +1,25 @@
+# Background conversion service (template; infra/storage-node.sh fills in
+# the @...@ fields and installs it as /etc/systemd/system/cstore-service.service).
+[Unit]
+Description=cstore background conversion service
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+RequiresMountsFor=@MOUNT@
+
+[Service]
+Type=simple
+User=@OWNER@
+Group=@OWNER@
+SupplementaryGroups=docker
+WorkingDirectory=@REPO@
+Environment=PYTHONUNBUFFERED=1
+ExecStart=@REPO@/bin/cstore service --watch --poll 5
+# On stop, signal only the service; it finishes the job in progress, then exits.
+KillMode=mixed
+TimeoutStopSec=1800
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

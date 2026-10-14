@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2328"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+  </defs>
+  <rect width="1040" height="640" fill="#ffffff"/>
+
+  <text x="24" y="34" font-size="20" font-weight="600" fill="#1f2328">Demo 2 testbed: one storage node, one separate compute node</text>
+  <text x="24" y="56" font-size="13" fill="#59636e">Both are EC2 m6i.xlarge (4 vCPU, 16 GiB) in one subnet. Every job runs in the same worker image with the same CPU/memory limits.</text>
+
+  <!-- GCS source -->
+  <rect x="700" y="74" width="316" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="858" y="99" font-size="13" fill="#1f2328" text-anchor="middle">gs://gresearch/robotics/droid/1.0.1 (RLDS)</text>
+  <line x1="858" y1="114" x2="858" y2="150" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="866" y="138" font-size="12" fill="#59636e">load: MD5-checked (02)</text>
+
+  <!-- Compute node -->
+  <rect x="24" y="152" width="400" height="330" rx="10" fill="#ffffff" stroke="#59636e" stroke-width="1.5"/>
+  <text x="44" y="180" font-size="16" font-weight="600" fill="#1f2328">Compute node</text>
+  <text x="44" y="199" font-size="12" fill="#59636e">runs the experiments (bin/cstore, experiments/*.sh)</text>
+
+  <rect x="44" y="214" width="360" height="92" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="58" y="236" font-size="14" font-weight="600" fill="#1f2328">Worker container (separate mode)</text>
+  <text x="58" y="256" font-size="12" fill="#1f2328">cstore-worker:demo2 · --network none · 3 vCPU / 7 GiB</text>
+  <text x="58" y="274" font-size="12" fill="#1f2328">port_droid.py (LeRobot v0.6.1, unmodified, SHA-256 pinned)</text>
+  <text x="58" y="292" font-size="12" fill="#1f2328">converts into local scratch, then writes back</text>
+
+  <rect x="44" y="318" width="360" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="58" y="343" font-size="12" fill="#1f2328">local scratch /var/tmp/cstore (LeRobot's temp PNGs/MP4s)</text>
+
+  <rect x="44" y="370" width="360" height="40" rx="6" fill="#ddf4ff" stroke="#54aeff"/>
+  <text x="58" y="395" font-size="13" fill="#1f2328">CephFS client: /mnt/cephfs (kernel mount)</text>
+
+  <text x="44" y="436" font-size="12" fill="#59636e">reads NIC counters on both nodes, drops caches,</text>
+  <text x="44" y="453" font-size="12" fill="#59636e">starts storage-mode jobs over ssh, records results</text>
+
+  <!-- Storage node -->
+  <rect x="616" y="152" width="400" height="400" rx="10" fill="#ffffff" stroke="#59636e" stroke-width="1.5"/>
+  <text x="636" y="180" font-size="16" font-weight="600" fill="#1f2328">Storage node</text>
+  <text x="636" y="199" font-size="12" fill="#59636e">single-node Ceph 19.2 (MicroCeph)</text>
+
+  <rect x="636" y="214" width="360" height="66" rx="6" fill="#fff8c5" stroke="#d4a72c"/>
+  <text x="650" y="236" font-size="14" font-weight="600" fill="#1f2328">Ceph daemons</text>
+  <text x="650" y="256" font-size="12" fill="#1f2328">mon · mgr · mds · 3 OSDs (loop files, 3x replication)</text>
+  <text x="650" y="272" font-size="12" fill="#1f2328">CephFS "cstorefs", root /mnt/cephfs/cstore</text>
+
+  <rect x="636" y="292" width="360" height="72" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="650" y="312" font-size="12" font-weight="600" fill="#1f2328">On CephFS (seen identically by both nodes)</text>
+  <text x="650" y="330" font-size="12" fill="#1f2328">datasets/droid/rlds/1.0.1/  (input shards)</text>
+  <text x="650" y="346" font-size="12" fill="#1f2328">outputs/  results/  queue/{pending,running,done,failed}</text>
+
+  <rect x="636" y="376" width="360" height="70" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="650" y="398" font-size="14" font-weight="600" fill="#1f2328">Worker container (storage mode)</text>
+  <text x="650" y="418" font-size="12" fill="#1f2328">same image and limits as on the compute node</text>
+  <text x="650" y="436" font-size="12" fill="#1f2328">reads and writes CephFS through the local mount</text>
+
+  <rect x="636" y="458" width="360" height="40" rx="6" fill="#dafbe1" stroke="#4ac26b"/>
+  <text x="650" y="483" font-size="12" fill="#1f2328">cstore-service: finds unconverted shards, runs the queue</text>
+  <text x="636" y="528" font-size="12" fill="#59636e">storage-node NIC (ens5): every cross-host byte passes here,</text>
+  <text x="636" y="544" font-size="12" fill="#59636e">so its rx+tx counters are the job's cross-host traffic</text>
+
+  <!-- network arrows -->
+  <line x1="404" y1="382" x2="630" y2="252" stroke="#0969da" stroke-width="2.5" marker-end="url(#arrowBlue)" marker-start="url(#arrowBlue)"/>
+  <text x="434" y="424" font-size="13" font-weight="600" fill="#0969da">separate mode:</text>
+  <text x="434" y="442" font-size="12" fill="#0969da">input shard read, LeRobot</text>
+  <text x="434" y="458" font-size="12" fill="#0969da">output written, over the</text>
+  <text x="434" y="474" font-size="12" fill="#0969da">network (counted at the NIC)</text>
+  <text x="434" y="502" font-size="13" font-weight="600" fill="#1f2328">storage mode:</text>
+  <text x="434" y="520" font-size="12" fill="#1f2328">the same I/O stays inside</text>
+  <text x="434" y="536" font-size="12" fill="#1f2328">the storage node (dashed)</text>
+  <path d="M 900 446 C 990 440 1000 300 996 282" fill="none" stroke="#1f2328" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+
+  <!-- job pipeline strip -->
+  <text x="24" y="584" font-size="14" font-weight="600" fill="#1f2328">One job</text>
+  <g font-size="12" fill="#1f2328">
+    <rect x="24" y="596" width="170" height="30" rx="5" fill="#f6f8fa" stroke="#d0d7de"/>
+    <text x="109" y="616" text-anchor="middle">RLDS shard on CephFS</text>
+    <rect x="224" y="596" width="196" height="30" rx="5" fill="#eef1f4" stroke="#8c959f"/>
+    <text x="322" y="616" text-anchor="middle">port_droid.py in container</text>
+    <rect x="450" y="596" width="186" height="30" rx="5" fill="#f6f8fa" stroke="#d0d7de"/>
+    <text x="543" y="616" text-anchor="middle">LeRobot dataset, scratch</text>
+    <rect x="666" y="596" width="196" height="30" rx="5" fill="#ddf4ff" stroke="#54aeff"/>
+    <text x="764" y="616" text-anchor="middle">copy + fsync + rename</text>
+    <rect x="892" y="596" width="124" height="30" rx="5" fill="#dafbe1" stroke="#4ac26b"/>
+    <text x="954" y="616" text-anchor="middle">verify (05)</text>
+  </g>
+  <g stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="194" y1="611" x2="222" y2="611"/>
+    <line x1="420" y1="611" x2="448" y2="611"/>
+    <line x1="636" y1="611" x2="664" y2="611"/>
+    <line x1="862" y1="611" x2="890" y2="611"/>
+  </g>
+</svg>

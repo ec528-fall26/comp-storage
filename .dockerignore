@@ -1,0 +1,4 @@
+# The worker image needs only src/; keep the build context small.
+*
+!src/
+src/**/__pycache__
