@@ -234,6 +234,11 @@ bin/cstore check
 Settings live in `infra/cluster.env` on each node (written by the setup scripts); any
 of them can be overridden with an environment variable (see `src/cstore/config.py`).
 
+**If the image build cannot reach download.pytorch.org**, build with PyPI's torch
+wheels instead (larger image, same versions): prefix `infra/deploy.sh` (or
+`experiments/00_smoke_local.sh`) with
+`DOCKER_BUILD_ARGS="--build-arg TORCH_INDEX_URL=https://pypi.org/simple --build-arg TORCH_LOCAL_VERSION="`.
+
 ## 4. Running the experiments
 
 Run on the **compute node** from `~/comp-storage`, in order (`experiments/run_all.sh`
@@ -301,7 +306,7 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 | Supports | "loaded data is converted in the background with no manual step" |
 | Command | `experiments/06_background_service.sh` |
 | Expected runtime | ~8 min per loaded shard, plus ~1 min of verification |
-| Expected output | `bin/cstore status` snapshots showing `svc-shard-00002` move pending → running → done, the service's log lines (`queued svc-shard-00002: new shard 2 has no converted output`, `finished …`), then `VERIFY OK`. Re-running finds nothing new; to repeat, delete `outputs/service` and `queue` under `/mnt/cephfs/cstore` |
+| Expected output | `bin/cstore status` snapshots every 20 s showing one job per loaded shard (`svc-shard-00002` by default) running and then done, the service's log (`queued svc-shard-00002: new shard 2 has no converted output`, `running …`, `finished …`), then `VERIFY OK` per output. Re-running finds nothing new; to repeat, delete `outputs/service` and `queue` under `/mnt/cephfs/cstore` |
 
 ### Experiment 7: results table and chart
 

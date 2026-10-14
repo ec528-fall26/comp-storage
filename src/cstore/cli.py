@@ -147,7 +147,11 @@ def cmd_status(a, cfg):
     print("queue: " + "  ".join(f"{s} {n}" for s, n in counts.items()))
     for hb in jobqueue.heartbeats(cfg):
         print(f"service on {hb['host']}: {hb.get('state')} {hb.get('job_id', '')} (heartbeat {_ago(hb.get('time'))})")
-    for state, e in rows[-a.limit :]:
+    active = [(s, e) for s, e in rows if s in ("pending", "running")]
+    finished = sorted(
+        ((s, e) for s, e in rows if s in ("done", "failed")), key=lambda r: r[1]["state"].get("finished_at") or 0
+    )
+    for state, e in active + finished[-a.limit :]:
         job, st = e["job"], e["state"]
         extra = ""
         if state in ("done", "failed"):
@@ -325,7 +329,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.set_defaults(fn=cmd_submit)
 
     s = sub.add_parser("status", help="show the job queue and service heartbeats")
-    s.add_argument("--limit", type=int, default=20)
+    s.add_argument("--limit", type=int, default=20, help="how many finished jobs to list")
     s.set_defaults(fn=cmd_status)
 
     s = sub.add_parser("requeue", help="move a failed or stuck job back to pending")

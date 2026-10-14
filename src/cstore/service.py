@@ -58,8 +58,8 @@ def enqueue_missing(cfg: Config, log=print) -> int:
 
 
 def serve(cfg: Config, watch: bool = True, poll: float = 5.0, once: bool = False, log=print) -> None:
-    signal.signal(signal.SIGTERM, _on_term)
-    signal.signal(signal.SIGINT, _on_term)
+    previous = {sig: signal.signal(sig, _on_term) for sig in (signal.SIGTERM, signal.SIGINT)}
+    _Stop.requested = False
     jobqueue.init(cfg)
     host = socket.gethostname()
     log(f"cstore service on {host}: root {cfg.root}, runtime {cfg.runtime}, watch={watch}, poll={poll}s")
@@ -94,4 +94,6 @@ def serve(cfg: Config, watch: bool = True, poll: float = 5.0, once: bool = False
             f"submitted-to-done {record['submitted_to_done_s']:.1f} s, output {w.get('output_bytes', 0) / 1e6:.1f} MB"
         )
     jobqueue.write_heartbeat(cfg, {"state": "stopped", "watch": watch})
+    for sig, handler in previous.items():
+        signal.signal(sig, handler)
     log("cstore service stopped")

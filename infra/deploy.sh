@@ -40,14 +40,16 @@ step() { printf '\n######## %s\n' "$*"; }
 
 step "copy this checkout ($REV) to both hosts"
 for host in "$STORAGE_SSH" "$COMPUTE_SSH"; do
+  ssh "${SSH_OPTS[@]}" "$host" 'command -v rsync >/dev/null || sudo apt-get install -y -q rsync >/dev/null'
   rsync -az --delete -e "ssh ${SSH_OPTS[*]}" \
     --exclude .git --exclude __pycache__ --exclude infra/aws/.state --exclude infra/cluster.env \
     ./ "$host:$REMOTE_DIR/"
 done
 
 step "storage node: MicroCeph + CephFS + worker image"
-s "cd $REMOTE_DIR && sudo CSTORE_CODE_REV=$REV WORKER_IMAGE=$WORKER_IMAGE infra/storage-node.sh"
-STORAGE_IP=$(s "hostname -I | awk '{print \$1}'")
+s "cd $REMOTE_DIR && sudo CSTORE_CODE_REV=$REV WORKER_IMAGE=$WORKER_IMAGE DOCKER_BUILD_ARGS='${DOCKER_BUILD_ARGS:-}' infra/storage-node.sh"
+# the address of the storage node's default-route interface (its private IP on AWS)
+STORAGE_IP=$(s "ip -4 -o route get 1.1.1.1 | awk '{for (i = 1; i < NF; i++) if (\$i == \"src\") print \$(i + 1)}'")
 REMOTE_USER=$(s 'whoami')
 echo "storage node private IP: $STORAGE_IP"
 

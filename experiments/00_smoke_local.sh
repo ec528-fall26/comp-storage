@@ -21,7 +21,8 @@ if docker image inspect "$IMAGE" >/dev/null 2>&1; then
   echo "present: $(docker image inspect --format '{{.Id}}' "$IMAGE")"
 else
   echo "building (one time, ~10 min)"
-  docker build -f "$REPO/src/worker/Dockerfile" -t "$IMAGE" "$REPO"
+  # shellcheck disable=SC2086  # DOCKER_BUILD_ARGS: optional extra flags, see src/worker/Dockerfile
+  docker build ${DOCKER_BUILD_ARGS:-} -f "$REPO/src/worker/Dockerfile" -t "$IMAGE" "$REPO"
 fi
 
 banner "smoke test in $SMOKE_DIR"

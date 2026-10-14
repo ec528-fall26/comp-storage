@@ -4,12 +4,16 @@
 #   docker build -f src/worker/Dockerfile -t cstore-worker:demo2 .     (from the repo root)
 #
 # Python 3.12 from Ubuntu 24.04 (the hosts' OS); CPU-only PyTorch (the
-# conversion never touches a GPU, and the CPU wheels are ~4 GB smaller).
+# conversion never touches a GPU, and the CPU wheels keep the image ~7 GB smaller).
 FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 # Where torch/torchvision come from. The default is PyTorch's CPU-only index;
-# TORCH_LOCAL_VERSION is the matching local version label.
+# TORCH_LOCAL_VERSION is the matching local version label. If that index is
+# unreachable, build with the (CUDA-bundling, ~7 GB larger) PyPI wheels instead:
+#   DOCKER_BUILD_ARGS="--build-arg TORCH_INDEX_URL=https://pypi.org/simple --build-arg TORCH_LOCAL_VERSION="
+# (the setup scripts and experiments/00 pass $DOCKER_BUILD_ARGS to docker build).
+# Both nodes always run the same image, so either choice keeps the comparison fair.
 ARG TORCH_INDEX_URL=https://download.pytorch.org/whl/cpu
 ARG TORCH_LOCAL_VERSION=+cpu
 

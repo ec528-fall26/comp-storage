@@ -12,6 +12,8 @@
 #   MICROCEPH_CHANNEL=squid/stable  Ceph 19.2 (matches Ubuntu's ceph-common)
 #   FS_NAME=cstorefs  CEPH_CLIENT=cstore  CEPHFS_MOUNT=/mnt/cephfs
 #   WORKER_IMAGE=cstore-worker:demo2  WORKER_CPUS, WORKER_MEMORY (default: vCPUs - 1, RAM / 2 up to 8g)
+#   REBUILD_IMAGE=1                 rebuild the worker image even if it exists
+#   DOCKER_BUILD_ARGS="..."         extra docker build flags (see src/worker/Dockerfile)
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -111,7 +113,10 @@ usermod -aG docker "$OWNER"
 if docker image inspect "$WORKER_IMAGE" >/dev/null 2>&1 && [ "${REBUILD_IMAGE:-0}" != 1 ]; then
   echo "image exists ($(docker image inspect --format '{{.Id}}' "$WORKER_IMAGE")); REBUILD_IMAGE=1 rebuilds it"
 else
-  docker build -f src/worker/Dockerfile -t "$WORKER_IMAGE" "$REPO"
+  # DOCKER_BUILD_ARGS: extra flags, e.g. to take torch from PyPI if
+  # download.pytorch.org is unreachable (see src/worker/Dockerfile)
+  # shellcheck disable=SC2086
+  docker build ${DOCKER_BUILD_ARGS:-} -f src/worker/Dockerfile -t "$WORKER_IMAGE" "$REPO"
 fi
 
 step "local scratch space"
