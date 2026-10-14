@@ -70,8 +70,11 @@ fi
 osds_up() { [ "$(ceph osd stat -f json | python3 -c 'import json,sys; print(json.load(sys.stdin)["num_up_osds"])')" -ge "$OSD_COUNT" ]; }
 wait_for 300 "$OSD_COUNT OSDs up" osds_up
 
-step "memory targets for a 16 GiB VM (defaults assume dedicated servers)"
-ceph config set osd osd_memory_target 1610612736     # 1.5 GiB per OSD (default 4 GiB)
+step "memory targets for a small VM (Ceph's defaults assume dedicated servers)"
+# 1.5 GiB per OSD on 16 GiB machines, 1 GiB on smaller ones (default 4 GiB),
+# leaving room for the worker container next to three OSDs.
+if [ "$(awk '/MemTotal/ {print $2}' /proc/meminfo)" -ge 12000000 ]; then osd_mem=1610612736; else osd_mem=1073741824; fi
+ceph config set osd osd_memory_target "$osd_mem"
 ceph config set mds mds_cache_memory_limit 1073741824 # 1 GiB (default 4 GiB)
 
 step "CephFS file system '$FS_NAME'"
