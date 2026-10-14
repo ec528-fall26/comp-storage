@@ -5,14 +5,16 @@
 # once through the background service's queue -- written back with an atomic
 # publish, and verified through LeRobot's own loader.
 #
-# Where: any Linux machine with Docker (no Ceph, no cloud, no DROID download;
-#        a local directory stands in for CephFS).
+# Where: any Linux machine with Docker, or a Mac with Docker Desktop (no Ceph,
+#        no cloud, no DROID download; a local directory stands in for CephFS).
 # Runtime: ~10 min the first time (builds the 4 GB worker image), ~2 min after.
 # Expected output: three "VERIFY OK" blocks, the direct and service outputs of
 #        shard 2 reported "byte-identical", and finally "SMOKE TEST PASSED".
 # shellcheck source=experiments/common.sh
 source "$(dirname "$0")/common.sh"
 
+# Docker Desktop on macOS shares the home directory with containers by default.
+if [ "$(uname -s)" = Darwin ]; then SMOKE_DIR=${SMOKE_DIR:-$HOME/.cstore-smoke}; fi
 SMOKE_DIR=${SMOKE_DIR:-/var/tmp/cstore-smoke}
 IMAGE=${WORKER_IMAGE:-cstore-worker:demo2}
 

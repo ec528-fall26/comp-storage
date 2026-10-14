@@ -59,6 +59,18 @@ class NetCountTest(unittest.TestCase):
         snap = netcount.snapshot()
         self.assertIn("rx_bytes", snap)
 
+    def test_snapshot_without_proc(self):  # macOS running the local smoke test
+        with mock.patch.object(netcount, "PROC_NET_DEV", Path("/nonexistent/net/dev")):
+            a, b = netcount.snapshot(), netcount.snapshot()
+        self.assertEqual(a["iface"], "unavailable")
+        self.assertEqual(netcount.delta(a, b)["total_bytes"], 0)
+
+    def test_fs_type_without_findmnt(self):  # macOS has no findmnt
+        from cstore import runner
+
+        with mock.patch.object(runner.subprocess, "run", side_effect=FileNotFoundError("findmnt")):
+            self.assertIsNone(runner.fs_type(Path("/")))
+
 
 class ConfigTest(unittest.TestCase):
     def test_env_file_and_precedence(self):

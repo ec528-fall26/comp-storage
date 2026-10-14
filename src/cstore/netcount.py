@@ -44,6 +44,10 @@ def default_route_iface(route_text: str | None = None) -> str | None:
 
 
 def snapshot(iface: str = "") -> dict:
+    if not PROC_NET_DEV.exists():
+        # Not Linux (e.g. the local smoke test on macOS): no counters to read.
+        # The cluster experiments only run on Linux, where this never happens.
+        return {"time": time.time(), "iface": "unavailable", "rx_bytes": 0, "tx_bytes": 0, "rx_packets": 0, "tx_packets": 0}
     stats = parse_net_dev(PROC_NET_DEV.read_text())
     name = iface or default_route_iface() or next((n for n in stats if n != "lo"), "lo")
     if name not in stats:

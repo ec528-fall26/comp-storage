@@ -20,8 +20,8 @@ data on its own. See [`docs/design-document.md`](docs/design-document.md).
 
 ## Quick start
 
-On any Linux machine with Docker, no cloud account needed (synthetic data, a local
-directory standing in for CephFS):
+On any Linux machine with Docker, or a Mac with Docker Desktop; no cloud account
+needed (synthetic data, a local directory standing in for CephFS):
 
 ```bash
 git clone -b demo-2 https://github.com/ec528-fall26/comp-storage && cd comp-storage

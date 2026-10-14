@@ -40,7 +40,10 @@ def image_id(cfg: Config) -> str | None:
 
 def fs_type(path: Path) -> str | None:
     """File system type under ``path``: "ceph" (kernel client), "fuse.ceph", ..."""
-    out = subprocess.run(["findmnt", "-no", "FSTYPE", "--target", str(path)], capture_output=True, text=True)
+    try:
+        out = subprocess.run(["findmnt", "-no", "FSTYPE", "--target", str(path)], capture_output=True, text=True)
+    except FileNotFoundError:  # no findmnt (macOS)
+        return None
     return out.stdout.strip() or None
 
 

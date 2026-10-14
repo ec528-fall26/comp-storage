@@ -181,8 +181,9 @@ and `docker.io` from Ubuntu 24.04. Worker image: Ubuntu 24.04, Python 3.12, torc
 
 ### Quick check on one machine (no cloud, no Ceph)
 
-Any Linux machine with Docker. A local directory stands in for CephFS and synthetic
-shards with the DROID 1.0.1 layout stand in for the download.
+Any Linux machine with Docker, or a Mac with Docker Desktop (the image builds natively
+for Apple Silicon). A local directory stands in for CephFS and synthetic shards with the
+DROID 1.0.1 layout stand in for the download.
 
 ```bash
 git clone -b demo-2 https://github.com/ec528-fall26/comp-storage && cd comp-storage
@@ -241,12 +242,12 @@ of them can be overridden with an environment variable (see `src/cstore/config.p
 **If the image build cannot reach download.pytorch.org**, build with PyPI's torch
 wheels instead (larger image, same versions): prefix `infra/deploy.sh` (or
 `experiments/00_smoke_local.sh`) with
-`DOCKER_BUILD_ARGS="--build-arg TORCH_INDEX_URL=https://pypi.org/simple --build-arg TORCH_LOCAL_VERSION="`.
+`DOCKER_BUILD_ARGS="--build-arg TORCH_INDEX_URL=https://pypi.org/simple"`.
 
 ## 4. Running the experiments
 
 Run on the **compute node** from `~/comp-storage`, in order (`experiments/run_all.sh`
-runs 01-07), except 00, which runs anywhere with Docker. Every script prints what it
+runs 01-07), except 00, which runs on any Linux machine or Mac with Docker. Every script prints what it
 measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 
 ### Experiment 0: the pipeline works end to end
