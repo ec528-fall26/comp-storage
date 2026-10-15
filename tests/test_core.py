@@ -170,6 +170,13 @@ class ConverterPinTest(unittest.TestCase):
         digest = hashlib.sha256(droid_rlds_to_lerobot.PORT_DROID.read_bytes()).hexdigest()
         self.assertEqual(digest, droid_rlds_to_lerobot.PORT_DROID_SHA256)
 
+    def test_metadata_from_file_path(self):
+        f = droid_rlds_to_lerobot.metadata_from_file_path
+        real = "gs://xembodiment_data/r2d2/r2d2-data-full/AUTOLab/failure/2023-11-18/Sat_Nov_18_19:44:45_2023/trajectory.h5"
+        self.assertEqual(f(real), {"building": "AUTOLab", "date": "2023-11-18"})
+        self.assertEqual(f("/x/IPRL/success/2023-04-01/t/trajectory.h5"), {"building": "IPRL", "date": "2023-04-01"})
+        self.assertEqual(f("/no/outcome/here.h5"), {"building": "", "date": ""})
+
     def test_expected_episodes(self):
         with tempfile.TemporaryDirectory() as d:
             info = Path(d) / "dataset_info.json"

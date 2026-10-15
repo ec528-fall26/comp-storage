@@ -13,10 +13,11 @@ and only the chosen shards' record files are present::
     <out>/1.0.1/droid_101-train.tfrecord-00002-of-02048
     <out>/1.0.1/droid_101-train.tfrecord-00008-of-02048
 
-so the same job specs, and Hugging Face's unmodified ``port_droid.py`` with
-``--num-shards 2048 --shard-index N``, work on it exactly as on real data.
-Only the fields ``port_droid.py`` reads are generated; the real dataset has
-a few more metadata fields, which the converter ignores.
+so the same job specs and the same conversion path work on it exactly as on
+real data. The schema matches the real files field for field (checked
+against shard 2 on 2026-10-15): in particular, each episode carries only
+``file_path`` and ``recording_folderpath``, in the real path layout, so the
+smoke test also exercises the metadata the converter has to fill in.
 
 Runs inside the worker image (needs TensorFlow Datasets).
 """
@@ -90,16 +91,11 @@ def _features() -> tfds.features.FeaturesDict:
                     "action": tensor(7),
                 }
             ),
+            # Exactly the two per-episode fields the public 1.0.1 files carry.
             "episode_metadata": tfds.features.FeaturesDict(
                 {
                     "file_path": tfds.features.Text(),
                     "recording_folderpath": tfds.features.Text(),
-                    "building": tfds.features.Text(),
-                    "collector_id": tfds.features.Text(),
-                    "date": tfds.features.Text(),
-                    "extrinsics_wrist_cam": tensor(6),
-                    "extrinsics_exterior_cam_1": tensor(6),
-                    "extrinsics_exterior_cam_2": tensor(6),
                 }
             ),
         }
@@ -164,18 +160,17 @@ def _episode(index: int, seed: int, min_steps: int, max_steps: int) -> dict:
                 "action": np.concatenate([cart[min(t + 1, n - 1)] - cart[t], grip[t]]),
             }
         )
-    folder = f"/synthetic/lab/{outcome}/2026-09-0{1 + index % 9}/episode_{index:04d}"
+    # Same path layout as the real files: .../<lab>/<success|failure>/<date>/<timestamp>/
+    day = 1 + index % 9
+    folder = (
+        f"/synthetic/r2d2-data-full/SyntheticLab/{outcome}/2026-09-0{day}/"
+        f"Tue_Sep__{day}_10:{index % 60:02d}:00_2026"
+    )
     return {
         "steps": steps,
         "episode_metadata": {
             "file_path": f"{folder}/trajectory.h5",
             "recording_folderpath": f"{folder}/recordings/MP4",
-            "building": "synthetic-lab",
-            "collector_id": f"collector-{index % 3}",
-            "date": f"2026-09-0{1 + index % 9}",
-            "extrinsics_wrist_cam": np.linspace(0, 1, 6) + index,
-            "extrinsics_exterior_cam_1": np.linspace(1, 2, 6) + index,
-            "extrinsics_exterior_cam_2": np.linspace(2, 3, 6) + index,
         },
     }
 

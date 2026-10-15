@@ -13,7 +13,7 @@ recording total runtime and cross-host bytes with a documented command.
 | --- | --- | --- |
 | Single-node Ceph cluster | `infra/storage-node.sh` (MicroCeph, CephFS) | experiment 01 |
 | Load | `src/cstore/loader.py` | experiment 02 |
-| Format conversion | Hugging Face's `port_droid.py`, unmodified, in `src/worker/` image | experiments 03, 04 |
+| Format conversion | Hugging Face's `port_droid.py`, unmodified, in `src/worker/` image (missing episode metadata supplied: section 2) | experiments 03, 04 |
 | Write-back | `publish_tree` in `src/cstore/worker.py` | experiments 03, 04, 05 |
 | Background conversion service | `src/cstore/service.py`, `src/cstore/jobqueue.py` | experiment 06 |
 | Separate-compute baseline, runtime and cross-host bytes | `src/cstore/bench.py`, `src/cstore/netcount.py` | experiments 03, 07 |
@@ -45,8 +45,9 @@ recording total runtime and cross-host bytes with a documented command.
 dependencies), producing one output directory (`src/cstore/jobs.py`). The function in
 Demo 2 converts one DROID 1.0.1 shard from RLDS to the LeRobot v3 format, using Hugging
 Face's own converter, `examples/port_datasets/port_droid.py` from LeRobot v0.6.1, run
-unmodified. A job's dependencies are the shard's record file plus `dataset_info.json`
-and `features.json`. Demo 3's placement policy will read these lists.
+unmodified. (The public DROID files lack six per-episode fields that script reads; they
+are supplied before each episode reaches it, see section 2.) A job's dependencies are the
+shard's record file plus `dataset_info.json` and `features.json`. Demo 3's placement policy will read these lists.
 
 **Running a job** (`src/cstore/runner.py`, `src/cstore/worker.py`). The worker always
 runs in the same Docker image (`cstore-worker:demo2`) with the same limits (3 vCPU,
@@ -114,6 +115,18 @@ both modes provably run the same transformation. The image pins LeRobot 0.6.1,
 TensorFlow 2.21 (CPU), TensorFlow Datasets 4.9.10 and every other package
 (`src/worker/requirements.txt`).
 
+**Supply the episode metadata the public files lack.** `port_droid.py` reads eight
+per-episode fields; the public DROID 1.0.1 RLDS files carry two of them, `file_path` and
+`recording_folderpath` (checked on shard 2). Without the rest the script stops on its
+first episode. `src/cstore/functions/droid_rlds_to_lerobot.py` adds them to each episode
+before handing it to the script: `building` (the lab) and `date` are parsed from
+`file_path`, which has the form `.../<lab>/<success|failure>/<YYYY-MM-DD>/<time>/trajectory.h5`;
+`collector_id` is empty and the three camera extrinsics are zeros, because the files do
+not record them. The script itself still does all of the conversion and is unchanged.
+Fields an input already has are never touched, and each job's result lists what was
+filled. *Alternative:* editing `port_droid.py` to skip those fields would break the
+"unmodified converter" guarantee and change the output schema.
+
 **Same container image, limits and cache state in both modes.** The image is built once
 on the storage node and copied to the compute node (`docker save | docker load`), so
 both run the same image ID (checked by experiment 01 and recorded in every result).
@@ -158,6 +171,11 @@ run near 30 minutes. `SHARDS="2 8"` adds shard 8 (686 MB); any of the 2048 shard
 * *CPU limits on small machines.* `docker run --cpus=3` fails on a 2-vCPU host. Limits
   are derived from the machine (vCPUs − 1, half the RAM up to 8 GiB), and experiment 01
   checks both nodes ended up with the same values.
+* *Synthetic test data that matched the converter instead of the data.* The first
+  synthetic shards were built from what `port_droid.py` reads, so the smoke test passed
+  while the first real shard failed at once with `KeyError: 'building'` (above). The
+  generator now reproduces the real files' schema field for field, including the two
+  metadata fields, so the smoke test exercises the same path as real data.
 * *Comparing outputs byte for byte.* LeRobot writes the keys of `meta/stats.json` in
   whatever order its parallel encoders finish, so two runs differ in that file only.
   The verifier compares JSON files after sorting keys; everything else must match exactly.
@@ -367,6 +385,11 @@ the converter's pinned hash, the loader's checksum handling, and the report.
 * **Byte-identical outputs assume identical CPUs.** Both nodes are the same instance
   type. On different CPUs the AV1 encoder could produce different bytes; the verifier
   then reports whether the decoded content still matches.
+* **Some output metadata is a placeholder.** `collector_id` is empty and the
+  `camera_extrinsics.*` columns are zeros in every converted episode, because the public
+  RLDS files do not contain them (section 2). `building`, `date` and the success flag
+  come from each episode's file path. Everything a policy trains on (camera frames,
+  robot state, actions, language instructions) is converted as-is.
 * **Synthetic data only in experiment 0.** It has DROID's layout and schema but not its
   image content, so its compression ratio and speed are not DROID's.
 
@@ -377,5 +400,8 @@ with `ceph-fuse`, with both "nodes" on that one machine, so its traffic numbers 
 meaningless. That run exercised the Ceph commands in `infra/storage-node.sh`, CephFS
 reads and writes, atomic publishes, queue claiming and verification on real CephFS. It
 did not exercise MicroCeph, the kernel CephFS client, or two separate hosts. The AWS CLI
-calls in `infra/aws/` were checked for syntax only. The AWS run above is the first
-end-to-end run of those parts.
+calls in `infra/aws/` were checked for syntax only. On 2026-10-15 the storage-node
+setup (MicroCeph, CephFS, the worker image), the DROID download and experiment 0 also
+ran on a real Ubuntu 24.04 VM (8 vCPU, 39 GiB); its first real-shard conversion exposed
+the missing metadata described in section 2. The two-node run above is the first
+end-to-end run of the remaining parts.
