@@ -10,7 +10,7 @@
 #
 # Where: the compute node (it starts the job on the storage node over ssh and
 #        reads both nodes' NIC counters).
-# Runtime: ~8 min per shard (same estimate as 03).
+# Runtime: ~5-8 min per shard (same as 03).
 # Expected output: "ok; wall ... s; cross-host ... MB; ...; episodes N of N"
 #        per shard. Match: cross-host under 1% of the 03 figure (only ssh and
 #        control traffic). Wall time is reported next to 03's, not a pass/fail

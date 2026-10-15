@@ -7,7 +7,7 @@
 # We watch the queue from the compute node, then verify the outputs.
 #
 # Where: the compute node (the service runs on the storage node).
-# Runtime: ~8 min per loaded shard (default 1 shard), plus ~1 min to verify.
+# Runtime: ~5-8 min per loaded shard (default 1 shard), plus ~1 min to verify.
 # Expected output: queue snapshots showing svc-shard-00002 (one job per
 #        loaded shard) running and then done, the service's log, then
 #        "VERIFY OK" for each output.

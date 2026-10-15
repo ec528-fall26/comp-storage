@@ -301,8 +301,8 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 | --- | --- |
 | Supports | the baseline row of the results table: runtime and cross-host bytes when the worker runs on the compute node |
 | Command | `experiments/03_baseline_separate.sh` (starts a new run ID that 04, 05 and 07 reuse) |
-| Expected runtime | ~8 min per shard |
-| Expected output | `[separate] shard-00002: ok; wall … s (convert … s, write-back … s); cross-host … MB; output … MB; episodes N of N`. **Match:** cross-host between 1.0× and 1.15× of (input + output), i.e. the 649 MB shard plus the LeRobot output plus protocol overhead |
+| Expected runtime | ~5–8 min per shard (5 min measured on the storage node with 7 worker CPUs; section 5) |
+| Expected output | `[separate] shard-00002: ok; wall … s (convert … s, write-back … s); cross-host … MB; output … MB; episodes 39 of 39`. **Match:** cross-host between 1.0× and 1.15× of input + output: the 649 MB shard plus its ~142 MB LeRobot output, so about 790–910 MB |
 
 ### Experiment 4: the same jobs on the storage node
 
@@ -310,7 +310,7 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 | --- | --- |
 | Supports | "running on the storage node keeps the data off the network" |
 | Command | `experiments/04_storage_node.sh` |
-| Expected runtime | ~8 min per shard |
+| Expected runtime | ~5–8 min per shard |
 | Expected output | `[storage] shard-00002: ok; …; cross-host … MB; …; episodes N of N`. **Match:** cross-host under 1% of experiment 3's (ssh and CephFS session traffic only). Wall time is reported, not a pass/fail criterion (section 5) |
 
 ### Experiment 5: outputs are correct and equivalent
@@ -328,7 +328,7 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 | --- | --- |
 | Supports | "loaded data is converted in the background with no manual step" |
 | Command | `experiments/06_background_service.sh` |
-| Expected runtime | ~8 min per loaded shard, plus ~1 min of verification |
+| Expected runtime | ~5–8 min per loaded shard, plus ~1 min of verification |
 | Expected output | `bin/cstore status` snapshots every 20 s showing one job per loaded shard (`svc-shard-00002` by default) running and then done, the service's log (`queued svc-shard-00002: new shard 2 has no converted output`, `running …`, `finished …`), then `VERIFY OK` per output. Re-running finds nothing new; to repeat, delete `outputs/service` and `queue` under `/mnt/cephfs/cstore` |
 
 ### Experiment 7: results table and chart
@@ -357,10 +357,23 @@ the converter's pinned hash, the loader's checksum handling, and the report.
 * Both modes produce the same dataset, byte for byte (experiment 5).
 * A background service converts loaded data with no manual step (experiment 6).
 
-**Measured results on the AWS testbed.**
+**Measured: one real shard converted on the storage node (2026-10-15).** On an
+Ubuntu 24.04 VM (8 vCPU, 39 GiB) set up with `infra/storage-node.sh`, the background
+service converted DROID 1.0.1 shard 2, read from CephFS, and wrote the result back to
+CephFS. The worker was limited to 7 CPUs.
+
+| | |
+| --- | --- |
+| Input | 649 MB RLDS shard, 39 episodes |
+| Output | LeRobot v3 dataset: 39 episodes, 9,829 frames, 8 files, 141.5 MB (22% of the input) |
+| Wall time | 304 s: convert 299 s, write-back to CephFS 3.9 s, container start/stop ~1 s |
+| CPU | 634 CPU-seconds (65 ms per step; about 2.1 cores busy on average); peak memory 1.9 GB |
+| Verification | `VERIFY OK`: 39 of 39 episodes, frame counts consistent across data and all three videos, first and last frames decoded through LeRobot's loader |
+
+**Measured: separate compute vs. storage node.**
 
 > TODO (team): paste `results/<run>/summary.md` from `experiments/07_report.sh` here
-> after running on the testbed, with the date and run ID. These are the numbers the
+> after the two-node run, with the date and run ID. These are the numbers the
 > slides use.
 
 **Limitations.**
@@ -369,13 +382,13 @@ the converter's pinned hash, the loader's checksum handling, and the report.
   the storage node, so experiment 4 is the best case. It says nothing yet about placing
   related inputs together or about partial locality; that is Demo 3, with several
   storage nodes and the dependency-aware scheduler.
-* **No speedup is expected for this workload.** The converter is CPU-bound: in our
-  calibration on synthetic data it spent about 45 ms of CPU per step (each step has three
-  camera frames, each written as a PNG and then AV1-encoded), so a 649 MB shard takes
-  minutes of computation but only seconds of transfer on the VPC network. On the storage
-  node the worker also shares four vCPUs with the Ceph daemons. The proposal's goal of
-  "~70% less network traffic while preserving execution time" is tested here by the
-  traffic saving and by checking that runtime does not get worse.
+* **No speedup is expected for this workload.** The converter is CPU-bound: on real
+  DROID data it spent 65 ms of CPU per step (each step has three camera frames, each
+  written as a PNG and then AV1-encoded), so shard 2 took about 300 s of computation,
+  while moving its ~790 MB of input and output takes under 10 s at 1 Gbit/s. On the
+  storage node the worker also shares its vCPUs with the Ceph daemons. The proposal's
+  goal of "~70% less network traffic while preserving execution time" is tested here by
+  the traffic saving and by checking that runtime does not get worse.
 * **The traffic count includes background noise.** ssh between the nodes, CephFS
   session upkeep and the cloud agents (time sync, SSM) also cross the storage node's NIC;
   the storage-mode figure shows how small that is. The setup scripts hold snap refreshes
@@ -403,5 +416,7 @@ did not exercise MicroCeph, the kernel CephFS client, or two separate hosts. The
 calls in `infra/aws/` were checked for syntax only. On 2026-10-15 the storage-node
 setup (MicroCeph, CephFS, the worker image), the DROID download and experiment 0 also
 ran on a real Ubuntu 24.04 VM (8 vCPU, 39 GiB); its first real-shard conversion exposed
-the missing metadata described in section 2. The two-node run above is the first
-end-to-end run of the remaining parts.
+the missing metadata described in section 2, and after the fix the background service
+converted shard 2 and the output verified (measurements above). The two-node run is the
+first run of the remaining parts: the compute node, the separate-compute baseline, and
+the cross-host traffic measurement.

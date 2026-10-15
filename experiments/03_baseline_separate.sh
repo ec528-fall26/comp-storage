@@ -7,12 +7,13 @@
 # read again. Starts a new benchmark run (RUN_ID) that 04, 05 and 07 reuse.
 #
 # Where: the compute node.
-# Runtime: ~8 min per shard on m6i.xlarge (estimate: the converter is
-#        CPU-bound at roughly 20-25 steps/s on 2-3 vCPUs; shard 2 has ~10k steps).
+# Runtime: ~5-8 min per shard (shard 2, 9,829 steps, took 304 s with 7 worker
+#        CPUs; the converter is CPU-bound at ~65 ms of CPU per step).
 # Expected output: "ok; wall ... s; cross-host ... MB; output ... MB;
-#        episodes N of N" per shard. Match: cross-host between 1.0x and 1.15x
-#        of (input 649 MB + output) -- every input byte crosses the network
-#        once and the output once more, plus protocol overhead.
+#        episodes 39 of 39" for shard 2. Match: cross-host between 1.0x and
+#        1.15x of input + output (649 MB + ~142 MB, so ~790-910 MB) -- every
+#        input byte crosses the network once and the output once more, plus
+#        protocol overhead.
 # shellcheck source=experiments/common.sh
 source "$(dirname "$0")/common.sh"
 require_role compute
