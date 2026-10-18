@@ -86,7 +86,7 @@ def summarize(cfg: Config, run_id: str) -> tuple[str, dict]:
             f"Cross-host traffic: {s['cross_host_bytes'] / MB:.1f} MB with separate compute "
             f"({findings['separate_cross_host_over_input_plus_output']:.2f}x input+output), "
             f"{c['cross_host_bytes'] / MB:.1f} MB on the storage node "
-            f"({100 * findings['cross_host_reduction']:.1f}% less).",
+            f"({100 * findings['cross_host_reduction']:.2f}% less).",
             f"Runtime: {s['wall_s']:.1f} s with separate compute, {c['wall_s']:.1f} s on the storage node "
             f"(ratio {findings['wall_ratio_storage_over_separate']:.2f}).",
         ]

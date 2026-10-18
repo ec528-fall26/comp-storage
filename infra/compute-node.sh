@@ -29,9 +29,12 @@ WORKER_MEMORY=${WORKER_MEMORY:-$(( mem_gib > 8 ? 8 : (mem_gib < 1 ? 1 : mem_gib)
 step() { printf '\n== %s\n' "$*"; }
 [ "$(id -u)" -eq 0 ] || { echo "run with sudo" >&2; exit 1; }
 
-step "packages: ceph-common (CephFS client), docker.io, rsync"
+step "packages: ceph-common (CephFS client), rsync, Docker (unless already installed)"
 apt-get update -q
-DEBIAN_FRONTEND=noninteractive apt-get install -y -q ceph-common docker.io rsync
+pkgs=(ceph-common rsync)
+# Ubuntu's docker.io conflicts with Docker's own packages (docker-ce); keep an existing install.
+command -v docker >/dev/null || pkgs+=(docker.io)
+DEBIAN_FRONTEND=noninteractive apt-get install -y -q "${pkgs[@]}"
 
 step "quiet background downloads (they would pollute the traffic counts)"
 # Short-lived testbed: hold snap refreshes and stop apt's periodic jobs, so no

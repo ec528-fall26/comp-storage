@@ -21,7 +21,7 @@ from pathlib import Path
 
 from . import hosts, netcount, runner
 from .config import Config
-from .jobs import atomic_write_json, droid_shard_job
+from .jobs import DROID_SHARD_TEMPLATE, atomic_write_json, droid_shard_job
 from .worker import tree_size
 
 MODES = ("separate", "storage")
@@ -44,9 +44,9 @@ def preflight(cfg: Config, mode: str, shards: list[int]) -> None:
         if os.environ.get("CSTORE_SINGLE_HOST_TEST") != "1":
             raise RuntimeError("run the benchmark from the compute node, not the storage node")
         print("WARNING: CSTORE_SINGLE_HOST_TEST=1: both 'nodes' are this host; the numbers mean nothing")
-    missing = [i for i in shards if not (cfg.droid_version_dir / f"droid_101-train.tfrecord-{i:05d}-of-02048").exists()]
+    missing = [i for i in shards if not (cfg.droid_version_dir / DROID_SHARD_TEMPLATE.format(index=i)).exists()]
     if missing:
-        raise RuntimeError(f"shards {missing} are not loaded; run experiments/01_load_droid.sh first")
+        raise RuntimeError(f"shards {missing} are not loaded; run experiments/02_load_droid.sh first")
     active = hosts.storage_cstore(cfg, ["service-active"], check=False)
     if active.returncode == 0:
         raise RuntimeError(

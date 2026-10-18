@@ -44,9 +44,12 @@ wait_for() {  # wait_for SECONDS DESCRIPTION COMMAND...
 
 [ "$(id -u)" -eq 0 ] || { echo "run with sudo" >&2; exit 1; }
 
-step "packages: ceph-common (mount helper), docker.io, rsync"
+step "packages: ceph-common (mount helper), rsync, Docker (unless already installed)"
 apt-get update -q
-DEBIAN_FRONTEND=noninteractive apt-get install -y -q ceph-common docker.io rsync
+pkgs=(ceph-common rsync)
+# Ubuntu's docker.io conflicts with Docker's own packages (docker-ce); keep an existing install.
+command -v docker >/dev/null || pkgs+=(docker.io)
+DEBIAN_FRONTEND=noninteractive apt-get install -y -q "${pkgs[@]}"
 
 step "quiet background downloads (they would pollute the traffic counts)"
 # Short-lived testbed: hold snap refreshes and stop apt's periodic jobs, so no
@@ -71,7 +74,7 @@ osds_up() { [ "$(ceph osd stat -f json | python3 -c 'import json,sys; print(json
 wait_for 300 "$OSD_COUNT OSDs up" osds_up
 
 step "memory targets for a small VM (Ceph's defaults assume dedicated servers)"
-# 1.5 GiB per OSD on 16 GiB machines, 1 GiB on smaller ones (default 4 GiB),
+# 1.5 GiB per OSD on machines with 12 GiB or more, 1 GiB on smaller ones (default 4 GiB),
 # leaving room for the worker container next to three OSDs.
 if [ "$(awk '/MemTotal/ {print $2}' /proc/meminfo)" -ge 12000000 ]; then osd_mem=1610612736; else osd_mem=1073741824; fi
 ceph config set osd osd_memory_target "$osd_mem"

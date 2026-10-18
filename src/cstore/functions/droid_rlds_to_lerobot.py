@@ -6,10 +6,11 @@ checked before every run, so both execution modes provably run the same
 converter. This module decides where it reads from and writes to, and fills
 in episode metadata the public release lacks (below).
 
-Missing episode metadata. ``port_droid.py`` reads eight per-episode fields,
+Missing episode metadata. ``port_droid.py`` reads seven per-episode fields,
 but the public DROID 1.0.1 RLDS files (gs://gresearch/robotics/droid/1.0.1)
-carry only two of them, ``file_path`` and ``recording_folderpath``. Before
-each episode reaches the converter, the missing ones are supplied:
+carry only one of them, ``file_path`` (their other field,
+``recording_folderpath``, is not read). Before each episode reaches the
+converter, the six missing ones are supplied:
 
 * ``building`` and ``date`` are parsed from ``file_path``, which has the
   form ``.../<lab>/<success|failure>/<YYYY-MM-DD>/<timestamp>/trajectory.h5``;

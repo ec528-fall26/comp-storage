@@ -215,6 +215,7 @@ class ReportTest(unittest.TestCase):
             self.assertAlmostEqual(f["separate_cross_host_over_input_plus_output"], 1.3e9 / 1.25e9)
             self.assertEqual(f["outputs_byte_identical"], "1/1")
             self.assertIn("byte-identical", text)
+            self.assertIn("(99.98% less)", text)
             self.assertTrue((base / "summary.svg").read_text().startswith("<svg"))
 
 
