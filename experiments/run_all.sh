@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run every cluster experiment in order (01 through 07) on the compute node.
-# Total runtime with the default single shard: ~30 min.
+# Total runtime with the default single shard: ~20-25 min (about 20 min measured).
 set -euo pipefail
 cd "$(dirname "$0")"
 for script in 01_check_cluster.sh 02_load_droid.sh 03_baseline_separate.sh 04_storage_node.sh \

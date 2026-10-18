@@ -17,7 +17,7 @@ supports, how long it takes, and what output to expect.
 | `05_verify_outputs.sh` | both modes' outputs are valid and identical | compute node | ~1-2 min |
 | `06_background_service.sh` | loaded data is converted in the background | compute node | ~5–8 min per shard |
 | `07_report.sh` | results table and chart for the slides | compute node | seconds |
-| `run_all.sh` | 01 through 07 in order | compute node | ~30 min |
+| `run_all.sh` | 01 through 07 in order | compute node | ~20–25 min |
 
 `common.sh` holds shared helpers. Settings come from `infra/cluster.env` (written by
 the setup scripts); for example `SHARDS="2 8" experiments/run_all.sh` uses two shards.

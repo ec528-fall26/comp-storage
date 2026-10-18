@@ -18,6 +18,12 @@ separate compute node (the baseline) or on the storage node; verified, byte-iden
 outputs written back to CephFS; and a background service that converts newly loaded
 data on its own. See [`docs/design-document.md`](docs/design-document.md).
 
+**Demo 2 result** (two EC2 `m6i.2xlarge`; measured 2026-10-16 and reproduced
+2026-10-18 in a different AWS account): converting one 649 MB DROID shard on a separate
+compute node moved 797 MB between the hosts. The same job on the storage node moved
+0.2 MB (99.97% less), took the same time (304 s) and produced a byte-identical dataset.
+Slides: [`slides/demo-2.pdf`](slides/demo-2.pdf). Demo video: `slides/demo-2-video.mp4`.
+
 ## Quick start
 
 On any Linux machine with Docker, or a Mac with Docker Desktop; no cloud account
@@ -28,7 +34,7 @@ git clone -b demo-2 https://github.com/ec528-fall26/comp-storage && cd comp-stor
 experiments/00_smoke_local.sh     # ends with "SMOKE TEST PASSED"
 ```
 
-The real testbed (two EC2 instances, ~30 min of experiments):
+The real testbed (two EC2 instances; about an hour and $1 including setup):
 
 ```bash
 infra/aws/up.sh && infra/deploy.sh
@@ -41,7 +47,7 @@ infra/aws/down.sh                 # when finished
 | Path | Contents |
 | --- | --- |
 | `docs/` | Design proposal and design document |
-| `slides/` | Demo slides (`demo-1.pdf`, `demo-2.pdf`, ...) |
+| `slides/` | Demo slides (`demo-1.pdf`, `demo-2.pdf`, ...) and demo videos |
 | `bin/cstore` | Command-line entry point |
 | `src/cstore/` | Jobs, worker, loader, queue and background service, benchmark driver, verification |
 | `src/worker/` | Worker container image (pinned conversion stack) |

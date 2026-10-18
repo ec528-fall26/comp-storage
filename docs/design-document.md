@@ -23,7 +23,7 @@ recording total runtime and cross-host bytes with a documented command.
 
 ![Testbed: a compute node and a storage node; worker containers on both; CephFS on the storage node](figures/demo2-architecture.svg)
 
-**Testbed.** Two EC2 `m6i.xlarge` instances (4 vCPU, 16 GiB, Ubuntu 24.04) in one subnet.
+**Testbed.** Two EC2 `m6i.2xlarge` instances (8 vCPU, 32 GiB, Ubuntu 24.04) in one subnet.
 
 * The **storage node** runs a single-node Ceph 19.2 cluster (MicroCeph): one monitor,
   one manager, one metadata server and three OSDs on loop files, with 3-way replication
@@ -50,8 +50,8 @@ are supplied before each episode reaches it, see section 2.) A job's dependencie
 shard's record file plus `dataset_info.json` and `features.json`. Demo 3's placement policy will read these lists.
 
 **Running a job** (`src/cstore/runner.py`, `src/cstore/worker.py`). The worker always
-runs in the same Docker image (`cstore-worker:demo2`) with the same limits (3 vCPU,
-7 GiB on `m6i.xlarge`) and no network (`--network none`); CephFS is bind-mounted from
+runs in the same Docker image (`cstore-worker:demo2`) with the same limits (7 vCPU,
+8 GiB on `m6i.2xlarge`) and no network (`--network none`); CephFS is bind-mounted from
 the host. Inside, in three timed phases:
 
 1. **convert**: `port_droid.py` reads the shard from CephFS through TensorFlow Datasets
@@ -115,10 +115,10 @@ both modes provably run the same transformation. The image pins LeRobot 0.6.1,
 TensorFlow 2.21 (CPU), TensorFlow Datasets 4.9.10 and every other package
 (`src/worker/requirements.txt`).
 
-**Supply the episode metadata the public files lack.** `port_droid.py` reads eight
-per-episode fields; the public DROID 1.0.1 RLDS files carry two of them, `file_path` and
-`recording_folderpath` (checked on shard 2). Without the rest the script stops on its
-first episode. `src/cstore/functions/droid_rlds_to_lerobot.py` adds them to each episode
+**Supply the episode metadata the public files lack.** `port_droid.py` reads seven
+per-episode fields; the public DROID 1.0.1 RLDS files carry only one of them, `file_path`
+(their other field, `recording_folderpath`, is not read; checked on shard 2). Without the
+other six the script stops on its first episode. `src/cstore/functions/droid_rlds_to_lerobot.py` adds them to each episode
 before handing it to the script: `building` (the lab) and `date` are parsed from
 `file_path`, which has the form `.../<lab>/<success|failure>/<YYYY-MM-DD>/<time>/trajectory.h5`;
 `collector_id` is empty and the three camera extrinsics are zeros, because the files do
@@ -157,7 +157,7 @@ Demo 3's serverless API).
 
 **Fixed real inputs, small by default.** DROID 1.0.1 shard 2 (649 MB, the smallest of the
 first ten), checked against a pinned size and MD5 (`src/cstore/loader.py`), keeps a full
-run near 30 minutes. `SHARDS="2 8"` adds shard 8 (686 MB); any of the 2048 shards works.
+run of the experiments to about 20 minutes. `SHARDS="2 8"` adds shard 8 (686 MB); any of the 2048 shards works.
 
 **Things that did not work, and what we did instead.**
 
@@ -185,7 +185,7 @@ run near 30 minutes. `SHARDS="2 8"` adds shard 8 (686 MB); any of the 2048 shard
 **Hardware assumptions.** Two x86-64 hosts running Ubuntu 24.04 that reach each other
 on a private network with all TCP allowed between them, with passwordless `sudo` and
 internet access (apt, snap, Docker Hub, PyPI, download.pytorch.org, storage.googleapis.com).
-We use `m6i.xlarge` (4 vCPU, 16 GiB) for both: the storage node with a 100 GB disk,
+We use `m6i.2xlarge` (8 vCPU, 32 GiB) for both: the storage node with a 100 GB disk,
 the compute node with 40 GB. Both nodes must be the same type.
 
 **Your own machine** needs `bash`, `ssh`, `rsync` and `git`; for the AWS route also
@@ -220,17 +220,25 @@ infra/deploy.sh                      # ~15 min: both nodes configured, ends with
 # log in to the compute node (deploy.sh prints this line with the real address)
 ssh -i infra/aws/.state/cstore-demo2.pem ubuntu@<compute-public-ip>
 cd comp-storage
-experiments/run_all.sh               # ~30 min: experiments 01-07
+experiments/run_all.sh               # ~20-25 min: experiments 01-07
 exit
 
 infra/aws/down.sh                    # deletes everything up.sh created
 ```
 
-Two `m6i.xlarge` cost about $0.38/hour in `us-east-1`; run `infra/aws/down.sh` when done.
-If `up.sh` stops part way, `down.sh` removes whatever it had created. New AWS accounts
-may have an on-demand vCPU quota below the 8 vCPUs needed (`VcpuLimitExceeded`): request
-an increase in Service Quotas, or set `INSTANCE_TYPE=m6i.large` (2 vCPU, 8 GiB per node;
-conversions then take roughly twice as long).
+Two `m6i.2xlarge` cost about $0.77/hour; the whole sequence above takes about an hour,
+so roughly $1. Run `infra/aws/down.sh` when done: left running, the pair costs ~$18/day.
+If `up.sh` stops part way, `down.sh` removes whatever it had created.
+
+* **vCPU quota.** New AWS accounts may have an on-demand vCPU quota below the 16 vCPUs
+  needed (`VcpuLimitExceeded`). Quotas are per region. Check with
+  `aws service-quotas get-service-quota --service-code ec2 --quota-code L-1216C47A`, and
+  request an increase in Service Quotas (ours was granted within minutes). Alternatively,
+  set `INSTANCE_TYPE=m6i.xlarge` (4 vCPU, 16 GiB per node, 8 vCPUs in total); conversions
+  then take roughly twice as long.
+* **Region.** The default is `us-east-1`. Set `AWS_REGION` to use another; the first
+  measured run below used `AWS_REGION=us-east-2`, and `deploy.sh` and `down.sh` pick up
+  the region `up.sh` used.
 
 ### Any two Ubuntu 24.04 hosts (NERC, lab machines, ...)
 
@@ -301,7 +309,7 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 | --- | --- |
 | Supports | the baseline row of the results table: runtime and cross-host bytes when the worker runs on the compute node |
 | Command | `experiments/03_baseline_separate.sh` (starts a new run ID that 04, 05 and 07 reuse) |
-| Expected runtime | ~5–8 min per shard (5 min measured on the storage node with 7 worker CPUs; section 5) |
+| Expected runtime | ~5–8 min per shard (304 s measured on `m6i.2xlarge`; section 5) |
 | Expected output | `[separate] shard-00002: ok; wall … s (convert … s, write-back … s); cross-host … MB; output … MB; episodes 39 of 39`. **Match:** cross-host between 1.0× and 1.15× of input + output: the 649 MB shard plus its ~142 MB LeRobot output, so about 790–910 MB |
 
 ### Experiment 4: the same jobs on the storage node
@@ -370,11 +378,60 @@ CephFS. The worker was limited to 7 CPUs.
 | CPU | 634 CPU-seconds (65 ms per step; about 2.1 cores busy on average); peak memory 1.9 GB |
 | Verification | `VERIFY OK`: 39 of 39 episodes, frame counts consistent across data and all three videos, first and last frames decoded through LeRobot's loader |
 
-**Measured: separate compute vs. storage node.**
+**Measured: separate compute vs. storage node (2026-10-16, run `demo2-20261016-210744`).**
+Two `m6i.2xlarge` instances in one subnet in `us-east-2`, created with
+`AWS_REGION=us-east-2 infra/aws/up.sh` and set up with `infra/deploy.sh`, then
+`experiments/run_all.sh` on the compute node. Input was DROID 1.0.1 shard 2. In both
+modes the worker was limited to 7 CPUs and 8 GiB, and caches were dropped before each
+job. The table is the output of `experiments/07_report.sh`:
 
-> TODO (team): paste `results/<run>/summary.md` from `experiments/07_report.sh` here
-> after the two-node run, with the date and run ID. These are the numbers the
-> slides use.
+| mode | episodes | frames | input MB | output MB | wall s | convert s | write-back s | cross-host MB | storage NIC in / out MB | verified |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| separate compute (baseline) | 39 | 9,829 | 648.8 | 141.5 | 304.0 | 301.0 | 0.8 | **797.3** | 143.4 / 653.9 | ok |
+| storage node | 39 | 9,829 | 648.8 | 141.5 | 304.5 | 301.3 | 1.2 | **0.2** | 0.2 / 0.1 | ok |
+
+* **Cross-host traffic.** With separate compute it was 797.3 MB, 1.01× input + output.
+  The storage node sent 653.9 MB, which is the shard and its metadata read by the
+  compute node, and received 143.4 MB, which is the converted dataset written back. On
+  the storage node it was 0.2 MB, **99.97% less**. The proposal's target was about 70% less.
+* **Runtime.** 304.0 s with separate compute and 304.5 s on the storage node (ratio 1.00).
+  Reading the shard over the network added no measurable time to the convert phase
+  (301.0 s vs. 301.3 s), and writing the output back took under 2 s in either mode.
+  This is what a CPU-bound converter predicts (see the limitations below).
+* **Equivalence.** Both modes produced byte-identical datasets, and every output
+  passed `VERIFY OK` (experiment 5).
+* **Background service** (experiment 6, same run). With no manual step, the service
+  found shard 2 unconverted, queued it and converted it on the storage node: 292.4 s
+  wall, 141.5 MB output, `VERIFY OK`.
+* The runtime matches the single-VM measurement above (304 s on a different 8-vCPU
+  machine, with the same 7-CPU worker limit).
+
+**Reproduced (2026-10-18, run `demo2-20261018-184414`).** We repeated the whole sequence
+from scratch in a different AWS account. `infra/aws/up.sh` created new instances,
+`infra/deploy.sh` set them up, and `experiments/run_all.sh` ran the experiments:
+
+| mode | episodes | frames | wall s | convert s | write-back s | cross-host MB | storage NIC in / out MB | verified |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| separate compute (baseline) | 39 | 9,829 | 304.6 | 301.5 | 0.8 | **797.2** | 143.3 / 653.9 | ok |
+| storage node | 39 | 9,829 | 303.9 | 300.5 | 1.3 | **0.2** | 0.2 / 0.1 | ok |
+
+Cross-host traffic, both wall times and the service time are each within 0.2% of the
+first run:
+
+* **Cross-host traffic:** 797.2 MB vs. 797.3 MB with separate compute, and 0.2 MB again
+  on the storage node.
+* **Outputs:** byte-identical again.
+* **Background service:** 292.5 s vs. 292.4 s.
+* **Runtime:** the faster mode switched between runs (304.0 vs. 304.5 s, then 304.6 vs.
+  303.9 s). A sub-second difference between modes is therefore noise, not an effect.
+
+**Extrapolation (not measured).** The whole DROID 1.0.1 RLDS release is about 1.7 TB in
+2,048 shards. Shard 2's output was 22% of its input, which puts the full LeRobot output
+near 0.4 TB, the size Hugging Face's porting guide gives. If the whole release behaves
+like shard 2, converting it with separate compute would move about 2.1 TB between hosts
+(1.01 × (1.7 TB + 0.37 TB)). On the storage nodes it would move only control traffic, a
+few hundred MB at shard 2's 0.2 MB per shard. Demo 3 will measure how much of this saving
+survives partial locality across several storage nodes.
 
 **Limitations.**
 
@@ -388,7 +445,8 @@ CephFS. The worker was limited to 7 CPUs.
   while moving its ~790 MB of input and output takes under 10 s at 1 Gbit/s. On the
   storage node the worker also shares its vCPUs with the Ceph daemons. The proposal's
   goal of "~70% less network traffic while preserving execution time" is tested here by
-  the traffic saving and by checking that runtime does not get worse.
+  the traffic saving and by checking that runtime does not get worse. Measured result:
+  99.97% less traffic, with runtime unchanged (ratio 1.00).
 * **The traffic count includes background noise.** ssh between the nodes, CephFS
   session upkeep and the cloud agents (time sync, SSM) also cross the storage node's NIC;
   the storage-mode figure shows how small that is. The setup scripts hold snap refreshes
@@ -412,11 +470,14 @@ and the queue) also ran on a single VM against a hand-built Ceph 19.2.3 cluster 
 with `ceph-fuse`, with both "nodes" on that one machine, so its traffic numbers were
 meaningless. That run exercised the Ceph commands in `infra/storage-node.sh`, CephFS
 reads and writes, atomic publishes, queue claiming and verification on real CephFS. It
-did not exercise MicroCeph, the kernel CephFS client, or two separate hosts. The AWS CLI
-calls in `infra/aws/` were checked for syntax only. On 2026-10-15 the storage-node
+did not exercise MicroCeph, the kernel CephFS client, or two separate hosts. On 2026-10-15 the storage-node
 setup (MicroCeph, CephFS, the worker image), the DROID download and experiment 0 also
-ran on a real Ubuntu 24.04 VM (8 vCPU, 39 GiB); its first real-shard conversion exposed
-the missing metadata described in section 2, and after the fix the background service
-converted shard 2 and the output verified (measurements above). The two-node run is the
-first run of the remaining parts: the compute node, the separate-compute baseline, and
-the cross-host traffic measurement.
+ran on a real Ubuntu 24.04 VM (8 vCPU, 39 GiB). Its first real-shard conversion exposed
+the missing metadata described in section 2. After the fix, the background service
+converted shard 2 and the output verified (measurements above). On 2026-10-16 the
+complete two-node flow ran on AWS (`infra/aws/up.sh`, `infra/deploy.sh`, experiments
+01–07) without changes to the code, producing the results above. That run was the
+first use of the compute node, the separate-compute baseline and the cross-host
+traffic measurement. On 2026-10-18 the same sequence was repeated in a different AWS
+account and reproduced the results (above). (`up.sh` has since gained a fallback that looks up the Ubuntu AMI
+through EC2 for accounts that cannot read Canonical's SSM parameter.)

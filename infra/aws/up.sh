@@ -7,20 +7,23 @@
 #     infra/aws/up.sh            # then: infra/deploy.sh
 #     infra/aws/down.sh          # when finished (or if this script fails part way)
 #
-# Settings: AWS_REGION (us-east-1), INSTANCE_TYPE (m6i.xlarge: 4 vCPU, 16 GiB),
-# CSTORE_NAME (cstore-demo2; tags and names every resource).
-# Cost: two m6i.xlarge are about $0.38/hour in us-east-1, plus ~$12/month of
-# gp3 storage while the volumes exist. Run infra/aws/down.sh when done.
+# Settings: AWS_REGION (us-east-1), INSTANCE_TYPE (m6i.2xlarge: 8 vCPU, 32 GiB,
+# the type the design document's measurements used), CSTORE_NAME (cstore-demo2;
+# tags and names every resource). The first measured run used
+# AWS_REGION=us-east-2; any region works.
+# Cost: two m6i.2xlarge are about $0.77/hour in us-east-1/us-east-2, plus
+# ~$12/month of gp3 storage while the volumes exist. Run infra/aws/down.sh when done.
 #
-# New AWS accounts can have an on-demand vCPU quota below the 8 vCPUs this
-# needs; run-instances then fails with VcpuLimitExceeded. Request more in
-# Service Quotas ("Running On-Demand Standard ... instances"), or use
-# INSTANCE_TYPE=m6i.large (2 vCPU, 8 GiB per node; conversions run slower).
+# New AWS accounts can have an on-demand vCPU quota (per region) below the 16
+# vCPUs this needs; run-instances then fails with VcpuLimitExceeded. Request
+# more in Service Quotas ("Running On-Demand Standard ... instances",
+# L-1216C47A), or use INSTANCE_TYPE=m6i.xlarge (4 vCPU, 16 GiB per node, needs
+# 8 vCPUs; conversions take about twice as long).
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
 REGION=${AWS_REGION:-us-east-1}
-TYPE=${INSTANCE_TYPE:-m6i.xlarge}
+TYPE=${INSTANCE_TYPE:-m6i.2xlarge}
 NAME=${CSTORE_NAME:-cstore-demo2}
 STATE=infra/aws/.state
 ENV_FILE=$STATE/hosts.env
@@ -44,9 +47,19 @@ aws sts get-caller-identity --query Arn --output text
 } > "$ENV_FILE"
 
 echo "== Ubuntu 24.04 AMI"
-AMI=$(aws ssm get-parameter \
-  --name /aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id \
-  --query Parameter.Value --output text)
+# Canonical's published SSM parameter; accounts whose organization blocks SSM
+# fall back to searching Canonical's own images (owner 099720109477) in EC2.
+# AMI_ID=ami-... skips the lookup.
+AMI=${AMI_ID:-}
+if [ -z "$AMI" ] && ! AMI=$(aws ssm get-parameter \
+     --name /aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id \
+     --query Parameter.Value --output text 2>/dev/null); then
+  echo "(SSM is not available to this account; searching Canonical's images instead)"
+  AMI=$(aws ec2 describe-images --owners 099720109477 \
+    --filters "Name=name,Values=ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*" Name=state,Values=available \
+    --query 'sort_by(Images, &CreationDate)[-1].ImageId' --output text)
+fi
+case $AMI in ami-*) ;; *) echo "no Ubuntu 24.04 AMI found (got '$AMI'); set AMI_ID=ami-..." >&2; exit 1 ;; esac
 echo "$AMI"
 
 echo "== network: default VPC, one default subnet"

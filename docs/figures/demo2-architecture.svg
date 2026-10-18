@@ -10,7 +10,7 @@
   <rect width="1040" height="640" fill="#ffffff"/>
 
   <text x="24" y="34" font-size="20" font-weight="600" fill="#1f2328">Demo 2 testbed: one storage node, one separate compute node</text>
-  <text x="24" y="56" font-size="13" fill="#59636e">Both are EC2 m6i.xlarge (4 vCPU, 16 GiB) in one subnet. Every job runs in the same worker image with the same CPU/memory limits.</text>
+  <text x="24" y="56" font-size="13" fill="#59636e">Both are EC2 m6i.2xlarge (8 vCPU, 32 GiB) in one subnet. Every job runs in the same worker image with the same CPU/memory limits.</text>
 
   <!-- GCS source -->
   <rect x="700" y="74" width="316" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
@@ -25,7 +25,7 @@
 
   <rect x="44" y="214" width="360" height="92" rx="6" fill="#eef1f4" stroke="#8c959f"/>
   <text x="58" y="236" font-size="14" font-weight="600" fill="#1f2328">Worker container (separate mode)</text>
-  <text x="58" y="256" font-size="12" fill="#1f2328">cstore-worker:demo2 · --network none · 3 vCPU / 7 GiB</text>
+  <text x="58" y="256" font-size="12" fill="#1f2328">cstore-worker:demo2 · --network none · 7 vCPU / 8 GiB</text>
   <text x="58" y="274" font-size="12" fill="#1f2328">port_droid.py (LeRobot v0.6.1, unmodified, SHA-256 pinned)</text>
   <text x="58" y="292" font-size="12" fill="#1f2328">converts into local scratch, then writes back</text>
 
