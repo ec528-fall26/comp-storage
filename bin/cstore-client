@@ -1,7 +1,64 @@
-#!/usr/bin/env bash
-# Client for the computational-storage job API. Needs only python3 (3.10+).
-# Defaults to a local mock server; set --server or CSTORE_SERVER to talk to AWS.
-set -euo pipefail
-REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-export PYTHONPATH="$REPO/src${PYTHONPATH:+:$PYTHONPATH}"
-exec python3 -m cstore_client "$@"
+#!/usr/bin/env python3
+"""Ask the cluster for the DROID episodes that match some keywords.
+
+    bin/cstore-client --keywords put,mug --max-episodes 20
+
+Sends one request to the API server, then follows the job until it finishes
+and prints the result. The slice itself stays in storage, under the output
+folder it prints. Standard library only. Exit code 0 means the job finished.
+"""
+
+import argparse
+import json
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+
+
+def call(method, url, body=None):
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(url, data=data, method=method, headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        sys.exit(f"server refused the request ({e.code}): {e.read().decode(errors='replace')}")
+    except urllib.error.URLError as e:
+        sys.exit(f"cannot reach {url}: {e.reason}")
+
+
+def main():
+    p = argparse.ArgumentParser(description="Select DROID episodes whose instruction contains ALL the keywords.")
+    p.add_argument("--keywords", required=True, help="comma-separated, e.g. put,mug")
+    p.add_argument("--max-episodes", type=int, default=20, help="stop after this many matches (default 20)")
+    p.add_argument("--server", default=os.environ.get("CSTORE_SERVER", "http://localhost:8000"))
+    a = p.parse_args()
+
+    request = {"keywords": [k.strip() for k in a.keywords.split(",") if k.strip()], "max_episodes": a.max_episodes}
+    print(f"request: {json.dumps(request)}")
+    job_id = call("POST", f"{a.server}/jobs", request)["job_id"]
+
+    last = None
+    while True:
+        status = call("GET", f"{a.server}/jobs/{job_id}")
+        if status["status"] != last:
+            print(f"  {job_id}: {status['status']}")
+            last = status["status"]
+        if status["status"] in ("done", "failed"):
+            break
+        time.sleep(1)
+
+    if status["status"] == "failed":
+        print(f"  error: {status.get('error', 'see the service log')}")
+        return 1
+    mb = lambda b: f"{b / 1e6:,.1f} MB"
+    print(f"  episodes kept: {status['episodes_kept']} of {status['episodes_scanned']} scanned")
+    print(f"  bytes read in storage: {mb(status['bytes_scanned'])}, slice: {mb(status['bytes_out'])}")
+    print(f"  slice: {status['output']}  (under the storage root)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

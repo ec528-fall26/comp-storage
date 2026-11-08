@@ -1,25 +1,20 @@
-"""Select whole DROID episodes by content, where the shards live (Demo 3 v0).
+"""Keep the DROID episodes whose instruction contains all the given keywords.
 
-The job's ``params["request"]`` is the user's slice request (the same JSON the
-client sends to ``POST /jobs``; see cstore_client.request). This function
-scans every shard listed in ``job.inputs`` front to back, keeps the episodes
-that match ``request["select"]``, and writes them as a new, smaller RLDS
-dataset that ``tfds.builder_from_directory`` loads like the original:
+Runs where the shards are stored. The job's ``params`` carry the request:
 
-    <output>/dataset_info.json                      copied, shard list rewritten
-    <output>/features.json                          copied unchanged
-    <output>/droid_101-train.tfrecord-00000-of-00001  kept episodes, original bytes
-    <output>/manifest.json                          what was kept, and the byte counts
+    {"keywords": ["put", "mug"], "max_episodes": 20}
 
-Kept episodes are copied byte for byte (stage 1): the schema is unchanged, so
-the output is always loadable. Trimming inside episodes (cameras, frame
-stride, idle frames) is stage 2; for now a non-default ``trim`` is accepted
-and reported as not applied.
+Every shard in ``job.inputs`` is read front to back (RLDS has no index, so
+there is no shortcut). An episode is kept if one of its instructions contains
+ALL the keywords as whole words, ignoring case. Kept episodes are copied byte
+for byte into a new, smaller RLDS dataset that loads like the original:
 
-Matching (same rule as the client's mock): an episode matches if its
-instructions contain any task word AND any object word, its lab is listed,
-and its id is listed. An empty list means "any". Words match whole words,
-with an optional plural "s"/"es" ("cup" matches "cups", not "cupboard").
+    <output>/droid_101-train.tfrecord-00000-of-00001   the kept episodes
+    <output>/features.json                            copied: episodes are unchanged
+    <output>/dataset_info.json                        copied, shard list rewritten
+    <output>/manifest.json                            what was kept, bytes in and out
+
+If nothing matches, only manifest.json is written.
 """
 
 from __future__ import annotations
@@ -29,140 +24,73 @@ import os
 import re
 import shutil
 from pathlib import Path
-from typing import Any
 
 os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
 
 OUT_SHARD = "droid_101-train.tfrecord-00000-of-00001"
-INSTRUCTION_KEYS = (
-    "steps/language_instruction",
-    "steps/language_instruction_2",
-    "steps/language_instruction_3",
-)
-DEFAULT_TRIM = {"drop_idle": False, "cameras": ["wrist", "exterior_1", "exterior_2"], "frame_stride": 1}
+INSTRUCTION_KEYS = ("steps/language_instruction", "steps/language_instruction_2", "steps/language_instruction_3")
 
 
-def episode_meta(record: bytes) -> dict[str, Any]:
-    """Read the few fields selection needs from one serialized episode.
-
-    A TFDS episode is one ``tf.train.Example``; nested step fields are stored
-    flattened as ``steps/<name>`` with one value per step. Parsing the proto
-    does not decode any images, so this is cheap next to reading the bytes.
-    """
+def episode_info(record: bytes) -> dict:
+    """The fields selection needs, read without decoding any images."""
     import tensorflow as tf
 
     feats = tf.train.Example.FromString(record).features.feature
-
-    def texts(key: str) -> list[str]:
-        return [v.decode("utf-8", "replace") for v in feats[key].bytes_list.value] if key in feats else []
-
-    instructions = []
+    instructions = set()
     for key in INSTRUCTION_KEYS:
-        first = next((t for t in texts(key) if t.strip()), "")
-        if first and first not in instructions:
-            instructions.append(first)
-
-    file_path = (texts("episode_metadata/file_path") or [""])[0]
-    parts = [p for p in file_path.split("/") if p]
-    # .../<lab>/<success|failure>/<date>/<timestamp>/trajectory.h5
-    outcome, lab = None, None
-    for i, p in enumerate(parts):
-        if p in ("success", "failure"):
-            outcome, lab = p, parts[i - 1] if i else None
-            break
-    stamp = parts[-2] if len(parts) >= 2 else ""
-    n_steps = len(feats["steps/is_first"].int64_list.value) if "steps/is_first" in feats else 0
+        if key in feats:
+            instructions.update(v.decode("utf-8", "replace") for v in feats[key].bytes_list.value)
+    instructions.discard("")
     return {
-        "episode_id": f"{lab}/{stamp}" if lab else stamp,
-        "lab": lab,
-        "outcome": outcome,
-        "instructions": instructions,
-        "steps": n_steps,
-        "file_path": file_path,
-        "bytes": len(record),
+        "file_path": feats["episode_metadata/file_path"].bytes_list.value[0].decode(),
+        "instructions": sorted(instructions),
     }
 
 
-def _has_word(text: str, words: list[str]) -> bool:
-    return any(re.search(rf"\b{re.escape(w)}(?:s|es)?\b", text) for w in words)
-
-
-def matches(meta: dict[str, Any], select: dict[str, Any]) -> bool:
-    text = " ".join(meta["instructions"]).lower()
-    tasks = select.get("task_keywords") or []
-    objects = select.get("object_keywords") or []
-    labs = [l.lower() for l in select.get("labs") or []]
-    ids = select.get("episode_ids") or []
-    if tasks and not _has_word(text, tasks):
-        return False
-    if objects and not _has_word(text, objects):
-        return False
-    if labs and (meta["lab"] or "").lower() not in labs:
-        return False
-    if ids and not any(i == meta["episode_id"] or i in meta["file_path"] for i in ids):
-        return False
-    return True
-
-
-def _rewrite_info(src: Path, dst: Path, kept: int, num_bytes: int) -> None:
-    info = json.loads(src.read_text())
-    train = next(sp for sp in info["splits"] if sp["name"] == "train")
-    train["shardLengths"] = [str(kept)]
-    train["numBytes"] = str(num_bytes)
-    info["splits"] = [train]
-    dst.write_text(json.dumps(info, indent=2) + "\n")
+def matches(instructions: list[str], keywords: list[str]) -> bool:
+    patterns = [re.compile(rf"\b{re.escape(k)}\b", re.IGNORECASE) for k in keywords]
+    return any(all(p.search(text) for p in patterns) for text in instructions)
 
 
 def run(job, root: Path, scratch: Path) -> tuple[Path, dict]:
     import tensorflow as tf
 
-    request = job.params["request"]
-    select = request.get("select") or {}
-    trim = {**DEFAULT_TRIM, **(request.get("trim") or {})}
-    cap = select.get("max_episodes")
-    version_dir = root / job.params["dataset_dir"]
+    keywords = job.params["keywords"]
+    cap = job.params["max_episodes"]
     shards = [root / p for p in job.inputs if ".tfrecord-" in p]
-
-    warnings = []
-    if trim["drop_idle"] or trim["frame_stride"] != 1 or sorted(trim["cameras"]) != sorted(DEFAULT_TRIM["cameras"]):
-        warnings.append("trim (cameras / frame_stride / drop_idle) is not implemented yet; full episodes returned")
+    dataset_dir = shards[0].parent
 
     out = scratch / "slice"
     out.mkdir(parents=True)
-    kept: list[dict[str, Any]] = []
-    scanned = 0
-    shards_read: list[str] = []
-    bytes_scanned = 0
+    kept, scanned, bytes_scanned = [], 0, 0
     with tf.io.TFRecordWriter(str(out / OUT_SHARD)) as writer:
         for shard in shards:
-            if cap is not None and len(kept) >= cap:
+            if len(kept) >= cap:
                 break
-            shards_read.append(shard.name)
             bytes_scanned += shard.stat().st_size
-            for rec in tf.data.TFRecordDataset(str(shard)):
-                raw = rec.numpy()
-                meta = episode_meta(raw)
+            for record in tf.data.TFRecordDataset(str(shard)):
+                raw = record.numpy()
                 scanned += 1
-                if matches(meta, select):
+                info = episode_info(raw)
+                if matches(info["instructions"], keywords):
                     writer.write(raw)
-                    kept.append({**meta, "source_shard": shard.name})
-                    if cap is not None and len(kept) >= cap:
+                    kept.append({**info, "shard": shard.name})
+                    if len(kept) >= cap:
                         break
 
-    out_bytes = (out / OUT_SHARD).stat().st_size
-    _rewrite_info(version_dir / "dataset_info.json", out / "dataset_info.json", len(kept), out_bytes)
-    shutil.copy(version_dir / "features.json", out / "features.json")
+    bytes_out = (out / OUT_SHARD).stat().st_size
+    if kept:
+        shutil.copy(dataset_dir / "features.json", out / "features.json")
+        info = json.loads((dataset_dir / "dataset_info.json").read_text())
+        train = next(s for s in info["splits"] if s["name"] == "train")
+        train.update(shardLengths=[str(len(kept))], numBytes=str(bytes_out))
+        info["splits"] = [train]
+        (out / "dataset_info.json").write_text(json.dumps(info, indent=2) + "\n")
+    else:
+        (out / OUT_SHARD).unlink()  # TFDS cannot load an empty dataset; leave only the manifest
 
-    summary = {
-        "episodes_scanned": scanned,
-        "episodes_kept": len(kept),
-        "shards_available": len(shards),
-        "shards_read": len(shards_read),
-        "bytes_scanned": bytes_scanned,
-        "bytes_out": out_bytes,
-        "steps_kept": sum(k["steps"] for k in kept),
-        "warnings": warnings,
-    }
-    manifest = {"job_id": job.job_id, "request": request, **summary, "shards": shards_read, "episodes": kept}
+    summary = {"episodes_scanned": scanned, "episodes_kept": len(kept),
+               "bytes_scanned": bytes_scanned, "bytes_out": bytes_out}  # fmt: skip
+    manifest = {"job_id": job.job_id, "keywords": keywords, "max_episodes": cap, **summary, "episodes": kept}
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     return out, summary
