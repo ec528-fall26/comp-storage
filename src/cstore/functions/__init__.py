@@ -13,6 +13,7 @@ from typing import Callable
 
 REGISTRY = {
     "droid_rlds_to_lerobot": "cstore.functions.droid_rlds_to_lerobot:run",
+    "droid_rlds_slice": "cstore.functions.droid_rlds_slice:run",
 }
 
 

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Client for the computational-storage job API. Needs only python3 (3.10+).
+# Defaults to a local mock server; set --server or CSTORE_SERVER to talk to AWS.
+set -euo pipefail
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="$REPO/src${PYTHONPATH:+:$PYTHONPATH}"
+exec python3 -m cstore_client "$@"
