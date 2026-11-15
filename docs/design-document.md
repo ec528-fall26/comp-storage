@@ -1,25 +1,109 @@
 # Design Document
 
-*Demo 2 version (due 10/21 in the `demo-2` branch). The proposal this implements is
-[`design-proposal.md`](design-proposal.md).*
+*Demo 3 version (due 11/16, `demo-3` branch). The Demo 2 version is in the `demo-2`
+branch. The proposal this implements is [`design-proposal.md`](design-proposal.md).*
 
-Demo 2 milestone, from the proposal: *a single-node Ceph cluster with an end-to-end
-load → format conversion → write-back path, a background conversion service, and an
-established separate-compute baseline*, demonstrated by running the complete conversion
-on a compute node separate from storage on fixed inputs, verifying the output, and
-recording total runtime and cross-host bytes with a documented command.
+Demo 3 milestone, from the proposal: *multiple storage nodes deployed with Kubernetes and
+Rook, a serverless API, and a first dependency-aware placement or scheduling policy*,
+demonstrated by submitting jobs through the API and showing reduced network transfer on
+matching inputs with equivalent outputs, with runtime and transferred bytes for both modes.
 
-| Milestone item | Where it is | Shown by |
-| --- | --- | --- |
-| Single-node Ceph cluster | `infra/storage-node.sh` (MicroCeph, CephFS) | experiment 01 |
-| Load | `src/cstore/loader.py` | experiment 02 |
-| Format conversion | Hugging Face's `port_droid.py`, unmodified, in `src/worker/` image (missing episode metadata supplied: section 2) | experiments 03, 04 |
-| Write-back | `publish_tree` in `src/cstore/worker.py` | experiments 03, 04, 05 |
-| Background conversion service | `src/cstore/service.py`, `src/cstore/jobqueue.py` | experiment 06 |
-| Separate-compute baseline, runtime and cross-host bytes | `src/cstore/bench.py`, `src/cstore/netcount.py` | experiments 03, 07 |
-| Output verification | `src/cstore/verify.py` | experiment 05 |
+| Milestone item | State | Where it is | Shown by |
+| --- | --- | --- | --- |
+| Serverless API | Built; ran on AWS from a laptop over plain HTTP | `src/cstore/api.py`, `bin/cstore-client` | experiments 11, 12 |
+| Reduced network transfer, equivalent outputs, runtime and bytes for both modes | Measured on AWS with one storage node | section 5 | experiment 12 |
+| Multiple storage nodes (Kubernetes and Rook) | Not in this version | TODO(team) | |
+| Dependency-aware placement or scheduling | Not in this version | TODO(team) | |
+
+**What changed since the proposal.** The proposal's workload was converting all of DROID
+from RLDS to LeRobot. Demo 2 built that conversion, and Demo 3 keeps it. Demo 3 adds a
+second workload that a user asks for over the API: **a keyword slice**. The user sends a
+few keywords, and the storage node keeps only the DROID episodes whose instruction
+contains all of them, writing a smaller RLDS dataset next to the data. Two reasons:
+
+* **Users want a slice, not the dataset.** DROID 1.0.1 is about 1.7 TB in RLDS. People
+  training on it usually want a subset: one task, one lab, one skill. Today they download
+  everything and filter afterwards.
+* **RLDS has no index.** Its shards are packed for download and parallel reading, and
+  episodes are in random order on purpose. The schema (`features.json`) says what an
+  episode contains, but nothing says where a given episode is. Any selection means
+  reading whole shards, so reading them where they are stored saves moving them.
+
+The Demo 2 converter stayed CPU-bound (section 5): moving its data cost no
+visible time. The slice is the opposite: it reads a lot and computes little.
 
 ## 1. Architecture
+
+![The client on the user's laptop sends an HTTP request to the API server on the storage node. The API server writes a job file into the queue; the background service claims it and starts a worker container, which runs the slice filter against CephFS locally. For the baseline, the same worker runs on the compute node and reads the shards over the network.](figures/demo3-architecture.svg)
+
+### A request, step by step
+
+1. **Client** (`bin/cstore-client`, on the user's laptop). The only thing the user
+   touches. One command with keywords; it sends the request, follows the job and prints
+   a summary. Python standard library only.
+2. **API server** (`src/cstore/api.py`, FastAPI, on the storage node). Checks the request
+   and turns it into a job file in the queue. It never runs code or touches the data.
+3. **Job queue** (Demo 2, `src/cstore/jobqueue.py`). Folders on CephFS: `pending/`,
+   `running/`, `done/`, `failed/`. A job's state is the folder its file is in.
+4. **Background service** (Demo 2, `src/cstore/service.py`). A loop that checks the queue
+   every second, claims the oldest pending job by renaming its file, and starts a worker.
+5. **Worker container** (Demo 2, `src/cstore/runner.py`, `src/cstore/worker.py`). The
+   same image and limits as Demo 2, with no network. It looks up the job's function by
+   name in `src/cstore/functions/__init__.py`, runs it into local scratch, and publishes
+   the result to CephFS with one rename.
+6. **Slice filter** (`src/cstore/functions/droid_rlds_slice.py`, runs in the worker).
+   Reads every episode of every shard and keeps the matching ones, unchanged.
+7. **CephFS.** The shards are read from it and the slice is written back to it. Only the
+   request and a status summary cross the network.
+
+The client keeps asking `GET /jobs/<id>` until the job is done or failed. The API answers
+from the queue folders and the worker's result record.
+
+### The request
+
+```
+POST /jobs        {"keywords": ["put", "mug"], "max_episodes": 20}   ->  202 {"job_id": "slice-…", "status": "queued"}
+GET  /jobs/<id>   ->  {"status": "queued" | "running" | "done" | "failed", "output": "outputs/slices/<id>",
+                       "episodes_scanned", "episodes_kept", "bytes_scanned", "bytes_out"}   (counts once done)
+GET  /health      ->  {"ok": true}
+```
+
+* **Matching.** An episode is kept if one of its instructions contains every keyword, as
+  whole words, ignoring case. DROID episodes carry one to three crowd-written instructions
+  (`language_instruction`, `_2`, `_3`).
+* **Limit.** The filter stops after `max_episodes` matches (default 20).
+* **Rejected requests.** Missing or empty keywords, unknown fields, `max_episodes` below 1
+  (HTTP 422 or 400). With no shards loaded, 503.
+* **Output.** `outputs/slices/<job_id>/` holds one TFRecord file with the kept episodes,
+  byte for byte, `features.json` (copied), `dataset_info.json` (copied, shard list
+  rewritten) and `manifest.json` (keywords, the kept episodes, bytes in and out). It
+  loads with the standard TFDS reader like the original. With no matches, only
+  `manifest.json` is written, because TFDS cannot load an empty dataset.
+
+The job the API writes uses the Demo 2 job format unchanged: `function` is
+`droid_rlds_slice`, `inputs` are every loaded shard, `output` is the slice folder, and
+`params` carries the keywords and `max_episodes`.
+
+### Testbed
+
+The same two nodes as Demo 2 (below): one storage node and one compute node,
+both EC2 `m6i.2xlarge` in one subnet. For Demo 3 we loaded DROID shards 2–7 (5.9 GB,
+290 episodes). The storage node's loop-file OSDs leave about 14 GB usable, so more
+shards need a larger `OSD_SIZE`. The API listens on port 8000, which the security group
+opens only to the user's IP address.
+
+### Code map (Demo 3 additions)
+
+| Path | Contents |
+| --- | --- |
+| `bin/cstore-client` | the client (standard library only) |
+| `src/cstore/api.py` | the API server |
+| `src/cstore/functions/droid_rlds_slice.py` | the slice filter |
+| `src/cstore/functions/__init__.py` | one added line registering the filter (the only change to Demo 2 code) |
+| `experiments/11_demo3_serve.sh` | starts the API server and the service on one machine |
+| `tests/test_slice_e2e.py` | end-to-end tests on synthetic shards |
+
+### Demo 2 testbed and execution (unchanged)
 
 ![Testbed: a compute node and a storage node; worker containers on both; CephFS on the storage node](figures/demo2-architecture.svg)
 
@@ -91,6 +175,63 @@ file from `pending/` to `running/`. Any node can submit (`bin/cstore submit`) or
 | `tests/` | unit tests (`python3 -m unittest discover -s tests`) |
 
 ## 2. Design decisions
+
+### Demo 3
+
+**Serverless from the user's side, on EC2.** The user sends a request and gets a result;
+there is no machine to log in to, nothing to install beyond the client, and no ssh in the
+request path. That is what "serverless" means here. It is not AWS Lambda: Lambda would
+run the filter on machines away from the data, which is the transfer we are trying to
+avoid. The API server and workers run on the storage node, an EC2 instance we manage
+(infrastructure as a service). It does not scale out automatically and is not billed
+per request. *Alternatives:* Lambda or another FaaS platform (runs away from the data);
+Kubernetes Jobs (the proposal's plan, waiting on the multi-node cluster).
+
+**The API only files jobs.** It validates a request and writes a job file into the Demo 2
+queue; the existing service and worker do the rest. The API never runs user code or opens
+data, so it stays small, and a job submitted over HTTP runs exactly like one submitted
+with `bin/cstore submit`. *Alternative:* running the filter inside the API process
+(no isolation, no limits, and a second way to run jobs to keep in step with the first).
+
+**Reuse Demo 2's queue, service and worker unchanged.** The only change to Demo 2 code is
+one line registering `droid_rlds_slice` in `src/cstore/functions/__init__.py`. Everything
+Demo 2 established still holds for the slice: the same image, limits, no-network
+container, atomic publish and result record.
+
+**Keyword rule: all keywords, whole words, one instruction.** `put,mug` keeps "Put the
+marker in the mug" but not an episode that only says "put" in one instruction and "mug"
+in another. Whole words keep `cup` from matching `cupboard`. The rule is literal, not
+semantic: "Remove the green pen from the white mug cup and put it on the table" contains
+both words and is kept. We assume users know DROID's vocabulary (its paper counts 86
+verbs). *Alternatives:* any keyword (too broad to be useful), semantic search (needs a
+model and an index, out of scope).
+
+**Episodes are copied byte for byte.** The filter reads only each episode's instruction
+fields and file path, without decoding images, and writes matching records unchanged.
+The output therefore has the original schema, and "equivalent output" can be checked
+exactly: the same request run anywhere must keep the same episodes.
+
+**The slice stays in storage.** Training on DROID runs on GPU machines in the same cloud,
+which can read the slice from CephFS in place. A download endpoint can be added later;
+for now the client prints where the slice is.
+
+**No index; every request scans.** RLDS has none, so the filter reads every loaded shard
+front to back (until `max_episodes` matches). A production system would keep an episode
+index so a request skips shards with no matches. That is complementary: whatever still
+has to be read is read where it is stored.
+
+**Access control is the security group.** Port 8000 is open only to the user's IP
+address. There is no token, to keep the system small; a tested 21-line token patch
+exists if one is needed.
+
+**One service copy.** The queue's atomic claim means two copies never run the same job,
+but a second copy started by mistake does claim jobs. The `--watch` option (Demo 2's
+automatic conversion of new shards) stays off on the Demo 3 storage node, so it does not
+fill the queue with conversions ahead of user requests.
+
+### Carried over from Demo 2
+
+These are unchanged from the Demo 2 version.
 
 **Single-node Ceph from MicroCeph, not Rook yet.** The proposal puts Rook on Kubernetes
 in Demo 3, together with multiple storage nodes. For one node, MicroCeph (the Ceph
@@ -204,14 +345,14 @@ for Apple Silicon). A local directory stands in for CephFS and synthetic shards 
 DROID 1.0.1 layout stand in for the download.
 
 ```bash
-git clone -b demo-2 https://github.com/ec528-fall26/comp-storage && cd comp-storage
+git clone -b demo-3 https://github.com/ec528-fall26/comp-storage && cd comp-storage
 experiments/00_smoke_local.sh        # ~10 min the first time (image build), ~2 min after
 ```
 
 ### The testbed on AWS (the experiments' setting)
 
 ```bash
-git clone -b demo-2 https://github.com/ec528-fall26/comp-storage && cd comp-storage
+git clone -b demo-3 https://github.com/ec528-fall26/comp-storage && cd comp-storage
 aws sts get-caller-identity          # confirm the CLI points at the account with credits
 
 infra/aws/up.sh                      # ~5 min: key pair, security group, 2 instances
@@ -269,6 +410,44 @@ of them can be overridden with an environment variable (see `src/cstore/config.p
 wheels instead (larger image, same versions): prefix `infra/deploy.sh` (or
 `experiments/00_smoke_local.sh`) with
 `DOCKER_BUILD_ARGS="--build-arg TORCH_INDEX_URL=https://pypi.org/simple"`.
+
+### The slice API (Demo 3)
+
+**On one machine, no cloud.** Needs a Python with `tensorflow-cpu==2.21.0
+tensorflow-datasets==4.9.10 fastapi uvicorn`, and at least one real shard
+(`bin/cstore load-droid --shards 2`, with `CSTORE_ROOT` pointing at a local folder).
+
+```bash
+# terminal 1, the storage side (stays running; Ctrl+C stops it)
+PYTHON=<venv>/bin/python CSTORE_ROOT=~/cstore-local experiments/11_demo3_serve.sh
+# terminal 2, the user
+python3 bin/cstore-client --keywords put,mug
+```
+
+**On the AWS testbed.** After `infra/aws/up.sh` and `infra/deploy.sh` (above), which build
+the worker image with the slice filter included:
+
+```bash
+# laptop: open the API port to your own IP only
+source infra/aws/.state/hosts.env
+aws ec2 authorize-security-group-ingress --group-id "$SG_ID" --protocol tcp --port 8000 \
+    --cidr "$(curl -s https://checkip.amazonaws.com)/32"
+
+# storage node (admin setup over ssh; not part of the request path)
+cd ~/comp-storage
+bin/cstore load-droid --shards 2 3 4 5 6 7
+python3 -m venv ~/api-venv && ~/api-venv/bin/pip install -q fastapi uvicorn
+PYTHONPATH=src ~/api-venv/bin/python -m uvicorn cstore.api:app --host 0.0.0.0 --port 8000 \
+    > /var/tmp/cstore/api.log 2>&1 &
+bin/cstore service --poll 1          # exactly one copy, without --watch
+
+# laptop: the user, plain HTTP
+python3 bin/cstore-client --server "http://<storage-public-ip>:8000" --keywords put,mug
+```
+
+`infra/aws/down.sh` deletes the security group, port 8000 rule included.
+
+TODO: start the API from `deploy.sh` as a systemd unit, so the manual steps above go away.
 
 ## 4. Running the experiments
 
@@ -348,6 +527,35 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 | Expected runtime | seconds |
 | Expected output | a Markdown table per job and mode, totals, and closing lines with the cross-host reduction, the runtime ratio and output equivalence; saved as `results/<run>/summary.md`, `summary.json`, `summary.svg` |
 
+### Experiment 11: a slice request end to end
+
+| | |
+| --- | --- |
+| Supports | "a user gets a slice from a laptop with one command, over HTTP, without ssh" |
+| Command | `experiments/11_demo3_serve.sh` on the storage side, then `bin/cstore-client --keywords put,mug` as the user (setup above) |
+| Expected runtime | seconds per shard |
+| Expected output | the client prints the job going `queued`, `running`, `done`, then `episodes kept: N of M scanned`, the bytes read and the slice size, and the slice folder. The slice loads with TFDS: `tfds.builder_from_directory(<slice>)` yields N episodes |
+
+### Experiment 12: in place vs. send everything
+
+| | |
+| --- | --- |
+| Supports | "slicing on the storage node moves almost nothing between hosts; the same slice made on the compute node moves every shard" |
+| Command | no script yet (TODO). Drop caches on both nodes (`sync; echo 3 \| sudo tee /proc/sys/vm/drop_caches`), send one request from the compute node to the storage node's private IP, and read the newest `results/service/*.json` (`wall_s`, `net_this_host.total_bytes`). Drop caches again. On the compute node, copy that job's file with a new `job_id` and `output`, and run `bin/cstore run --job-file <copy> --mode separate --run-id baseline --no-write` |
+| Expected runtime | about 1 min per mode for 6 shards |
+| Expected output | both runs keep the same episodes. In place: under 1 MB between hosts. Send everything: about the size of all loaded shards |
+
+`bin/cstore bench` does not work for the slice as it is: it is hard-wired to the LeRobot
+conversion, and its storage mode starts jobs over ssh.
+
+### Slice end-to-end tests
+
+`python3 -m unittest discover -s tests` (no Docker or Ceph). `tests/test_slice_e2e.py`
+builds synthetic shards with known instructions, starts the real API server and service
+in venv mode, and sends requests over HTTP. It checks the kept episodes against an
+independent scan, the `max_episodes` limit, a request with no matches, rejected
+requests, an unknown job, and the client command. The 20 Demo 2 tests still pass.
+
 ### Unit tests
 
 `python3 -m unittest discover -s tests` (seconds; no Docker or Ceph): network counter
@@ -355,6 +563,73 @@ parsing, settings, job specs, queue claiming (including a lost race), atomic pub
 the converter's pinned hash, the loader's checksum handling, and the report.
 
 ## 5. Claims and limitations
+
+### Demo 3
+
+**What the artifact supports.**
+
+* A user on a laptop gets a keyword slice of DROID with one command over plain HTTP,
+  with no ssh in the request path (experiment 11, on AWS).
+* Slicing on the storage node moves almost nothing between hosts. The same slice made on
+  the compute node moves every shard it reads. Both keep the same episodes (experiment 12).
+* The slice is a valid RLDS dataset: it loads with the standard TFDS reader, and its
+  episode count matches the manifest.
+
+**Measured: one request on AWS (2026-11-15).** Two `m6i.2xlarge` instances in one subnet
+in `us-east-1`, set up with `infra/aws/up.sh` and `infra/deploy.sh`. DROID 1.0.1 shards
+2–7 were loaded (5,887 MB, 290 episodes, every MD5 checked). Request: `--keywords put,mug`.
+
+| | |
+| --- | --- |
+| Result | 13 of 290 episodes kept, 189.7 MB (3.2% of the 5,886.9 MB scanned); the 20-episode limit was not reached |
+| Validation | the slice loads with TFDS inside the worker container (no network): 13 episodes, matching `episodes_kept` |
+
+**Measured: in place vs. send everything (same pair, cold caches).** The same request,
+worker image and limits (7 vCPU, 8 GiB), with page caches dropped on both nodes before
+each run. Wall time and NIC byte counters come from the Demo 2 runner's result record.
+
+| mode | worker wall s | cross-host MB | episodes kept |
+|---|---:|---:|---:|
+| in place (storage node, through the API) | 33.4 | **0.1** | 13 |
+| send everything (compute node) | 33.7 | **6,127.5** | 13 |
+
+* **Network: 99.998% less.** The baseline reads all six shards from Ceph over the network;
+  in place, they are read locally.
+* **Time: equal.** Both runs are limited by disk reads, not the network. Each node's gp3
+  EBS volume reads at about 250 MB/s, so 5.9 GB takes about 24 s, plus decoding, about
+  33 s. The nodes' network (up to 12.5 Gbit/s) is several times faster than the disk, so
+  moving the data cost no visible time on this testbed. With warm caches the same
+  request took 8.4 s in place, so cold disk reads are about three quarters of the time.
+* **Where a time difference should appear:** a slower or shared network, more data per
+  node, or several storage nodes scanning in parallel. Not measured yet. In a shared
+  cloud, the 6 GB not sent is bandwidth left for other users.
+
+**Measured: one shard on a laptop (2026-11-08).** Shard 2 (649 MB, 39 episodes), local
+folder instead of CephFS: `put,mug` kept 4 episodes, 69.2 MB, in 8.8 s.
+
+TODO(team): quality benchmarks.
+
+**Limitations.**
+
+* **One storage node.** As in Demo 2, every input is local by construction, so this is
+  the best case. Multiple storage nodes and placement are not in this version.
+* **Keyword matching is literal.** It finds words, not meaning (section 2). Instructions
+  are crowd-written and vary in wording, so a request can miss episodes phrased
+  differently.
+* **Every request scans every loaded shard**, until `max_episodes` matches (section 2).
+* **One request at a time.** The service runs one job at a time; other requests wait in
+  the queue.
+* **Small data.** Six shards, about 0.3% of DROID. The loop-file OSDs leave about 14 GB
+  usable. The traffic saving is a ratio and does not depend on size; the time comparison
+  does.
+* **The baseline in experiment 12 is run by hand** (no script yet), and the API is started
+  by hand on the storage node (no systemd unit yet).
+* **Ceph's own cache is not dropped** by a page-cache drop. Both runs follow an earlier warm
+  run, so the effect applies to both modes.
+
+### Demo 2
+
+These results are unchanged from the Demo 2 version.
 
 **What the artifact supports.**
 

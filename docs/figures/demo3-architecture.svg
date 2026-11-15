@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 660" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2328"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+  </defs>
+  <rect width="1040" height="660" fill="#ffffff"/>
+
+  <text x="24" y="34" font-size="20" font-weight="600" fill="#1f2328">Demo 3: the keyword slice API on the Demo 2 testbed</text>
+  <text x="24" y="56" font-size="13" fill="#59636e">Gray parts are Demo 2 and unchanged. Colored parts are new in Demo 3.</text>
+
+  <!-- User's laptop -->
+  <rect x="24" y="80" width="300" height="116" rx="10" fill="#ffffff" stroke="#59636e" stroke-width="1.5"/>
+  <text x="44" y="106" font-size="16" font-weight="600" fill="#1f2328">User's laptop</text>
+  <rect x="44" y="122" width="260" height="56" rx="6" fill="#fcebeb" stroke="#a32d2d" stroke-width="1.5"/>
+  <text x="58" y="145" font-size="14" font-weight="600" fill="#1f2328">Client</text>
+  <text x="58" y="164" font-size="12" fill="#1f2328">bin/cstore-client --keywords put,mug</text>
+
+  <!-- Compute node -->
+  <rect x="24" y="300" width="300" height="186" rx="10" fill="#ffffff" stroke="#59636e" stroke-width="1.5"/>
+  <text x="44" y="326" font-size="16" font-weight="600" fill="#1f2328">Compute node</text>
+  <text x="44" y="345" font-size="12" fill="#59636e">used only for the baseline</text>
+  <rect x="44" y="358" width="260" height="56" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="58" y="381" font-size="14" font-weight="600" fill="#1f2328">Worker container</text>
+  <text x="58" y="400" font-size="12" fill="#1f2328">same image, limits and function</text>
+  <rect x="44" y="426" width="260" height="40" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="58" y="451" font-size="12" fill="#1f2328">CephFS client: /mnt/cephfs</text>
+
+  <!-- Storage node -->
+  <rect x="440" y="80" width="576" height="470" rx="10" fill="#ffffff" stroke="#59636e" stroke-width="1.5"/>
+  <text x="460" y="106" font-size="16" font-weight="600" fill="#1f2328">Storage node</text>
+
+  <rect x="460" y="122" width="270" height="56" rx="6" fill="#faeeda" stroke="#ba7517" stroke-width="1.5"/>
+  <text x="474" y="145" font-size="14" font-weight="600" fill="#1f2328">API server</text>
+  <text x="474" y="164" font-size="12" fill="#1f2328">src/cstore/api.py, port 8000</text>
+
+  <rect x="460" y="212" width="270" height="56" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="474" y="235" font-size="14" font-weight="600" fill="#1f2328">Job queue</text>
+  <text x="474" y="254" font-size="12" fill="#1f2328">folders: pending, running, done, failed</text>
+
+  <rect x="460" y="302" width="270" height="56" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="474" y="325" font-size="14" font-weight="600" fill="#1f2328">Background service</text>
+  <text x="474" y="344" font-size="12" fill="#1f2328">cstore service: claims a job, starts a worker</text>
+
+  <rect x="460" y="392" width="270" height="140" rx="6" fill="#eef1f4" stroke="#8c959f"/>
+  <text x="474" y="415" font-size="14" font-weight="600" fill="#1f2328">Worker container</text>
+  <text x="474" y="434" font-size="12" fill="#1f2328">no network, 7 vCPU / 8 GiB</text>
+  <rect x="474" y="444" width="242" height="36" rx="5" fill="#d9f0f5" stroke="#1a7f9c" stroke-width="1.5"/>
+  <text x="486" y="467" font-size="12" fill="#1f2328"><tspan font-weight="600">Slice filter</tspan> (droid_rlds_slice)</text>
+  <rect x="474" y="486" width="242" height="36" rx="5" fill="#ffffff" stroke="#8c959f"/>
+  <text x="486" y="509" font-size="12" fill="#1f2328"><tspan font-weight="600">LeRobot converter</tspan> (Demo 2)</text>
+
+  <rect x="780" y="122" width="216" height="410" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="794" y="145" font-size="14" font-weight="600" fill="#1f2328">CephFS</text>
+  <text x="794" y="164" font-size="12" fill="#59636e">Ceph 19.2 (MicroCeph)</text>
+  <text x="794" y="200" font-size="12" fill="#1f2328">datasets/droid/rlds/1.0.1/</text>
+  <text x="794" y="216" font-size="12" fill="#59636e">DROID shards (input)</text>
+  <text x="794" y="252" font-size="12" fill="#1f2328">outputs/slices/&lt;job_id&gt;/</text>
+  <text x="794" y="268" font-size="12" fill="#59636e">slices (output)</text>
+  <text x="794" y="304" font-size="12" fill="#1f2328">queue/  results/</text>
+  <text x="794" y="320" font-size="12" fill="#59636e">job files and records</text>
+
+  <!-- request path -->
+  <line x1="304" y1="140" x2="456" y2="140" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="380" y="132" font-size="12" fill="#1f2328" text-anchor="middle">HTTP request</text>
+  <line x1="456" y1="162" x2="306" y2="162" stroke="#1f2328" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text x="380" y="180" font-size="12" fill="#59636e" text-anchor="middle">status</text>
+
+  <line x1="595" y1="178" x2="595" y2="210" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="605" y="199" font-size="12" fill="#59636e">writes a job file</text>
+  <line x1="595" y1="268" x2="595" y2="300" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="605" y="289" font-size="12" fill="#59636e">claims the next job</text>
+  <line x1="595" y1="358" x2="595" y2="390" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="605" y="379" font-size="12" fill="#59636e">starts</text>
+
+  <line x1="732" y1="462" x2="776" y2="462" stroke="#1f2328" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="754" y="454" font-size="11" fill="#59636e" text-anchor="middle">local</text>
+
+  <!-- baseline path over the network -->
+  <path d="M 174 466 L 174 590 L 888 590 L 888 536" fill="none" stroke="#0969da" stroke-width="2.5" marker-start="url(#arrowBlue)" marker-end="url(#arrowBlue)"/>
+  <text x="190" y="582" font-size="12" fill="#0969da">baseline: the worker on the compute node reads every shard over the network</text>
+
+  <!-- legend -->
+  <g font-size="12" fill="#1f2328">
+    <rect x="24" y="620" width="16" height="16" rx="3" fill="#eef1f4" stroke="#8c959f"/>
+    <text x="48" y="633">Demo 2</text>
+    <rect x="120" y="620" width="16" height="16" rx="3" fill="#fcebeb" stroke="#a32d2d"/>
+    <rect x="142" y="620" width="16" height="16" rx="3" fill="#faeeda" stroke="#ba7517"/>
+    <rect x="164" y="620" width="16" height="16" rx="3" fill="#d9f0f5" stroke="#1a7f9c"/>
+    <text x="190" y="633">Demo 3</text>
+  </g>
+</svg>
