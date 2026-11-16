@@ -1,7 +1,27 @@
-# Design Document
+# Design document — keyword-slice API and conversion
 
 *Demo 3 version (due 11/16, `demo-3` branch). The Demo 2 version is in the `demo-2`
 branch. The proposal this implements is [`design-proposal.md`](design-proposal.md).*
+
+## Reading and reproduction guide
+
+This document covers the HTTP API, CephFS queue, and single-storage-node worker.
+The multi-node graph scheduler has its own [design and reproduction guide](design-document-multinode.md).
+The API currently runs jobs through the CephFS worker. Integrating it with the graph
+scheduler is future work.
+
+| Goal | Start here |
+| --- | --- |
+| Check the conversion pipeline locally | [Local smoke test](#quick-check-on-one-machine-no-cloud-no-ceph) |
+| Build the measured two-host environment | [AWS setup](#the-testbed-on-aws-the-experiments-setting) |
+| Submit a slice request | [API setup](#the-slice-api-demo-3), then [experiment 11](#experiment-11-a-slice-request-end-to-end) |
+| Reproduce the slice runtime and traffic comparison | [Experiment 12](#experiment-12-in-place-vs-send-everything) |
+| Rerun the multi-node scheduling measurements | [Multi-node setup](design-document-multinode.md#3-setup) |
+
+Shell commands start at the repository root unless the instructions name a different
+working directory or host.
+
+## Demo 3 scope
 
 Demo 3 milestone, from the proposal: *multiple storage nodes deployed with Kubernetes and
 Rook, a serverless API, and a first dependency-aware placement or scheduling policy*,
@@ -12,7 +32,7 @@ matching inputs with equivalent outputs, with runtime and transferred bytes for 
 | --- | --- | --- | --- |
 | Serverless API | Built; ran on AWS from a laptop over plain HTTP | `src/cstore/api.py`, `bin/cstore-client` | experiments 11, 12 |
 | Reduced network transfer, equivalent outputs, runtime and bytes for both modes | Measured on AWS with one storage node | section 5 | experiment 12 |
-| Multiple storage nodes (Kubernetes and Rook) | Built as Docker containers with Ceph 20.2.4 on one host, not Kubernetes and Rook: 8 storage nodes and 8 compute-only nodes on one cluster | `cephdag/infra/`, [part 2](design-document-multinode.md) | part 2, experiments 1 to 3 |
+| Multiple storage nodes | Built with Docker and Ceph 20.2.4 on one host, with 8 storage nodes and 8 compute-only nodes | `cephdag/infra/`, [part 2](design-document-multinode.md) | part 2, experiments 1 to 3 |
 | Dependency-aware placement or scheduling | Built and measured on that cluster: a dozen policies that place each task and its outputs | `cephdag/cephdag/policies/`, [part 2](design-document-multinode.md) | part 2, experiments 4 to 6 |
 
 The last two rows have their own document, [part 2: many storage nodes and
@@ -354,6 +374,9 @@ experiments/00_smoke_local.sh        # ~10 min the first time (image build), ~2 
 
 ### The testbed on AWS (the experiments' setting)
 
+Replace the angle-bracket addresses in the commands below with your hosts' addresses.
+The deployment script prints the compute node's SSH command with its address filled in.
+
 ```bash
 git clone -b demo-3 https://github.com/ec528-fall26/comp-storage && cd comp-storage
 aws sts get-caller-identity          # confirm the CLI points at the account with credits
@@ -362,7 +385,7 @@ infra/aws/up.sh                      # ~5 min: key pair, security group, 2 insta
 infra/deploy.sh                      # ~15 min: both nodes configured, ends with "all checks passed"
 
 # log in to the compute node (deploy.sh prints this line with the real address)
-ssh -i infra/aws/.state/cstore-demo2.pem ubuntu@<compute-public-ip>
+ssh -i infra/aws/.state/cstore-demo2.pem "ubuntu@<compute-public-ip>"
 cd comp-storage
 experiments/run_all.sh               # ~20-25 min: experiments 01-07
 exit
@@ -387,7 +410,7 @@ If `up.sh` stops part way, `down.sh` removes whatever it had created.
 ### Any two Ubuntu 24.04 hosts (NERC, lab machines, ...)
 
 ```bash
-SSH_KEY=~/.ssh/your_key infra/deploy.sh ubuntu@<storage-host> ubuntu@<compute-host>
+SSH_KEY=~/.ssh/your_key infra/deploy.sh "ubuntu@<storage-host>" "ubuntu@<compute-host>"
 ```
 
 then log in to the compute node and run `cd comp-storage && experiments/run_all.sh`.
@@ -399,10 +422,10 @@ then log in to the compute node and run `cd comp-storage && experiments/run_all.
 # storage node:
 sudo infra/storage-node.sh                     # MicroCeph, CephFS, mount, worker image, service unit
 # copy ~/cstore-client/{ceph.conf,ceph.client.cstore.keyring} from the storage node to the compute node, then:
-sudo infra/compute-node.sh <storage-private-ip> ~/cstore-client
+sudo infra/compute-node.sh "<storage-private-ip>" ~/cstore-client
 # compute node: let it ssh to the storage node, and give it the identical image
 cat ~/.ssh/id_ed25519.pub            # append to ~/.ssh/authorized_keys on the storage node
-ssh ubuntu@<storage-private-ip> 'docker save cstore-worker:demo2' | docker load
+ssh "ubuntu@<storage-private-ip>" 'docker save cstore-worker:demo2' | docker load
 bin/cstore check
 ```
 
@@ -416,16 +439,30 @@ wheels instead (larger image, same versions): prefix `infra/deploy.sh` (or
 
 ### The slice API (Demo 3)
 
-**On one machine, no cloud.** Needs a Python with `tensorflow-cpu==2.21.0
-tensorflow-datasets==4.9.10 fastapi uvicorn`, and at least one real shard
-(`bin/cstore load-droid --shards 2`, with `CSTORE_ROOT` pointing at a local folder).
+**Local API check on Linux.** This uses a local directory for storage. With Python
+3.12 installed, run from the repository root in terminal 1
 
 ```bash
-# terminal 1, the storage side (stays running; Ctrl+C stops it)
-PYTHON=<venv>/bin/python CSTORE_ROOT=~/cstore-local experiments/11_demo3_serve.sh
-# terminal 2, the user
-python3 bin/cstore-client --keywords put,mug
+python3.12 -m venv /tmp/cstore-api-venv
+/tmp/cstore-api-venv/bin/python -m pip install \
+    tensorflow-cpu==2.21.0 tensorflow-datasets==4.9.10 fastapi uvicorn
+export CSTORE_ENV=/dev/null
+export CSTORE_ROOT="$HOME/cstore-local"
+bin/cstore load-droid --shards 2
+PYTHON=/tmp/cstore-api-venv/bin/python bash experiments/11_demo3_serve.sh
 ```
+
+The script prints the API address and service log. In terminal 2, also at the
+repository root
+
+```bash
+python3 bin/cstore-client --keywords put,mug --max-episodes 20
+```
+
+Expect the job to move from `queued` to `running` to `done`, followed by the episode
+count and output path. The recorded shard-2 request kept four episodes. Outputs are
+under `$HOME/cstore-local/outputs/slices/`. Ctrl+C in terminal 1 stops the service
+and its API process.
 
 **On the AWS testbed.** After `infra/aws/up.sh` and `infra/deploy.sh` (above), which build
 the worker image with the slice filter included:
@@ -541,15 +578,94 @@ measures. Results are saved under `/mnt/cephfs/cstore/results/`.
 
 ### Experiment 12: in place vs. send everything
 
-| | |
-| --- | --- |
-| Supports | "slicing on the storage node moves almost nothing between hosts; the same slice made on the compute node moves every shard" |
-| Command | no script yet (TODO). Drop caches on both nodes (`sync; echo 3 \| sudo tee /proc/sys/vm/drop_caches`), send one request from the compute node to the storage node's private IP, and read the newest `results/service/*.json` (`wall_s`, `net_this_host.total_bytes`). Drop caches again. On the compute node, copy that job's file with a new `job_id` and `output`, and run `bin/cstore run --job-file <copy> --mode separate --run-id baseline --no-write` |
-| Expected runtime | about 1 min per mode for 6 shards |
-| Expected output | both runs keep the same episodes. In place: under 1 MB between hosts. Send everything: about the size of all loaded shards |
+Use the two-host AWS setup from section 3, with the API and one background service
+running on the storage node. The recorded comparison used exactly DROID shards 2–7.
+The API scans all loaded shards, so use that same input set for this comparison.
+Run the client and the separate-compute baseline on the compute node.
 
-`bin/cstore bench` does not work for the slice as it is: it is hard-wired to the LeRobot
-conversion, and its storage mode starts jobs over ssh.
+1. Load shards 2–7 on the storage node with
+   `bin/cstore load-droid --shards 2 3 4 5 6 7`.
+2. Wait for the job queue to become idle. Before each measured mode, run the following
+   command on **both hosts** to establish the same cold page-cache condition
+
+   ```bash
+   sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'
+   ```
+
+3. On the compute node, replace the address below and submit the in-place job
+
+   ```bash
+   python3 bin/cstore-client --server "http://<storage-private-ip>:8000" \
+       --keywords put,mug --max-episodes 20
+   ```
+
+   Wait for `done`. Copy the printed `slice-...` job ID into `SLICE_JOB_ID` below.
+   The service record contains the exact input list and request parameters.
+4. Still on the compute node, create a baseline job from that record. Set
+   `SLICE_ROOT` to the shared CephFS root configured by deployment
+
+   ```bash
+   export SLICE_ROOT="/mnt/cephfs/cstore"
+   export SLICE_JOB_ID="slice-<id-from-client>"
+   python3 - <<'PY'
+   import json
+   import os
+   import uuid
+   from pathlib import Path
+
+   root = Path(os.environ["SLICE_ROOT"])
+   record = json.loads((root / "results/service" / (os.environ["SLICE_JOB_ID"] + ".json")).read_text())
+   assert record["ok"]
+   job = record["job"]
+   job["job_id"] = "baseline-" + uuid.uuid4().hex[:8]
+   job["output"] = "outputs/slices/" + job["job_id"]
+   Path("/tmp/slice-baseline-job.json").write_text(json.dumps(job, indent=2))
+   PY
+   ```
+
+5. Drop page caches on both hosts again using step 2. On the compute node, run
+   the copied job through the same worker image and limits
+
+   ```bash
+   bin/cstore run --job-file /tmp/slice-baseline-job.json \
+       --mode separate --run-id slice-baseline > /tmp/slice-baseline-result.json
+   ```
+
+6. Compare the records and verify that the output TFRecords are byte-identical
+
+   ```bash
+   python3 - <<'PY'
+   import hashlib
+   import json
+   import os
+   from pathlib import Path
+
+   root = Path(os.environ["SLICE_ROOT"])
+   records = [
+       json.loads((root / "results/service" / (os.environ["SLICE_JOB_ID"] + ".json")).read_text()),
+       json.loads(Path("/tmp/slice-baseline-result.json").read_text()),
+   ]
+   hashes = []
+   for label, record in zip(["in place", "separate"], records):
+       assert record["ok"]
+       output = root / record["job"]["output"] / "droid_101-train.tfrecord-00000-of-00001"
+       hashes.append(hashlib.sha256(output.read_bytes()).hexdigest())
+       print(label, record["wall_s"], "seconds",
+             record["net_this_host"]["total_bytes"] / 1e6, "MB",
+             record["worker"]["episodes_kept"], "episodes")
+   assert hashes[0] == hashes[1], "slice outputs differ"
+   print("Output TFRecords match")
+   PY
+   ```
+
+The recorded result kept 13 of 290 episodes. It took 33.4 s in place and 33.7 s on
+separate compute, with about 0.1 MB and 6,127.5 MB of cross-host traffic respectively.
+The timing window is the worker execution, including container startup. Queue wait
+is recorded separately by the service. Repeat timings and traffic can vary with
+host activity and caching. Page-cache drops leave Ceph's internal cache in place.
+
+`bin/cstore bench` is specific to the LeRobot conversion. The procedure above uses
+`bin/cstore run` for the slice workload and retains its result records.
 
 ### Slice end-to-end tests
 
@@ -614,8 +730,9 @@ TODO(team): quality benchmarks.
 
 **Limitations.**
 
-* **One storage node.** As in Demo 2, every input is local by construction, so this is
-  the best case. Multiple storage nodes and placement are not in this version.
+* **One storage node for the API.** Every input is local by construction in this
+  experiment. The multi-node implementation and its placement results are documented
+  in [part 2](design-document-multinode.md).
 * **Keyword matching is literal.** It finds words, not meaning (section 2). Instructions
   are crowd-written and vary in wording, so a request can miss episodes phrased
   differently.

@@ -5,12 +5,18 @@
 [`cephdag/`](../cephdag); its results, raw rows and figures are in
 [`demo3-cephdag/`](demo3-cephdag/README.md).*
 
+## Reproduction guide
+
+- Recreate the published charts using the included records and the [root README](../README.md#recreate-the-published-charts).
+- Build the lab and collect new measurements with [section 3](#3-setup).
+- Select a campaign, check its output, and resume an interrupted run with [section 4](#4-experiments-and-results).
+
 ## Why
 
 Part 1 sliced DROID on the node that stores it. That moved 99.998% less data over the
-network and took the same time: 33.4 s in place, 33.7 s after sending everything. With one
-storage node, a network of up to 12.5 Gbit/s and a slower disk, moving the data cost
-nothing.
+network and took approximately the same time, 33.4 s in place and 33.7 s on separate
+compute. With one storage node, a network of up to 12.5 Gbit/s and a slower disk,
+avoiding the transfer produced little runtime improvement.
 
 That leaves two questions.
 
@@ -23,8 +29,8 @@ policies behind it. What we found:
 
 * **Computing at the storage saves what moving the data would have cost.** With equal
   workers on both sides it is 5.6x faster when tasks mostly read and write and 1.08x
-  faster when they mostly compute; 5.7x faster on 400 Mbit/s links and 1.3x on 2.5 Gbit/s
-  links. It was never slower.
+  faster when they mostly compute. It is 5.7x faster on 400 Mbit/s links and 1.3x on
+  2.5 Gbit/s links in the measured network sweep.
 * **On 496 GB of DROID it is 3.76x faster,** 1.55 h against 5.85 h, and moves 6 GB over
   the network where the baseline moves 4.1 TB.
 * **Uneven data needs a scheduler that counts link time.** When one node holds half the
@@ -133,18 +139,22 @@ The policies ([`cephdag/policies/`](../cephdag/cephdag/policies)):
 
 ## 2. Design decisions
 
-**Containers on one host, not Kubernetes and Rook.** The proposal planned Rook. We needed
+**Containers on one host.** The proposal planned Rook. We needed
 16 nodes on one Ceph cluster, a baseline on identical data, and room for 500 GB of DROID.
 Docker on one large machine gave us that under one script. The price is that all the
 nodes share that machine (section 5).
 
-**The baseline is the same cluster with the workers moved.** Both systems read the same
-bytes from the same disks through the same links, and a worker gets the same CPU and
-memory in either. A difference in time can only come from where the work ran.
+**The baseline uses the same storage cluster.** Both modes use the same data, OSDs,
+and link configuration. Each active worker container receives a 2-CPU, 3-GiB worker
+budget. Storage containers also receive a 1-CPU, 3-GiB OSD budget. Docker enforces the
+combined container limit, so the worker and OSD share it in combined mode. The
+intensity and network plots compare combined HEFT with separate FIFO-hash. The
+large DROID comparison uses combined data-local and separate HEFT.
 
-**Equal numbers of workers.** The headline comparisons use 16 workers on each side. With
-8 against 16, the baseline pulled ahead on compute-heavy work (0.72x at 4096 iterations),
-which measured the worker count and not the storage.
+**Equal worker counts within each comparison.** The intensity and network sweeps
+use 16 workers per mode. The 496 GB DROID, 256 GiB scale, and skewed scheduling
+experiments use eight per mode. An earlier eight-versus-sixteen comparison allowed
+worker count to influence the result, including a 0.72x speedup at 4096 iterations.
 
 **One pool per node, one copy of the data.** "Local" then means the node's own disk, and
 the scheduler knows where every byte is. Ceph's default placement would scatter each
@@ -168,115 +178,326 @@ solved once per job, in about 50 ms on the synthetic graphs, and a dispatcher fo
 The dispatcher holds a worker for a busy link when its next task is a planned move, and
 lets a node that has finished early take back tasks stored on it.
 
-**Predict before running.** Every new policy first ran in a simulator that shares each
-disk and link fairly among the transfers using it. Over 47 combinations of policy and
+**Predict before running.** Candidate policies were evaluated in a simulator that
+shares each disk and link fairly among the transfers using it. Over 47 combinations of policy and
 workload its median error against the lab was 2.5%, and 42 were within 10%. A policy got
 lab time only with its prediction written down first.
 
 ## 3. Setup
 
-**The host.** One x86-64 Linux machine with Docker, Python 3, and the `ipip` and `sch_tbf`
-kernel modules. Ours has 32 CPU threads and 123 GiB of RAM. The lab uses 72 GiB of RAM and
-448 GiB of SSD for the OSDs (ours grew to about 700 GiB on btrfs). Raw DROID and the
-results need another 510 GB on any disk. `lab.py plan` checks the budget before anything
-is created.
+To recreate the published tables from the included records, use the commands in the
+[root README](../README.md#recreate-the-published-charts). The steps below run new
+measurements on a Linux host. Complete them in order, in the same Bash session.
 
-**Build the lab.** Set `results_dir` in `infra/labs/cephdag8.json` to a directory on the
-large disk, then:
+### Local tests
 
-```bash
-git clone -b demo-3 https://github.com/ec528-fall26/comp-storage && cd comp-storage/cephdag
-
-# what the image is built from; the build checks every hash
-python3 -m pip download --no-deps --only-binary :all: -d deps/wheels \
-    --python-version 3.9 --implementation cp --abi cp39 \
-    --platform manylinux_2_28_x86_64 --platform manylinux2014_x86_64 \
-    -r infra/requirements-linux-amd64.lock -r infra/requirements-droid-linux-amd64.lock
-mkdir -p deps/rust
-for part in rustc rust-std cargo; do
-    curl -fL --output-dir deps/rust -O \
-        https://static.rust-lang.org/dist/$part-1.85.0-x86_64-unknown-linux-gnu.tar.xz
-done
-
-L="--lab infra/labs/cephdag8.json"
-python3 infra/lab.py $L plan          # dry run and budget; touches nothing
-mkdir -p state/cephdag8 && echo '{"approved": true}' > state/cephdag8/approval.json
-python3 infra/lab.py $L build         # the image: Ceph 20.2.4, Python 3.9, the Rust planner
-python3 infra/lab.py $L up            # 17 containers, their networks, 8 OSD volumes
-python3 infra/lab.py $L bootstrap     # Ceph, and pools node0..node7 pinned to their OSDs
-python3 infra/lab.py $L mode cs --functions cephdag.droid
-python3 infra/lab.py $L shape 400     # every link at 400 Mbit/s
-python3 infra/lab.py $L verify cs     # each pool on its own OSD, each link at its rate
-```
-
-`lab.py` refuses to create anything until `approval.json` exists. `lab.py stop` and
-`resume` keep the data across a reboot.
-
-**Download DROID** (only for the DROID experiments). This fetches shards 0 to 552 and
-2047 from the public bucket, 501.5 GB, and checks each against its published MD5. A rerun
-resumes.
+The tests run with in-process storage and workers. From the repository root, with
+Python 3.9 and Rust installed
 
 ```bash
-python3 ../docs/demo3-cephdag/droid_download.py <results_dir>/droid/raw --bytes 500e9 --also 2047
-```
-
-**Calibrate.** The schedulers need each node's measured read, write and compute rates.
-Shard 2047 is held out for this.
-
-```bash
-C="docker exec cephdag8-n0 python3 -m"
-RATE=376.7    # the slowest link rate that verify measured
-$C experiments.droid_ingest --shards 2047 --resolution 128 --placement 0,1,2,3,4,5,6,7 \
-    --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
-$C experiments.calibrate --network-mbit $RATE --droid droid-128-02047 \
-    --cluster cephdag/clusters/cephdag8-cs.json --output /results/calibration/cephdag8-cs
-
-python3 infra/lab.py $L mode disagg --functions cephdag.droid
-python3 infra/lab.py $L shape 400
-python3 infra/lab.py $L verify disagg
-$C experiments.calibrate --network-mbit $RATE --droid droid-128-02047 \
-    --cluster cephdag/clusters/cephdag8-disagg.json --output /results/calibration/cephdag8-disagg \
-    --storage-from /results/calibration/cephdag8-cs/calibration.json
-
-for mode in cs disagg; do             # models for two workers per node and for fused DROID
-    base=/results/calibration/cephdag8-$mode/models.json
-    $C experiments.derive_models $base /results/derived-models/cephdag8-${mode}2/models.json \
-        --cluster cephdag/clusters/cephdag8-${mode}2.json --fused
-    $C experiments.derive_models $base /results/derived-models/cephdag8-$mode-fused/models.json --fused
-done
-```
-
-**Run the tests** on any machine, without Docker or Ceph. There are 263; three need a real
-DROID shard at `CEPHDAG_DROID_SHARD` and skip without it.
-
-```bash
-uv venv -p 3.9 .venv && uv pip install -p .venv numpy==2.0.2 -r requirements-droid.txt
+cd cephdag
+python3.9 -m venv .venv
+.venv/bin/python -m pip install numpy==2.0.2
+.venv/bin/python -m pip install -r requirements-droid.txt
 cargo build --release --offline --manifest-path native/Cargo.toml
 .venv/bin/python -m unittest discover -s tests -t .
 ```
 
-## 4. Experiments and results
+Expect 263 tests, with three skipped when the full DROID shard is absent. Set
+`CEPHDAG_DROID_SHARD` to the path of shard 00217 to include those three. The small
+DROID fixture used by the remaining tests is already in `tests/fixtures/`.
 
-Every experiment is one command, run from `cephdag/` on the host:
+### 3.1. Prepare the host and paths
+
+The measured host had 32 logical CPUs and 123 GiB of RAM. The supplied configuration
+reserves about 72 GiB for containers and another 8 GiB for the host. Its eight OSDs
+have 448 GiB of logical capacity. The budget check also requires 80 GiB free beyond
+that on Docker's disk. Our btrfs-backed volumes grew to about 700 GiB during the full
+campaign, so actual physical use can exceed the logical OSD capacity.
+
+Use an x86-64 Linux host with Python 3.9 or newer, pip, curl, Docker Engine, and the
+Docker Compose plugin. The kernel must support `ipip` and `sch_tbf`. Docker's data
+root holds the OSD volumes. `DEMO_RESULTS` below holds raw DROID, calibration, and
+experiment records and needs about 510 GB for the full DROID experiments.
+
+Start in `comp-storage/cephdag`. If starting from a fresh shell at the repository
+root, run `cd cephdag` first. Choose an absolute path on the disk that will hold the
+raw data and results, then create local copies of the configuration files
 
 ```bash
-python3 experiments/campaign.py run experiments/campaigns/<spec>.json
+export DEMO_RESULTS="$HOME/cephdag-demo3-results"
+export DEMO_LAB="state/reproduce/cephdag8.json"
+export DEMO_CAMPAIGNS="state/reproduce/campaigns"
+mkdir -p "$DEMO_RESULTS" "$DEMO_CAMPAIGNS"
+
+python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+results = str(Path(os.environ["DEMO_RESULTS"]).resolve())
+lab_path = Path(os.environ["DEMO_LAB"])
+lab = json.loads(Path("infra/labs/cephdag8.json").read_text())
+lab["results_dir"] = results
+lab_path.write_text(json.dumps(lab, indent=2) + "\n")
+
+for source in Path("experiments/campaigns").glob("*.json"):
+    spec = json.loads(source.read_text())
+    spec["lab"] = str(lab_path)
+    spec["results_host"] = results
+    target = Path(os.environ["DEMO_CAMPAIGNS"]) / source.name
+    target.write_text(json.dumps(spec, indent=2) + "\n")
+PY
+
+python3 infra/lab.py --lab "$DEMO_LAB" plan
 ```
 
-A campaign switches the lab between the two systems, checks the links, runs every case
-under every policy, verifies every output, and writes one row per run to
-`<results_dir>/campaigns/<spec>/`. It resumes where it stopped. `plan` in place of `run`
-prints the steps and a time estimate.
+A successful plan ends with `Configuration passes isolation and budget checks.`
+Review any `REFUSED` lines before continuing. `up` also checks Docker's actual data
+root and existing resources. The lab name is `cephdag8`, and its network subnets are
+`172.30.144.0/24` through `172.30.159.0/24`.
 
-All 422 runs behind this section passed verification. Their rows are in
-[`demo3-cephdag/rows/`](demo3-cephdag/rows), and
-[`make_figures.py`](demo3-cephdag/demo-data/make_figures.py) rebuilds every table and
-figure from them. Times are medians over repeats. A speedup is taken within each repeat,
-then the median.
+Both `results_dir` in the lab config and `results_host` in each campaign must point
+to the same host directory. Inside containers, that directory is mounted at
+`/results`. The script above sets both sides of that mapping. Run it once for a fresh
+experiment workspace.
+
+### 3.2. Build and start the lab
+
+The image pins Ceph by digest, installs Python wheels with checked hashes, and builds
+the native scheduler with Rust 1.85.0. Download its build inputs from `cephdag/`
+
+```bash
+mkdir -p deps/wheels deps/rust
+python3 -m pip download --require-hashes --no-deps --only-binary=:all: \
+    --dest deps/wheels --python-version 3.9 --implementation cp --abi cp39 \
+    --platform manylinux_2_28_x86_64 --platform manylinux2014_x86_64 \
+    -r infra/requirements-linux-amd64.lock \
+    -r infra/requirements-droid-linux-amd64.lock
+
+for component in rustc rust-std cargo; do
+    curl -fL \
+        "https://static.rust-lang.org/dist/${component}-1.85.0-x86_64-unknown-linux-gnu.tar.xz" \
+        -o "deps/rust/${component}-1.85.0-x86_64-unknown-linux-gnu.tar.xz"
+done
+
+mkdir -p state/cephdag8
+printf '%s\n' '{"approved": true}' > state/cephdag8/approval.json
+python3 infra/lab.py --lab "$DEMO_LAB" build
+python3 infra/lab.py --lab "$DEMO_LAB" up
+python3 infra/lab.py --lab "$DEMO_LAB" bootstrap
+python3 infra/lab.py --lab "$DEMO_LAB" cluster
+python3 infra/lab.py --lab "$DEMO_LAB" mode cs --functions cephdag.droid
+python3 infra/lab.py --lab "$DEMO_LAB" shape 400
+python3 infra/lab.py --lab "$DEMO_LAB" verify cs
+```
+
+The approval file enables this lab's deployment commands. `up` creates 17 containers,
+their networks, and eight named OSD volumes. `bootstrap` initializes those volumes
+once. Successful verification writes
+`results/deployment/cephdag8/validated-cs.json`, including pool placement, checksum
+checks, and the measured shared-link rates.
+
+### 3.3. Download the calibration shard and calibrate
+
+First download the held-out calibration shard. This is sufficient to calibrate the
+lab and run the synthetic campaigns
+
+```bash
+python3 ../docs/demo3-cephdag/droid_download.py "$DEMO_RESULTS/droid/raw" \
+    --bytes 0 --also 2047
+
+docker exec cephdag8-n0 python3 -m experiments.droid_ingest \
+    --shards 2047 --resolution 128 --placement 0,1,2,3,4,5,6,7 \
+    --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+```
+
+Read the measured link rate from verification and fit the combined-mode models
+
+```bash
+CS_RATE=$(python3 -c 'import json; d=json.load(open("results/deployment/cephdag8/validated-cs.json")); print(min(d["aggregate_mbit"].values()))')
+docker exec cephdag8-n0 python3 -m experiments.calibrate \
+    --network-mbit "$CS_RATE" --droid droid-128-02047 \
+    --cluster cephdag/clusters/cephdag8-cs.json \
+    --output /results/calibration/cephdag8-cs
+
+python3 infra/lab.py --lab "$DEMO_LAB" mode disagg --functions cephdag.droid
+python3 infra/lab.py --lab "$DEMO_LAB" shape 400
+python3 infra/lab.py --lab "$DEMO_LAB" verify disagg
+
+DISAGG_RATE=$(python3 -c 'import json; d=json.load(open("results/deployment/cephdag8/validated-disagg.json")); print(min(d["aggregate_mbit"].values()))')
+docker exec cephdag8-n0 python3 -m experiments.calibrate \
+    --network-mbit "$DISAGG_RATE" --droid droid-128-02047 \
+    --cluster cephdag/clusters/cephdag8-disagg.json \
+    --storage-from /results/calibration/cephdag8-cs/calibration.json \
+    --output /results/calibration/cephdag8-disagg
+```
+
+The separate-mode calibration reuses the measured storage rates and measures its own
+workers. The original link rate was about 377 Mbit/s after shaping to 400 Mbit/s.
+Calibration writes `calibration.json` and `models.json` under each mode's directory
+in `$DEMO_RESULTS/calibration/`.
+
+Derive the models for two workers per node and for fused DROID
+
+```bash
+for mode in cs disagg; do
+    base="/results/calibration/cephdag8-$mode/models.json"
+    docker exec cephdag8-n0 python3 -m experiments.derive_models "$base" \
+        "/results/derived-models/cephdag8-${mode}2/models.json" \
+        --cluster "cephdag/clusters/cephdag8-${mode}2.json" --fused
+    docker exec cephdag8-n0 python3 -m experiments.derive_models "$base" \
+        "/results/derived-models/cephdag8-$mode-fused/models.json" --fused
+done
+```
+
+Run derivation once after calibration. It uses exclusive file creation, so an existing
+output means that a model is already present. Preserve it with the results it produced
+before generating models for a new calibration.
+
+### 3.4. Download inputs for the DROID experiments
+
+The small fused-pipeline comparison uses three additional shards
+
+```bash
+python3 ../docs/demo3-cephdag/droid_download.py "$DEMO_RESULTS/droid/raw" \
+    --bytes 0 --also 550 551 552
+```
+
+For the 496 GB experiment and the skewed DROID experiment, download the full set used
+for Demo 3
+
+```bash
+python3 ../docs/demo3-cephdag/droid_download.py "$DEMO_RESULTS/droid/raw" \
+    --bytes 500e9 --also 2047
+```
+
+For the supplied release, this selects shards 0–552 plus 2047, about 501.5 GB. New
+downloads are checked against the published MD5. On resume, existing files are reused
+when their sizes match. Campaign ingest checks source checksums again.
+
+### 3.5. Stop and resume
+
+Run campaigns one at a time because they share the same cluster and change its active
+workers and link rates. Between campaigns, stop the lab with
+
+```bash
+python3 infra/lab.py --lab "$DEMO_LAB" stop
+```
+
+To use the existing lab again, run `resume`, then let the next campaign select its mode
+
+```bash
+python3 infra/lab.py --lab "$DEMO_LAB" resume
+```
+
+These commands preserve the named volumes and stored data. After opening a new shell,
+return to `cephdag/` and set the three `DEMO_...` variables from section 3.1 to the same
+values before continuing.
+
+## 4. Experiments and results
+
+Run from `comp-storage/cephdag` after section 3. Start with the worker-matched
+synthetic sweep
+
+```bash
+export DEMO_SPEC="demo3-slots"
+python3 experiments/campaign.py plan "$DEMO_CAMPAIGNS/$DEMO_SPEC.json"
+python3 experiments/campaign.py run "$DEMO_CAMPAIGNS/$DEMO_SPEC.json"
+```
+
+`plan` prints steps, estimated duration, disk use, and any `problem:` lines. Resolve
+those lines before running. A completed run prints `demo3-slots: complete`. This
+campaign produces 27 result rows. It took about 1.4 hours on the original host,
+excluding image setup and calibration.
+
+For another experiment, change `DEMO_SPEC` to a name below and use the same two
+commands. The driver selects worker locations, shapes the links, creates or ingests
+data, verifies outputs, and removes the campaign's temporary datasets when finished.
+
+| Question | Campaign spec name | Inputs | Expected result rows |
+| --- | --- | --- | --- |
+| How does compute intensity change the benefit? | `demo3-slots` | 16 GiB synthetic, 16 workers per mode | 27 |
+| How does network speed change it? | `netsweep-400`, `netsweep-1000`, `netsweep-2500` | 8 GiB synthetic, 16 workers per mode | 8 each |
+| Does it hold at larger scale? | `demo3-scale` | 256 GiB synthetic, 8 workers per mode | 6 |
+| How much does the real pipeline save? | `demo3-droid` | DROID shards 0–549, 8 workers per mode | 21 |
+| What changes when stages are fused? | `demo3-slots-droid` | DROID shards 550–552, 8 or 16 workers according to mode | 6 |
+| Which policy handles uneven data? | `sched-skew` | 8 GiB synthetic, 8 workers | 96 |
+| Does the revised LP dispatcher help? | `sched-lp`, `sched-lp-low`, `sched-lp-uniform` | Synthetic skew and uniform placement, 8 workers | 18, 24, 6 |
+| Does planning pay on the real pipeline? | `sched-droid` | DROID shards 500–515, fused, 8 workers per mode | 10 |
+| Does MCTS help? | `sched-mcts` | 8 GiB synthetic, 8 workers | 24 |
+
+The 496 GB DROID campaign took about 16.7 hours including its policies, ingest,
+verification, and mode changes. Its 1.55-hour and 5.85-hour headline times sum the
+measured graph execution times for the compared policies across seven batches.
+
+### Read and verify a campaign
+
+Results are under `$DEMO_RESULTS/campaigns/$DEMO_SPEC/`.
+
+| File | What to inspect |
+| --- | --- |
+| `driver.log` | Progress and command output |
+| `ledger.jsonl` | Started, completed, and failed steps, including retry attempts |
+| `<step>/a<attempt>/rows.jsonl` | One summary row per policy run |
+| `<step>/a<attempt>/run-*.json` | Full task timings and execution details for synthetic runs |
+| `<step>/a<attempt>/wave-*/run-*.json` | Full task timings for DROID waves |
+
+This prints each completed policy run and checks its recorded verification flag
+
+```bash
+python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+root = Path(os.environ["DEMO_RESULTS"]) / "campaigns" / os.environ["DEMO_SPEC"]
+for path in sorted(root.rglob("rows.jsonl")):
+    for line in path.read_text().splitlines():
+        row = json.loads(line)
+        assert row["verification"]["passed"], path
+        moved_gb = row["network_payload_bytes"]["bytes"] / 1e9
+        print(path.parent.relative_to(root), row["mode"], row["policy"],
+              f"{row['wall_seconds']:.2f} s", f"{moved_gb:.3f} GB")
+PY
+```
+
+`wall_seconds` includes scheduling time, which is also reported as `policy_seconds`.
+The plotted network metric is `network_payload_bytes.bytes`, computed from the
+objects transferred between nodes. Interface-counter measurements are recorded
+separately. Successful campaign completion also requires matching output digests
+across policies and modes for each matching input case. Different datasets have
+different digests.
+
+A rerun of the same command resumes completed steps from its ledger. If a step failed,
+read the recorded reason, correct the cause, and resume with
+
+```bash
+python3 experiments/campaign.py run "$DEMO_CAMPAIGNS/$DEMO_SPEC.json" \
+    --acknowledge-failure
+```
+
+A fresh measurement needs a new campaign `name` in a copy of the spec, so it gets a
+new result directory. Keep the existing records when recalibrating or changing a
+spec. A retry is recorded as a new attempt.
+
+### Compare with the reported results
+
+The tables below come from the included records. All 422 runs used by the chart pack
+passed verification. Times are medians over repeats unless a result explicitly sums
+batches. Speedups are computed within a repeat and then summarized, so a displayed
+speedup can differ slightly from the ratio of the two displayed median times.
+
+The chart generator in the root README expects the complete set of campaigns in the
+supplied archive. For a single fresh campaign, inspect its rows as above. Its new
+measurements may differ with hardware, calibration, and host load. Preserve worker
+counts, workload parameters, and policy names when comparing with the tables.
 
 ### Experiment 1. How much it saves depends on how much the task computes
 
 `demo3-slots.json`, 1.4 h. 16 GiB in 256 tasks, spread evenly, 16 workers on each side.
+The values below compare combined HEFT with separate FIFO-hash. Data-local is also
+measured in the same campaign.
 
 | Iterations | Computational storage | Baseline | Speedup |
 | ---: | ---: | ---: | ---: |
@@ -376,7 +597,7 @@ that.
 
 ![Wall time per batch of fused DROID for each policy and the baseline. The hatched part of each bar is planning, largest for lp-plan2.](demo3-cephdag/demo-data/fig7_sched_droid.png)
 
-### Experiment 6. Search does not pay
+### Experiment 6. Search overhead exceeds its measured benefit
 
 `sched-mcts.json`, 0.7 h. On the skewed data, MCTS with 128 iterations per decision was
 49% and 44% slower than `heft-cc` at 1 and 128 iterations (26.4 against 17.7 s, 53.5
@@ -390,7 +611,8 @@ get lab time ([GUMBEL.md](demo3-cephdag/GUMBEL.md)).
 * **One machine.** All 16 nodes and the router are containers on one host. They share
   its memory and one SSD, and the links are emulated. Real disks and a real network
   would differ.
-* **Not Kubernetes and Rook,** which the proposal planned.
+* **Deployment uses Docker.** Moving the lab to the proposed Kubernetes and Rook
+  deployment remains future work.
 * **One copy of the data.** Losing an OSD loses its pool.
 * **Few repeats.** Two or three per synthetic case. The 4096-iteration case, the 256 GiB
   runs and each DROID batch ran once.

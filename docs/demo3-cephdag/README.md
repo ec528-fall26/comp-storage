@@ -9,6 +9,12 @@ including the analysis scripts, per-task records, slide sources, and source hist
 Aakash's [current deck](../../slides/demo-3-aakash.pptx) has a
 [ten-minute narrative](../demo3-narrative.md) covering its eighteen main slides.
 
+## Start here
+
+- To reproduce the tables and charts, use [Regenerating the tables and charts](#regenerating-the-tables-and-charts).
+- To collect fresh measurements, follow the [lab setup](../design-document-multinode.md#3-setup) and [campaign instructions](../design-document-multinode.md#4-experiments-and-results).
+- To inspect the implementation, start with the [code README](../../cephdag/README.md).
+
 ## Reading order
 
 Start with the design document,
@@ -105,13 +111,21 @@ are in [`literature/`](literature), and the original project context is in
 
 ## Regenerating the tables and charts
 
-From the repository root, with matplotlib (the committed charts were drawn with 3.11.2):
+From the repository root, install Matplotlib in a temporary environment and regenerate
+the tables, plots, and architecture diagrams
 
 ```sh
-python3 -m venv /tmp/figs-venv && /tmp/figs-venv/bin/pip install matplotlib==3.11.2
+python3 -m venv /tmp/figs-venv
+/tmp/figs-venv/bin/python -m pip install matplotlib
 /tmp/figs-venv/bin/python -I docs/demo3-cephdag/demo-data/make_figures.py docs/demo3-cephdag/records/campaigns /tmp/demo3-figs
 /tmp/figs-venv/bin/python -I docs/demo3-cephdag/demo-data/make_diagrams.py /tmp/demo3-figs
 ```
+
+The output directory contains `tables.md`, 21 CSV tables, 11 result plots, and two
+architecture diagrams. `checks.csv` should report 422 rows across 17 campaigns, with
+zero failed verifications and zero comparison cells containing multiple digests.
+The regenerated CSV values match the committed tables. The archived plot environment
+used Matplotlib 3.11.2, so fonts and rendering may vary across installations.
 
 Without the output directory both scripts overwrite the files in `demo-data/`. The first argument
 of `make_figures.py` is any directory laid out like `rows/`; a `netsweep-<Mbit>` campaign in it is
