@@ -1,0 +1,404 @@
+{
+ "source": {
+  "ref": {
+   "kind": "object",
+   "pool": "node1",
+   "key": "datasets/wire/part-000000",
+   "size": 4096,
+   "dtype": "float32",
+   "partition": 0,
+   "sha256": "eb1bb39736a1b5e72b505431aedcedc62677303960d8499963837c8ddbb16733"
+  },
+  "seed": 5,
+  "size": 4096
+ },
+ "graph": {
+  "schema": 1,
+  "id": "ffffffffffffffffffffffffffffffff",
+  "memory_limit": 536870912,
+  "functions": [
+   {
+    "name": "map",
+    "version": "1",
+    "input_types": [
+     "float32"
+    ],
+    "output_types": [
+     "float32"
+    ]
+   },
+   {
+    "name": "join",
+    "version": "1",
+    "input_types": [
+     "float32",
+     "float32"
+    ],
+    "output_types": [
+     "float32"
+    ]
+   },
+   {
+    "name": "split",
+    "version": "1",
+    "input_types": [
+     "float32"
+    ],
+    "output_types": [
+     "float32",
+     "float32"
+    ]
+   }
+  ],
+  "tasks": [
+   {
+    "id": "t000000",
+    "function": "split@1",
+    "inputs": [
+     {
+      "kind": "object",
+      "pool": "node1",
+      "key": "datasets/wire/part-000000",
+      "size": 4096,
+      "dtype": "float32",
+      "partition": 0,
+      "sha256": "eb1bb39736a1b5e72b505431aedcedc62677303960d8499963837c8ddbb16733"
+     }
+    ],
+    "output_types": [
+     "float32",
+     "float32"
+    ],
+    "output_sizes": [
+     2048,
+     4096
+    ],
+    "partition": 0,
+    "params": {
+     "ratios": [
+      0.5,
+      1
+     ],
+     "iterations": 2
+    },
+    "memory": 8417280
+   },
+   {
+    "id": "t000001",
+    "function": "map@1",
+    "inputs": [
+     {
+      "kind": "output",
+      "graph": "ffffffffffffffffffffffffffffffff",
+      "task": "t000000",
+      "output": 0,
+      "dtype": "float32",
+      "partition": 0
+     }
+    ],
+    "output_types": [
+     "float32"
+    ],
+    "output_sizes": [
+     1024
+    ],
+    "partition": 0,
+    "params": {
+     "ratios": [
+      0.5
+     ],
+     "iterations": 3
+    },
+    "memory": 8398848
+   },
+   {
+    "id": "t000002",
+    "function": "join@1",
+    "inputs": [
+     {
+      "kind": "output",
+      "graph": "ffffffffffffffffffffffffffffffff",
+      "task": "t000001",
+      "output": 0,
+      "dtype": "float32",
+      "partition": 0
+     },
+     {
+      "kind": "output",
+      "graph": "ffffffffffffffffffffffffffffffff",
+      "task": "t000000",
+      "output": 1,
+      "dtype": "float32",
+      "partition": 0
+     }
+    ],
+    "output_types": [
+     "float32"
+    ],
+    "output_sizes": [
+     1280
+    ],
+    "partition": 0,
+    "params": {
+     "ratios": [
+      0.25
+     ],
+     "iterations": 1
+    },
+    "memory": 8408576
+   }
+  ]
+ },
+ "run_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "scheduler": "greedy",
+ "calls": [
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "submit",
+   "body": "{\"run_id\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\", \"worker\": 1, \"targets\": [1, 1], \"inputs\": [{\"kind\": \"object\", \"pool\": \"node1\", \"key\": \"datasets/wire/part-000000\", \"size\": 4096, \"dtype\": \"float32\", \"partition\": 0, \"sha256\": \"eb1bb39736a1b5e72b505431aedcedc62677303960d8499963837c8ddbb16733\"}], \"task\": {\"id\": \"t000000\", \"function\": \"split@1\", \"inputs\": [{\"kind\": \"object\", \"pool\": \"node1\", \"key\": \"datasets/wire/part-000000\", \"size\": 4096, \"dtype\": \"float32\", \"partition\": 0, \"sha256\": \"eb1bb39736a1b5e72b505431aedcedc62677303960d8499963837c8ddbb16733\"}], \"output_types\": [\"float32\", \"float32\"], \"output_sizes\": [2048, 4096], \"partition\": 0, \"params\": {\"ratios\": [0.5, 1], \"iterations\": 2}, \"memory\": 8417280}}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000000\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000000\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000000\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "ack",
+   "body": "{\"key\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000000\", \"token\": \"c02b525cb05101c4ac06624a6b5dfd585ebbf6d4049cb969428dfcec4a7c8913\"}"
+  },
+  {
+   "node": 1,
+   "path": "submit",
+   "body": "{\"run_id\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\", \"worker\": 1, \"targets\": [1], \"inputs\": [{\"kind\": \"object\", \"pool\": \"node1\", \"key\": \"runs/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000000/output-0\", \"size\": 2048, \"dtype\": \"float32\", \"partition\": 0, \"sha256\": \"5e34de0a5d7f7b29e3c81fbda8ff0fcf35fc23d731fd9b96bc7ab170bd2f52a3\"}], \"task\": {\"id\": \"t000001\", \"function\": \"map@1\", \"inputs\": [{\"kind\": \"output\", \"graph\": \"ffffffffffffffffffffffffffffffff\", \"task\": \"t000000\", \"output\": 0, \"dtype\": \"float32\", \"partition\": 0}], \"output_types\": [\"float32\"], \"output_sizes\": [1024], \"partition\": 0, \"params\": {\"ratios\": [0.5], \"iterations\": 3}, \"memory\": 8398848}}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000001\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "ack",
+   "body": "{\"key\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000001\", \"token\": \"35cf80e9cce6c8b8fc150d2bd7bd52876a8aa29c5d774f0400c8ae6eab260875\"}"
+  },
+  {
+   "node": 1,
+   "path": "submit",
+   "body": "{\"run_id\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\", \"worker\": 1, \"targets\": [1], \"inputs\": [{\"kind\": \"object\", \"pool\": \"node1\", \"key\": \"runs/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000001/output-0\", \"size\": 1024, \"dtype\": \"float32\", \"partition\": 0, \"sha256\": \"ae94e7134dce1ce0282774f067b4c0f41b2b1c291c3eebed9656ab9e4bf637e4\"}, {\"kind\": \"object\", \"pool\": \"node1\", \"key\": \"runs/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000000/output-1\", \"size\": 4096, \"dtype\": \"float32\", \"partition\": 0, \"sha256\": \"235a79470f28ca42bbe254c2a93dd77adb46af6bf0ece6c7ab321b134772ba6b\"}], \"task\": {\"id\": \"t000002\", \"function\": \"join@1\", \"inputs\": [{\"kind\": \"output\", \"graph\": \"ffffffffffffffffffffffffffffffff\", \"task\": \"t000001\", \"output\": 0, \"dtype\": \"float32\", \"partition\": 0}, {\"kind\": \"output\", \"graph\": \"ffffffffffffffffffffffffffffffff\", \"task\": \"t000000\", \"output\": 1, \"dtype\": \"float32\", \"partition\": 0}], \"output_types\": [\"float32\"], \"output_sizes\": [1280], \"partition\": 0, \"params\": {\"ratios\": [0.25], \"iterations\": 1}, \"memory\": 8408576}}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000002\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000002\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": [\"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000002\"]}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "ack",
+   "body": "{\"key\": \"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000002\", \"token\": \"30fd18c90daa7cec15d24a0e04fd54d55ff5aceff9d5b48454e97553d2cb4e2a\"}"
+  },
+  {
+   "node": 0,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 1,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  },
+  {
+   "node": 2,
+   "path": "state",
+   "body": "{\"keys\": []}"
+  }
+ ],
+ "final_outputs": [
+  {
+   "kind": "object",
+   "pool": "node1",
+   "key": "runs/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/t000002/output-0",
+   "size": 1280,
+   "dtype": "float32",
+   "partition": 0,
+   "sha256": "020ca93a8494e91f6878a5794c678c902e2a54539963aa5ed54565fd62e0f33b"
+  }
+ ],
+ "result_keys": [
+  "application_remote_bytes",
+  "counter_after",
+  "counter_before",
+  "decisions",
+  "dispatches",
+  "final_outputs",
+  "models",
+  "network_tx_bytes",
+  "observed_stage_events",
+  "policy_init_seconds",
+  "run_id",
+  "scheduler",
+  "scheduler_options",
+  "scheduler_seconds",
+  "schema",
+  "search_iterations",
+  "storage_backend",
+  "system_benchmark",
+  "tasks",
+  "verification_seconds",
+  "verified_final_bytes",
+  "waits",
+  "wall_seconds"
+ ],
+ "completed_job_keys": [
+  "ack_token",
+  "fingerprint",
+  "finished",
+  "key",
+  "result",
+  "stage",
+  "stage_bytes",
+  "stage_events",
+  "stage_index",
+  "stage_started",
+  "started",
+  "status"
+ ],
+ "worker_result_keys": [
+  "outputs",
+  "reserved_bytes",
+  "seconds",
+  "stages",
+  "task",
+  "worker"
+ ],
+ "snapshot_keys": [
+  "active",
+  "counters",
+  "jobs",
+  "node",
+  "retained_jobs",
+  "retention_limit",
+  "retention_protocol",
+  "time"
+ ]
+}

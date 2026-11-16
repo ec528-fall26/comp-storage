@@ -1,0 +1,73 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets create-synthetic sched-pilot-skew-8g-64m --gib 8 --shard-mib 64 --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs.json
+{"dataset": "sched-pilot-skew-8g-64m", "shards": 128}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 376.7179368098432,
+    "shared_rx": 379.83352095982804
+  },
+  "1": {
+    "shared_tx": 377.33490866754863,
+    "shared_rx": 377.48781298537557
+  },
+  "2": {
+    "shared_tx": 377.23213046277834,
+    "shared_rx": 377.4879262319233
+  },
+  "3": {
+    "shared_tx": 377.33558781019616,
+    "shared_rx": 377.48811497647154
+  },
+  "4": {
+    "shared_tx": 377.23254534682945,
+    "shared_rx": 377.4881544028531
+  },
+  "5": {
+    "shared_tx": 377.3352104741179,
+    "shared_rx": 377.48790358261374
+  },
+  "6": {
+    "shared_tx": 376.82112989831745,
+    "shared_rx": 379.54523996454947
+  },
+  "7": {
+    "shared_tx": 377.33521035101006,
+    "shared_rx": 377.48777775317467
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset sched-pilot-skew-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies heft-cc,backlog,lp-plan,data-local,greedy-wait,heft --repeats 1 --seed 9103 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-pilot/independent-i1-r0-cs/a1 --no-warm
+{"index": 0, "runs": 6, "scheduler": "backlog", "wall_seconds": 18.01883635300328, "scheduler_seconds": 0.008088064176263288, "network_tx_bytes": 688277118, "removed_bytes": 2147483648}
+{"index": 1, "runs": 6, "scheduler": "lp-plan", "wall_seconds": 20.316478494991316, "scheduler_seconds": 0.03655241885280702, "network_tx_bytes": 833669402, "removed_bytes": 2147483648}
+{"index": 2, "runs": 6, "scheduler": "greedy-wait", "wall_seconds": 20.255725946000894, "scheduler_seconds": 14.227243211935274, "network_tx_bytes": 15962923, "removed_bytes": 2147483648}
+{"index": 3, "runs": 6, "scheduler": "data-local", "wall_seconds": 21.15611770399846, "scheduler_seconds": 0.013761101014097221, "network_tx_bytes": 1359235247, "removed_bytes": 2147483648}
+{"index": 4, "runs": 6, "scheduler": "heft-cc", "wall_seconds": 17.644002457993338, "scheduler_seconds": 0.049901572172529995, "network_tx_bytes": 2368540311, "removed_bytes": 2147483648}
+{"index": 5, "runs": 6, "scheduler": "heft", "wall_seconds": 44.99272492699674, "scheduler_seconds": 0.014576145898899995, "network_tx_bytes": 2718162585, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-pilot/independent-i1-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 128 --ratio 0.25 --dataset sched-pilot-skew-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies heft-cc,backlog,lp-plan,data-local,greedy-wait,heft --repeats 1 --seed 9104 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-pilot/independent-i128-r0-cs/a1 --no-warm
+{"index": 0, "runs": 6, "scheduler": "backlog", "wall_seconds": 36.76284322900756, "scheduler_seconds": 0.009308307024184614, "network_tx_bytes": 1383514879, "removed_bytes": 2147483648}
+{"index": 1, "runs": 6, "scheduler": "data-local", "wall_seconds": 39.09195877998718, "scheduler_seconds": 0.01574417894880753, "network_tx_bytes": 1711880493, "removed_bytes": 2147483648}
+{"index": 2, "runs": 6, "scheduler": "lp-plan", "wall_seconds": 42.63261186500313, "scheduler_seconds": 0.03725801009568386, "network_tx_bytes": 1667744329, "removed_bytes": 2147483648}
+{"index": 3, "runs": 6, "scheduler": "heft", "wall_seconds": 55.364656563004246, "scheduler_seconds": 0.015718198847025633, "network_tx_bytes": 3940602234, "removed_bytes": 2147483648}
+{"index": 4, "runs": 6, "scheduler": "heft-cc", "wall_seconds": 35.273312642995734, "scheduler_seconds": 0.05126690289762337, "network_tx_bytes": 3061115376, "removed_bytes": 2147483648}
+{"index": 5, "runs": 6, "scheduler": "greedy-wait", "wall_seconds": 53.09538129600696, "scheduler_seconds": 20.872167590991012, "network_tx_bytes": 73232383, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-pilot/independent-i128-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete sched-pilot-skew-8g-64m --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"sched-pilot-skew-8g-64m": 128}}
+# exit 0

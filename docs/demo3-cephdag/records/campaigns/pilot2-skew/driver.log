@@ -1,0 +1,87 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets create-synthetic pilot2-skew-8g-64m --gib 8 --shard-mib 64 --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs.json
+{"dataset": "pilot2-skew-8g-64m", "shards": 128}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 377.541295853334,
+    "shared_rx": 375.3906546939225
+  },
+  "1": {
+    "shared_tx": 376.4098652201825,
+    "shared_rx": 377.4882282232307
+  },
+  "2": {
+    "shared_tx": 376.92394655664293,
+    "shared_rx": 377.4880017296974
+  },
+  "3": {
+    "shared_tx": 377.3356635658113,
+    "shared_rx": 379.5852724289752
+  },
+  "4": {
+    "shared_tx": 376.92394630967283,
+    "shared_rx": 377.4875588102481
+  },
+  "5": {
+    "shared_tx": 376.61546024737726,
+    "shared_rx": 379.5856146860323
+  },
+  "6": {
+    "shared_tx": 376.8208283590099,
+    "shared_rx": 378.2499705241187
+  },
+  "7": {
+    "shared_tx": 376.82090372322835,
+    "shared_rx": 377.48831085111556
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 128 --ratio 0.25 --dataset pilot2-skew-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies data-local,greedy-wait,stealing,heft,beam-4 --repeats 1 --seed 9103 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/pilot2-skew/independent-i128-r0-cs/a1 --no-warm
+{"index": 0, "runs": 5, "scheduler": "greedy-wait", "wall_seconds": 50.77444363399991, "scheduler_seconds": 20.71984245400381, "network_tx_bytes": 69772563, "removed_bytes": 2147483648}
+{"index": 1, "runs": 5, "scheduler": "stealing", "wall_seconds": 37.46329536200028, "scheduler_seconds": 0.08251333300904662, "network_tx_bytes": 1452579812, "removed_bytes": 2147483648}
+{"index": 2, "runs": 5, "scheduler": "beam-4", "wall_seconds": 36.322423572000844, "scheduler_seconds": 0.4613411899917992, "network_tx_bytes": 1850056598, "removed_bytes": 2147483648}
+{"index": 3, "runs": 5, "scheduler": "heft", "wall_seconds": 55.67956072199922, "scheduler_seconds": 0.013413762986601796, "network_tx_bytes": 3938371307, "removed_bytes": 2147483648}
+{"index": 4, "runs": 5, "scheduler": "data-local", "wall_seconds": 37.181397772999844, "scheduler_seconds": 0.016710584992324584, "network_tx_bytes": 1576702622, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/pilot2-skew/independent-i128-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset pilot2-skew-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies data-local,greedy-wait,stealing,heft,beam-4 --repeats 1 --seed 9104 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/pilot2-skew/independent-i1024-r0-cs/a1 --no-warm
+{"index": 0, "runs": 5, "scheduler": "greedy-wait", "wall_seconds": 103.78188732800118, "scheduler_seconds": 23.642822282987254, "network_tx_bytes": 4159313934, "removed_bytes": 2147483648}
+{"index": 1, "runs": 5, "scheduler": "heft", "wall_seconds": 111.08049953099908, "scheduler_seconds": 0.013380614997004159, "network_tx_bytes": 4581162543, "removed_bytes": 2147483648}
+{"index": 2, "runs": 5, "scheduler": "stealing", "wall_seconds": 109.79137616099979, "scheduler_seconds": 0.07883901598324883, "network_tx_bytes": 2796073743, "removed_bytes": 2147483648}
+{"index": 3, "runs": 5, "scheduler": "data-local", "wall_seconds": 98.63759528100127, "scheduler_seconds": 0.017880950021208264, "network_tx_bytes": 3033208433, "removed_bytes": 2147483648}
+{"index": 4, "runs": 5, "scheduler": "beam-4", "wall_seconds": 105.87674864899964, "scheduler_seconds": 0.4563689590722788, "network_tx_bytes": 3254114002, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/pilot2-skew/independent-i1024-r0-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 128 --ratio 0.25 --dataset pilot2-skew-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9103 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/pilot2-skew/independent-i128-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 95.10900022100031, "scheduler_seconds": 0.004934472988679772, "network_tx_bytes": 2188835777, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/pilot2-skew/independent-i128-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset pilot2-skew-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9104 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/pilot2-skew/independent-i1024-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 136.27180778299953, "scheduler_seconds": 0.005608228941127891, "network_tx_bytes": 2251537249, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/pilot2-skew/independent-i1024-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete pilot2-skew-8g-64m --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"pilot2-skew-8g-64m": 128}}
+# exit 0

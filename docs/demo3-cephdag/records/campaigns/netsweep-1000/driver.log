@@ -1,0 +1,103 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 1000
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets create-synthetic netsweep-1000-8g-64m --gib 8 --shard-mib 64 --placement 0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs2.json
+{"dataset": "netsweep-1000-8g-64m", "shards": 128}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 1000
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs2
+cephdag8 is in mode cs2: 16 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 1000
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs2
+{
+  "0": {
+    "shared_tx": 943.4404648497446,
+    "shared_rx": 941.6229336939459
+  },
+  "1": {
+    "shared_tx": 943.2362476436525,
+    "shared_rx": 943.7193437193437
+  },
+  "2": {
+    "shared_tx": 943.5434701138158,
+    "shared_rx": 943.719532463439
+  },
+  "3": {
+    "shared_tx": 942.7210352242666,
+    "shared_rx": 943.7200101965153
+  },
+  "4": {
+    "shared_tx": 942.8244170845542,
+    "shared_rx": 943.7192095047715
+  },
+  "5": {
+    "shared_tx": 943.4404653432623,
+    "shared_rx": 943.7201930686028
+  },
+  "6": {
+    "shared_tx": 943.1338088363923,
+    "shared_rx": 943.7197212076096
+  },
+  "7": {
+    "shared_tx": 943.4409374759396,
+    "shared_rx": 945.8174574764863
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies heft --repeats 1 --seed 9803 --models /results/derived-models/cephdag8-cs2/models.json --cluster cephdag/clusters/cephdag8-cs2.json --output /results/campaigns/netsweep-1000/independent-i1-r0-cs2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 6.032530252006836, "scheduler_seconds": 0.027435018739197403, "network_tx_bytes": 11207284, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i1-r0-cs2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies heft --repeats 1 --seed 9804 --models /results/derived-models/cephdag8-cs2/models.json --cluster cephdag/clusters/cephdag8-cs2.json --output /results/campaigns/netsweep-1000/independent-i256-r0-cs2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 15.185805100016296, "scheduler_seconds": 0.027155435062013566, "network_tx_bytes": 49181953, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i256-r0-cs2/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg2
+cephdag8 is in mode disagg2: 16 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 1000
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg2
+cephdag8 mode disagg2: 32 links at 1000 Mbit/s, 16 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9803 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/netsweep-1000/independent-i1-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 12.78648507699836, "scheduler_seconds": 0.004431926790857688, "network_tx_bytes": 2170008224, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i1-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9804 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/netsweep-1000/independent-i256-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 21.705653486016672, "scheduler_seconds": 0.004816550179384649, "network_tx_bytes": 2181231132, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i256-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9805 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/netsweep-1000/independent-i1-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 13.889573753986042, "scheduler_seconds": 0.0037504950014408678, "network_tx_bytes": 2168466140, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i1-r1-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9806 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/netsweep-1000/independent-i256-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 20.231418215000303, "scheduler_seconds": 0.004498343158047646, "network_tx_bytes": 2178165695, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i256-r1-disagg2/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs2
+cephdag8 is in mode cs2: 16 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 1000
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check cs2
+cephdag8 mode cs2: 24 links at 1000 Mbit/s, 16 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies heft --repeats 1 --seed 9805 --models /results/derived-models/cephdag8-cs2/models.json --cluster cephdag/clusters/cephdag8-cs2.json --output /results/campaigns/netsweep-1000/independent-i1-r1-cs2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 5.0354067599982955, "scheduler_seconds": 0.02709752507507801, "network_tx_bytes": 8341371, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i1-r1-cs2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset netsweep-1000-8g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies heft --repeats 1 --seed 9806 --models /results/derived-models/cephdag8-cs2/models.json --cluster cephdag/clusters/cephdag8-cs2.json --output /results/campaigns/netsweep-1000/independent-i256-r1-cs2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 15.004494766995776, "scheduler_seconds": 0.026284816034603864, "network_tx_bytes": 45737843, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/netsweep-1000/independent-i256-r1-cs2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete netsweep-1000-8g-64m --cluster cephdag/clusters/cephdag8-cs2.json
+{"deleted": {"netsweep-1000-8g-64m": 128}}
+# exit 0

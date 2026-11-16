@@ -1,0 +1,5800 @@
+{
+  "schema": 1,
+  "run_id": "fd9d6c0b1edd41788374518a66f7444a",
+  "scheduler": "fifo-hash",
+  "system_benchmark": true,
+  "storage_backend": "ceph-rados",
+  "wall_seconds": 38.24402794100024,
+  "scheduler_seconds": 0.0037842259953322355,
+  "policy_init_seconds": 3.010000000358559e-06,
+  "search_iterations": 0,
+  "dispatches": 64,
+  "waits": 180,
+  "decisions": [
+    {
+      "at_seconds": 0.01278099800038035,
+      "seconds": 2.6570000045467168e-05,
+      "action": {
+        "task": "t000000",
+        "worker": 8,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.020318836999649648,
+      "seconds": 1.078000059351325e-05,
+      "action": {
+        "task": "t000001",
+        "worker": 9,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.031116983000174514,
+      "seconds": 2.1809999452671036e-05,
+      "action": {
+        "task": "t000002",
+        "worker": 10,
+        "targets": [
+          1
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.03985335700053838,
+      "seconds": 2.1060001017758623e-05,
+      "action": {
+        "task": "t000003",
+        "worker": 11,
+        "targets": [
+          1
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.052150247000099625,
+      "seconds": 2.1910000214120373e-05,
+      "action": {
+        "task": "t000004",
+        "worker": 12,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.061765677000948926,
+      "seconds": 2.773000051092822e-05,
+      "action": {
+        "task": "t000005",
+        "worker": 13,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.0717464059998747,
+      "seconds": 2.922000021499116e-05,
+      "action": {
+        "task": "t000006",
+        "worker": 14,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.08322859899999457,
+      "seconds": 2.2219999664230272e-05,
+      "action": {
+        "task": "t000007",
+        "worker": 15,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 0.09328159800134017,
+      "seconds": 7.900000127847306e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 1.5907681320004485,
+      "seconds": 1.0929999916697852e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 1.6111680089998117,
+      "seconds": 1.3840000974596478e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 1.6405270680006652,
+      "seconds": 1.2559999959194101e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 1.6507293060003576,
+      "seconds": 1.0579999070614576e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 1.6685381930001313,
+      "seconds": 1.2799999240087345e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 1.697868463001214,
+      "seconds": 1.2120000974391587e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 5.680432351000491,
+      "seconds": 1.306000012846198e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 5.876010006000797,
+      "seconds": 1.049999991664663e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 5.927832471999864,
+      "seconds": 8.299999535665847e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 6.115438269000151,
+      "seconds": 3.440000000409782e-05,
+      "action": {
+        "task": "t000008",
+        "worker": 8,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 6.134941329000867,
+      "seconds": 4.949999492964707e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 6.3187493910008925,
+      "seconds": 2.2399999579647556e-05,
+      "action": {
+        "task": "t000009",
+        "worker": 10,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 6.407654423999702,
+      "seconds": 1.8279999494552612e-05,
+      "action": {
+        "task": "t000010",
+        "worker": 12,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 6.471543591000227,
+      "seconds": 4.8100009735208005e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 6.88659466900026,
+      "seconds": 2.916999983426649e-05,
+      "action": {
+        "task": "t000011",
+        "worker": 13,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 6.948107895999783,
+      "seconds": 6.270000085351057e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 7.291758518000279,
+      "seconds": 2.606999987619929e-05,
+      "action": {
+        "task": "t000012",
+        "worker": 15,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 7.356054433001191,
+      "seconds": 6.599999323952943e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 7.6678941560003295,
+      "seconds": 2.6789999537868425e-05,
+      "action": {
+        "task": "t000013",
+        "worker": 9,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 7.675999613000386,
+      "seconds": 2.2519998310599476e-05,
+      "action": {
+        "task": "t000014",
+        "worker": 11,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 7.685362194000845,
+      "seconds": 1.2800001059076749e-05,
+      "action": {
+        "task": "t000015",
+        "worker": 14,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 7.693759368999963,
+      "seconds": 3.5800003388430923e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 7.7174731110008,
+      "seconds": 3.540000761859119e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 7.942147914000088,
+      "seconds": 1.3779999790131114e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 8.041191846001311,
+      "seconds": 5.7800007198238745e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 8.512214700000186,
+      "seconds": 9.438999768462963e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 8.93908294799985,
+      "seconds": 9.370000043418258e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 9.102017785000498,
+      "seconds": 8.119999620248564e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 9.309367306999775,
+      "seconds": 9.039998985826969e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 9.36178553100035,
+      "seconds": 6.539999958476983e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 9.487986228999944,
+      "seconds": 3.262999962316826e-05,
+      "action": {
+        "task": "t000016",
+        "worker": 13,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 9.497365560000617,
+      "seconds": 5.420000888989307e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 9.828413772000204,
+      "seconds": 1.030999919748865e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 10.22528652100118,
+      "seconds": 4.205999903206248e-05,
+      "action": {
+        "task": "t000017",
+        "worker": 9,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 10.249298532000466,
+      "seconds": 5.049998435424641e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 11.091495898001085,
+      "seconds": 9.96999915514607e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 11.11501846000101,
+      "seconds": 7.279999408638105e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 11.535739349001233,
+      "seconds": 3.8500000300700776e-05,
+      "action": {
+        "task": "t000018",
+        "worker": 8,
+        "targets": [
+          1
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 11.544056384000214,
+      "seconds": 6.649999704677612e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 11.628201546000128,
+      "seconds": 1.0069999916595407e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 11.862410566000108,
+      "seconds": 1.0620000466587953e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.020353482001155,
+      "seconds": 4.667000030167401e-05,
+      "action": {
+        "task": "t000019",
+        "worker": 13,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 12.029947992001325,
+      "seconds": 8.2200003816979e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.235810700000002,
+      "seconds": 1.019000046653673e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.455365080000774,
+      "seconds": 7.0000005507608876e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.623173834999761,
+      "seconds": 1.4530000044032931e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.662294943000234,
+      "seconds": 4.1119999877992086e-05,
+      "action": {
+        "task": "t000020",
+        "worker": 10,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 12.677349120000144,
+      "seconds": 4.890000127488747e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.834380309001062,
+      "seconds": 8.979999620351009e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 12.86256497300019,
+      "seconds": 2.857999970728997e-05,
+      "action": {
+        "task": "t000021",
+        "worker": 12,
+        "targets": [
+          6
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 12.883576186000937,
+      "seconds": 4.089999492862262e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.00625247700009,
+      "seconds": 3.12490010401234e-05,
+      "action": {
+        "task": "t000022",
+        "worker": 9,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 13.02182803300093,
+      "seconds": 1.0810001185745932e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.084491892999722,
+      "seconds": 1.0239999028271995e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.149938602000475,
+      "seconds": 9.839999620453455e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.160018980001041,
+      "seconds": 7.329999789362773e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.349175565999758,
+      "seconds": 2.803999996103812e-05,
+      "action": {
+        "task": "t000023",
+        "worker": 11,
+        "targets": [
+          1
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 13.360167099999671,
+      "seconds": 4.02000114263501e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.602019567000752,
+      "seconds": 2.612000025692396e-05,
+      "action": {
+        "task": "t000024",
+        "worker": 15,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 13.616164998000386,
+      "seconds": 8.259999958681874e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.666612918999817,
+      "seconds": 1.0129999282071367e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 13.950462411999979,
+      "seconds": 3.321000076539349e-05,
+      "action": {
+        "task": "t000025",
+        "worker": 14,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 13.980078389000482,
+      "seconds": 7.040000127744861e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 14.289976424000997,
+      "seconds": 1.1870000889757648e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 14.385100399000294,
+      "seconds": 3.200000173819717e-05,
+      "action": {
+        "task": "t000026",
+        "worker": 8,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 14.415711601999647,
+      "seconds": 7.189999450929463e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 14.622184435000236,
+      "seconds": 8.959999831859022e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 14.962921771000765,
+      "seconds": 1.4319999536382966e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 15.232450942001378,
+      "seconds": 1.168000017059967e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 15.579686140001286,
+      "seconds": 1.2579999747686088e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 15.619832043001225,
+      "seconds": 1.573999907122925e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 15.741457668000294,
+      "seconds": 1.2979999155504629e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 16.046354631000213,
+      "seconds": 5.079899892734829e-05,
+      "action": {
+        "task": "t000027",
+        "worker": 13,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 16.08744371099965,
+      "seconds": 1.3120001312927343e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 16.136363036999683,
+      "seconds": 5.501000123331323e-05,
+      "action": {
+        "task": "t000028",
+        "worker": 9,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 16.147583601001315,
+      "seconds": 1.1639998774626292e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 16.656087497000044,
+      "seconds": 1.2260001312824897e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 16.802266709000833,
+      "seconds": 1.0510000720387325e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.08924549600124,
+      "seconds": 2.9839999115210958e-05,
+      "action": {
+        "task": "t000029",
+        "worker": 12,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 17.127697146001083,
+      "seconds": 7.480000931536779e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.186697401000856,
+      "seconds": 3.8860000131535344e-05,
+      "action": {
+        "task": "t000030",
+        "worker": 15,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 17.196777609000492,
+      "seconds": 6.7999990278622136e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.46947258399996,
+      "seconds": 8.998998964671046e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.643397731000732,
+      "seconds": 6.070000381441787e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.755367125000703,
+      "seconds": 4.73000000056345e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.822304257000724,
+      "seconds": 3.970000761910342e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 17.8828976650002,
+      "seconds": 2.6199999410891905e-05,
+      "action": {
+        "task": "t000031",
+        "worker": 8,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 17.894523036000464,
+      "seconds": 4.2100000428035855e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 18.04716375099997,
+      "seconds": 1.2759999663103372e-05,
+      "action": {
+        "task": "t000032",
+        "worker": 10,
+        "targets": [
+          6
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 18.05762632799997,
+      "seconds": 4.13999987358693e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 18.718873024999994,
+      "seconds": 1.1610000001383014e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 18.836879753000176,
+      "seconds": 9.018998753163032e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 18.91614010400008,
+      "seconds": 7.919999916339293e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.240970430000743,
+      "seconds": 1.4489000022877008e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.32657272400138,
+      "seconds": 2.9790000553475693e-05,
+      "action": {
+        "task": "t000033",
+        "worker": 11,
+        "targets": [
+          6
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 19.356003871000212,
+      "seconds": 5.289999535307288e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.49936477400115,
+      "seconds": 8.639999578008428e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.534667236999667,
+      "seconds": 3.99999953515362e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.606671536999784,
+      "seconds": 3.7099998735357076e-05,
+      "action": {
+        "task": "t000034",
+        "worker": 12,
+        "targets": [
+          6
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 19.6194559329997,
+      "seconds": 5.779998900834471e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.663239450999754,
+      "seconds": 8.369999704882503e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 19.888408722999884,
+      "seconds": 3.152999852318317e-05,
+      "action": {
+        "task": "t000035",
+        "worker": 14,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 19.89687873799994,
+      "seconds": 6.2399994931183755e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 20.159410752999975,
+      "seconds": 8.609998985775746e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 20.562988859999678,
+      "seconds": 2.980899989779573e-05,
+      "action": {
+        "task": "t000036",
+        "worker": 10,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 20.57173698400038,
+      "seconds": 4.1099992813542485e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 20.933352756001113,
+      "seconds": 9.60000033956021e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 21.24945119699987,
+      "seconds": 9.879999197437428e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 21.452351421001367,
+      "seconds": 7.023000034678262e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 21.56994782000038,
+      "seconds": 7.410000762320124e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 21.63248603900138,
+      "seconds": 3.8100006349850446e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 21.750651266000204,
+      "seconds": 3.649998689070344e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 21.874828097001227,
+      "seconds": 2.4189999749069102e-05,
+      "action": {
+        "task": "t000037",
+        "worker": 11,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 21.905052701000386,
+      "seconds": 4.2100000428035855e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 22.03186253199965,
+      "seconds": 3.432000085012987e-05,
+      "action": {
+        "task": "t000038",
+        "worker": 13,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 22.049814887001048,
+      "seconds": 4.690000423579477e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 22.12982735300102,
+      "seconds": 1.2479998986236751e-05,
+      "action": {
+        "task": "t000039",
+        "worker": 9,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 22.13838734700039,
+      "seconds": 3.7200006772764027e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 22.21919925000111,
+      "seconds": 8.150000212481245e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 22.881848352000816,
+      "seconds": 9.65000072028488e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 23.286882370000967,
+      "seconds": 3.1859999580774456e-05,
+      "action": {
+        "task": "t000040",
+        "worker": 15,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 23.29660014900037,
+      "seconds": 5.599998985417187e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 23.487603020999813,
+      "seconds": 1.0099998689838685e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 23.584509035999872,
+      "seconds": 6.8999997893115506e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 23.712834699001178,
+      "seconds": 9.269999281968921e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 23.790871782999602,
+      "seconds": 1.1919999451492913e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 24.01248336699973,
+      "seconds": 5.342999975255225e-05,
+      "action": {
+        "task": "t000041",
+        "worker": 8,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 24.050822777000576,
+      "seconds": 1.3999999282532372e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 24.45001823700113,
+      "seconds": 1.1250000170548446e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 24.6743948680014,
+      "seconds": 9.11999995878432e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 24.850181743000576,
+      "seconds": 3.9290000131586567e-05,
+      "action": {
+        "task": "t000042",
+        "worker": 11,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 24.86168337500021,
+      "seconds": 7.550001100753434e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 24.910988268000438,
+      "seconds": 9.030000001075678e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 25.0399830690003,
+      "seconds": 8.369999704882503e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 25.05163286000061,
+      "seconds": 2.925000080722384e-05,
+      "action": {
+        "task": "t000043",
+        "worker": 9,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 25.061526609000794,
+      "seconds": 8.150000212481245e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 25.46011302000079,
+      "seconds": 1.3220000255387276e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 25.488966179000272,
+      "seconds": 1.216000055137556e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 25.6979302740001,
+      "seconds": 1.0530000508879311e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 25.887048233000314,
+      "seconds": 2.9450000511133112e-05,
+      "action": {
+        "task": "t000044",
+        "worker": 15,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 25.927026704999662,
+      "seconds": 3.678899884107523e-05,
+      "action": {
+        "task": "t000045",
+        "worker": 12,
+        "targets": [
+          4
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 25.959962476999863,
+      "seconds": 9.809000403038226e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.074143728999843,
+      "seconds": 1.0900001143454574e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.087285874000372,
+      "seconds": 4.0040000385488383e-05,
+      "action": {
+        "task": "t000046",
+        "worker": 14,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 26.09736754200094,
+      "seconds": 8.81000050867442e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.13588480100043,
+      "seconds": 1.035999957821332e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.47195172300053,
+      "seconds": 1.0690000635804608e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.549229608999667,
+      "seconds": 8.380000508623198e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.560543351000888,
+      "seconds": 3.799899968726095e-05,
+      "action": {
+        "task": "t000047",
+        "worker": 10,
+        "targets": [
+          7
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 26.570328580000933,
+      "seconds": 1.0460000339662656e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.666769826000746,
+      "seconds": 1.3769000361207873e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 26.88991451200127,
+      "seconds": 1.098000029742252e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.312629960000777,
+      "seconds": 3.395000021555461e-05,
+      "action": {
+        "task": "t000048",
+        "worker": 13,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 27.321199113999683,
+      "seconds": 6.4400010160170496e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.529821379001078,
+      "seconds": 9.490000593359582e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.555421962000764,
+      "seconds": 1.4269999155658297e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.686424982000972,
+      "seconds": 3.4639000659808517e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.75217229700138,
+      "seconds": 1.2849999620812014e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.814842354000575,
+      "seconds": 1.2300000889808871e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 27.90361808200032,
+      "seconds": 1.3970000509289093e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 28.112502576001134,
+      "seconds": 5.0949998694704846e-05,
+      "action": {
+        "task": "t000049",
+        "worker": 8,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 28.141461164001157,
+      "seconds": 1.325999983237125e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 28.198979433000204,
+      "seconds": 1.2880000213044696e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 28.49791696900138,
+      "seconds": 4.786000135936774e-05,
+      "action": {
+        "task": "t000050",
+        "worker": 11,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 28.526402618999782,
+      "seconds": 1.3220000255387276e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 28.583038451000903,
+      "seconds": 5.484899884322658e-05,
+      "action": {
+        "task": "t000051",
+        "worker": 9,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 28.61180277099993,
+      "seconds": 1.2080001397407614e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 28.948799347001113,
+      "seconds": 1.4289998944150284e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 29.12673726000139,
+      "seconds": 1.2489999789977446e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 29.26508171900059,
+      "seconds": 1.0849998943740502e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 29.559510381999644,
+      "seconds": 3.5880000723409466e-05,
+      "action": {
+        "task": "t000052",
+        "worker": 12,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 29.593858178001028,
+      "seconds": 1.0779998774523847e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 29.676536851000492,
+      "seconds": 5.14900002599461e-05,
+      "action": {
+        "task": "t000053",
+        "worker": 14,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 29.687840272999892,
+      "seconds": 1.646999953663908e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 29.747379443000682,
+      "seconds": 1.492000046710018e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 29.92688076900049,
+      "seconds": 9.5390005299123e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.164189103001263,
+      "seconds": 9.06000059330836e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.194376495999677,
+      "seconds": 3.792999996221624e-05,
+      "action": {
+        "task": "t000054",
+        "worker": 15,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 30.21204951100117,
+      "seconds": 1.2090000382158905e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.273287494001124,
+      "seconds": 1.522999991721008e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.334486177000144,
+      "seconds": 4.1420000343350694e-05,
+      "action": {
+        "task": "t000055",
+        "worker": 13,
+        "targets": [
+          6
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 30.348644286999843,
+      "seconds": 1.4630000805482268e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.37096405400007,
+      "seconds": 8.86999987415038e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.61047611700087,
+      "seconds": 3.182000000379048e-05,
+      "action": {
+        "task": "t000056",
+        "worker": 10,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 30.627525425001295,
+      "seconds": 5.640000381390564e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 30.77142700100012,
+      "seconds": 2.700000004551839e-05,
+      "action": {
+        "task": "t000057",
+        "worker": 8,
+        "targets": [
+          2
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 30.801165016000596,
+      "seconds": 5.570000212173909e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 31.1795649350006,
+      "seconds": 8.249999154941179e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 31.315617932999885,
+      "seconds": 8.740000339457765e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 31.67765537000014,
+      "seconds": 9.979999958886765e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 31.85498789400117,
+      "seconds": 1.2689999493886717e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 31.95465044500088,
+      "seconds": 1.2900000001536682e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 32.09197463700002,
+      "seconds": 3.809999907389283e-05,
+      "action": {
+        "task": "t000058",
+        "worker": 12,
+        "targets": [
+          1
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 32.120683556000586,
+      "seconds": 8.699998943484388e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 32.2294028590004,
+      "seconds": 1.5019999409560114e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 32.44651678500122,
+      "seconds": 1.2099999366910197e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 32.684073795000586,
+      "seconds": 1.2170001355116256e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 32.97708681200129,
+      "seconds": 9.759998647496104e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.07793476700135,
+      "seconds": 7.320000804611482e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.11971570100104,
+      "seconds": 3.27300003846176e-05,
+      "action": {
+        "task": "t000059",
+        "worker": 11,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 33.13774179500069,
+      "seconds": 6.680000296910293e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.24459768500128,
+      "seconds": 8.879998858901672e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.360473996999644,
+      "seconds": 2.8509999538073316e-05,
+      "action": {
+        "task": "t000060",
+        "worker": 13,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 33.369691398000214,
+      "seconds": 5.0199996621813625e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.65720908700132,
+      "seconds": 3.090999962296337e-05,
+      "action": {
+        "task": "t000061",
+        "worker": 9,
+        "targets": [
+          3
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 33.66860710900073,
+      "seconds": 4.0600007196189836e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.81821356900036,
+      "seconds": 3.104000097664539e-05,
+      "action": {
+        "task": "t000062",
+        "worker": 10,
+        "targets": [
+          0
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 33.82833407600083,
+      "seconds": 5.17999978910666e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 33.860066592000294,
+      "seconds": 9.71000008576084e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 34.44690094900034,
+      "seconds": 9.54000097408425e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 34.75024239100094,
+      "seconds": 6.55999974696897e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 34.78651895800067,
+      "seconds": 4.8700003389967605e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 34.850025200001255,
+      "seconds": 2.9109998649801128e-05,
+      "action": {
+        "task": "t000063",
+        "worker": 12,
+        "targets": [
+          5
+        ]
+      },
+      "search": {}
+    },
+    {
+      "at_seconds": 34.86600198300039,
+      "seconds": 9.760000466485508e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 34.969718955000644,
+      "seconds": 9.420000424142927e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.155980530000306,
+      "seconds": 6.910000593052246e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.2643921730014,
+      "seconds": 8.380000508623198e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.30886536500111,
+      "seconds": 1.1049998647649772e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.48747859099967,
+      "seconds": 1.2790000255336054e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.672036232999744,
+      "seconds": 1.1629999789875e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.68400195200047,
+      "seconds": 1.2570000762934797e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 35.71791677900001,
+      "seconds": 1.1369998901500367e-05,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 36.07219769400035,
+      "seconds": 9.360001058666967e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 36.14336036399982,
+      "seconds": 9.669998689787462e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 36.44125091600108,
+      "seconds": 6.910000593052246e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 36.45212381000056,
+      "seconds": 5.670000973623246e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 36.484149875001094,
+      "seconds": 4.490000719670206e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 36.62486295100098,
+      "seconds": 6.740001481375657e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.03300592800042,
+      "seconds": 4.360001184977591e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.09745471600036,
+      "seconds": 3.4799995773937553e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.255933816000834,
+      "seconds": 3.1700001272838563e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.74831873600124,
+      "seconds": 3.630000719567761e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.76481493600113,
+      "seconds": 2.839999069692567e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.848562832001335,
+      "seconds": 4.949999492964707e-06,
+      "action": null,
+      "search": {}
+    },
+    {
+      "at_seconds": 37.865623710000364,
+      "seconds": 4.84999873151537e-06,
+      "action": null,
+      "search": {}
+    }
+  ],
+  "scheduler_options": {},
+  "observed_stage_events": 245,
+  "application_remote_bytes": 5368709120,
+  "network_tx_bytes": 1119388801,
+  "counter_before": [
+    {
+      "node": 8,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2109047611,
+        "rx": 8288253940
+      },
+      "time": 8717.857876853,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 9,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2024736943,
+        "rx": 7952147690
+      },
+      "time": 8717.857512024,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 10,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2058491733,
+        "rx": 8086579509
+      },
+      "time": 8717.858033712,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 11,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2041886224,
+        "rx": 8019386341
+      },
+      "time": 8717.857987422,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 12,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2042056086,
+        "rx": 8019374875
+      },
+      "time": 8717.8585637,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 13,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2058897764,
+        "rx": 8086634987
+      },
+      "time": 8717.858208061,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 14,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2075396608,
+        "rx": 8153676206
+      },
+      "time": 8717.858250991,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 15,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2059174310,
+        "rx": 8086572781
+      },
+      "time": 8717.859225687,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    }
+  ],
+  "counter_after": [
+    {
+      "node": 8,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2248941074,
+        "rx": 8828888376
+      },
+      "time": 8756.100349429,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 9,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2181602096,
+        "rx": 8560037128
+      },
+      "time": 8756.100542018,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 10,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2198442933,
+        "rx": 8627234824
+      },
+      "time": 8756.100624398,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 11,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2181837290,
+        "rx": 8560036911
+      },
+      "time": 8756.100657108,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 12,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2198948672,
+        "rx": 8627262098
+      },
+      "time": 8756.100505338,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 13,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2215669038,
+        "rx": 8694497295
+      },
+      "time": 8756.100707388,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 14,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2181460290,
+        "rx": 8559845027
+      },
+      "time": 8756.100745677,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    },
+    {
+      "node": 15,
+      "active": null,
+      "jobs": {},
+      "counters": {
+        "tx": 2182174687,
+        "rx": 8559977565
+      },
+      "time": 8756.100782657,
+      "retained_jobs": 0,
+      "retention_limit": 64,
+      "retention_protocol": 1
+    }
+  ],
+  "tasks": {
+    "t000000": {
+      "worker": 8,
+      "targets": [
+        7
+      ],
+      "submitted": 0.012930296999911661,
+      "predicted_finish": 5.317307199123781,
+      "decision_seconds": 2.6570000045467168e-05,
+      "result": {
+        "task": "t000000",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000000/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 0,
+            "sha256": "efbbb6237233cfacbad55195eb832ed3196dc6bab28ef5b0776862d88a9a685f"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5840117690004263,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.072021481000775,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39669676599987724,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.058489723000093
+      },
+      "actual_finish": 6.114521473000423
+    },
+    "t000001": {
+      "worker": 9,
+      "targets": [
+        7
+      ],
+      "submitted": 0.020434946000023047,
+      "predicted_finish": 5.679353666590983,
+      "decision_seconds": 1.078000059351325e-05,
+      "result": {
+        "task": "t000001",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000001/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 1,
+            "sha256": "f66107d5ee6147faeddf34159e5325e7a9550ae84251b6cd0dcbd8a54a535c2e"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.634680692000984,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 5.552200508000169,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38960797199979424,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 7.604176138000184
+      },
+      "actual_finish": 7.66477027899964
+    },
+    "t000002": {
+      "worker": 10,
+      "targets": [
+        1
+      ],
+      "submitted": 0.031270972000129404,
+      "predicted_finish": 5.335592734123231,
+      "decision_seconds": 2.1809999452671036e-05,
+      "result": {
+        "task": "t000002",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node1",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000002/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 2,
+            "sha256": "bc3eeee6f4f9bbe24bda3b1c8ba75791c8e0c827e298342f501435227a33250c"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5645645589993364,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.240278178000153,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3864511379997566,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.205279796999093
+      },
+      "actual_finish": 6.284714381001322
+    },
+    "t000003": {
+      "worker": 11,
+      "targets": [
+        1
+      ],
+      "submitted": 0.040105026000674115,
+      "predicted_finish": 5.69886463659081,
+      "decision_seconds": 2.1060001017758623e-05,
+      "result": {
+        "task": "t000003",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node1",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000003/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 3,
+            "sha256": "0b07f1130c8dcd913132aad7491f566e6afe5ddd4bd19a887ade0643b543b70a"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5919933969998965,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 5.589497783999832,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4064396020003187,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 7.603662759000144
+      },
+      "actual_finish": 7.66578050499993
+    },
+    "t000004": {
+      "worker": 12,
+      "targets": [
+        2
+      ],
+      "submitted": 0.05232463600077608,
+      "predicted_finish": 5.3566030781236185,
+      "decision_seconds": 2.1910000214120373e-05,
+      "result": {
+        "task": "t000004",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000004/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 4,
+            "sha256": "d5f694c8ff3e68ece4e7bfa2ec9393150b1f2a48eb2ade0327d605221662c395"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6323360709993722,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.194465444999878,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38750944299863477,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.227154255999267
+      },
+      "actual_finish": 6.37357421500019
+    },
+    "t000005": {
+      "worker": 13,
+      "targets": [
+        7
+      ],
+      "submitted": 0.06202397600100085,
+      "predicted_finish": 6.035652767059637,
+      "decision_seconds": 2.773000051092822e-05,
+      "result": {
+        "task": "t000005",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000005/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 5,
+            "sha256": "bca297dcb7ec2d3418c7b7eb21dcd0b27945e421212422f13bb4da183da28feb"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5149831930011715,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.8355678749994695,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39880590500069957,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.761726593000276
+      },
+      "actual_finish": 6.8522600310006965
+    },
+    "t000006": {
+      "worker": 14,
+      "targets": [
+        5
+      ],
+      "submitted": 0.07208989500031748,
+      "predicted_finish": 5.376106578123319,
+      "decision_seconds": 2.922000021499116e-05,
+      "result": {
+        "task": "t000006",
+        "worker": 14,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000006/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 6,
+            "sha256": "17be43bb704314ce9609c9d8d7b1c6212def672d2a3a8acbcfda5fb1e53e20bf"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6025403040002857,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 5.552240436998545,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4016376119998313,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 7.572784355999829
+      },
+      "actual_finish": 7.666718600999957
+    },
+    "t000007": {
+      "worker": 15,
+      "targets": [
+        3
+      ],
+      "submitted": 0.08350066800085187,
+      "predicted_finish": 5.387618711123316,
+      "decision_seconds": 2.2219999664230272e-05,
+      "result": {
+        "task": "t000007",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000007/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 7,
+            "sha256": "acaa0a0888dc9b1d46168920a1fee7f33af7c6aa8f178889d668c787c8651141"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5437764449998213,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 5.190351930999896,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39120076699873607,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 7.13724852300038
+      },
+      "actual_finish": 7.2572657900000195
+    },
+    "t000008": {
+      "worker": 8,
+      "targets": [
+        5
+      ],
+      "submitted": 6.115657898000791,
+      "predicted_finish": 11.419695301122948,
+      "decision_seconds": 3.440000000409782e-05,
+      "result": {
+        "task": "t000008",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000008/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 8,
+            "sha256": "811d1439f117af2d06108beacf999569f70b7f76a4a30856bc594fb425342fb3"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5925666020011704,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.398129216000598,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40844843899867556,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.404938792999019
+      },
+      "actual_finish": 11.53451765400132
+    },
+    "t000009": {
+      "worker": 10,
+      "targets": [
+        0
+      ],
+      "submitted": 6.318951430001107,
+      "predicted_finish": 11.623031033122636,
+      "decision_seconds": 2.2399999579647556e-05,
+      "result": {
+        "task": "t000009",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000009/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 9,
+            "sha256": "9d52ddad6c4c8c99f30579b727669e31812d163789ddd610470c2ee8fa0cfcc2"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5849690619998,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.295389918001092,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40261078199910116,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.28833190000114
+      },
+      "actual_finish": 12.660546140001316
+    },
+    "t000010": {
+      "worker": 12,
+      "targets": [
+        4
+      ],
+      "submitted": 6.4078866230011045,
+      "predicted_finish": 11.711880677122856,
+      "decision_seconds": 1.8279999494552612e-05,
+      "result": {
+        "task": "t000010",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000010/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 10,
+            "sha256": "e5cc2adb82775c5e196527add375e814c74425fa9a6de63eaad94bfdc93186d3"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5968494929984445,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.389626775999204,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4007396399993013,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.3938712409999425
+      },
+      "actual_finish": 12.861270438001156
+    },
+    "t000011": {
+      "worker": 13,
+      "targets": [
+        0
+      ],
+      "submitted": 6.88685009800065,
+      "predicted_finish": 12.190763112122688,
+      "decision_seconds": 2.916999983426649e-05,
+      "result": {
+        "task": "t000011",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000011/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 11,
+            "sha256": "907118b64e8085fbf648797eca8012fdf850aae9a7b5d6718cee749c870657b2"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.578255555999931,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.5844793760006723,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3938628619998781,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.561851453001509
+      },
+      "actual_finish": 9.486970083000415
+    },
+    "t000012": {
+      "worker": 15,
+      "targets": [
+        5
+      ],
+      "submitted": 7.292007306999949,
+      "predicted_finish": 12.596000210123412,
+      "decision_seconds": 2.606999987619929e-05,
+      "result": {
+        "task": "t000012",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000012/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 12,
+            "sha256": "eb12933bcfd9fc7a9b2c69d313739f83fdd840d4421ae925b68f21f3d75d2309"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5983306109992554,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.140425477000463,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.5207861409999168,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.266116550999868
+      },
+      "actual_finish": 13.600642762999996
+    },
+    "t000013": {
+      "worker": 9,
+      "targets": [
+        3
+      ],
+      "submitted": 7.66812632500114,
+      "predicted_finish": 12.972081129124156,
+      "decision_seconds": 2.6789999537868425e-05,
+      "result": {
+        "task": "t000013",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000013/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 13,
+            "sha256": "bbf3c8137f4e375f031b9ddbe9a6b851b7c76137df87f2cf95e4789bb54427be"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5973854439998831,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.533744114000001,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38907470100093633,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.5276669380000385
+      },
+      "actual_finish": 10.211357117999796
+    },
+    "t000014": {
+      "worker": 11,
+      "targets": [
+        5
+      ],
+      "submitted": 7.67628489100025,
+      "predicted_finish": 12.983479842590029,
+      "decision_seconds": 2.2519998310599476e-05,
+      "result": {
+        "task": "t000014",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000014/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 14,
+            "sha256": "633333eb8d9268f2e9d5e91e207f9a3e9de13d376dea54bb9cca53d70f1f3569"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6461703620007029,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.4769855510003254,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.5302406720002182,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.659037110999634
+      },
+      "actual_finish": 13.348013090000677
+    },
+    "t000015": {
+      "worker": 14,
+      "targets": [
+        5
+      ],
+      "submitted": 7.685646063000604,
+      "predicted_finish": 13.343598786589652,
+      "decision_seconds": 1.2800001059076749e-05,
+      "result": {
+        "task": "t000015",
+        "worker": 14,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000015/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 15,
+            "sha256": "112a75ae292a2c1602dda8574944e9cb80f84e458a9f511299d9fe3ca7fd4d84"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.634846719000052,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.8248423189997993,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.761069153999415,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.229647555999691
+      },
+      "actual_finish": 13.93180582000059
+    },
+    "t000016": {
+      "worker": 13,
+      "targets": [
+        0
+      ],
+      "submitted": 9.488265208001394,
+      "predicted_finish": 14.792240822123524,
+      "decision_seconds": 3.262999962316826e-05,
+      "result": {
+        "task": "t000016",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000016/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 16,
+            "sha256": "a3c86044005ae129267fd12eec9df8e6a8ad323e992652086ceb54964d092676"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5858143420009583,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.533493011000246,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3940793490000942,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.5187729090012
+      },
+      "actual_finish": 12.018957518001116
+    },
+    "t000017": {
+      "worker": 9,
+      "targets": [
+        3
+      ],
+      "submitted": 10.225555220000388,
+      "predicted_finish": 15.529492993123888,
+      "decision_seconds": 4.205999903206248e-05,
+      "result": {
+        "task": "t000017",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000017/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 17,
+            "sha256": "a74adf2f31d5bdbda673075520d03853d74e89a38387f159c39cabb4bdbd1284"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.580467829000554,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.7649968510013423,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40142272699995374,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.752593114000774
+      },
+      "actual_finish": 13.00470437399963
+    },
+    "t000018": {
+      "worker": 8,
+      "targets": [
+        1
+      ],
+      "submitted": 11.536027527001352,
+      "predicted_finish": 16.839868791122747,
+      "decision_seconds": 3.8500000300700776e-05,
+      "result": {
+        "task": "t000018",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node1",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000018/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 18,
+            "sha256": "ce79d0d5e7f66232933dcdd06541940df61c5851a626fd8687f7d16f42cdc313"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5898520139999164,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.8210917250016792,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3937266470002214,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.812844252001014
+      },
+      "actual_finish": 14.366460676001225
+    },
+    "t000019": {
+      "worker": 13,
+      "targets": [
+        4
+      ],
+      "submitted": 12.02065329099969,
+      "predicted_finish": 17.324376565123778,
+      "decision_seconds": 4.667000030167401e-05,
+      "result": {
+        "task": "t000019",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000019/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 19,
+            "sha256": "36e52edc03585855e16fa39ae3e24b0de6c531630fa6ec7ab8307a4686c87360"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.623426942000151,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.924749421999877,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4145561589994031,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.9722728919987276
+      },
+      "actual_finish": 16.029272812000272
+    },
+    "t000020": {
+      "worker": 10,
+      "targets": [
+        7
+      ],
+      "submitted": 12.662570761000097,
+      "predicted_finish": 17.966123157124123,
+      "decision_seconds": 4.1119999877992086e-05,
+      "result": {
+        "task": "t000020",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000020/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 20,
+            "sha256": "5fb911d98fa799884459a7d1cc070156676255c0ed28c579eba01a95e6ee5a0d"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5858758039994427,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.3754255259991623,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4019602579992352,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.369323402999726
+      },
+      "actual_finish": 18.04624391499965
+    },
+    "t000021": {
+      "worker": 12,
+      "targets": [
+        6
+      ],
+      "submitted": 12.862821861999691,
+      "predicted_finish": 18.166723976124224,
+      "decision_seconds": 2.857999970728997e-05,
+      "result": {
+        "task": "t000021",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node6",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000021/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 21,
+            "sha256": "b058daeaecb98d77923397a946a718324b4ae6f3bdbd2618531d461658570e7c"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 2.0790979569992487,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.700358755999332,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38871401399956085,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.177313498999865
+      },
+      "actual_finish": 17.072326516999965
+    },
+    "t000022": {
+      "worker": 9,
+      "targets": [
+        0
+      ],
+      "submitted": 13.00653188599972,
+      "predicted_finish": 18.31026693112256,
+      "decision_seconds": 3.12490010401234e-05,
+      "result": {
+        "task": "t000022",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000022/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 22,
+            "sha256": "ea113b81ee6219203e13d4935ed42568fb93ae1e1abf7e4ae9a89d23651db5a5"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5841226699994877,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.1219648310016055,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40292988599867385,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.115809848999561
+      },
+      "actual_finish": 16.134210156000336
+    },
+    "t000023": {
+      "worker": 11,
+      "targets": [
+        1
+      ],
+      "submitted": 13.349460684001315,
+      "predicted_finish": 18.65338935812327,
+      "decision_seconds": 2.803999996103812e-05,
+      "result": {
+        "task": "t000023",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node1",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000023/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 23,
+            "sha256": "102e53720003e45c7b11951061124f9d2f5d8b8d6b0f29b0908ff4c107e613aa"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5991271959992446,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.9390446819998033,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39331570099966484,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.940977610000118
+      },
+      "actual_finish": 19.309209416000158
+    },
+    "t000024": {
+      "worker": 15,
+      "targets": [
+        0
+      ],
+      "submitted": 13.602324056000725,
+      "predicted_finish": 18.906137460123894,
+      "decision_seconds": 2.612000025692396e-05,
+      "result": {
+        "task": "t000024",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000024/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 24,
+            "sha256": "d74a11b89b1fdef57fda359c31cb40b0e1330c97574124a0114e4c99ebc5cc51"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6130180670006666,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.556155464000767,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3912106429997948,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.5666316890001326
+      },
+      "actual_finish": 17.185043048000807
+    },
+    "t000025": {
+      "worker": 14,
+      "targets": [
+        7
+      ],
+      "submitted": 13.950769471000967,
+      "predicted_finish": 19.254587505123375,
+      "decision_seconds": 3.321000076539349e-05,
+      "result": {
+        "task": "t000025",
+        "worker": 14,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000025/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 25,
+            "sha256": "53d1a4ad13b0fb25c23799250a673a3e552f25dea17215bfd45c3dc12e828aa9"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6279225219986984,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.8793149729990546,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40091190899875073,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.914246989001185
+      },
+      "actual_finish": 19.88729403800062
+    },
+    "t000026": {
+      "worker": 8,
+      "targets": [
+        4
+      ],
+      "submitted": 14.385400377999758,
+      "predicted_finish": 19.689256882123694,
+      "decision_seconds": 3.200000173819717e-05,
+      "result": {
+        "task": "t000026",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000026/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 26,
+            "sha256": "368d71cc9e0d8d8cd39e88b8817ee042f5cc3dc555e938efcd69d85ad963b45e"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6291860359997372,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.424779656001192,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4074918539990904,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.4669324140013487
+      },
+      "actual_finish": 17.881770979000066
+    },
+    "t000027": {
+      "worker": 13,
+      "targets": [
+        0
+      ],
+      "submitted": 16.046681210000315,
+      "predicted_finish": 21.350450344123267,
+      "decision_seconds": 5.079899892734829e-05,
+      "result": {
+        "task": "t000027",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000027/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 27,
+            "sha256": "6bd363f2b9b5850c8de441b7ec138e3d70fc3f0e1b29b7f111c8209b11a40e72"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6694277380011044,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.8764573770004063,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39834030800011533,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.950706555000579
+      },
+      "actual_finish": 22.03027289900092
+    },
+    "t000028": {
+      "worker": 9,
+      "targets": [
+        3
+      ],
+      "submitted": 16.13670567600093,
+      "predicted_finish": 21.440361561124185,
+      "decision_seconds": 5.501000123331323e-05,
+      "result": {
+        "task": "t000028",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000028/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 28,
+            "sha256": "9f4b0c788e3bdf4550fea7eb3b5f779e62d11982550251ae339b35b207cde109"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6491769920012302,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.9194053770006576,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40390216400010104,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.978233879000982
+      },
+      "actual_finish": 22.128646298000604
+    },
+    "t000029": {
+      "worker": 12,
+      "targets": [
+        4
+      ],
+      "submitted": 17.08953743500024,
+      "predicted_finish": 22.393391429122524,
+      "decision_seconds": 2.9839999115210958e-05,
+      "result": {
+        "task": "t000029",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000029/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 29,
+            "sha256": "c2c07804c701bb3d72c0d7ae42a8219d734262462826b119fcc5ceff0343deae"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5939440570000443,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.49896054200144135,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38638831000025675,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.4861156409988325
+      },
+      "actual_finish": 19.605535251999754
+    },
+    "t000030": {
+      "worker": 15,
+      "targets": [
+        4
+      ],
+      "submitted": 17.18705515900001,
+      "predicted_finish": 22.767197416590577,
+      "decision_seconds": 3.8860000131535344e-05,
+      "result": {
+        "task": "t000030",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000030/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 30,
+            "sha256": "32339714b81f4454046112e6a76e68b7d7394a247c124e6712bc300a3c2cedf5"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.626089122999474,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.055385195999406,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39835682600096334,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.085564869999871
+      },
+      "actual_finish": 23.28566429500097
+    },
+    "t000031": {
+      "worker": 8,
+      "targets": [
+        2
+      ],
+      "submitted": 17.88316026299981,
+      "predicted_finish": 23.187128467122996,
+      "decision_seconds": 2.6199999410891905e-05,
+      "result": {
+        "task": "t000031",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000031/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 31,
+            "sha256": "4f64d1720b0ccfb3ad95b3931d5e7461e08475ddbec87769e6d19acf999a9ac2"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6144120680000924,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.049553611001102,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.412928264000584,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.087382028999855
+      },
+      "actual_finish": 23.991181786001107
+    },
+    "t000032": {
+      "worker": 10,
+      "targets": [
+        6
+      ],
+      "submitted": 18.047432690000278,
+      "predicted_finish": 23.351365694122826,
+      "decision_seconds": 1.2759999663103372e-05,
+      "result": {
+        "task": "t000032",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node6",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000032/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 32,
+            "sha256": "377ec41799fc836e824f3e41daca9674f5c8ce86229edb58c688835d6af88a07"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5843466619990068,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.5147525350002979,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3952836919997935,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.499889145999987
+      },
+      "actual_finish": 20.561867145001088
+    },
+    "t000033": {
+      "worker": 11,
+      "targets": [
+        6
+      ],
+      "submitted": 19.326847313001053,
+      "predicted_finish": 24.630706197123466,
+      "decision_seconds": 2.9790000553475693e-05,
+      "result": {
+        "task": "t000033",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node6",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000033/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 33,
+            "sha256": "f4990774f386a52939aea5def299e569a9582781914a62666f247416f3dddea5"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5786420790009288,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.5207308680001006,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3886490679997223,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.4957848120011477
+      },
+      "actual_finish": 21.863529174999712
+    },
+    "t000034": {
+      "worker": 12,
+      "targets": [
+        6
+      ],
+      "submitted": 19.606944256000133,
+      "predicted_finish": 25.00470012358987,
+      "decision_seconds": 3.7099998735357076e-05,
+      "result": {
+        "task": "t000034",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node6",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000034/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 34,
+            "sha256": "abe381c5b6059dac43c805927ac27797015f096bca0cf00559361ac04f0109b2"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6245693559994834,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.237405541000044,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3992071889988438,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.268649805000678
+      },
+      "actual_finish": 25.915765253001155
+    },
+    "t000035": {
+      "worker": 14,
+      "targets": [
+        0
+      ],
+      "submitted": 19.888723722000577,
+      "predicted_finish": 25.19252975612256,
+      "decision_seconds": 3.152999852318317e-05,
+      "result": {
+        "task": "t000035",
+        "worker": 14,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000035/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 35,
+            "sha256": "420abbc6433dc5730d1229a1ef3edcaaa34c18310cc78ca796bd663d36b25d1e"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.650378346999787,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 4.1239337919996615,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3986413319998974,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 6.178394388000015
+      },
+      "actual_finish": 26.08587473999978
+    },
+    "t000036": {
+      "worker": 10,
+      "targets": [
+        5
+      ],
+      "submitted": 20.563268399000663,
+      "predicted_finish": 25.86707625412385,
+      "decision_seconds": 2.980899989779573e-05,
+      "result": {
+        "task": "t000036",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000036/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 36,
+            "sha256": "9279c2ad5690235fdf366d9adf06a3d8dbcf32f28c88affb7d94fb9023230c2d"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6400247769997804,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.9221657380003307,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4133011390003958,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.98133653900004
+      },
+      "actual_finish": 26.558784119000848
+    },
+    "t000037": {
+      "worker": 11,
+      "targets": [
+        0
+      ],
+      "submitted": 21.875067356000727,
+      "predicted_finish": 27.17905083012341,
+      "decision_seconds": 2.4189999749069102e-05,
+      "result": {
+        "task": "t000037",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000037/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 37,
+            "sha256": "d7a9ce47ed703a98364b8d9d94e667d7bd6768eaab7a4d46abc40805d29451bf"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.578260397998747,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.9603131740004756,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4049123860004329,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.9488720659992396
+      },
+      "actual_finish": 24.848886257999766
+    },
+    "t000038": {
+      "worker": 13,
+      "targets": [
+        7
+      ],
+      "submitted": 22.032123820999914,
+      "predicted_finish": 27.335954925123254,
+      "decision_seconds": 3.432000085012987e-05,
+      "result": {
+        "task": "t000038",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000038/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 38,
+            "sha256": "9785d729283ccedef29565a9d4e81669fa2c4780e8f62a478a13f34d984d1589"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6385830449999048,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.208371131000604,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4105410590000247,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.263587829998869
+      },
+      "actual_finish": 27.311020737000945
+    },
+    "t000039": {
+      "worker": 9,
+      "targets": [
+        4
+      ],
+      "submitted": 22.13006442200094,
+      "predicted_finish": 27.433985036122642,
+      "decision_seconds": 1.2479998986236751e-05,
+      "result": {
+        "task": "t000039",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000039/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 39,
+            "sha256": "42eeed74ea9f7300022a0d06f0e2625baa248d2f96dbac35ab307d2e169af3dd"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6029730529990047,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.9047685460009234,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39187990100072057,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.9066904409992276
+      },
+      "actual_finish": 25.0503168260002
+    },
+    "t000040": {
+      "worker": 15,
+      "targets": [
+        5
+      ],
+      "submitted": 23.287176028999966,
+      "predicted_finish": 28.590985943122753,
+      "decision_seconds": 3.1859999580774456e-05,
+      "result": {
+        "task": "t000040",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000040/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 40,
+            "sha256": "a8ccd08de2be96820944e38148cdb2f916b63d398276ae06340c65187179a2fe"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.598829124999611,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.5635947209993901,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38697809999939636,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.5564513560002524
+      },
+      "actual_finish": 25.87835061900114
+    },
+    "t000041": {
+      "worker": 8,
+      "targets": [
+        2
+      ],
+      "submitted": 24.012868904999777,
+      "predicted_finish": 29.316475740124254,
+      "decision_seconds": 5.342999975255225e-05,
+      "result": {
+        "task": "t000041",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000041/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 41,
+            "sha256": "ee496a113358a488e1185124fbc143993bb30f87c0dcd93e72d2b2537e7eccff"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.642546447001223,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.9943427639991569,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3994892749997234,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.043817705000038
+      },
+      "actual_finish": 28.098378915001376
+    },
+    "t000042": {
+      "worker": 11,
+      "targets": [
+        3
+      ],
+      "submitted": 24.850454651999826,
+      "predicted_finish": 30.154230856123498,
+      "decision_seconds": 3.9290000131586567e-05,
+      "result": {
+        "task": "t000042",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000042/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 42,
+            "sha256": "e1e0f9f59cd2944e7de8aace5ddbfb71ff6c0572af2e9f55e297f4f044495280"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.59451225399971,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.337129614999867,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.6782394950005255,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.6187138669993146
+      },
+      "actual_finish": 28.48368394800127
+    },
+    "t000043": {
+      "worker": 9,
+      "targets": [
+        3
+      ],
+      "submitted": 25.051934398999947,
+      "predicted_finish": 30.516845950588547,
+      "decision_seconds": 2.925000080722384e-05,
+      "result": {
+        "task": "t000043",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000043/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 43,
+            "sha256": "cb186ad28cd1e0e4bb99c1c0f29ca72b24ef6f833c7efbcd9581ec8a95ce4c48"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.601566493000064,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.2061789339986717,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.6746353790003923,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.491963055999804
+      },
+      "actual_finish": 28.56919212899993
+    },
+    "t000044": {
+      "worker": 15,
+      "targets": [
+        2
+      ],
+      "submitted": 25.887355752000076,
+      "predicted_finish": 31.191157626124216,
+      "decision_seconds": 2.9450000511133112e-05,
+      "result": {
+        "task": "t000044",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000044/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 44,
+            "sha256": "79668af2f0720d38e8840ad01091851497000f73f874a0369575e02035aba4c0"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6117573369992897,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 2.230849648000003,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4158863430002384,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.264203504000761
+      },
+      "actual_finish": 30.192590163000204
+    },
+    "t000045": {
+      "worker": 12,
+      "targets": [
+        4
+      ],
+      "submitted": 25.927332174000185,
+      "predicted_finish": 31.2310760891229,
+      "decision_seconds": 3.678899884107523e-05,
+      "result": {
+        "task": "t000045",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node4",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000045/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 45,
+            "sha256": "be7887cff71701061fd808c8accc3a4dc6fdde8a46a8f371b09e212611566375"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.600064364998616,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.5724197929994261,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.394530763000148,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.575401375999718
+      },
+      "actual_finish": 29.54811969000002
+    },
+    "t000046": {
+      "worker": 14,
+      "targets": [
+        0
+      ],
+      "submitted": 26.08759410300081,
+      "predicted_finish": 31.391319368123398,
+      "decision_seconds": 4.0040000385488383e-05,
+      "result": {
+        "task": "t000046",
+        "worker": 14,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000046/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 46,
+            "sha256": "723a99e91bd67aaf929dab436d9ae650a354701982f83abc2fac19688d28e3b0"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6163110060006147,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.5402970569994068,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.41229046800071956,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.5744772590005596
+      },
+      "actual_finish": 29.67458304899992
+    },
+    "t000047": {
+      "worker": 10,
+      "targets": [
+        7
+      ],
+      "submitted": 26.560889980000866,
+      "predicted_finish": 31.86457460512396,
+      "decision_seconds": 3.799899968726095e-05,
+      "result": {
+        "task": "t000047",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node7",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000047/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 47,
+            "sha256": "de9206fc73bc523c92b5aa7c5d9e945cba3b7a3148d0baa658008160119bdb12"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6110538769989944,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.9988358290011092,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3986766739999439,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.014105755999481
+      },
+      "actual_finish": 30.609391632000552
+    },
+    "t000048": {
+      "worker": 13,
+      "targets": [
+        5
+      ],
+      "submitted": 27.312930748001236,
+      "predicted_finish": 32.616775333122526,
+      "decision_seconds": 3.395000021555461e-05,
+      "result": {
+        "task": "t000048",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000048/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 48,
+            "sha256": "2682873a34928610e36ef64b406632366dd8f80e1405a97c99fd0b37de46b7c9"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.623719158998938,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.9722763980007585,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40537847600171517,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.007601137000165
+      },
+      "actual_finish": 30.332774464000977
+    },
+    "t000049": {
+      "worker": 8,
+      "targets": [
+        2
+      ],
+      "submitted": 28.112839764000455,
+      "predicted_finish": 33.416616929123514,
+      "decision_seconds": 5.0949998694704846e-05,
+      "result": {
+        "task": "t000049",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000049/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 49,
+            "sha256": "92c45f0c1ea26ece18612b522079c365c2832c36f1e2f1aa694089604f8712f8"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6134356769998703,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.605542717001299,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38876193599935505,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.617794567000601
+      },
+      "actual_finish": 30.75485076000041
+    },
+    "t000050": {
+      "worker": 11,
+      "targets": [
+        5
+      ],
+      "submitted": 28.498247477000405,
+      "predicted_finish": 33.80176085312417,
+      "decision_seconds": 4.786000135936774e-05,
+      "result": {
+        "task": "t000050",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000050/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 50,
+            "sha256": "a6191698ef489d60af3640c649615281ab25ac29326a9735c1ffd45aa5022e35"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6240729710007145,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 2.5402743369995733,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4063096499994572,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.576992100999632
+      },
+      "actual_finish": 33.11839017700004
+    },
+    "t000051": {
+      "worker": 9,
+      "targets": [
+        2
+      ],
+      "submitted": 28.58344256000055,
+      "predicted_finish": 33.887012805123625,
+      "decision_seconds": 5.484899884322658e-05,
+      "result": {
+        "task": "t000051",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000051/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 51,
+            "sha256": "a812ec34689f00503cda3e8e5c30ef1198249461b8428126975ca667cc608fca"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6384569000001648,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 2.815226339000219,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.5841691989990068,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.043613033998554
+      },
+      "actual_finish": 33.655925693001336
+    },
+    "t000052": {
+      "worker": 12,
+      "targets": [
+        2
+      ],
+      "submitted": 29.55980014099987,
+      "predicted_finish": 34.863626985122785,
+      "decision_seconds": 3.5880000723409466e-05,
+      "result": {
+        "task": "t000052",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000052/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 52,
+            "sha256": "2e32e3d851e76b2316cd15b93d60aaea92d470ee0a64e2c7daf5904c562a4898"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5879673279996496,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.4994026889999077,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.391400563001298,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.4873567649992765
+      },
+      "actual_finish": 32.074727020000864
+    },
+    "t000053": {
+      "worker": 14,
+      "targets": [
+        5
+      ],
+      "submitted": 29.67691997899965,
+      "predicted_finish": 34.98047555512279,
+      "decision_seconds": 5.14900002599461e-05,
+      "result": {
+        "task": "t000053",
+        "worker": 14,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000053/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 53,
+            "sha256": "42b74ca2ebcad4c9e5ca7faf825a91969d3829dc17418c6980a3a736caee72e5"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6128087319993938,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.436704849000307,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.40921154399984516,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.464447612001095
+      },
+      "actual_finish": 35.15461753599993
+    },
+    "t000054": {
+      "worker": 15,
+      "targets": [
+        0
+      ],
+      "submitted": 30.194690854001237,
+      "predicted_finish": 35.4985376591227,
+      "decision_seconds": 3.792999996221624e-05,
+      "result": {
+        "task": "t000054",
+        "worker": 15,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000054/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 54,
+            "sha256": "07dfdf910f36ef1a8bcaaf14eff68fb97ffe95400d374b2ab4d937dd266dddd7"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6142305240009591,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.442017081000813,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.4083497269984946,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.470391367998673
+      },
+      "actual_finish": 35.682057240001086
+    },
+    "t000055": {
+      "worker": 13,
+      "targets": [
+        6
+      ],
+      "submitted": 30.334864795000613,
+      "predicted_finish": 35.63860374012405,
+      "decision_seconds": 4.1420000343350694e-05,
+      "result": {
+        "task": "t000055",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node6",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000055/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 55,
+            "sha256": "ab75b1981ea01e8051e596e9730423a1c12c24c837d91a4cad65410c1e0d8bcd"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.5699485290006123,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.0380685809996066,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39585739299946,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.010406604998934
+      },
+      "actual_finish": 33.35934716200063
+    },
+    "t000056": {
+      "worker": 10,
+      "targets": [
+        2
+      ],
+      "submitted": 30.610767326001223,
+      "predicted_finish": 35.91467183012322,
+      "decision_seconds": 3.182000000379048e-05,
+      "result": {
+        "task": "t000056",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000056/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 56,
+            "sha256": "c0ab33971edf57e9606424378b97178f749c572ea0b4825bb6d80dacbf6794ee"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.599039165999784,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.00093566599935,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.5888578590001998,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.1951529449997906
+      },
+      "actual_finish": 33.816948323999895
+    },
+    "t000057": {
+      "worker": 8,
+      "targets": [
+        2
+      ],
+      "submitted": 30.771721499000705,
+      "predicted_finish": 36.27700146459124,
+      "decision_seconds": 2.700000004551839e-05,
+      "result": {
+        "task": "t000057",
+        "worker": 8,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node2",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000057/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 57,
+            "sha256": "e523dd9818559ce0d51166f289da47efd2f799a463010e01aa62497198bd53a1"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.649369533000936,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 3.2758415659991442,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3953155819999665,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 5.326732823999919
+      },
+      "actual_finish": 36.141529292000996
+    },
+    "t000058": {
+      "worker": 12,
+      "targets": [
+        1
+      ],
+      "submitted": 32.092271916000755,
+      "predicted_finish": 37.396100450123086,
+      "decision_seconds": 3.809999907389283e-05,
+      "result": {
+        "task": "t000058",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node1",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000058/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 58,
+            "sha256": "adb758c959191f46cef9a8f445a1bb1311bb813a67388e4ff2529d1ea773c83e"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.7410983390000183,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 0.5926581820003776,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3874345669992181,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 2.727201501998934
+      },
+      "actual_finish": 34.8489972440002
+    },
+    "t000059": {
+      "worker": 11,
+      "targets": [
+        3
+      ],
+      "submitted": 33.11998866000067,
+      "predicted_finish": 38.42395380412348,
+      "decision_seconds": 3.27300003846176e-05,
+      "result": {
+        "task": "t000059",
+        "worker": 11,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000059/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 59,
+            "sha256": "fd41504a14858e423584b493e47fa290c789dcdd68ea4af1e5e84d2d64e2d44b"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6369543519995204,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 2.330603484999301,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.647320475000015,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.623291996000262
+      },
+      "actual_finish": 37.763925180001024
+    },
+    "t000060": {
+      "worker": 13,
+      "targets": [
+        5
+      ],
+      "submitted": 33.36073160600063,
+      "predicted_finish": 38.66470094912405,
+      "decision_seconds": 2.8509999538073316e-05,
+      "result": {
+        "task": "t000060",
+        "worker": 13,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000060/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 60,
+            "sha256": "79e5254f756df986332651d32923eb4ef6877485a8c768e47eb65534329594cb"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.580944488001478,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.0881487489987194,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.39885282599971106,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.0737987989996327
+      },
+      "actual_finish": 36.450838916000066
+    },
+    "t000061": {
+      "worker": 9,
+      "targets": [
+        3
+      ],
+      "submitted": 33.65748878600061,
+      "predicted_finish": 38.96135269012269,
+      "decision_seconds": 3.090999962296337e-05,
+      "result": {
+        "task": "t000061",
+        "worker": 9,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node3",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000061/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 61,
+            "sha256": "e1fd225f2d1eba53b931052511dc4adbce22436739cbdf319422e43e0e7e7f53"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6145951239996066,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.9501899580009194,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.6075168030001805,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 4.177956071000153
+      },
+      "actual_finish": 37.847607536001306
+    },
+    "t000062": {
+      "worker": 10,
+      "targets": [
+        0
+      ],
+      "submitted": 33.81853649799996,
+      "predicted_finish": 39.12229727212401,
+      "decision_seconds": 3.104000097664539e-05,
+      "result": {
+        "task": "t000062",
+        "worker": 10,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node0",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000062/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 62,
+            "sha256": "632d95f137de7e9278962c4951d93b5a7bbcc8cec382701460f27b9118607e3e"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.621131925001464,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.1722059229996376,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.3995760230009182,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.198396498000875
+      },
+      "actual_finish": 37.03201702200022
+    },
+    "t000063": {
+      "worker": 12,
+      "targets": [
+        5
+      ],
+      "submitted": 34.8503101389997,
+      "predicted_finish": 40.15420376312398,
+      "decision_seconds": 2.9109998649801128e-05,
+      "result": {
+        "task": "t000063",
+        "worker": 12,
+        "outputs": [
+          {
+            "kind": "object",
+            "pool": "node5",
+            "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000063/output-0",
+            "size": 16777216,
+            "dtype": "float32",
+            "partition": 63,
+            "sha256": "b3259eecefad7083036823a0971ca6c9aa1ca93aa70434ade19324c27f008308"
+          }
+        ],
+        "stages": [
+          {
+            "kind": "read",
+            "index": 0,
+            "seconds": 1.6171893170012481,
+            "bytes": 67108864
+          },
+          {
+            "kind": "compute",
+            "index": 1,
+            "seconds": 1.3703671419989405,
+            "bytes": 67108864
+          },
+          {
+            "kind": "write",
+            "index": 2,
+            "seconds": 0.38693166399934853,
+            "bytes": 16777216
+          }
+        ],
+        "reserved_bytes": 310378496,
+        "seconds": 3.379600101001415
+      },
+      "actual_finish": 38.24331149400132
+    }
+  },
+  "final_outputs": [
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000000/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 0,
+      "sha256": "efbbb6237233cfacbad55195eb832ed3196dc6bab28ef5b0776862d88a9a685f"
+    },
+    {
+      "kind": "object",
+      "pool": "node1",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000002/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 2,
+      "sha256": "bc3eeee6f4f9bbe24bda3b1c8ba75791c8e0c827e298342f501435227a33250c"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000004/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 4,
+      "sha256": "d5f694c8ff3e68ece4e7bfa2ec9393150b1f2a48eb2ade0327d605221662c395"
+    },
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000005/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 5,
+      "sha256": "bca297dcb7ec2d3418c7b7eb21dcd0b27945e421212422f13bb4da183da28feb"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000007/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 7,
+      "sha256": "acaa0a0888dc9b1d46168920a1fee7f33af7c6aa8f178889d668c787c8651141"
+    },
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000001/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 1,
+      "sha256": "f66107d5ee6147faeddf34159e5325e7a9550ae84251b6cd0dcbd8a54a535c2e"
+    },
+    {
+      "kind": "object",
+      "pool": "node1",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000003/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 3,
+      "sha256": "0b07f1130c8dcd913132aad7491f566e6afe5ddd4bd19a887ade0643b543b70a"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000006/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 6,
+      "sha256": "17be43bb704314ce9609c9d8d7b1c6212def672d2a3a8acbcfda5fb1e53e20bf"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000011/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 11,
+      "sha256": "907118b64e8085fbf648797eca8012fdf850aae9a7b5d6718cee749c870657b2"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000013/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 13,
+      "sha256": "bbf3c8137f4e375f031b9ddbe9a6b851b7c76137df87f2cf95e4789bb54427be"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000008/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 8,
+      "sha256": "811d1439f117af2d06108beacf999569f70b7f76a4a30856bc594fb425342fb3"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000016/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 16,
+      "sha256": "a3c86044005ae129267fd12eec9df8e6a8ad323e992652086ceb54964d092676"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000009/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 9,
+      "sha256": "9d52ddad6c4c8c99f30579b727669e31812d163789ddd610470c2ee8fa0cfcc2"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000010/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 10,
+      "sha256": "e5cc2adb82775c5e196527add375e814c74425fa9a6de63eaad94bfdc93186d3"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000017/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 17,
+      "sha256": "a74adf2f31d5bdbda673075520d03853d74e89a38387f159c39cabb4bdbd1284"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000014/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 14,
+      "sha256": "633333eb8d9268f2e9d5e91e207f9a3e9de13d376dea54bb9cca53d70f1f3569"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000012/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 12,
+      "sha256": "eb12933bcfd9fc7a9b2c69d313739f83fdd840d4421ae925b68f21f3d75d2309"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000015/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 15,
+      "sha256": "112a75ae292a2c1602dda8574944e9cb80f84e458a9f511299d9fe3ca7fd4d84"
+    },
+    {
+      "kind": "object",
+      "pool": "node1",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000018/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 18,
+      "sha256": "ce79d0d5e7f66232933dcdd06541940df61c5851a626fd8687f7d16f42cdc313"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000019/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 19,
+      "sha256": "36e52edc03585855e16fa39ae3e24b0de6c531630fa6ec7ab8307a4686c87360"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000022/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 22,
+      "sha256": "ea113b81ee6219203e13d4935ed42568fb93ae1e1abf7e4ae9a89d23651db5a5"
+    },
+    {
+      "kind": "object",
+      "pool": "node6",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000021/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 21,
+      "sha256": "b058daeaecb98d77923397a946a718324b4ae6f3bdbd2618531d461658570e7c"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000024/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 24,
+      "sha256": "d74a11b89b1fdef57fda359c31cb40b0e1330c97574124a0114e4c99ebc5cc51"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000026/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 26,
+      "sha256": "368d71cc9e0d8d8cd39e88b8817ee042f5cc3dc555e938efcd69d85ad963b45e"
+    },
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000020/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 20,
+      "sha256": "5fb911d98fa799884459a7d1cc070156676255c0ed28c579eba01a95e6ee5a0d"
+    },
+    {
+      "kind": "object",
+      "pool": "node1",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000023/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 23,
+      "sha256": "102e53720003e45c7b11951061124f9d2f5d8b8d6b0f29b0908ff4c107e613aa"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000029/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 29,
+      "sha256": "c2c07804c701bb3d72c0d7ae42a8219d734262462826b119fcc5ceff0343deae"
+    },
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000025/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 25,
+      "sha256": "53d1a4ad13b0fb25c23799250a673a3e552f25dea17215bfd45c3dc12e828aa9"
+    },
+    {
+      "kind": "object",
+      "pool": "node6",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000032/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 32,
+      "sha256": "377ec41799fc836e824f3e41daca9674f5c8ce86229edb58c688835d6af88a07"
+    },
+    {
+      "kind": "object",
+      "pool": "node6",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000033/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 33,
+      "sha256": "f4990774f386a52939aea5def299e569a9582781914a62666f247416f3dddea5"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000027/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 27,
+      "sha256": "6bd363f2b9b5850c8de441b7ec138e3d70fc3f0e1b29b7f111c8209b11a40e72"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000028/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 28,
+      "sha256": "9f4b0c788e3bdf4550fea7eb3b5f779e62d11982550251ae339b35b207cde109"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000030/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 30,
+      "sha256": "32339714b81f4454046112e6a76e68b7d7394a247c124e6712bc300a3c2cedf5"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000031/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 31,
+      "sha256": "4f64d1720b0ccfb3ad95b3931d5e7461e08475ddbec87769e6d19acf999a9ac2"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000037/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 37,
+      "sha256": "d7a9ce47ed703a98364b8d9d94e667d7bd6768eaab7a4d46abc40805d29451bf"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000039/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 39,
+      "sha256": "42eeed74ea9f7300022a0d06f0e2625baa248d2f96dbac35ab307d2e169af3dd"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000040/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 40,
+      "sha256": "a8ccd08de2be96820944e38148cdb2f916b63d398276ae06340c65187179a2fe"
+    },
+    {
+      "kind": "object",
+      "pool": "node6",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000034/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 34,
+      "sha256": "abe381c5b6059dac43c805927ac27797015f096bca0cf00559361ac04f0109b2"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000035/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 35,
+      "sha256": "420abbc6433dc5730d1229a1ef3edcaaa34c18310cc78ca796bd663d36b25d1e"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000036/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 36,
+      "sha256": "9279c2ad5690235fdf366d9adf06a3d8dbcf32f28c88affb7d94fb9023230c2d"
+    },
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000038/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 38,
+      "sha256": "9785d729283ccedef29565a9d4e81669fa2c4780e8f62a478a13f34d984d1589"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000041/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 41,
+      "sha256": "ee496a113358a488e1185124fbc143993bb30f87c0dcd93e72d2b2537e7eccff"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000042/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 42,
+      "sha256": "e1e0f9f59cd2944e7de8aace5ddbfb71ff6c0572af2e9f55e297f4f044495280"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000043/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 43,
+      "sha256": "cb186ad28cd1e0e4bb99c1c0f29ca72b24ef6f833c7efbcd9581ec8a95ce4c48"
+    },
+    {
+      "kind": "object",
+      "pool": "node4",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000045/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 45,
+      "sha256": "be7887cff71701061fd808c8accc3a4dc6fdde8a46a8f371b09e212611566375"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000046/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 46,
+      "sha256": "723a99e91bd67aaf929dab436d9ae650a354701982f83abc2fac19688d28e3b0"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000044/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 44,
+      "sha256": "79668af2f0720d38e8840ad01091851497000f73f874a0369575e02035aba4c0"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000048/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 48,
+      "sha256": "2682873a34928610e36ef64b406632366dd8f80e1405a97c99fd0b37de46b7c9"
+    },
+    {
+      "kind": "object",
+      "pool": "node7",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000047/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 47,
+      "sha256": "de9206fc73bc523c92b5aa7c5d9e945cba3b7a3148d0baa658008160119bdb12"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000049/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 49,
+      "sha256": "92c45f0c1ea26ece18612b522079c365c2832c36f1e2f1aa694089604f8712f8"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000052/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 52,
+      "sha256": "2e32e3d851e76b2316cd15b93d60aaea92d470ee0a64e2c7daf5904c562a4898"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000050/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 50,
+      "sha256": "a6191698ef489d60af3640c649615281ab25ac29326a9735c1ffd45aa5022e35"
+    },
+    {
+      "kind": "object",
+      "pool": "node6",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000055/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 55,
+      "sha256": "ab75b1981ea01e8051e596e9730423a1c12c24c837d91a4cad65410c1e0d8bcd"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000051/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 51,
+      "sha256": "a812ec34689f00503cda3e8e5c30ef1198249461b8428126975ca667cc608fca"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000056/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 56,
+      "sha256": "c0ab33971edf57e9606424378b97178f749c572ea0b4825bb6d80dacbf6794ee"
+    },
+    {
+      "kind": "object",
+      "pool": "node1",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000058/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 58,
+      "sha256": "adb758c959191f46cef9a8f445a1bb1311bb813a67388e4ff2529d1ea773c83e"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000053/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 53,
+      "sha256": "42b74ca2ebcad4c9e5ca7faf825a91969d3829dc17418c6980a3a736caee72e5"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000054/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 54,
+      "sha256": "07dfdf910f36ef1a8bcaaf14eff68fb97ffe95400d374b2ab4d937dd266dddd7"
+    },
+    {
+      "kind": "object",
+      "pool": "node2",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000057/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 57,
+      "sha256": "e523dd9818559ce0d51166f289da47efd2f799a463010e01aa62497198bd53a1"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000060/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 60,
+      "sha256": "79e5254f756df986332651d32923eb4ef6877485a8c768e47eb65534329594cb"
+    },
+    {
+      "kind": "object",
+      "pool": "node0",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000062/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 62,
+      "sha256": "632d95f137de7e9278962c4951d93b5a7bbcc8cec382701460f27b9118607e3e"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000059/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 59,
+      "sha256": "fd41504a14858e423584b493e47fa290c789dcdd68ea4af1e5e84d2d64e2d44b"
+    },
+    {
+      "kind": "object",
+      "pool": "node3",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000061/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 61,
+      "sha256": "e1fd225f2d1eba53b931052511dc4adbce22436739cbdf319422e43e0e7e7f53"
+    },
+    {
+      "kind": "object",
+      "pool": "node5",
+      "key": "runs/fd9d6c0b1edd41788374518a66f7444a/t000063/output-0",
+      "size": 16777216,
+      "dtype": "float32",
+      "partition": 63,
+      "sha256": "b3259eecefad7083036823a0971ca6c9aa1ca93aa70434ade19324c27f008308"
+    }
+  ],
+  "models": {
+    "compute": {
+      "fixed_seconds": 0.0,
+      "input_seconds_per_byte": 6.836815337704325e-10,
+      "iteration_seconds_per_byte": 4.034817854510309e-10,
+      "output_seconds_per_byte": 6.751794594513708e-10,
+      "functions": {
+        "decode_resize@1": {
+          "fixed_seconds": 0.0008410389304737191,
+          "input_seconds_per_byte": 4.360382938381432e-09,
+          "output_seconds_per_byte": 5.354276204906548e-09
+        },
+        "encode_video@1": {
+          "fixed_seconds": 0.0005690387873551267,
+          "input_seconds_per_byte": 5.601798485834502e-09,
+          "output_seconds_per_byte": 1.496269470681412e-08
+        },
+        "frame_stats@1": {
+          "fixed_seconds": 0.0014085986885834564,
+          "input_seconds_per_byte": 3.188758175191858e-09,
+          "output_seconds_per_byte": 1.888966910538328e-06
+        },
+        "state_parquet@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 2.2025623210174277e-07,
+          "output_seconds_per_byte": 0.0
+        }
+      }
+    },
+    "storage": {
+      "read_bps": [
+        256067082.02680355,
+        279929536.3170603,
+        261308569.9622171,
+        324281742.6810348,
+        259031209.8095638,
+        263424074.3028081,
+        263358371.16734415,
+        316303627.2872095,
+        263391222.73507613,
+        263391222.73507613,
+        263391222.73507613,
+        263391222.73507613,
+        263391222.73507613,
+        263391222.73507613,
+        263391222.73507613,
+        263391222.73507613
+      ],
+      "write_bps": [
+        471013529.0605374,
+        462163186.7636318,
+        471025757.82673234,
+        415167098.368747,
+        384118316.7199557,
+        481848943.48940504,
+        409698468.6685179,
+        468010837.5551797,
+        465087012.15940577,
+        465087012.15940577,
+        465087012.15940577,
+        465087012.15940577,
+        465087012.15940577,
+        465087012.15940577,
+        465087012.15940577,
+        465087012.15940577
+      ]
+    },
+    "network": {
+      "tx_bps": [
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0
+      ],
+      "rx_bps": [
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0
+      ]
+    },
+    "calibrated": true,
+    "calibration_id": "5bfd9fd07df4425ab7826f7beb991ddb"
+  },
+  "verification_seconds": 20.409706623999227,
+  "verified_final_bytes": 1073741824,
+  "config": {
+    "repeat": 0,
+    "scheduler": "fifo-hash"
+  },
+  "case": {
+    "shape": "independent",
+    "iterations": 128,
+    "ratio": 0.25
+  },
+  "dataset": "pilot-sweep-4g-64m-prefix-4294967296",
+  "dataset_bytes": 4294967296,
+  "warmup": {},
+  "independent_oracle": {
+    "sampled_outputs": 5,
+    "scalar_values_checked": 80,
+    "max_abs_error": 2.2351741790771484e-07,
+    "method": "Python scalar float32 arithmetic, seeded PCG64 input prefixes; worker kernel not reused"
+  },
+  "cross_scheduler_checksums_match": true,
+  "verification": {
+    "passed": true,
+    "outputs_sha256": "32f17a9b896c61d212eab37fd8269fc67bbc1f5fe14949a7f21e6d332d2ae2a1"
+  }
+}

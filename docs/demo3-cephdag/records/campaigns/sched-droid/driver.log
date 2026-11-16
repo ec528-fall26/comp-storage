@@ -1,0 +1,117 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 500-507 --resolution 128 --placement 0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00500: 47 episodes, 31 partitions, 977.0 MB in 6.2 s (157.1 MB/s)
+droid-128-00501: 51 episodes, 35 partitions, 1221.1 MB in 7.9 s (154.5 MB/s)
+droid-128-00502: 41 episodes, 27 partitions, 806.7 MB in 4.9 s (163.6 MB/s)
+droid-128-00503: 40 episodes, 23 partitions, 728.5 MB in 4.6 s (159.8 MB/s)
+droid-128-00504: 37 episodes, 23 partitions, 739.6 MB in 4.7 s (157.0 MB/s)
+droid-128-00505: 58 episodes, 31 partitions, 966.4 MB in 5.8 s (168.0 MB/s)
+droid-128-00506: 41 episodes, 18 partitions, 549.2 MB in 3.2 s (171.7 MB/s)
+droid-128-00507: 49 episodes, 29 partitions, 945.4 MB in 5.9 s (160.7 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 377.23250765450655,
+    "shared_rx": 377.48856796379494
+  },
+  "1": {
+    "shared_tx": 377.33562552330864,
+    "shared_rx": 377.4879220389187
+  },
+  "2": {
+    "shared_tx": 376.718200553755,
+    "shared_rx": 379.5856180417314
+  },
+  "3": {
+    "shared_tx": 377.3355123840165,
+    "shared_rx": 377.4878884832854
+  },
+  "4": {
+    "shared_tx": 377.33547467108525,
+    "shared_rx": 378.2496299457483
+  },
+  "5": {
+    "shared_tx": 377.2323064016934,
+    "shared_rx": 378.14729510766966
+  },
+  "6": {
+    "shared_tx": 377.1297291206338,
+    "shared_rx": 379.5849297531419
+  },
+  "7": {
+    "shared_tx": 376.9238706779813,
+    "shared_rx": 375.3915581514488
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 500-507 --resolution 128 --wave-gib 1000000 --droid-fused --policies data-local,heft-cc,lp-plan2,heft --repeats 1 --seed 9903 --models /results/derived-models/cephdag8-cs-fused/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-droid/wave00-fused-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 86.69677227697684, "scheduler_seconds": 17.423916352156084, "network_tx_bytes": 2617775385, "removed_bytes": 4874456676}
+{"index": 1, "runs": 4, "scheduler": "heft", "wall_seconds": 87.87313650699798, "scheduler_seconds": 1.1895582954166457, "network_tx_bytes": 5263871141, "removed_bytes": 4874456676}
+{"index": 2, "runs": 4, "scheduler": "data-local", "wall_seconds": 73.77411291500903, "scheduler_seconds": 0.034428538026986644, "network_tx_bytes": 3364375133, "removed_bytes": 4874456676}
+{"index": 3, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 85.6016729779949, "scheduler_seconds": 8.109831860143458, "network_tx_bytes": 3928885001, "removed_bytes": 4874456676}
+{"complete": "/results/campaigns/sched-droid/wave00-fused-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 500-507 --resolution 128 --wave-gib 1000000 --droid-fused --policies fifo-hash --repeats 1 --seed 9903 --models /results/derived-models/cephdag8-disagg-fused/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/sched-droid/wave00-fused-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 117.60935905802762, "scheduler_seconds": 0.009740586014231667, "network_tx_bytes": 4961377497, "removed_bytes": 4874456676}
+{"complete": "/results/campaigns/sched-droid/wave00-fused-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 500-507 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00500": 31, "droid-128-00501": 35, "droid-128-00502": 27, "droid-128-00503": 23, "droid-128-00504": 23, "droid-128-00505": 31, "droid-128-00506": 18, "droid-128-00507": 29}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 508-515 --resolution 128 --placement 0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00508: 49 episodes, 31 partitions, 955.3 MB in 5.9 s (162.6 MB/s)
+droid-128-00509: 54 episodes, 37 partitions, 1141.4 MB in 7.2 s (158.5 MB/s)
+droid-128-00510: 42 episodes, 26 partitions, 807.1 MB in 4.9 s (164.6 MB/s)
+droid-128-00511: 48 episodes, 29 partitions, 851.5 MB in 5.0 s (169.9 MB/s)
+droid-128-00512: 47 episodes, 27 partitions, 812.0 MB in 5.6 s (145.8 MB/s)
+droid-128-00513: 38 episodes, 26 partitions, 745.2 MB in 4.7 s (159.7 MB/s)
+droid-128-00514: 47 episodes, 29 partitions, 896.3 MB in 5.6 s (161.0 MB/s)
+droid-128-00515: 35 episodes, 19 partitions, 566.7 MB in 3.4 s (165.5 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 508-515 --resolution 128 --wave-gib 1000000 --droid-fused --policies fifo-hash --repeats 1 --seed 9904 --models /results/derived-models/cephdag8-disagg-fused/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/sched-droid/wave01-fused-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 116.07108960399637, "scheduler_seconds": 0.0094086263270583, "network_tx_bytes": 4847469533, "removed_bytes": 4773344102}
+{"complete": "/results/campaigns/sched-droid/wave01-fused-disagg/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check cs
+cephdag8 mode cs: 24 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 508-515 --resolution 128 --wave-gib 1000000 --droid-fused --policies data-local,heft-cc,lp-plan2,heft --repeats 1 --seed 9904 --models /results/derived-models/cephdag8-cs-fused/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-droid/wave01-fused-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 87.56702767399838, "scheduler_seconds": 7.920488566858694, "network_tx_bytes": 4397590111, "removed_bytes": 4773344102}
+{"index": 1, "runs": 4, "scheduler": "data-local", "wall_seconds": 78.0131125410262, "scheduler_seconds": 0.03433524598949589, "network_tx_bytes": 3466309012, "removed_bytes": 4773344102}
+{"index": 2, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 99.71657025199966, "scheduler_seconds": 23.08107993725571, "network_tx_bytes": 2872810753, "removed_bytes": 4773344102}
+{"index": 3, "runs": 4, "scheduler": "heft", "wall_seconds": 85.85576304601273, "scheduler_seconds": 1.2287582670105621, "network_tx_bytes": 4735817366, "removed_bytes": 4773344102}
+{"complete": "/results/campaigns/sched-droid/wave01-fused-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 508-515 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00508": 31, "droid-128-00509": 37, "droid-128-00510": 26, "droid-128-00511": 29, "droid-128-00512": 27, "droid-128-00513": 26, "droid-128-00514": 29, "droid-128-00515": 19}}
+# exit 0

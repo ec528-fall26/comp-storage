@@ -1,0 +1,73 @@
+{
+  "name": "demo3-slots-droid",
+  "kind": "droid",
+  "lab": "infra/labs/cephdag8.json",
+  "results_host": "/mnt/mass/cephdag",
+  "measure_mbit": 400,
+  "bulk_mbit": 10000,
+  "functions": [
+    "cephdag.droid"
+  ],
+  "verify": true,
+  "seed": 9803,
+  "budget_ms": null,
+  "modes": {
+    "cs": {
+      "cluster": "cephdag/clusters/cephdag8-cs.json",
+      "models": "/results/derived-models/cephdag8-cs-fused/models.json",
+      "policies": [
+        "data-local"
+      ]
+    },
+    "cs2": {
+      "cluster": "cephdag/clusters/cephdag8-cs2.json",
+      "models": "/results/derived-models/cephdag8-cs2/models.json",
+      "policies": [
+        "data-local"
+      ]
+    },
+    "disagg2": {
+      "cluster": "cephdag/clusters/cephdag8-disagg2.json",
+      "models": "/results/derived-models/cephdag8-disagg2/models.json",
+      "policies": [
+        "fifo-hash"
+      ]
+    }
+  },
+  "droid": {
+    "shards": "550-552",
+    "wave_shards": 3,
+    "resolution": 128,
+    "placement": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "source_dir": "/results/droid/raw",
+    "variants": [
+      "unfused",
+      "fused"
+    ]
+  },
+  "estimate": {
+    "workers": 8,
+    "read_bps": 500000000.0,
+    "write_bps": 470000000.0,
+    "link_bps": 47000000.0,
+    "droid_cpu_seconds_per_source_gb": 85.4,
+    "frames_per_source": 2.16,
+    "video_per_frames": 0.33,
+    "median_shard_bytes": 905000000.0,
+    "run_overhead_seconds": 60,
+    "switch_seconds": 10,
+    "verify_seconds": 210,
+    "ingest_bps": 80000000.0,
+    "delete_seconds": 120,
+    "nearfull_gib_per_node": 47.6
+  }
+}

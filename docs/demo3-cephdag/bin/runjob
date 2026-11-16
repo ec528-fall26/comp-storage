@@ -1,0 +1,316 @@
+#!/usr/bin/env python3
+"""Start long-running commands detached from any terminal or agent session, and report on them.
+
+    runjob start NAME [--dir DIR] (--shell 'COMMAND' | -- ARG...)
+    runjob status [NAME | RUN_DIR] [--stable] [--lines N]
+    runjob list
+    runjob stop NAME | RUN_DIR
+
+Each run gets a directory under ~/runs (or $RUNJOB_ROOT) holding manifest.json, output.log
+and, once the command exits, exit_code. A run with no exit code and no live process is
+reported as lost, which is what a reboot or an outside kill looks like. The command inherits
+the environment of the shell that launched it.
+
+On another machine, without installing anything there:
+
+    ssh HOST 'python3 - start NAME --dir DIR --shell "COMMAND"' < ~/projects/bin/runjob
+    ssh HOST 'python3 - status NAME' < ~/projects/bin/runjob
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import shlex
+import shutil
+import signal
+import socket
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+NAME_PATTERN = re.compile(r"[a-z0-9][a-z0-9._-]*")
+RUN_SUFFIX = re.compile(r"-\d{8}-\d{6}$")
+SCOPE_START_TIMEOUT = 3.0
+TAIL_BYTES = 64 * 1024
+
+
+def runs_root() -> Path:
+    return Path(os.environ.get("RUNJOB_ROOT") or Path.home() / "runs")
+
+
+def stall_seconds() -> int:
+    return int(os.environ.get("RUNJOB_STALL_SECONDS", "1800"))
+
+
+def read_manifest(run_dir: Path) -> dict:
+    return json.loads((run_dir / "manifest.json").read_text())
+
+
+def write_manifest(run_dir: Path, manifest: dict) -> None:
+    (run_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+
+
+def git_state(directory: Path) -> dict | None:
+    def git(*args: str) -> subprocess.CompletedProcess:
+        return subprocess.run(["git", "-C", str(directory), *args], capture_output=True, text=True)
+
+    if shutil.which("git") is None:
+        return None
+    head = git("rev-parse", "HEAD")
+    if head.returncode != 0:
+        return None
+    return {"commit": head.stdout.strip(), "dirty": bool(git("status", "--porcelain").stdout.strip())}
+
+
+def wrapper_script(run_dir: Path, directory: Path) -> str:
+    return "\n".join([
+        "#!/usr/bin/env bash",
+        f"cd {shlex.quote(str(directory))} && bash {shlex.quote(str(run_dir / 'command.sh'))}",
+        "code=$?",
+        f'echo "$code" > {shlex.quote(str(run_dir / "exit_code"))}',
+        'exit "$code"',
+        "",
+    ])
+
+
+def user_systemd_env() -> dict:
+    env = dict(os.environ)
+    runtime_dir = Path(f"/run/user/{os.getuid()}")
+    if "XDG_RUNTIME_DIR" not in env and runtime_dir.is_dir():
+        env["XDG_RUNTIME_DIR"] = str(runtime_dir)
+    return env
+
+
+def lingering() -> bool:
+    if shutil.which("loginctl") is None:
+        return False
+    result = subprocess.run(
+        ["loginctl", "show-user", str(os.getuid()), "--property=Linger", "--value"],
+        capture_output=True, text=True,
+    )
+    return result.returncode == 0 and result.stdout.strip() == "yes"
+
+
+def scope_wanted() -> bool:
+    choice = os.environ.get("RUNJOB_BACKEND", "auto")
+    if choice != "auto":
+        return choice == "scope"
+    return shutil.which("systemd-run") is not None and lingering()
+
+
+def scope_active(unit: str) -> bool:
+    result = subprocess.run(["systemctl", "--user", "is-active", "--quiet", unit], env=user_systemd_env())
+    return result.returncode == 0
+
+
+def process_start_ticks(pid: int) -> str | None:
+    try:
+        stat = Path(f"/proc/{pid}/stat").read_text()
+    except OSError:
+        return None
+    return stat.rsplit(")", 1)[1].split()[19]
+
+
+def spawn(argv: list[str], log_path: Path, env: dict) -> subprocess.Popen:
+    with open(log_path, "ab") as log:
+        return subprocess.Popen(
+            argv, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+            start_new_session=True, env=env,
+        )
+
+
+def launch_in_scope(run_dir: Path, script: Path, log_path: Path) -> dict | None:
+    unit = f"runjob-{run_dir.name}.scope"
+    process = spawn(
+        ["systemd-run", "--user", "--scope", "--quiet", "--collect", f"--unit={unit}", "bash", str(script)],
+        log_path, user_systemd_env(),
+    )
+    deadline = time.monotonic() + SCOPE_START_TIMEOUT
+    while time.monotonic() < deadline:
+        if scope_active(unit) or (run_dir / "exit_code").exists():
+            return {"backend": "scope", "unit": unit}
+        if process.poll() is not None:
+            return None
+        time.sleep(0.05)
+    return {"backend": "scope", "unit": unit}
+
+
+def launch_as_process(script: Path, log_path: Path) -> dict:
+    process = spawn(["bash", str(script)], log_path, dict(os.environ))
+    return {"backend": "process", "pid": process.pid, "pid_start_ticks": process_start_ticks(process.pid)}
+
+
+def start(name: str, directory: Path, command: str) -> Path:
+    if not NAME_PATTERN.fullmatch(name):
+        raise SystemExit(f"runjob: name must match {NAME_PATTERN.pattern}")
+    if not directory.is_dir():
+        raise SystemExit(f"runjob: no such directory: {directory}")
+    started = datetime.now(timezone.utc)
+    run_dir = runs_root() / f"{name}-{started:%Y%m%d-%H%M%S}"
+    run_dir.mkdir(parents=True)
+    script, log_path = run_dir / "run.sh", run_dir / "output.log"
+    (run_dir / "command.sh").write_text(command + "\n")
+    script.write_text(wrapper_script(run_dir, directory))
+    manifest = {
+        "name": name,
+        "command": command,
+        "directory": str(directory),
+        "host": socket.gethostname(),
+        "started_at": started.isoformat(timespec="seconds"),
+        "git": git_state(directory),
+    }
+    write_manifest(run_dir, manifest)
+    launched = launch_in_scope(run_dir, script, log_path) if scope_wanted() else None
+    write_manifest(run_dir, {**manifest, **(launched or launch_as_process(script, log_path))})
+    return run_dir
+
+
+def alive(manifest: dict) -> bool:
+    if manifest.get("backend") == "scope":
+        return scope_active(manifest["unit"])
+    pid = manifest.get("pid")
+    return pid is not None and process_start_ticks(pid) == manifest.get("pid_start_ticks")
+
+
+def state(run_dir: Path) -> str:
+    exit_code = run_dir / "exit_code"
+    if exit_code.exists():
+        return f"finished exit={exit_code.read_text().strip()}"
+    if alive(read_manifest(run_dir)):
+        return "running"
+    if (run_dir / "stopped").exists():
+        return "stopped"
+    return "lost"
+
+
+def stalled(run_dir: Path) -> bool:
+    return time.time() - (run_dir / "output.log").stat().st_mtime > stall_seconds()
+
+
+def stable_line(run_dir: Path) -> str:
+    current = state(run_dir)
+    suffix = " stalled" if current == "running" and stalled(run_dir) else ""
+    return f"{run_dir.name} {current}{suffix}"
+
+
+def all_runs() -> list[Path]:
+    root = runs_root()
+    if not root.is_dir():
+        return []
+    return sorted(
+        (path for path in root.iterdir() if (path / "manifest.json").is_file()),
+        key=lambda path: read_manifest(path)["started_at"],
+    )
+
+
+def resolve(target: str | None) -> Path:
+    if target and (Path(target) / "manifest.json").is_file():
+        return Path(target)
+    runs = [run for run in all_runs() if target is None or RUN_SUFFIX.sub("", run.name) == target]
+    if not runs:
+        raise SystemExit(f"runjob: no run found for {target or 'any name'} under {runs_root()}")
+    return runs[-1]
+
+
+def tail(log_path: Path, lines: int) -> list[str]:
+    with open(log_path, "rb") as log:
+        log.seek(max(0, log_path.stat().st_size - TAIL_BYTES))
+        return log.read().decode(errors="replace").splitlines()[-lines:]
+
+
+def duration(seconds: float) -> str:
+    minutes = int(seconds) // 60
+    if minutes < 1:
+        return f"{int(seconds)}s"
+    if minutes < 60:
+        return f"{minutes}m"
+    return f"{minutes // 60}h {minutes % 60}m"
+
+
+def describe(run_dir: Path, lines: int) -> str:
+    manifest = read_manifest(run_dir)
+    log_path = run_dir / "output.log"
+    now = time.time()
+    started = datetime.fromisoformat(manifest["started_at"]).timestamp()
+    git = manifest.get("git")
+    revision = f" @ {git['commit'][:10]}{' (uncommitted changes)' if git['dirty'] else ''}" if git else ""
+    last_lines = tail(log_path, lines)
+    return "\n".join([
+        f"run: {run_dir.name}",
+        f"state: {stable_line(run_dir).split(' ', 1)[1]}",
+        f"host: {manifest['host']}",
+        f"started: {manifest['started_at']} ({duration(now - started)} ago)",
+        f"directory: {manifest['directory']}{revision}",
+        f"command: {manifest['command']}",
+        f"log: {log_path} (last write {duration(now - log_path.stat().st_mtime)} ago)",
+        f"--- last {len(last_lines)} lines",
+        *last_lines,
+    ])
+
+
+def stop(run_dir: Path) -> None:
+    manifest = read_manifest(run_dir)
+    if not alive(manifest):
+        return
+    (run_dir / "stopped").write_text(datetime.now(timezone.utc).isoformat(timespec="seconds") + "\n")
+    if manifest["backend"] == "scope":
+        subprocess.run(["systemctl", "--user", "stop", manifest["unit"]], env=user_systemd_env(), check=True)
+    else:
+        os.killpg(manifest["pid"], signal.SIGTERM)
+
+
+def parse_args(arguments: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(prog="runjob", description=__doc__.split("\n\n")[0])
+    commands = parser.add_subparsers(dest="action", required=True)
+
+    start_parser = commands.add_parser("start", help="launch a command detached and print its run directory")
+    start_parser.add_argument("name")
+    start_parser.add_argument("--dir", default=".", help="working directory for the command (default: current)")
+    start_parser.add_argument("--shell", help="command line to run through bash; otherwise give it after --")
+
+    status_parser = commands.add_parser("status", help="show state, timing and the end of the log")
+    status_parser.add_argument("target", nargs="?")
+    status_parser.add_argument("--stable", action="store_true", help="one line that changes only when the state does")
+    status_parser.add_argument("--lines", type=int, default=15)
+
+    commands.add_parser("list", help="one stable line per run, oldest first")
+
+    stop_parser = commands.add_parser("stop", help="terminate a running command")
+    stop_parser.add_argument("target")
+    return parser.parse_args(arguments)
+
+
+def split_at_double_dash(arguments: list[str]) -> tuple[list[str], list[str]]:
+    if "--" not in arguments:
+        return arguments, []
+    position = arguments.index("--")
+    return arguments[:position], arguments[position + 1:]
+
+
+def command_from(shell: str | None, command_argv: list[str]) -> str:
+    if bool(shell) == bool(command_argv):
+        raise SystemExit("runjob: give the command either with --shell '...' or after --")
+    return shell or shlex.join(command_argv)
+
+
+def main(arguments: list[str]) -> None:
+    own_arguments, command_argv = split_at_double_dash(arguments)
+    args = parse_args(own_arguments)
+    if args.action == "start":
+        print(start(args.name, Path(args.dir).expanduser().resolve(), command_from(args.shell, command_argv)))
+    elif args.action == "status":
+        run_dir = resolve(args.target)
+        print(stable_line(run_dir) if args.stable else describe(run_dir, args.lines))
+    elif args.action == "list":
+        for run_dir in all_runs():
+            print(stable_line(run_dir))
+    elif args.action == "stop":
+        stop(resolve(args.target))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

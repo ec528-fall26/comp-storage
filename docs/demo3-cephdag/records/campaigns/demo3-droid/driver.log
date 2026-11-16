@@ -1,0 +1,875 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 0-78 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00000: 40 episodes, 34 partitions, 1098.7 MB in 7.8 s (140.4 MB/s)
+droid-128-00001: 54 episodes, 34 partitions, 1057.6 MB in 7.2 s (146.2 MB/s)
+droid-128-00002: 39 episodes, 21 partitions, 648.7 MB in 4.4 s (146.7 MB/s)
+droid-128-00003: 59 episodes, 34 partitions, 1070.3 MB in 7.2 s (149.5 MB/s)
+droid-128-00004: 45 episodes, 32 partitions, 978.9 MB in 6.6 s (148.7 MB/s)
+droid-128-00005: 44 episodes, 31 partitions, 923.4 MB in 6.3 s (147.4 MB/s)
+droid-128-00006: 48 episodes, 32 partitions, 996.3 MB in 7.0 s (141.4 MB/s)
+droid-128-00007: 55 episodes, 40 partitions, 1269.2 MB in 8.7 s (146.5 MB/s)
+droid-128-00008: 35 episodes, 22 partitions, 686.1 MB in 4.7 s (147.4 MB/s)
+droid-128-00009: 49 episodes, 32 partitions, 986.8 MB in 6.5 s (151.5 MB/s)
+droid-128-00010: 43 episodes, 31 partitions, 881.5 MB in 6.1 s (145.2 MB/s)
+droid-128-00011: 49 episodes, 34 partitions, 1047.2 MB in 6.7 s (156.8 MB/s)
+droid-128-00012: 42 episodes, 26 partitions, 815.7 MB in 5.5 s (149.3 MB/s)
+droid-128-00013: 51 episodes, 26 partitions, 845.9 MB in 5.7 s (147.7 MB/s)
+droid-128-00014: 48 episodes, 38 partitions, 1169.6 MB in 7.9 s (148.8 MB/s)
+droid-128-00015: 52 episodes, 38 partitions, 1092.1 MB in 7.3 s (150.6 MB/s)
+droid-128-00016: 51 episodes, 34 partitions, 1074.4 MB in 7.5 s (142.4 MB/s)
+droid-128-00017: 37 episodes, 26 partitions, 805.2 MB in 5.3 s (151.8 MB/s)
+droid-128-00018: 37 episodes, 26 partitions, 695.1 MB in 4.8 s (146.1 MB/s)
+droid-128-00019: 48 episodes, 33 partitions, 992.2 MB in 6.8 s (145.9 MB/s)
+droid-128-00020: 52 episodes, 34 partitions, 1033.4 MB in 6.7 s (153.4 MB/s)
+droid-128-00021: 53 episodes, 30 partitions, 967.0 MB in 6.6 s (147.2 MB/s)
+droid-128-00022: 57 episodes, 35 partitions, 1107.1 MB in 7.3 s (151.7 MB/s)
+droid-128-00023: 48 episodes, 28 partitions, 814.0 MB in 5.3 s (152.6 MB/s)
+droid-128-00024: 60 episodes, 41 partitions, 1310.1 MB in 8.6 s (151.6 MB/s)
+droid-128-00025: 33 episodes, 17 partitions, 557.4 MB in 3.7 s (149.8 MB/s)
+droid-128-00026: 35 episodes, 20 partitions, 613.3 MB in 4.0 s (153.3 MB/s)
+droid-128-00027: 47 episodes, 30 partitions, 930.0 MB in 6.4 s (145.4 MB/s)
+droid-128-00028: 40 episodes, 29 partitions, 1010.4 MB in 6.9 s (145.5 MB/s)
+droid-128-00029: 41 episodes, 30 partitions, 881.2 MB in 6.0 s (147.5 MB/s)
+droid-128-00030: 52 episodes, 31 partitions, 1011.6 MB in 6.4 s (157.8 MB/s)
+droid-128-00031: 48 episodes, 27 partitions, 911.0 MB in 6.1 s (148.6 MB/s)
+droid-128-00032: 46 episodes, 29 partitions, 898.2 MB in 6.1 s (147.0 MB/s)
+droid-128-00033: 36 episodes, 24 partitions, 727.7 MB in 4.8 s (151.1 MB/s)
+droid-128-00034: 37 episodes, 21 partitions, 665.8 MB in 4.2 s (160.2 MB/s)
+droid-128-00035: 47 episodes, 33 partitions, 1024.3 MB in 7.1 s (144.1 MB/s)
+droid-128-00036: 56 episodes, 38 partitions, 1147.4 MB in 8.1 s (140.8 MB/s)
+droid-128-00037: 53 episodes, 29 partitions, 872.3 MB in 5.9 s (147.7 MB/s)
+droid-128-00038: 54 episodes, 33 partitions, 1042.0 MB in 6.6 s (156.8 MB/s)
+droid-128-00039: 55 episodes, 31 partitions, 973.7 MB in 6.5 s (148.8 MB/s)
+droid-128-00040: 55 episodes, 39 partitions, 1198.9 MB in 8.0 s (149.3 MB/s)
+droid-128-00041: 47 episodes, 31 partitions, 918.6 MB in 6.1 s (150.5 MB/s)
+droid-128-00042: 36 episodes, 23 partitions, 646.7 MB in 4.2 s (154.8 MB/s)
+droid-128-00043: 44 episodes, 24 partitions, 747.3 MB in 4.9 s (151.1 MB/s)
+droid-128-00044: 47 episodes, 35 partitions, 1074.5 MB in 7.2 s (149.0 MB/s)
+droid-128-00045: 46 episodes, 30 partitions, 906.6 MB in 6.3 s (145.0 MB/s)
+droid-128-00046: 65 episodes, 37 partitions, 1140.0 MB in 7.5 s (151.7 MB/s)
+droid-128-00047: 48 episodes, 26 partitions, 889.0 MB in 5.6 s (158.4 MB/s)
+droid-128-00048: 49 episodes, 29 partitions, 982.1 MB in 6.6 s (149.2 MB/s)
+droid-128-00049: 36 episodes, 18 partitions, 561.2 MB in 3.6 s (154.6 MB/s)
+droid-128-00050: 44 episodes, 28 partitions, 857.3 MB in 5.8 s (148.3 MB/s)
+droid-128-00051: 51 episodes, 34 partitions, 1102.0 MB in 7.4 s (148.2 MB/s)
+droid-128-00052: 49 episodes, 30 partitions, 924.6 MB in 6.1 s (152.7 MB/s)
+droid-128-00053: 48 episodes, 32 partitions, 958.0 MB in 6.1 s (156.0 MB/s)
+droid-128-00054: 42 episodes, 23 partitions, 681.5 MB in 4.4 s (156.5 MB/s)
+droid-128-00055: 45 episodes, 30 partitions, 921.2 MB in 6.4 s (143.1 MB/s)
+droid-128-00056: 43 episodes, 28 partitions, 824.1 MB in 5.5 s (150.0 MB/s)
+droid-128-00057: 45 episodes, 33 partitions, 1023.6 MB in 7.0 s (146.0 MB/s)
+droid-128-00058: 63 episodes, 39 partitions, 1164.0 MB in 7.5 s (156.2 MB/s)
+droid-128-00059: 63 episodes, 43 partitions, 1384.1 MB in 9.0 s (152.9 MB/s)
+droid-128-00060: 44 episodes, 25 partitions, 761.9 MB in 4.8 s (157.6 MB/s)
+droid-128-00061: 41 episodes, 20 partitions, 609.2 MB in 3.9 s (154.7 MB/s)
+droid-128-00062: 46 episodes, 33 partitions, 1039.7 MB in 7.0 s (148.7 MB/s)
+droid-128-00063: 65 episodes, 41 partitions, 1242.9 MB in 8.2 s (150.9 MB/s)
+droid-128-00064: 47 episodes, 27 partitions, 932.9 MB in 6.1 s (153.0 MB/s)
+droid-128-00065: 54 episodes, 33 partitions, 1024.7 MB in 6.7 s (152.7 MB/s)
+droid-128-00066: 65 episodes, 38 partitions, 1144.9 MB in 7.8 s (147.3 MB/s)
+droid-128-00067: 52 episodes, 30 partitions, 920.2 MB in 6.0 s (152.9 MB/s)
+droid-128-00068: 58 episodes, 44 partitions, 1312.6 MB in 8.9 s (148.0 MB/s)
+droid-128-00069: 47 episodes, 31 partitions, 928.1 MB in 6.1 s (152.0 MB/s)
+droid-128-00070: 50 episodes, 36 partitions, 1054.5 MB in 6.9 s (153.6 MB/s)
+droid-128-00071: 52 episodes, 34 partitions, 1036.1 MB in 6.7 s (153.7 MB/s)
+droid-128-00072: 45 episodes, 28 partitions, 817.0 MB in 5.3 s (155.0 MB/s)
+droid-128-00073: 44 episodes, 29 partitions, 953.3 MB in 6.3 s (152.3 MB/s)
+droid-128-00074: 52 episodes, 37 partitions, 1225.5 MB in 8.2 s (149.3 MB/s)
+droid-128-00075: 34 episodes, 19 partitions, 603.3 MB in 3.9 s (155.4 MB/s)
+droid-128-00076: 42 episodes, 27 partitions, 872.8 MB in 5.9 s (148.1 MB/s)
+droid-128-00077: 48 episodes, 29 partitions, 915.0 MB in 6.1 s (150.5 MB/s)
+droid-128-00078: 52 episodes, 39 partitions, 1144.2 MB in 7.8 s (146.3 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 377.2322308934871,
+    "shared_rx": 379.73028397016054
+  },
+  "1": {
+    "shared_tx": 377.4379134791003,
+    "shared_rx": 379.5850069287033
+  },
+  "2": {
+    "shared_tx": 377.02649864786235,
+    "shared_rx": 379.5853089194369
+  },
+  "3": {
+    "shared_tx": 376.8216575727338,
+    "shared_rx": 378.2910618902101
+  },
+  "4": {
+    "shared_tx": 376.71842683175095,
+    "shared_rx": 377.4881401421899
+  },
+  "5": {
+    "shared_tx": 376.9239833235742,
+    "shared_rx": 379.58538357855844
+  },
+  "6": {
+    "shared_tx": 376.30712446078076,
+    "shared_rx": 377.44774410836743
+  },
+  "7": {
+    "shared_tx": 377.5409560656656,
+    "shared_rx": 377.4883037207631
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 0-78 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9203 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave00-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "beam-4", "wall_seconds": 952.026658207993, "scheduler_seconds": 81.9384665298785, "network_tx_bytes": 5317256116, "removed_bytes": 217358001579}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 767.7018937429966, "scheduler_seconds": 1.4926591506664408, "network_tx_bytes": 3074350039, "removed_bytes": 217358001579}
+{"complete": "/results/campaigns/demo3-droid/wave00-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 0-78 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9203 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave00-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 3203.061591676, "scheduler_seconds": 1.2759918045267113, "network_tx_bytes": 220637811750, "removed_bytes": 217358001579}
+{"complete": "/results/campaigns/demo3-droid/wave00-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 0-78 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00000": 34, "droid-128-00001": 34, "droid-128-00002": 21, "droid-128-00003": 34, "droid-128-00004": 32, "droid-128-00005": 31, "droid-128-00006": 32, "droid-128-00007": 40, "droid-128-00008": 22, "droid-128-00009": 32, "droid-128-00010": 31, "droid-128-00011": 34, "droid-128-00012": 26, "droid-128-00013": 26, "droid-128-00014": 38, "droid-128-00015": 38, "droid-128-00016": 34, "droid-128-00017": 26, "droid-128-00018": 26, "droid-128-00019": 33, "droid-128-00020": 34, "droid-128-00021": 30, "droid-128-00022": 35, "droid-128-00023": 28, "droid-128-00024": 41, "droid-128-00025": 17, "droid-128-00026": 20, "droid-128-00027": 30, "droid-128-00028": 29, "droid-128-00029": 30, "droid-128-00030": 31, "droid-128-00031": 27, "droid-128-00032": 29, "droid-128-00033": 24, "droid-128-00034": 21, "droid-128-00035": 33, "droid-128-00036": 38, "droid-128-00037": 29, "droid-128-00038": 33, "droid-128-00039": 31, "droid-128-00040": 39, "droid-128-00041": 31, "droid-128-00042": 23, "droid-128-00043": 24, "droid-128-00044": 35, "droid-128-00045": 30, "droid-128-00046": 37, "droid-128-00047": 26, "droid-128-00048": 29, "droid-128-00049": 18, "droid-128-00050": 28, "droid-128-00051": 34, "droid-128-00052": 30, "droid-128-00053": 32, "droid-128-00054": 23, "droid-128-00055": 30, "droid-128-00056": 28, "droid-128-00057": 33, "droid-128-00058": 39, "droid-128-00059": 43, "droid-128-00060": 25, "droid-128-00061": 20, "droid-128-00062": 33, "droid-128-00063": 41, "droid-128-00064": 27, "droid-128-00065": 33, "droid-128-00066": 38, "droid-128-00067": 30, "droid-128-00068": 44, "droid-128-00069": 31, "droid-128-00070": 36, "droid-128-00071": 34, "droid-128-00072": 28, "droid-128-00073": 29, "droid-128-00074": 37, "droid-128-00075": 19, "droid-128-00076": 27, "droid-128-00077": 29, "droid-128-00078": 39}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 79-157 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00079: 44 episodes, 25 partitions, 803.1 MB in 5.5 s (147.1 MB/s)
+droid-128-00080: 52 episodes, 41 partitions, 1226.6 MB in 9.0 s (136.8 MB/s)
+droid-128-00081: 42 episodes, 29 partitions, 864.1 MB in 6.0 s (144.7 MB/s)
+droid-128-00082: 60 episodes, 33 partitions, 1102.9 MB in 8.5 s (129.2 MB/s)
+droid-128-00083: 48 episodes, 30 partitions, 937.9 MB in 6.9 s (135.7 MB/s)
+droid-128-00084: 40 episodes, 26 partitions, 829.0 MB in 6.2 s (133.2 MB/s)
+droid-128-00085: 30 episodes, 16 partitions, 528.0 MB in 3.9 s (136.0 MB/s)
+droid-128-00086: 41 episodes, 34 partitions, 1058.0 MB in 7.8 s (134.8 MB/s)
+droid-128-00087: 44 episodes, 33 partitions, 918.2 MB in 6.9 s (133.3 MB/s)
+droid-128-00088: 40 episodes, 22 partitions, 667.3 MB in 4.8 s (138.8 MB/s)
+droid-128-00089: 46 episodes, 28 partitions, 861.0 MB in 6.2 s (139.1 MB/s)
+droid-128-00090: 43 episodes, 27 partitions, 817.6 MB in 6.1 s (133.3 MB/s)
+droid-128-00091: 40 episodes, 26 partitions, 826.2 MB in 6.5 s (127.1 MB/s)
+droid-128-00092: 44 episodes, 24 partitions, 762.5 MB in 4.8 s (158.8 MB/s)
+droid-128-00093: 55 episodes, 35 partitions, 1122.1 MB in 7.3 s (153.4 MB/s)
+droid-128-00094: 42 episodes, 24 partitions, 834.6 MB in 5.3 s (158.1 MB/s)
+droid-128-00095: 40 episodes, 23 partitions, 680.4 MB in 4.4 s (155.3 MB/s)
+droid-128-00096: 34 episodes, 23 partitions, 691.7 MB in 4.5 s (155.2 MB/s)
+droid-128-00097: 51 episodes, 34 partitions, 1017.7 MB in 6.8 s (148.9 MB/s)
+droid-128-00098: 50 episodes, 27 partitions, 826.1 MB in 5.2 s (158.7 MB/s)
+droid-128-00099: 51 episodes, 31 partitions, 948.6 MB in 6.2 s (153.4 MB/s)
+droid-128-00100: 41 episodes, 25 partitions, 840.2 MB in 5.6 s (149.6 MB/s)
+droid-128-00101: 44 episodes, 27 partitions, 798.1 MB in 5.5 s (146.3 MB/s)
+droid-128-00102: 63 episodes, 38 partitions, 1133.5 MB in 7.2 s (157.7 MB/s)
+droid-128-00103: 46 episodes, 28 partitions, 819.3 MB in 5.5 s (149.2 MB/s)
+droid-128-00104: 36 episodes, 22 partitions, 692.0 MB in 4.8 s (144.5 MB/s)
+droid-128-00105: 49 episodes, 30 partitions, 862.0 MB in 5.8 s (148.6 MB/s)
+droid-128-00106: 54 episodes, 32 partitions, 950.0 MB in 6.5 s (146.8 MB/s)
+droid-128-00107: 54 episodes, 36 partitions, 1214.4 MB in 8.3 s (145.8 MB/s)
+droid-128-00108: 52 episodes, 31 partitions, 925.1 MB in 6.6 s (140.7 MB/s)
+droid-128-00109: 48 episodes, 31 partitions, 927.4 MB in 6.4 s (144.9 MB/s)
+droid-128-00110: 35 episodes, 27 partitions, 741.4 MB in 5.1 s (144.6 MB/s)
+droid-128-00111: 31 episodes, 22 partitions, 699.0 MB in 5.1 s (136.6 MB/s)
+droid-128-00112: 53 episodes, 34 partitions, 1057.6 MB in 7.7 s (137.1 MB/s)
+droid-128-00113: 50 episodes, 34 partitions, 1141.6 MB in 7.7 s (148.8 MB/s)
+droid-128-00114: 43 episodes, 29 partitions, 820.9 MB in 5.2 s (157.0 MB/s)
+droid-128-00115: 72 episodes, 42 partitions, 1338.5 MB in 8.9 s (150.9 MB/s)
+droid-128-00116: 46 episodes, 22 partitions, 668.1 MB in 4.2 s (160.8 MB/s)
+droid-128-00117: 53 episodes, 33 partitions, 942.4 MB in 6.0 s (157.3 MB/s)
+droid-128-00118: 48 episodes, 23 partitions, 772.8 MB in 4.9 s (159.3 MB/s)
+droid-128-00119: 51 episodes, 33 partitions, 945.2 MB in 6.1 s (155.9 MB/s)
+droid-128-00120: 57 episodes, 32 partitions, 976.0 MB in 6.2 s (157.8 MB/s)
+droid-128-00121: 47 episodes, 28 partitions, 858.3 MB in 5.4 s (158.2 MB/s)
+droid-128-00122: 36 episodes, 22 partitions, 665.6 MB in 4.0 s (165.7 MB/s)
+droid-128-00123: 57 episodes, 36 partitions, 1159.8 MB in 7.7 s (150.4 MB/s)
+droid-128-00124: 39 episodes, 26 partitions, 736.0 MB in 4.6 s (158.9 MB/s)
+droid-128-00125: 46 episodes, 32 partitions, 977.8 MB in 7.3 s (133.9 MB/s)
+droid-128-00126: 43 episodes, 23 partitions, 721.3 MB in 5.2 s (138.6 MB/s)
+droid-128-00127: 38 episodes, 24 partitions, 665.9 MB in 4.7 s (141.0 MB/s)
+droid-128-00128: 45 episodes, 28 partitions, 863.6 MB in 6.0 s (142.8 MB/s)
+droid-128-00129: 34 episodes, 24 partitions, 761.6 MB in 5.6 s (135.0 MB/s)
+droid-128-00130: 45 episodes, 28 partitions, 922.7 MB in 6.7 s (138.5 MB/s)
+droid-128-00131: 45 episodes, 28 partitions, 876.3 MB in 6.5 s (134.4 MB/s)
+droid-128-00132: 49 episodes, 36 partitions, 1153.4 MB in 8.6 s (134.1 MB/s)
+droid-128-00133: 52 episodes, 33 partitions, 968.9 MB in 7.0 s (138.5 MB/s)
+droid-128-00134: 45 episodes, 27 partitions, 841.3 MB in 6.4 s (131.1 MB/s)
+droid-128-00135: 32 episodes, 21 partitions, 638.4 MB in 4.7 s (137.2 MB/s)
+droid-128-00136: 44 episodes, 27 partitions, 891.3 MB in 6.5 s (137.0 MB/s)
+droid-128-00137: 50 episodes, 34 partitions, 1112.1 MB in 7.9 s (141.0 MB/s)
+droid-128-00138: 56 episodes, 32 partitions, 1060.7 MB in 7.7 s (137.9 MB/s)
+droid-128-00139: 45 episodes, 27 partitions, 891.6 MB in 6.7 s (133.1 MB/s)
+droid-128-00140: 42 episodes, 22 partitions, 707.4 MB in 4.9 s (144.8 MB/s)
+droid-128-00141: 41 episodes, 24 partitions, 781.4 MB in 5.6 s (139.3 MB/s)
+droid-128-00142: 44 episodes, 31 partitions, 984.9 MB in 7.1 s (138.4 MB/s)
+droid-128-00143: 52 episodes, 34 partitions, 1064.6 MB in 7.8 s (136.9 MB/s)
+droid-128-00144: 43 episodes, 30 partitions, 943.5 MB in 6.9 s (137.5 MB/s)
+droid-128-00145: 41 episodes, 27 partitions, 815.5 MB in 5.7 s (143.0 MB/s)
+droid-128-00146: 50 episodes, 36 partitions, 1050.1 MB in 8.0 s (130.9 MB/s)
+droid-128-00147: 34 episodes, 23 partitions, 611.9 MB in 4.3 s (141.1 MB/s)
+droid-128-00148: 44 episodes, 29 partitions, 937.0 MB in 6.8 s (138.1 MB/s)
+droid-128-00149: 52 episodes, 35 partitions, 1100.5 MB in 8.2 s (133.4 MB/s)
+droid-128-00150: 46 episodes, 26 partitions, 786.1 MB in 5.9 s (133.2 MB/s)
+droid-128-00151: 40 episodes, 26 partitions, 748.7 MB in 5.2 s (144.9 MB/s)
+droid-128-00152: 49 episodes, 31 partitions, 987.4 MB in 7.0 s (141.9 MB/s)
+droid-128-00153: 47 episodes, 27 partitions, 815.9 MB in 5.8 s (139.5 MB/s)
+droid-128-00154: 45 episodes, 31 partitions, 1028.6 MB in 7.6 s (135.1 MB/s)
+droid-128-00155: 48 episodes, 28 partitions, 907.4 MB in 6.4 s (140.9 MB/s)
+droid-128-00156: 41 episodes, 25 partitions, 774.7 MB in 5.5 s (141.2 MB/s)
+droid-128-00157: 51 episodes, 40 partitions, 1169.2 MB in 8.9 s (131.8 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 79-157 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9204 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave01-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 2971.628630057996, "scheduler_seconds": 1.1792787904123543, "network_tx_bytes": 207472635279, "removed_bytes": 204440984309}
+{"complete": "/results/campaigns/demo3-droid/wave01-disagg/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check cs
+cephdag8 mode cs: 24 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 79-157 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9204 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave01-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "beam-4", "wall_seconds": 873.599481321995, "scheduler_seconds": 75.02330163266015, "network_tx_bytes": 4849258578, "removed_bytes": 204440984309}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 756.847848268997, "scheduler_seconds": 1.3993643719222746, "network_tx_bytes": 2758949148, "removed_bytes": 204440984309}
+{"complete": "/results/campaigns/demo3-droid/wave01-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 79-157 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00079": 25, "droid-128-00080": 41, "droid-128-00081": 29, "droid-128-00082": 33, "droid-128-00083": 30, "droid-128-00084": 26, "droid-128-00085": 16, "droid-128-00086": 34, "droid-128-00087": 33, "droid-128-00088": 22, "droid-128-00089": 28, "droid-128-00090": 27, "droid-128-00091": 26, "droid-128-00092": 24, "droid-128-00093": 35, "droid-128-00094": 24, "droid-128-00095": 23, "droid-128-00096": 23, "droid-128-00097": 34, "droid-128-00098": 27, "droid-128-00099": 31, "droid-128-00100": 25, "droid-128-00101": 27, "droid-128-00102": 38, "droid-128-00103": 28, "droid-128-00104": 22, "droid-128-00105": 30, "droid-128-00106": 32, "droid-128-00107": 36, "droid-128-00108": 31, "droid-128-00109": 31, "droid-128-00110": 27, "droid-128-00111": 22, "droid-128-00112": 34, "droid-128-00113": 34, "droid-128-00114": 29, "droid-128-00115": 42, "droid-128-00116": 22, "droid-128-00117": 33, "droid-128-00118": 23, "droid-128-00119": 33, "droid-128-00120": 32, "droid-128-00121": 28, "droid-128-00122": 22, "droid-128-00123": 36, "droid-128-00124": 26, "droid-128-00125": 32, "droid-128-00126": 23, "droid-128-00127": 24, "droid-128-00128": 28, "droid-128-00129": 24, "droid-128-00130": 28, "droid-128-00131": 28, "droid-128-00132": 36, "droid-128-00133": 33, "droid-128-00134": 27, "droid-128-00135": 21, "droid-128-00136": 27, "droid-128-00137": 34, "droid-128-00138": 32, "droid-128-00139": 27, "droid-128-00140": 22, "droid-128-00141": 24, "droid-128-00142": 31, "droid-128-00143": 34, "droid-128-00144": 30, "droid-128-00145": 27, "droid-128-00146": 36, "droid-128-00147": 23, "droid-128-00148": 29, "droid-128-00149": 35, "droid-128-00150": 26, "droid-128-00151": 26, "droid-128-00152": 31, "droid-128-00153": 27, "droid-128-00154": 31, "droid-128-00155": 28, "droid-128-00156": 25, "droid-128-00157": 40}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 158-236 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00158: 38 episodes, 22 partitions, 720.7 MB in 4.7 s (154.7 MB/s)
+droid-128-00159: 48 episodes, 23 partitions, 706.8 MB in 4.3 s (162.8 MB/s)
+droid-128-00160: 42 episodes, 28 partitions, 907.7 MB in 6.0 s (150.5 MB/s)
+droid-128-00161: 45 episodes, 25 partitions, 765.9 MB in 5.0 s (151.8 MB/s)
+droid-128-00162: 44 episodes, 28 partitions, 888.9 MB in 5.9 s (149.8 MB/s)
+droid-128-00163: 43 episodes, 30 partitions, 921.3 MB in 6.0 s (154.6 MB/s)
+droid-128-00164: 60 episodes, 39 partitions, 1129.7 MB in 7.3 s (154.0 MB/s)
+droid-128-00165: 40 episodes, 22 partitions, 678.6 MB in 4.6 s (147.7 MB/s)
+droid-128-00166: 48 episodes, 29 partitions, 898.6 MB in 6.2 s (144.0 MB/s)
+droid-128-00167: 55 episodes, 31 partitions, 1035.7 MB in 6.8 s (152.4 MB/s)
+droid-128-00168: 50 episodes, 35 partitions, 1095.2 MB in 7.9 s (139.3 MB/s)
+droid-128-00169: 51 episodes, 32 partitions, 1029.0 MB in 7.4 s (139.5 MB/s)
+droid-128-00170: 42 episodes, 26 partitions, 813.4 MB in 5.3 s (152.9 MB/s)
+droid-128-00171: 44 episodes, 23 partitions, 693.5 MB in 4.3 s (162.1 MB/s)
+droid-128-00172: 50 episodes, 34 partitions, 1057.9 MB in 6.9 s (154.0 MB/s)
+droid-128-00173: 46 episodes, 27 partitions, 831.2 MB in 5.3 s (157.5 MB/s)
+droid-128-00174: 53 episodes, 27 partitions, 812.1 MB in 5.2 s (156.1 MB/s)
+droid-128-00175: 39 episodes, 27 partitions, 866.0 MB in 5.6 s (155.1 MB/s)
+droid-128-00176: 44 episodes, 26 partitions, 739.7 MB in 4.5 s (165.9 MB/s)
+droid-128-00177: 51 episodes, 39 partitions, 1255.6 MB in 8.3 s (151.8 MB/s)
+droid-128-00178: 55 episodes, 33 partitions, 1009.2 MB in 6.4 s (157.8 MB/s)
+droid-128-00179: 52 episodes, 26 partitions, 809.5 MB in 5.3 s (152.7 MB/s)
+droid-128-00180: 48 episodes, 32 partitions, 1044.1 MB in 7.4 s (141.9 MB/s)
+droid-128-00181: 45 episodes, 21 partitions, 696.7 MB in 4.4 s (156.8 MB/s)
+droid-128-00182: 56 episodes, 38 partitions, 1122.3 MB in 7.3 s (153.9 MB/s)
+droid-128-00183: 49 episodes, 25 partitions, 801.2 MB in 5.4 s (147.3 MB/s)
+droid-128-00184: 40 episodes, 20 partitions, 660.3 MB in 4.2 s (157.1 MB/s)
+droid-128-00185: 44 episodes, 28 partitions, 869.7 MB in 5.5 s (158.2 MB/s)
+droid-128-00186: 45 episodes, 38 partitions, 1186.4 MB in 7.9 s (149.5 MB/s)
+droid-128-00187: 47 episodes, 30 partitions, 870.7 MB in 5.5 s (157.9 MB/s)
+droid-128-00188: 35 episodes, 22 partitions, 716.7 MB in 4.6 s (156.3 MB/s)
+droid-128-00189: 44 episodes, 32 partitions, 975.3 MB in 6.4 s (152.0 MB/s)
+droid-128-00190: 65 episodes, 45 partitions, 1417.9 MB in 9.3 s (152.9 MB/s)
+droid-128-00191: 51 episodes, 39 partitions, 1286.8 MB in 8.4 s (153.0 MB/s)
+droid-128-00192: 46 episodes, 27 partitions, 813.3 MB in 4.8 s (168.0 MB/s)
+droid-128-00193: 40 episodes, 34 partitions, 1065.0 MB in 7.2 s (147.0 MB/s)
+droid-128-00194: 54 episodes, 39 partitions, 1133.6 MB in 7.3 s (154.6 MB/s)
+droid-128-00195: 39 episodes, 27 partitions, 799.9 MB in 5.2 s (154.4 MB/s)
+droid-128-00196: 44 episodes, 33 partitions, 1021.1 MB in 7.2 s (142.6 MB/s)
+droid-128-00197: 42 episodes, 30 partitions, 943.1 MB in 6.7 s (140.3 MB/s)
+droid-128-00198: 43 episodes, 26 partitions, 758.9 MB in 4.7 s (159.9 MB/s)
+droid-128-00199: 44 episodes, 28 partitions, 808.5 MB in 4.9 s (165.9 MB/s)
+droid-128-00200: 44 episodes, 25 partitions, 731.7 MB in 4.6 s (158.6 MB/s)
+droid-128-00201: 38 episodes, 25 partitions, 801.3 MB in 5.4 s (148.0 MB/s)
+droid-128-00202: 42 episodes, 28 partitions, 817.0 MB in 5.0 s (162.9 MB/s)
+droid-128-00203: 48 episodes, 32 partitions, 987.7 MB in 6.3 s (157.2 MB/s)
+droid-128-00204: 55 episodes, 35 partitions, 1106.0 MB in 7.0 s (158.8 MB/s)
+droid-128-00205: 51 episodes, 28 partitions, 893.3 MB in 5.5 s (162.3 MB/s)
+droid-128-00206: 41 episodes, 25 partitions, 823.9 MB in 5.5 s (150.5 MB/s)
+droid-128-00207: 53 episodes, 37 partitions, 1079.5 MB in 6.8 s (158.0 MB/s)
+droid-128-00208: 50 episodes, 30 partitions, 929.8 MB in 6.5 s (143.5 MB/s)
+droid-128-00209: 46 episodes, 28 partitions, 851.8 MB in 5.7 s (148.4 MB/s)
+droid-128-00210: 51 episodes, 28 partitions, 916.6 MB in 6.5 s (140.2 MB/s)
+droid-128-00211: 51 episodes, 33 partitions, 961.9 MB in 6.5 s (149.0 MB/s)
+droid-128-00212: 62 episodes, 41 partitions, 1231.6 MB in 8.4 s (147.2 MB/s)
+droid-128-00213: 47 episodes, 25 partitions, 807.1 MB in 5.0 s (162.0 MB/s)
+droid-128-00214: 32 episodes, 18 partitions, 584.5 MB in 3.6 s (160.5 MB/s)
+droid-128-00215: 40 episodes, 28 partitions, 882.3 MB in 5.4 s (163.9 MB/s)
+droid-128-00216: 51 episodes, 28 partitions, 911.6 MB in 5.5 s (167.2 MB/s)
+droid-128-00217: 32 episodes, 15 partitions, 477.5 MB in 3.0 s (156.6 MB/s)
+droid-128-00218: 31 episodes, 19 partitions, 629.2 MB in 4.0 s (156.2 MB/s)
+droid-128-00219: 46 episodes, 26 partitions, 781.5 MB in 4.9 s (160.0 MB/s)
+droid-128-00220: 35 episodes, 23 partitions, 672.3 MB in 4.1 s (162.6 MB/s)
+droid-128-00221: 46 episodes, 26 partitions, 835.3 MB in 5.3 s (158.1 MB/s)
+droid-128-00222: 44 episodes, 26 partitions, 860.6 MB in 5.5 s (157.4 MB/s)
+droid-128-00223: 49 episodes, 27 partitions, 769.7 MB in 4.7 s (163.9 MB/s)
+droid-128-00224: 47 episodes, 24 partitions, 764.2 MB in 4.6 s (167.6 MB/s)
+droid-128-00225: 34 episodes, 17 partitions, 512.6 MB in 3.2 s (162.6 MB/s)
+droid-128-00226: 43 episodes, 25 partitions, 749.5 MB in 4.5 s (165.7 MB/s)
+droid-128-00227: 45 episodes, 19 partitions, 633.0 MB in 4.0 s (156.4 MB/s)
+droid-128-00228: 42 episodes, 29 partitions, 889.8 MB in 5.9 s (151.0 MB/s)
+droid-128-00229: 42 episodes, 23 partitions, 731.4 MB in 4.9 s (150.7 MB/s)
+droid-128-00230: 42 episodes, 24 partitions, 753.2 MB in 4.6 s (163.0 MB/s)
+droid-128-00231: 44 episodes, 30 partitions, 885.8 MB in 5.7 s (154.9 MB/s)
+droid-128-00232: 55 episodes, 40 partitions, 1239.2 MB in 7.7 s (161.6 MB/s)
+droid-128-00233: 37 episodes, 28 partitions, 886.1 MB in 5.8 s (152.4 MB/s)
+droid-128-00234: 50 episodes, 28 partitions, 883.3 MB in 5.8 s (153.5 MB/s)
+droid-128-00235: 64 episodes, 42 partitions, 1334.6 MB in 8.4 s (158.3 MB/s)
+droid-128-00236: 40 episodes, 24 partitions, 730.7 MB in 5.1 s (143.8 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 158-236 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9205 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave02-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 787.8077739149958, "scheduler_seconds": 1.3973878488468472, "network_tx_bytes": 2957947106, "removed_bytes": 202093888471}
+{"index": 1, "runs": 2, "scheduler": "beam-4", "wall_seconds": 860.7846263740066, "scheduler_seconds": 80.06287686309224, "network_tx_bytes": 5298587866, "removed_bytes": 202093888471}
+{"complete": "/results/campaigns/demo3-droid/wave02-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 158-236 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9205 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave02-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 2947.1131088050024, "scheduler_seconds": 1.167891689867247, "network_tx_bytes": 205125030340, "removed_bytes": 202093888471}
+{"complete": "/results/campaigns/demo3-droid/wave02-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 158-236 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00158": 22, "droid-128-00159": 23, "droid-128-00160": 28, "droid-128-00161": 25, "droid-128-00162": 28, "droid-128-00163": 30, "droid-128-00164": 39, "droid-128-00165": 22, "droid-128-00166": 29, "droid-128-00167": 31, "droid-128-00168": 35, "droid-128-00169": 32, "droid-128-00170": 26, "droid-128-00171": 23, "droid-128-00172": 34, "droid-128-00173": 27, "droid-128-00174": 27, "droid-128-00175": 27, "droid-128-00176": 26, "droid-128-00177": 39, "droid-128-00178": 33, "droid-128-00179": 26, "droid-128-00180": 32, "droid-128-00181": 21, "droid-128-00182": 38, "droid-128-00183": 25, "droid-128-00184": 20, "droid-128-00185": 28, "droid-128-00186": 38, "droid-128-00187": 30, "droid-128-00188": 22, "droid-128-00189": 32, "droid-128-00190": 45, "droid-128-00191": 39, "droid-128-00192": 27, "droid-128-00193": 34, "droid-128-00194": 39, "droid-128-00195": 27, "droid-128-00196": 33, "droid-128-00197": 30, "droid-128-00198": 26, "droid-128-00199": 28, "droid-128-00200": 25, "droid-128-00201": 25, "droid-128-00202": 28, "droid-128-00203": 32, "droid-128-00204": 35, "droid-128-00205": 28, "droid-128-00206": 25, "droid-128-00207": 37, "droid-128-00208": 30, "droid-128-00209": 28, "droid-128-00210": 28, "droid-128-00211": 33, "droid-128-00212": 41, "droid-128-00213": 25, "droid-128-00214": 18, "droid-128-00215": 28, "droid-128-00216": 28, "droid-128-00217": 15, "droid-128-00218": 19, "droid-128-00219": 26, "droid-128-00220": 23, "droid-128-00221": 26, "droid-128-00222": 26, "droid-128-00223": 27, "droid-128-00224": 24, "droid-128-00225": 17, "droid-128-00226": 25, "droid-128-00227": 19, "droid-128-00228": 29, "droid-128-00229": 23, "droid-128-00230": 24, "droid-128-00231": 30, "droid-128-00232": 40, "droid-128-00233": 28, "droid-128-00234": 28, "droid-128-00235": 42, "droid-128-00236": 24}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 237-315 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00237: 47 episodes, 33 partitions, 939.4 MB in 5.9 s (158.6 MB/s)
+droid-128-00238: 47 episodes, 29 partitions, 850.7 MB in 5.4 s (157.1 MB/s)
+droid-128-00239: 52 episodes, 35 partitions, 1046.2 MB in 6.5 s (160.0 MB/s)
+droid-128-00240: 40 episodes, 28 partitions, 777.5 MB in 4.9 s (158.8 MB/s)
+droid-128-00241: 59 episodes, 33 partitions, 1029.3 MB in 6.7 s (153.3 MB/s)
+droid-128-00242: 43 episodes, 25 partitions, 773.9 MB in 4.8 s (161.7 MB/s)
+droid-128-00243: 44 episodes, 32 partitions, 980.4 MB in 6.6 s (148.6 MB/s)
+droid-128-00244: 42 episodes, 30 partitions, 934.3 MB in 6.2 s (150.4 MB/s)
+droid-128-00245: 47 episodes, 28 partitions, 884.1 MB in 5.9 s (148.7 MB/s)
+droid-128-00246: 50 episodes, 28 partitions, 885.0 MB in 5.6 s (158.6 MB/s)
+droid-128-00247: 43 episodes, 27 partitions, 778.4 MB in 4.8 s (160.8 MB/s)
+droid-128-00248: 43 episodes, 29 partitions, 916.8 MB in 6.1 s (150.9 MB/s)
+droid-128-00249: 50 episodes, 31 partitions, 986.4 MB in 6.7 s (146.5 MB/s)
+droid-128-00250: 56 episodes, 35 partitions, 1116.4 MB in 7.2 s (156.0 MB/s)
+droid-128-00251: 54 episodes, 36 partitions, 1061.9 MB in 6.9 s (155.0 MB/s)
+droid-128-00252: 60 episodes, 39 partitions, 1263.7 MB in 8.0 s (158.3 MB/s)
+droid-128-00253: 51 episodes, 31 partitions, 992.5 MB in 6.3 s (157.4 MB/s)
+droid-128-00254: 38 episodes, 21 partitions, 680.5 MB in 4.3 s (157.6 MB/s)
+droid-128-00255: 42 episodes, 28 partitions, 874.8 MB in 6.0 s (145.3 MB/s)
+droid-128-00256: 47 episodes, 32 partitions, 1023.3 MB in 6.5 s (157.9 MB/s)
+droid-128-00257: 37 episodes, 25 partitions, 803.6 MB in 5.7 s (139.8 MB/s)
+droid-128-00258: 53 episodes, 35 partitions, 1043.6 MB in 6.9 s (150.4 MB/s)
+droid-128-00259: 46 episodes, 34 partitions, 1096.2 MB in 7.2 s (152.6 MB/s)
+droid-128-00260: 45 episodes, 29 partitions, 945.4 MB in 5.8 s (162.2 MB/s)
+droid-128-00261: 46 episodes, 38 partitions, 1121.6 MB in 7.5 s (148.7 MB/s)
+droid-128-00262: 43 episodes, 39 partitions, 1254.2 MB in 8.7 s (144.7 MB/s)
+droid-128-00263: 38 episodes, 28 partitions, 845.0 MB in 5.6 s (151.4 MB/s)
+droid-128-00264: 55 episodes, 38 partitions, 1161.0 MB in 7.7 s (150.4 MB/s)
+droid-128-00265: 56 episodes, 30 partitions, 970.6 MB in 6.0 s (162.4 MB/s)
+droid-128-00266: 41 episodes, 28 partitions, 837.7 MB in 5.6 s (148.7 MB/s)
+droid-128-00267: 44 episodes, 25 partitions, 750.5 MB in 4.8 s (154.8 MB/s)
+droid-128-00268: 43 episodes, 27 partitions, 848.5 MB in 5.5 s (153.1 MB/s)
+droid-128-00269: 55 episodes, 37 partitions, 1152.2 MB in 7.7 s (149.2 MB/s)
+droid-128-00270: 38 episodes, 22 partitions, 729.1 MB in 4.8 s (152.4 MB/s)
+droid-128-00271: 47 episodes, 28 partitions, 858.2 MB in 5.3 s (162.0 MB/s)
+droid-128-00272: 42 episodes, 26 partitions, 867.6 MB in 5.6 s (155.4 MB/s)
+droid-128-00273: 51 episodes, 29 partitions, 974.6 MB in 6.2 s (158.3 MB/s)
+droid-128-00274: 38 episodes, 27 partitions, 833.7 MB in 5.8 s (143.9 MB/s)
+droid-128-00275: 57 episodes, 32 partitions, 1022.8 MB in 6.4 s (159.5 MB/s)
+droid-128-00276: 47 episodes, 27 partitions, 776.3 MB in 4.9 s (157.7 MB/s)
+droid-128-00277: 43 episodes, 30 partitions, 914.8 MB in 6.0 s (152.0 MB/s)
+droid-128-00278: 44 episodes, 24 partitions, 724.9 MB in 4.8 s (149.5 MB/s)
+droid-128-00279: 63 episodes, 35 partitions, 1131.2 MB in 7.4 s (153.2 MB/s)
+droid-128-00280: 52 episodes, 33 partitions, 1004.7 MB in 6.8 s (146.7 MB/s)
+droid-128-00281: 51 episodes, 31 partitions, 1030.2 MB in 6.9 s (150.0 MB/s)
+droid-128-00282: 43 episodes, 26 partitions, 802.9 MB in 4.9 s (163.9 MB/s)
+droid-128-00283: 49 episodes, 28 partitions, 848.7 MB in 5.6 s (150.6 MB/s)
+droid-128-00284: 54 episodes, 30 partitions, 978.6 MB in 6.2 s (157.8 MB/s)
+droid-128-00285: 52 episodes, 32 partitions, 947.7 MB in 6.1 s (156.6 MB/s)
+droid-128-00286: 58 episodes, 29 partitions, 983.3 MB in 6.4 s (152.7 MB/s)
+droid-128-00287: 42 episodes, 32 partitions, 956.0 MB in 6.2 s (153.2 MB/s)
+droid-128-00288: 47 episodes, 29 partitions, 984.4 MB in 6.6 s (148.5 MB/s)
+droid-128-00289: 37 episodes, 26 partitions, 787.5 MB in 5.0 s (158.5 MB/s)
+droid-128-00290: 52 episodes, 36 partitions, 1098.0 MB in 7.2 s (151.7 MB/s)
+droid-128-00291: 43 episodes, 31 partitions, 903.5 MB in 5.9 s (153.4 MB/s)
+droid-128-00292: 36 episodes, 27 partitions, 815.9 MB in 5.6 s (145.7 MB/s)
+droid-128-00293: 38 episodes, 25 partitions, 825.2 MB in 5.4 s (154.2 MB/s)
+droid-128-00294: 49 episodes, 36 partitions, 1066.6 MB in 7.0 s (151.9 MB/s)
+droid-128-00295: 56 episodes, 35 partitions, 1068.7 MB in 6.6 s (160.7 MB/s)
+droid-128-00296: 48 episodes, 27 partitions, 817.5 MB in 5.4 s (150.3 MB/s)
+droid-128-00297: 51 episodes, 30 partitions, 1008.5 MB in 6.8 s (147.3 MB/s)
+droid-128-00298: 49 episodes, 29 partitions, 952.2 MB in 6.0 s (157.4 MB/s)
+droid-128-00299: 38 episodes, 22 partitions, 673.5 MB in 4.4 s (152.9 MB/s)
+droid-128-00300: 49 episodes, 41 partitions, 1289.3 MB in 8.6 s (149.1 MB/s)
+droid-128-00301: 58 episodes, 34 partitions, 1053.1 MB in 6.7 s (157.5 MB/s)
+droid-128-00302: 41 episodes, 20 partitions, 677.6 MB in 4.5 s (152.0 MB/s)
+droid-128-00303: 43 episodes, 24 partitions, 769.4 MB in 5.1 s (149.5 MB/s)
+droid-128-00304: 47 episodes, 40 partitions, 1205.3 MB in 8.4 s (143.7 MB/s)
+droid-128-00305: 48 episodes, 24 partitions, 795.2 MB in 5.0 s (160.2 MB/s)
+droid-128-00306: 59 episodes, 38 partitions, 1177.7 MB in 8.0 s (146.7 MB/s)
+droid-128-00307: 44 episodes, 31 partitions, 944.6 MB in 5.9 s (160.1 MB/s)
+droid-128-00308: 55 episodes, 30 partitions, 886.9 MB in 5.7 s (154.9 MB/s)
+droid-128-00309: 48 episodes, 28 partitions, 837.4 MB in 5.5 s (152.0 MB/s)
+droid-128-00310: 37 episodes, 22 partitions, 690.0 MB in 4.6 s (148.4 MB/s)
+droid-128-00311: 47 episodes, 34 partitions, 975.6 MB in 6.3 s (154.7 MB/s)
+droid-128-00312: 57 episodes, 38 partitions, 1146.3 MB in 7.7 s (148.4 MB/s)
+droid-128-00313: 40 episodes, 24 partitions, 767.4 MB in 5.1 s (149.7 MB/s)
+droid-128-00314: 40 episodes, 17 partitions, 546.0 MB in 3.3 s (166.4 MB/s)
+droid-128-00315: 49 episodes, 29 partitions, 816.5 MB in 5.2 s (156.9 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 237-315 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9206 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave03-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 3099.8060509049974, "scheduler_seconds": 1.2308504814718617, "network_tx_bytes": 216168510398, "removed_bytes": 213024254970}
+{"complete": "/results/campaigns/demo3-droid/wave03-disagg/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 377.2322435605216,
+    "shared_rx": 377.4874732465477
+  },
+  "1": {
+    "shared_tx": 377.951767180722,
+    "shared_rx": 381.7248557038196
+  },
+  "2": {
+    "shared_tx": 377.3351350069928,
+    "shared_rx": 379.5852392939474
+  },
+  "3": {
+    "shared_tx": 377.3350598695134,
+    "shared_rx": 378.2503811090399
+  },
+  "4": {
+    "shared_tx": 376.9242852334275,
+    "shared_rx": 379.5849683408846
+  },
+  "5": {
+    "shared_tx": 376.51287556331715,
+    "shared_rx": 379.584550168174
+  },
+  "6": {
+    "shared_tx": 376.615497322848,
+    "shared_rx": 377.48794972007823
+  },
+  "7": {
+    "shared_tx": 376.30719972254434,
+    "shared_rx": 378.2907054822468
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 237-315 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9206 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave03-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 844.20503448401, "scheduler_seconds": 1.4720684076019097, "network_tx_bytes": 3009842480, "removed_bytes": 213024254970}
+{"index": 1, "runs": 2, "scheduler": "beam-4", "wall_seconds": 928.4497240230121, "scheduler_seconds": 83.7211047164601, "network_tx_bytes": 5338460966, "removed_bytes": 213024254970}
+{"complete": "/results/campaigns/demo3-droid/wave03-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 237-315 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00237": 33, "droid-128-00238": 29, "droid-128-00239": 35, "droid-128-00240": 28, "droid-128-00241": 33, "droid-128-00242": 25, "droid-128-00243": 32, "droid-128-00244": 30, "droid-128-00245": 28, "droid-128-00246": 28, "droid-128-00247": 27, "droid-128-00248": 29, "droid-128-00249": 31, "droid-128-00250": 35, "droid-128-00251": 36, "droid-128-00252": 39, "droid-128-00253": 31, "droid-128-00254": 21, "droid-128-00255": 28, "droid-128-00256": 32, "droid-128-00257": 25, "droid-128-00258": 35, "droid-128-00259": 34, "droid-128-00260": 29, "droid-128-00261": 38, "droid-128-00262": 39, "droid-128-00263": 28, "droid-128-00264": 38, "droid-128-00265": 30, "droid-128-00266": 28, "droid-128-00267": 25, "droid-128-00268": 27, "droid-128-00269": 37, "droid-128-00270": 22, "droid-128-00271": 28, "droid-128-00272": 26, "droid-128-00273": 29, "droid-128-00274": 27, "droid-128-00275": 32, "droid-128-00276": 27, "droid-128-00277": 30, "droid-128-00278": 24, "droid-128-00279": 35, "droid-128-00280": 33, "droid-128-00281": 31, "droid-128-00282": 26, "droid-128-00283": 28, "droid-128-00284": 30, "droid-128-00285": 32, "droid-128-00286": 29, "droid-128-00287": 32, "droid-128-00288": 29, "droid-128-00289": 26, "droid-128-00290": 36, "droid-128-00291": 31, "droid-128-00292": 27, "droid-128-00293": 25, "droid-128-00294": 36, "droid-128-00295": 35, "droid-128-00296": 27, "droid-128-00297": 30, "droid-128-00298": 29, "droid-128-00299": 22, "droid-128-00300": 41, "droid-128-00301": 34, "droid-128-00302": 20, "droid-128-00303": 24, "droid-128-00304": 40, "droid-128-00305": 24, "droid-128-00306": 38, "droid-128-00307": 31, "droid-128-00308": 30, "droid-128-00309": 28, "droid-128-00310": 22, "droid-128-00311": 34, "droid-128-00312": 38, "droid-128-00313": 24, "droid-128-00314": 17, "droid-128-00315": 29}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 316-394 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00316: 39 episodes, 20 partitions, 617.2 MB in 4.0 s (154.0 MB/s)
+droid-128-00317: 40 episodes, 26 partitions, 847.4 MB in 5.6 s (150.5 MB/s)
+droid-128-00318: 35 episodes, 21 partitions, 688.7 MB in 4.4 s (156.4 MB/s)
+droid-128-00319: 46 episodes, 34 partitions, 1003.9 MB in 6.5 s (153.6 MB/s)
+droid-128-00320: 41 episodes, 27 partitions, 844.8 MB in 5.5 s (153.3 MB/s)
+droid-128-00321: 61 episodes, 42 partitions, 1370.0 MB in 9.6 s (142.8 MB/s)
+droid-128-00322: 40 episodes, 30 partitions, 971.0 MB in 6.6 s (146.9 MB/s)
+droid-128-00323: 41 episodes, 24 partitions, 738.0 MB in 4.8 s (152.2 MB/s)
+droid-128-00324: 46 episodes, 33 partitions, 1069.4 MB in 7.6 s (141.4 MB/s)
+droid-128-00325: 42 episodes, 35 partitions, 1073.2 MB in 7.4 s (145.0 MB/s)
+droid-128-00326: 33 episodes, 23 partitions, 721.7 MB in 5.1 s (142.0 MB/s)
+droid-128-00327: 50 episodes, 32 partitions, 1004.7 MB in 6.6 s (153.3 MB/s)
+droid-128-00328: 36 episodes, 20 partitions, 652.8 MB in 4.3 s (152.0 MB/s)
+droid-128-00329: 56 episodes, 34 partitions, 1059.4 MB in 6.5 s (162.4 MB/s)
+droid-128-00330: 44 episodes, 31 partitions, 987.4 MB in 6.8 s (144.4 MB/s)
+droid-128-00331: 40 episodes, 27 partitions, 776.9 MB in 5.0 s (154.5 MB/s)
+droid-128-00332: 50 episodes, 36 partitions, 1050.7 MB in 6.7 s (156.7 MB/s)
+droid-128-00333: 40 episodes, 28 partitions, 845.4 MB in 5.5 s (153.3 MB/s)
+droid-128-00334: 45 episodes, 27 partitions, 815.7 MB in 5.3 s (153.2 MB/s)
+droid-128-00335: 47 episodes, 29 partitions, 988.6 MB in 6.3 s (155.9 MB/s)
+droid-128-00336: 47 episodes, 31 partitions, 969.6 MB in 6.4 s (150.7 MB/s)
+droid-128-00337: 42 episodes, 27 partitions, 841.5 MB in 5.5 s (152.9 MB/s)
+droid-128-00338: 43 episodes, 26 partitions, 788.0 MB in 5.2 s (150.7 MB/s)
+droid-128-00339: 41 episodes, 30 partitions, 941.7 MB in 6.5 s (145.9 MB/s)
+droid-128-00340: 57 episodes, 31 partitions, 924.7 MB in 5.9 s (157.1 MB/s)
+droid-128-00341: 39 episodes, 26 partitions, 785.1 MB in 5.5 s (142.1 MB/s)
+droid-128-00342: 42 episodes, 26 partitions, 762.5 MB in 5.2 s (146.2 MB/s)
+droid-128-00343: 37 episodes, 26 partitions, 771.2 MB in 5.3 s (144.5 MB/s)
+droid-128-00344: 38 episodes, 25 partitions, 814.0 MB in 5.9 s (138.3 MB/s)
+droid-128-00345: 49 episodes, 33 partitions, 1027.8 MB in 7.5 s (137.1 MB/s)
+droid-128-00346: 42 episodes, 23 partitions, 724.8 MB in 5.3 s (135.8 MB/s)
+droid-128-00347: 45 episodes, 30 partitions, 991.7 MB in 6.7 s (148.4 MB/s)
+droid-128-00348: 40 episodes, 23 partitions, 724.1 MB in 4.6 s (156.0 MB/s)
+droid-128-00349: 53 episodes, 32 partitions, 1057.1 MB in 6.9 s (153.7 MB/s)
+droid-128-00350: 49 episodes, 29 partitions, 870.1 MB in 5.7 s (151.6 MB/s)
+droid-128-00351: 48 episodes, 38 partitions, 1155.1 MB in 7.9 s (145.6 MB/s)
+droid-128-00352: 56 episodes, 40 partitions, 1248.8 MB in 8.3 s (151.2 MB/s)
+droid-128-00353: 36 episodes, 25 partitions, 816.3 MB in 5.3 s (155.2 MB/s)
+droid-128-00354: 50 episodes, 27 partitions, 802.8 MB in 4.8 s (165.8 MB/s)
+droid-128-00355: 50 episodes, 32 partitions, 1009.2 MB in 6.4 s (158.5 MB/s)
+droid-128-00356: 37 episodes, 18 partitions, 542.1 MB in 3.3 s (166.1 MB/s)
+droid-128-00357: 59 episodes, 39 partitions, 1215.7 MB in 7.7 s (156.9 MB/s)
+droid-128-00358: 41 episodes, 28 partitions, 845.5 MB in 6.4 s (133.1 MB/s)
+droid-128-00359: 35 episodes, 16 partitions, 492.7 MB in 3.2 s (154.2 MB/s)
+droid-128-00360: 50 episodes, 29 partitions, 889.6 MB in 5.4 s (164.3 MB/s)
+droid-128-00361: 46 episodes, 30 partitions, 914.9 MB in 6.2 s (148.7 MB/s)
+droid-128-00362: 46 episodes, 25 partitions, 812.6 MB in 5.1 s (160.7 MB/s)
+droid-128-00363: 50 episodes, 30 partitions, 938.0 MB in 6.3 s (148.9 MB/s)
+droid-128-00364: 39 episodes, 24 partitions, 785.8 MB in 5.2 s (151.5 MB/s)
+droid-128-00365: 51 episodes, 35 partitions, 1169.8 MB in 7.7 s (151.2 MB/s)
+droid-128-00366: 54 episodes, 33 partitions, 1050.8 MB in 7.1 s (147.5 MB/s)
+droid-128-00367: 45 episodes, 29 partitions, 883.3 MB in 6.2 s (142.8 MB/s)
+droid-128-00368: 40 episodes, 22 partitions, 699.9 MB in 5.3 s (130.8 MB/s)
+droid-128-00369: 35 episodes, 20 partitions, 571.7 MB in 4.0 s (143.8 MB/s)
+droid-128-00370: 48 episodes, 37 partitions, 1217.9 MB in 8.3 s (146.4 MB/s)
+droid-128-00371: 55 episodes, 27 partitions, 874.2 MB in 5.3 s (163.8 MB/s)
+droid-128-00372: 43 episodes, 28 partitions, 899.7 MB in 5.6 s (160.4 MB/s)
+droid-128-00373: 42 episodes, 28 partitions, 856.8 MB in 5.5 s (155.2 MB/s)
+droid-128-00374: 44 episodes, 27 partitions, 819.9 MB in 5.1 s (160.6 MB/s)
+droid-128-00375: 51 episodes, 31 partitions, 987.8 MB in 6.6 s (149.9 MB/s)
+droid-128-00376: 38 episodes, 20 partitions, 643.2 MB in 4.4 s (145.6 MB/s)
+droid-128-00377: 52 episodes, 36 partitions, 1257.3 MB in 8.5 s (148.4 MB/s)
+droid-128-00378: 47 episodes, 32 partitions, 944.7 MB in 6.4 s (148.4 MB/s)
+droid-128-00379: 49 episodes, 31 partitions, 862.9 MB in 5.4 s (159.2 MB/s)
+droid-128-00380: 55 episodes, 36 partitions, 1112.5 MB in 7.8 s (142.5 MB/s)
+droid-128-00381: 45 episodes, 37 partitions, 1106.9 MB in 7.5 s (147.5 MB/s)
+droid-128-00382: 43 episodes, 22 partitions, 722.9 MB in 4.5 s (161.4 MB/s)
+droid-128-00383: 52 episodes, 35 partitions, 1058.7 MB in 6.7 s (157.4 MB/s)
+droid-128-00384: 56 episodes, 36 partitions, 1117.5 MB in 7.2 s (155.8 MB/s)
+droid-128-00385: 52 episodes, 26 partitions, 919.0 MB in 6.0 s (153.2 MB/s)
+droid-128-00386: 44 episodes, 27 partitions, 852.1 MB in 5.3 s (159.5 MB/s)
+droid-128-00387: 49 episodes, 37 partitions, 1153.5 MB in 7.9 s (146.5 MB/s)
+droid-128-00388: 48 episodes, 30 partitions, 887.7 MB in 5.9 s (149.6 MB/s)
+droid-128-00389: 44 episodes, 33 partitions, 1072.1 MB in 7.1 s (150.1 MB/s)
+droid-128-00390: 49 episodes, 29 partitions, 913.2 MB in 5.7 s (159.1 MB/s)
+droid-128-00391: 49 episodes, 31 partitions, 965.2 MB in 6.4 s (150.7 MB/s)
+droid-128-00392: 37 episodes, 21 partitions, 664.2 MB in 4.2 s (156.4 MB/s)
+droid-128-00393: 50 episodes, 33 partitions, 1076.1 MB in 7.0 s (153.6 MB/s)
+droid-128-00394: 49 episodes, 32 partitions, 976.9 MB in 6.9 s (141.3 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 316-394 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9207 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave04-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 829.1192076060106, "scheduler_seconds": 1.430164161734865, "network_tx_bytes": 2683374941, "removed_bytes": 207239319633}
+{"index": 1, "runs": 2, "scheduler": "beam-4", "wall_seconds": 906.2716517039953, "scheduler_seconds": 80.37169503467157, "network_tx_bytes": 5412597684, "removed_bytes": 207239319633}
+{"complete": "/results/campaigns/demo3-droid/wave04-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 316-394 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9207 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave04-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 3059.2188781400037, "scheduler_seconds": 1.209269491926534, "network_tx_bytes": 210411249124, "removed_bytes": 207239319633}
+{"complete": "/results/campaigns/demo3-droid/wave04-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 316-394 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00316": 20, "droid-128-00317": 26, "droid-128-00318": 21, "droid-128-00319": 34, "droid-128-00320": 27, "droid-128-00321": 42, "droid-128-00322": 30, "droid-128-00323": 24, "droid-128-00324": 33, "droid-128-00325": 35, "droid-128-00326": 23, "droid-128-00327": 32, "droid-128-00328": 20, "droid-128-00329": 34, "droid-128-00330": 31, "droid-128-00331": 27, "droid-128-00332": 36, "droid-128-00333": 28, "droid-128-00334": 27, "droid-128-00335": 29, "droid-128-00336": 31, "droid-128-00337": 27, "droid-128-00338": 26, "droid-128-00339": 30, "droid-128-00340": 31, "droid-128-00341": 26, "droid-128-00342": 26, "droid-128-00343": 26, "droid-128-00344": 25, "droid-128-00345": 33, "droid-128-00346": 23, "droid-128-00347": 30, "droid-128-00348": 23, "droid-128-00349": 32, "droid-128-00350": 29, "droid-128-00351": 38, "droid-128-00352": 40, "droid-128-00353": 25, "droid-128-00354": 27, "droid-128-00355": 32, "droid-128-00356": 18, "droid-128-00357": 39, "droid-128-00358": 28, "droid-128-00359": 16, "droid-128-00360": 29, "droid-128-00361": 30, "droid-128-00362": 25, "droid-128-00363": 30, "droid-128-00364": 24, "droid-128-00365": 35, "droid-128-00366": 33, "droid-128-00367": 29, "droid-128-00368": 22, "droid-128-00369": 20, "droid-128-00370": 37, "droid-128-00371": 27, "droid-128-00372": 28, "droid-128-00373": 28, "droid-128-00374": 27, "droid-128-00375": 31, "droid-128-00376": 20, "droid-128-00377": 36, "droid-128-00378": 32, "droid-128-00379": 31, "droid-128-00380": 36, "droid-128-00381": 37, "droid-128-00382": 22, "droid-128-00383": 35, "droid-128-00384": 36, "droid-128-00385": 26, "droid-128-00386": 27, "droid-128-00387": 37, "droid-128-00388": 30, "droid-128-00389": 33, "droid-128-00390": 29, "droid-128-00391": 31, "droid-128-00392": 21, "droid-128-00393": 33, "droid-128-00394": 32}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 395-473 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00395: 55 episodes, 34 partitions, 1048.9 MB in 7.1 s (148.0 MB/s)
+droid-128-00396: 48 episodes, 29 partitions, 949.8 MB in 6.1 s (154.9 MB/s)
+droid-128-00397: 42 episodes, 26 partitions, 883.0 MB in 5.7 s (155.4 MB/s)
+droid-128-00398: 50 episodes, 31 partitions, 939.2 MB in 6.2 s (150.7 MB/s)
+droid-128-00399: 51 episodes, 36 partitions, 1125.8 MB in 7.5 s (151.0 MB/s)
+droid-128-00400: 46 episodes, 32 partitions, 1023.2 MB in 7.5 s (137.0 MB/s)
+droid-128-00401: 38 episodes, 32 partitions, 976.8 MB in 7.2 s (136.5 MB/s)
+droid-128-00402: 37 episodes, 24 partitions, 785.2 MB in 5.6 s (139.6 MB/s)
+droid-128-00403: 53 episodes, 34 partitions, 1128.5 MB in 8.3 s (136.1 MB/s)
+droid-128-00404: 54 episodes, 33 partitions, 961.6 MB in 6.8 s (141.2 MB/s)
+droid-128-00405: 35 episodes, 18 partitions, 538.6 MB in 3.8 s (142.3 MB/s)
+droid-128-00406: 39 episodes, 30 partitions, 839.2 MB in 6.0 s (140.9 MB/s)
+droid-128-00407: 48 episodes, 34 partitions, 941.6 MB in 6.7 s (139.9 MB/s)
+droid-128-00408: 48 episodes, 28 partitions, 915.3 MB in 5.7 s (160.0 MB/s)
+droid-128-00409: 43 episodes, 31 partitions, 997.6 MB in 6.8 s (145.6 MB/s)
+droid-128-00410: 38 episodes, 31 partitions, 907.3 MB in 6.5 s (140.0 MB/s)
+droid-128-00411: 38 episodes, 27 partitions, 810.8 MB in 5.2 s (155.1 MB/s)
+droid-128-00412: 46 episodes, 30 partitions, 906.6 MB in 5.8 s (156.1 MB/s)
+droid-128-00413: 46 episodes, 25 partitions, 858.0 MB in 5.7 s (150.8 MB/s)
+droid-128-00414: 46 episodes, 32 partitions, 946.6 MB in 6.7 s (141.5 MB/s)
+droid-128-00415: 49 episodes, 33 partitions, 1015.2 MB in 6.6 s (154.1 MB/s)
+droid-128-00416: 43 episodes, 23 partitions, 687.8 MB in 4.0 s (171.0 MB/s)
+droid-128-00417: 50 episodes, 27 partitions, 822.4 MB in 5.2 s (159.2 MB/s)
+droid-128-00418: 39 episodes, 24 partitions, 709.9 MB in 4.3 s (166.9 MB/s)
+droid-128-00419: 42 episodes, 25 partitions, 779.2 MB in 5.0 s (155.4 MB/s)
+droid-128-00420: 46 episodes, 33 partitions, 960.8 MB in 6.5 s (147.7 MB/s)
+droid-128-00421: 43 episodes, 32 partitions, 948.3 MB in 6.5 s (146.1 MB/s)
+droid-128-00422: 46 episodes, 25 partitions, 780.9 MB in 5.3 s (147.6 MB/s)
+droid-128-00423: 43 episodes, 35 partitions, 1181.4 MB in 7.8 s (150.9 MB/s)
+droid-128-00424: 49 episodes, 36 partitions, 1113.3 MB in 7.7 s (145.4 MB/s)
+droid-128-00425: 53 episodes, 39 partitions, 1256.7 MB in 8.4 s (150.1 MB/s)
+droid-128-00426: 51 episodes, 29 partitions, 933.8 MB in 6.1 s (152.1 MB/s)
+droid-128-00427: 46 episodes, 32 partitions, 975.3 MB in 6.2 s (156.6 MB/s)
+droid-128-00428: 51 episodes, 38 partitions, 1166.1 MB in 8.1 s (143.2 MB/s)
+droid-128-00429: 50 episodes, 29 partitions, 955.2 MB in 6.2 s (154.5 MB/s)
+droid-128-00430: 31 episodes, 18 partitions, 552.7 MB in 3.4 s (164.6 MB/s)
+droid-128-00431: 42 episodes, 27 partitions, 939.5 MB in 6.1 s (153.2 MB/s)
+droid-128-00432: 46 episodes, 30 partitions, 877.3 MB in 5.5 s (159.9 MB/s)
+droid-128-00433: 50 episodes, 28 partitions, 894.8 MB in 5.6 s (158.6 MB/s)
+droid-128-00434: 65 episodes, 42 partitions, 1252.9 MB in 8.1 s (154.7 MB/s)
+droid-128-00435: 42 episodes, 21 partitions, 695.8 MB in 4.6 s (152.4 MB/s)
+droid-128-00436: 36 episodes, 19 partitions, 612.0 MB in 3.9 s (157.1 MB/s)
+droid-128-00437: 53 episodes, 34 partitions, 1085.3 MB in 7.5 s (145.1 MB/s)
+droid-128-00438: 30 episodes, 18 partitions, 584.3 MB in 3.9 s (149.8 MB/s)
+droid-128-00439: 37 episodes, 24 partitions, 727.1 MB in 4.8 s (152.9 MB/s)
+droid-128-00440: 45 episodes, 26 partitions, 795.4 MB in 5.7 s (139.8 MB/s)
+droid-128-00441: 53 episodes, 27 partitions, 797.8 MB in 5.1 s (155.9 MB/s)
+droid-128-00442: 39 episodes, 26 partitions, 771.0 MB in 5.0 s (155.1 MB/s)
+droid-128-00443: 37 episodes, 28 partitions, 775.1 MB in 5.2 s (148.9 MB/s)
+droid-128-00444: 56 episodes, 33 partitions, 1014.6 MB in 6.4 s (159.1 MB/s)
+droid-128-00445: 39 episodes, 22 partitions, 643.4 MB in 4.3 s (149.1 MB/s)
+droid-128-00446: 49 episodes, 32 partitions, 925.3 MB in 5.6 s (164.4 MB/s)
+droid-128-00447: 46 episodes, 22 partitions, 682.6 MB in 4.5 s (152.9 MB/s)
+droid-128-00448: 41 episodes, 31 partitions, 900.2 MB in 6.1 s (147.9 MB/s)
+droid-128-00449: 51 episodes, 28 partitions, 846.8 MB in 5.3 s (158.9 MB/s)
+droid-128-00450: 52 episodes, 40 partitions, 1108.7 MB in 7.6 s (145.1 MB/s)
+droid-128-00451: 50 episodes, 36 partitions, 1120.9 MB in 7.8 s (143.4 MB/s)
+droid-128-00452: 52 episodes, 35 partitions, 1118.2 MB in 7.5 s (148.3 MB/s)
+droid-128-00453: 62 episodes, 33 partitions, 1036.4 MB in 6.6 s (156.2 MB/s)
+droid-128-00454: 38 episodes, 23 partitions, 716.4 MB in 4.7 s (150.8 MB/s)
+droid-128-00455: 42 episodes, 30 partitions, 943.1 MB in 6.1 s (153.7 MB/s)
+droid-128-00456: 45 episodes, 39 partitions, 1107.0 MB in 7.4 s (150.4 MB/s)
+droid-128-00457: 63 episodes, 37 partitions, 1186.3 MB in 8.0 s (148.0 MB/s)
+droid-128-00458: 53 episodes, 35 partitions, 1173.0 MB in 8.0 s (146.5 MB/s)
+droid-128-00459: 39 episodes, 23 partitions, 680.1 MB in 4.4 s (155.5 MB/s)
+droid-128-00460: 33 episodes, 19 partitions, 604.9 MB in 3.9 s (156.9 MB/s)
+droid-128-00461: 56 episodes, 31 partitions, 989.4 MB in 6.3 s (156.7 MB/s)
+droid-128-00462: 49 episodes, 34 partitions, 919.8 MB in 6.0 s (153.5 MB/s)
+droid-128-00463: 56 episodes, 41 partitions, 1243.2 MB in 8.4 s (147.2 MB/s)
+droid-128-00464: 48 episodes, 34 partitions, 1060.4 MB in 7.4 s (144.2 MB/s)
+droid-128-00465: 44 episodes, 26 partitions, 859.9 MB in 5.6 s (152.9 MB/s)
+droid-128-00466: 48 episodes, 32 partitions, 991.7 MB in 6.7 s (147.4 MB/s)
+droid-128-00467: 37 episodes, 17 partitions, 545.2 MB in 3.4 s (161.4 MB/s)
+droid-128-00468: 41 episodes, 21 partitions, 688.2 MB in 4.6 s (150.2 MB/s)
+droid-128-00469: 45 episodes, 25 partitions, 849.0 MB in 5.6 s (152.7 MB/s)
+droid-128-00470: 41 episodes, 27 partitions, 816.5 MB in 5.6 s (145.6 MB/s)
+droid-128-00471: 46 episodes, 29 partitions, 871.7 MB in 5.7 s (154.2 MB/s)
+droid-128-00472: 55 episodes, 26 partitions, 900.6 MB in 5.8 s (155.9 MB/s)
+droid-128-00473: 47 episodes, 25 partitions, 850.5 MB in 5.4 s (157.2 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 395-473 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9208 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave05-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 3026.450271378999, "scheduler_seconds": 1.2013687451690203, "network_tx_bytes": 209250224974, "removed_bytes": 206182734575}
+{"complete": "/results/campaigns/demo3-droid/wave05-disagg/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check cs
+cephdag8 mode cs: 24 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 395-473 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9208 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave05-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 837.459391929995, "scheduler_seconds": 1.4348764510505134, "network_tx_bytes": 2556001636, "removed_bytes": 206182734575}
+{"index": 1, "runs": 2, "scheduler": "beam-4", "wall_seconds": 923.4715277040086, "scheduler_seconds": 82.87578143198334, "network_tx_bytes": 5178097613, "removed_bytes": 206182734575}
+{"complete": "/results/campaigns/demo3-droid/wave05-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 395-473 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00395": 34, "droid-128-00396": 29, "droid-128-00397": 26, "droid-128-00398": 31, "droid-128-00399": 36, "droid-128-00400": 32, "droid-128-00401": 32, "droid-128-00402": 24, "droid-128-00403": 34, "droid-128-00404": 33, "droid-128-00405": 18, "droid-128-00406": 30, "droid-128-00407": 34, "droid-128-00408": 28, "droid-128-00409": 31, "droid-128-00410": 31, "droid-128-00411": 27, "droid-128-00412": 30, "droid-128-00413": 25, "droid-128-00414": 32, "droid-128-00415": 33, "droid-128-00416": 23, "droid-128-00417": 27, "droid-128-00418": 24, "droid-128-00419": 25, "droid-128-00420": 33, "droid-128-00421": 32, "droid-128-00422": 25, "droid-128-00423": 35, "droid-128-00424": 36, "droid-128-00425": 39, "droid-128-00426": 29, "droid-128-00427": 32, "droid-128-00428": 38, "droid-128-00429": 29, "droid-128-00430": 18, "droid-128-00431": 27, "droid-128-00432": 30, "droid-128-00433": 28, "droid-128-00434": 42, "droid-128-00435": 21, "droid-128-00436": 19, "droid-128-00437": 34, "droid-128-00438": 18, "droid-128-00439": 24, "droid-128-00440": 26, "droid-128-00441": 27, "droid-128-00442": 26, "droid-128-00443": 28, "droid-128-00444": 33, "droid-128-00445": 22, "droid-128-00446": 32, "droid-128-00447": 22, "droid-128-00448": 31, "droid-128-00449": 28, "droid-128-00450": 40, "droid-128-00451": 36, "droid-128-00452": 35, "droid-128-00453": 33, "droid-128-00454": 23, "droid-128-00455": 30, "droid-128-00456": 39, "droid-128-00457": 37, "droid-128-00458": 35, "droid-128-00459": 23, "droid-128-00460": 19, "droid-128-00461": 31, "droid-128-00462": 34, "droid-128-00463": 41, "droid-128-00464": 34, "droid-128-00465": 26, "droid-128-00466": 32, "droid-128-00467": 17, "droid-128-00468": 21, "droid-128-00469": 25, "droid-128-00470": 27, "droid-128-00471": 29, "droid-128-00472": 26, "droid-128-00473": 25}}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.droid_ingest --shards 474-549 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+droid-128-00474: 53 episodes, 33 partitions, 1004.8 MB in 6.6 s (152.0 MB/s)
+droid-128-00475: 42 episodes, 27 partitions, 840.5 MB in 5.3 s (160.0 MB/s)
+droid-128-00476: 43 episodes, 24 partitions, 715.8 MB in 5.0 s (143.1 MB/s)
+droid-128-00477: 39 episodes, 24 partitions, 774.7 MB in 5.1 s (152.3 MB/s)
+droid-128-00478: 39 episodes, 23 partitions, 794.8 MB in 5.4 s (146.5 MB/s)
+droid-128-00479: 56 episodes, 32 partitions, 1043.9 MB in 6.7 s (156.9 MB/s)
+droid-128-00480: 44 episodes, 25 partitions, 767.7 MB in 5.2 s (148.2 MB/s)
+droid-128-00481: 38 episodes, 21 partitions, 639.3 MB in 4.0 s (159.1 MB/s)
+droid-128-00482: 57 episodes, 31 partitions, 1013.7 MB in 6.4 s (158.3 MB/s)
+droid-128-00483: 49 episodes, 25 partitions, 809.9 MB in 5.3 s (152.9 MB/s)
+droid-128-00484: 27 episodes, 17 partitions, 509.5 MB in 3.5 s (146.0 MB/s)
+droid-128-00485: 56 episodes, 30 partitions, 943.9 MB in 6.3 s (150.3 MB/s)
+droid-128-00486: 46 episodes, 27 partitions, 827.3 MB in 5.1 s (160.7 MB/s)
+droid-128-00487: 40 episodes, 23 partitions, 686.9 MB in 4.6 s (149.3 MB/s)
+droid-128-00488: 49 episodes, 27 partitions, 891.6 MB in 5.9 s (150.7 MB/s)
+droid-128-00489: 44 episodes, 25 partitions, 832.4 MB in 5.4 s (154.3 MB/s)
+droid-128-00490: 44 episodes, 25 partitions, 743.2 MB in 5.3 s (140.5 MB/s)
+droid-128-00491: 52 episodes, 33 partitions, 1079.0 MB in 7.1 s (151.3 MB/s)
+droid-128-00492: 50 episodes, 35 partitions, 1003.2 MB in 6.7 s (149.2 MB/s)
+droid-128-00493: 45 episodes, 27 partitions, 821.2 MB in 5.4 s (151.9 MB/s)
+droid-128-00494: 44 episodes, 27 partitions, 881.7 MB in 5.6 s (156.1 MB/s)
+droid-128-00495: 42 episodes, 28 partitions, 810.3 MB in 5.3 s (153.0 MB/s)
+droid-128-00496: 42 episodes, 24 partitions, 859.7 MB in 5.7 s (150.5 MB/s)
+droid-128-00497: 55 episodes, 36 partitions, 1138.4 MB in 7.1 s (160.9 MB/s)
+droid-128-00498: 56 episodes, 37 partitions, 1136.7 MB in 7.9 s (143.9 MB/s)
+droid-128-00499: 46 episodes, 30 partitions, 978.9 MB in 7.2 s (136.4 MB/s)
+droid-128-00500: 47 episodes, 31 partitions, 977.0 MB in 6.9 s (141.1 MB/s)
+droid-128-00501: 51 episodes, 35 partitions, 1221.1 MB in 8.8 s (138.2 MB/s)
+droid-128-00502: 41 episodes, 27 partitions, 806.7 MB in 5.5 s (146.3 MB/s)
+droid-128-00503: 40 episodes, 23 partitions, 728.5 MB in 4.9 s (149.3 MB/s)
+droid-128-00504: 37 episodes, 23 partitions, 739.6 MB in 4.8 s (154.5 MB/s)
+droid-128-00505: 58 episodes, 31 partitions, 966.4 MB in 6.0 s (159.8 MB/s)
+droid-128-00506: 41 episodes, 18 partitions, 549.2 MB in 3.9 s (140.3 MB/s)
+droid-128-00507: 49 episodes, 29 partitions, 945.4 MB in 6.2 s (153.3 MB/s)
+droid-128-00508: 49 episodes, 31 partitions, 955.3 MB in 6.2 s (154.6 MB/s)
+droid-128-00509: 54 episodes, 37 partitions, 1141.4 MB in 7.5 s (152.4 MB/s)
+droid-128-00510: 42 episodes, 26 partitions, 807.1 MB in 5.2 s (155.2 MB/s)
+droid-128-00511: 48 episodes, 29 partitions, 851.5 MB in 5.5 s (156.2 MB/s)
+droid-128-00512: 47 episodes, 27 partitions, 812.0 MB in 5.4 s (150.1 MB/s)
+droid-128-00513: 38 episodes, 26 partitions, 745.2 MB in 5.1 s (146.0 MB/s)
+droid-128-00514: 47 episodes, 29 partitions, 896.3 MB in 6.0 s (149.0 MB/s)
+droid-128-00515: 35 episodes, 19 partitions, 566.7 MB in 4.9 s (116.2 MB/s)
+droid-128-00516: 42 episodes, 28 partitions, 823.3 MB in 5.3 s (154.4 MB/s)
+droid-128-00517: 49 episodes, 28 partitions, 812.4 MB in 5.0 s (161.0 MB/s)
+droid-128-00518: 48 episodes, 31 partitions, 967.1 MB in 7.0 s (138.3 MB/s)
+droid-128-00519: 53 episodes, 33 partitions, 1042.2 MB in 7.4 s (141.0 MB/s)
+droid-128-00520: 31 episodes, 18 partitions, 568.8 MB in 4.2 s (136.2 MB/s)
+droid-128-00521: 53 episodes, 28 partitions, 901.3 MB in 6.4 s (141.0 MB/s)
+droid-128-00522: 36 episodes, 23 partitions, 666.0 MB in 4.7 s (143.2 MB/s)
+droid-128-00523: 43 episodes, 28 partitions, 791.0 MB in 5.8 s (136.6 MB/s)
+droid-128-00524: 44 episodes, 22 partitions, 689.3 MB in 4.9 s (142.0 MB/s)
+droid-128-00525: 33 episodes, 25 partitions, 752.6 MB in 5.0 s (149.0 MB/s)
+droid-128-00526: 48 episodes, 35 partitions, 1022.1 MB in 6.7 s (153.3 MB/s)
+droid-128-00527: 53 episodes, 28 partitions, 797.0 MB in 5.1 s (155.2 MB/s)
+droid-128-00528: 59 episodes, 36 partitions, 1089.6 MB in 7.4 s (147.6 MB/s)
+droid-128-00529: 42 episodes, 24 partitions, 799.9 MB in 5.6 s (144.0 MB/s)
+droid-128-00530: 40 episodes, 29 partitions, 895.9 MB in 6.3 s (141.7 MB/s)
+droid-128-00531: 56 episodes, 37 partitions, 1169.9 MB in 7.9 s (149.0 MB/s)
+droid-128-00532: 47 episodes, 26 partitions, 755.2 MB in 5.5 s (136.3 MB/s)
+droid-128-00533: 54 episodes, 35 partitions, 1079.9 MB in 7.2 s (150.1 MB/s)
+droid-128-00534: 49 episodes, 28 partitions, 869.3 MB in 6.3 s (138.0 MB/s)
+droid-128-00535: 41 episodes, 23 partitions, 761.2 MB in 5.3 s (142.7 MB/s)
+droid-128-00536: 28 episodes, 15 partitions, 529.6 MB in 3.8 s (140.4 MB/s)
+droid-128-00537: 51 episodes, 33 partitions, 986.6 MB in 6.8 s (144.3 MB/s)
+droid-128-00538: 40 episodes, 20 partitions, 644.7 MB in 4.6 s (141.1 MB/s)
+droid-128-00539: 43 episodes, 23 partitions, 689.8 MB in 4.8 s (144.5 MB/s)
+droid-128-00540: 43 episodes, 28 partitions, 820.3 MB in 6.3 s (130.7 MB/s)
+droid-128-00541: 45 episodes, 24 partitions, 778.0 MB in 5.7 s (136.1 MB/s)
+droid-128-00542: 39 episodes, 24 partitions, 734.9 MB in 5.3 s (139.9 MB/s)
+droid-128-00543: 54 episodes, 35 partitions, 1186.4 MB in 8.6 s (137.3 MB/s)
+droid-128-00544: 48 episodes, 30 partitions, 964.5 MB in 6.8 s (141.2 MB/s)
+droid-128-00545: 54 episodes, 32 partitions, 1028.0 MB in 7.4 s (138.4 MB/s)
+droid-128-00546: 49 episodes, 36 partitions, 1025.0 MB in 7.7 s (133.7 MB/s)
+droid-128-00547: 33 episodes, 22 partitions, 676.8 MB in 5.0 s (134.6 MB/s)
+droid-128-00548: 45 episodes, 25 partitions, 807.5 MB in 7.1 s (114.0 MB/s)
+droid-128-00549: 45 episodes, 22 partitions, 715.1 MB in 5.0 s (142.6 MB/s)
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 474-549 --resolution 128 --wave-gib 1000000 --policies data-local,beam-4 --repeats 1 --seed 9209 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-droid/wave06-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "beam-4", "wall_seconds": 847.4074851680052, "scheduler_seconds": 67.04268296706141, "network_tx_bytes": 5268965833, "removed_bytes": 187622818080}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 772.1903805019974, "scheduler_seconds": 1.2897281473706244, "network_tx_bytes": 2615430621, "removed_bytes": 187622818080}
+{"complete": "/results/campaigns/demo3-droid/wave06-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify disagg
+{
+  "0": {
+    "shared_tx": 377.33509721185374,
+    "shared_rx": 377.48719222828294
+  },
+  "1": {
+    "shared_tx": 376.92375778582516,
+    "shared_rx": 378.59902786307833
+  },
+  "2": {
+    "shared_tx": 377.3351729669548,
+    "shared_rx": 379.5848534166565
+  },
+  "3": {
+    "shared_tx": 377.33509717083285,
+    "shared_rx": 377.48807303303056
+  },
+  "4": {
+    "shared_tx": 375.27918119772403,
+    "shared_rx": 377.4891404949418
+  },
+  "5": {
+    "shared_tx": 377.5409184555053,
+    "shared_rx": 377.4876242414314
+  },
+  "6": {
+    "shared_tx": 377.4387060291778,
+    "shared_rx": 377.48803947871266
+  },
+  "7": {
+    "shared_tx": 377.43840409805154,
+    "shared_rx": 377.48739774874355
+  },
+  "8": {
+    "shared_tx": 377.43821542997466,
+    "shared_rx": 378.2501164865693
+  },
+  "9": {
+    "shared_tx": 377.33524843409515,
+    "shared_rx": 377.4881904740795
+  },
+  "10": {
+    "shared_tx": 377.5408805572479,
+    "shared_rx": 377.488005923925
+  },
+  "11": {
+    "shared_tx": 376.8213558063856,
+    "shared_rx": 377.48779788614394
+  },
+  "12": {
+    "shared_tx": 377.3350973350973,
+    "shared_rx": 377.490807749411
+  },
+  "13": {
+    "shared_tx": 376.8211674468334,
+    "shared_rx": 377.4880772275317
+  },
+  "14": {
+    "shared_tx": 376.9241723410305,
+    "shared_rx": 379.58535254039793
+  },
+  "15": {
+    "shared_tx": 377.3353238188314,
+    "shared_rx": 377.48626529889407
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload droid --droid-shards 474-549 --resolution 128 --wave-gib 1000000 --policies heft --repeats 1 --seed 9209 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-droid/wave06-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "heft", "wall_seconds": 2751.5717082399933, "scheduler_seconds": 1.1081540293380385, "network_tx_bytes": 190463629860, "removed_bytes": 187622818080}
+{"complete": "/results/campaigns/demo3-droid/wave06-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete --droid-shards 474-549 --resolution 128 --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"droid-128-00474": 33, "droid-128-00475": 27, "droid-128-00476": 24, "droid-128-00477": 24, "droid-128-00478": 23, "droid-128-00479": 32, "droid-128-00480": 25, "droid-128-00481": 21, "droid-128-00482": 31, "droid-128-00483": 25, "droid-128-00484": 17, "droid-128-00485": 30, "droid-128-00486": 27, "droid-128-00487": 23, "droid-128-00488": 27, "droid-128-00489": 25, "droid-128-00490": 25, "droid-128-00491": 33, "droid-128-00492": 35, "droid-128-00493": 27, "droid-128-00494": 27, "droid-128-00495": 28, "droid-128-00496": 24, "droid-128-00497": 36, "droid-128-00498": 37, "droid-128-00499": 30, "droid-128-00500": 31, "droid-128-00501": 35, "droid-128-00502": 27, "droid-128-00503": 23, "droid-128-00504": 23, "droid-128-00505": 31, "droid-128-00506": 18, "droid-128-00507": 29, "droid-128-00508": 31, "droid-128-00509": 37, "droid-128-00510": 26, "droid-128-00511": 29, "droid-128-00512": 27, "droid-128-00513": 26, "droid-128-00514": 29, "droid-128-00515": 19, "droid-128-00516": 28, "droid-128-00517": 28, "droid-128-00518": 31, "droid-128-00519": 33, "droid-128-00520": 18, "droid-128-00521": 28, "droid-128-00522": 23, "droid-128-00523": 28, "droid-128-00524": 22, "droid-128-00525": 25, "droid-128-00526": 35, "droid-128-00527": 28, "droid-128-00528": 36, "droid-128-00529": 24, "droid-128-00530": 29, "droid-128-00531": 37, "droid-128-00532": 26, "droid-128-00533": 35, "droid-128-00534": 28, "droid-128-00535": 23, "droid-128-00536": 15, "droid-128-00537": 33, "droid-128-00538": 20, "droid-128-00539": 23, "droid-128-00540": 28, "droid-128-00541": 24, "droid-128-00542": 24, "droid-128-00543": 35, "droid-128-00544": 30, "droid-128-00545": 32, "droid-128-00546": 36, "droid-128-00547": 22, "droid-128-00548": 25, "droid-128-00549": 22}}
+# exit 0

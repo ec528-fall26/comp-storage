@@ -1,0 +1,76 @@
+{
+  "compute": {
+    "fixed_seconds": 0.0,
+    "input_seconds_per_byte": 0.0,
+    "iteration_seconds_per_byte": 4.8612299728742e-10,
+    "output_seconds_per_byte": 5.189094921129828e-10,
+    "functions": {
+      "decode_resize@1": {
+        "fixed_seconds": 0.0,
+        "input_seconds_per_byte": 3.674721426111195e-09,
+        "output_seconds_per_byte": 5.6293263781421826e-09
+      },
+      "encode_video@1": {
+        "fixed_seconds": 0.007099519145671044,
+        "input_seconds_per_byte": 5.603320053933197e-09,
+        "output_seconds_per_byte": 1.4530510017841616e-08
+      },
+      "frame_stats@1": {
+        "fixed_seconds": 0.0007759524317407041,
+        "input_seconds_per_byte": 5.048079799515148e-09,
+        "output_seconds_per_byte": 0.0
+      },
+      "state_parquet@1": {
+        "fixed_seconds": 0.0,
+        "input_seconds_per_byte": 2.2176799732091452e-07,
+        "output_seconds_per_byte": 0.0
+      }
+    }
+  },
+  "storage": {
+    "read_bps": [
+      256067082.02680355,
+      279929536.3170603,
+      261308569.9622171,
+      324281742.6810348,
+      259031209.8095638,
+      263424074.3028081,
+      263358371.16734415,
+      316303627.2872095
+    ],
+    "write_bps": [
+      471013529.0605374,
+      462163186.7636318,
+      471025757.82673234,
+      415167098.368747,
+      384118316.7199557,
+      481848943.48940504,
+      409698468.6685179,
+      468010837.5551797
+    ]
+  },
+  "network": {
+    "tx_bps": [
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0
+    ],
+    "rx_bps": [
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0,
+      47087500.0
+    ]
+  },
+  "calibrated": true,
+  "calibration_id": "0fa9091b77bb4c61875970edea1d4024"
+}

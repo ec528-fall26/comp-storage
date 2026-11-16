@@ -1,0 +1,3200 @@
+{
+  "args": {
+    "workload": "droid",
+    "iterations": "None",
+    "ratio": "None",
+    "droid_shards": "range(500, 508)",
+    "resolution": "128",
+    "droid_fused": "True",
+    "wave_gib": "1000000.0",
+    "policies": "fifo-hash",
+    "repeats": "1",
+    "seed": "9903",
+    "budget_ms": "None",
+    "dataset_gib": "0.0625",
+    "source_gib": "None",
+    "shard_mib": "8",
+    "dataset": "None",
+    "placement": "0,0,1,2",
+    "no_warm": "True",
+    "models": "/results/derived-models/cephdag8-disagg-fused/models.json",
+    "validation": "None",
+    "bandwidth_mbit": "None",
+    "cluster": "cephdag/clusters/cephdag8-disagg.json",
+    "ceph_data": "/var/lib/ceph",
+    "output": "/results/campaigns/sched-droid/wave00-fused-disagg/a1"
+  },
+  "case": {
+    "shape": "droid",
+    "resolution": 128,
+    "fused": true,
+    "wave": 0,
+    "waves": 1,
+    "steps": [
+      390,
+      425,
+      428,
+      203,
+      596,
+      502,
+      448,
+      438,
+      596,
+      560,
+      382,
+      417,
+      421,
+      548,
+      493,
+      506,
+      574,
+      531,
+      436,
+      322,
+      596,
+      563,
+      372,
+      596,
+      445,
+      584,
+      551,
+      223,
+      550,
+      90,
+      536,
+      519,
+      498,
+      596,
+      408,
+      442,
+      427,
+      287,
+      331,
+      525,
+      507,
+      516,
+      596,
+      306,
+      545,
+      537,
+      534,
+      440,
+      545,
+      586,
+      569,
+      596,
+      494,
+      507,
+      596,
+      382,
+      462,
+      452,
+      287,
+      485,
+      505,
+      517,
+      596,
+      507,
+      596,
+      576,
+      592,
+      447,
+      569,
+      513,
+      579,
+      363,
+      240,
+      575,
+      357,
+      295,
+      596,
+      411,
+      511,
+      596,
+      544,
+      230,
+      487,
+      345,
+      563,
+      426,
+      179,
+      522,
+      520,
+      85,
+      596,
+      505,
+      180,
+      582,
+      552,
+      578,
+      370,
+      252,
+      548,
+      432,
+      524,
+      468,
+      438,
+      244,
+      596,
+      591,
+      367,
+      578,
+      430,
+      515,
+      532,
+      463,
+      203,
+      563,
+      553,
+      156,
+      596,
+      489,
+      565,
+      596,
+      554,
+      549,
+      353,
+      527,
+      105,
+      596,
+      574,
+      461,
+      497,
+      316,
+      596,
+      444,
+      311,
+      480,
+      373,
+      272,
+      541,
+      560,
+      361,
+      225,
+      521,
+      593,
+      353,
+      522,
+      389,
+      406,
+      401,
+      563,
+      333,
+      543,
+      364,
+      545,
+      588,
+      486,
+      584,
+      282,
+      474,
+      587,
+      519,
+      578,
+      593,
+      338,
+      596,
+      387,
+      230,
+      596,
+      596,
+      519,
+      523,
+      428,
+      412,
+      595,
+      489,
+      548,
+      539,
+      423,
+      423,
+      434,
+      522,
+      532,
+      563,
+      120,
+      596,
+      480,
+      574,
+      509,
+      596,
+      438,
+      472,
+      193,
+      596,
+      596,
+      440,
+      480,
+      508,
+      439,
+      548,
+      466,
+      412,
+      404,
+      445,
+      495,
+      350,
+      309,
+      398,
+      442,
+      596,
+      558,
+      558,
+      596,
+      489,
+      565,
+      482,
+      148,
+      581,
+      563,
+      474
+    ],
+    "sources": [
+      [
+        "droid-128-00500",
+        0
+      ],
+      [
+        "droid-128-00500",
+        1
+      ],
+      [
+        "droid-128-00500",
+        2
+      ],
+      [
+        "droid-128-00500",
+        3
+      ],
+      [
+        "droid-128-00500",
+        4
+      ],
+      [
+        "droid-128-00500",
+        5
+      ],
+      [
+        "droid-128-00500",
+        6
+      ],
+      [
+        "droid-128-00500",
+        7
+      ],
+      [
+        "droid-128-00500",
+        8
+      ],
+      [
+        "droid-128-00500",
+        9
+      ],
+      [
+        "droid-128-00500",
+        10
+      ],
+      [
+        "droid-128-00500",
+        11
+      ],
+      [
+        "droid-128-00500",
+        12
+      ],
+      [
+        "droid-128-00500",
+        13
+      ],
+      [
+        "droid-128-00500",
+        14
+      ],
+      [
+        "droid-128-00500",
+        15
+      ],
+      [
+        "droid-128-00500",
+        16
+      ],
+      [
+        "droid-128-00500",
+        17
+      ],
+      [
+        "droid-128-00500",
+        18
+      ],
+      [
+        "droid-128-00500",
+        19
+      ],
+      [
+        "droid-128-00500",
+        20
+      ],
+      [
+        "droid-128-00500",
+        21
+      ],
+      [
+        "droid-128-00500",
+        22
+      ],
+      [
+        "droid-128-00500",
+        23
+      ],
+      [
+        "droid-128-00500",
+        24
+      ],
+      [
+        "droid-128-00500",
+        25
+      ],
+      [
+        "droid-128-00500",
+        26
+      ],
+      [
+        "droid-128-00500",
+        27
+      ],
+      [
+        "droid-128-00500",
+        28
+      ],
+      [
+        "droid-128-00500",
+        29
+      ],
+      [
+        "droid-128-00500",
+        30
+      ],
+      [
+        "droid-128-00501",
+        0
+      ],
+      [
+        "droid-128-00501",
+        1
+      ],
+      [
+        "droid-128-00501",
+        2
+      ],
+      [
+        "droid-128-00501",
+        3
+      ],
+      [
+        "droid-128-00501",
+        4
+      ],
+      [
+        "droid-128-00501",
+        5
+      ],
+      [
+        "droid-128-00501",
+        6
+      ],
+      [
+        "droid-128-00501",
+        7
+      ],
+      [
+        "droid-128-00501",
+        8
+      ],
+      [
+        "droid-128-00501",
+        9
+      ],
+      [
+        "droid-128-00501",
+        10
+      ],
+      [
+        "droid-128-00501",
+        11
+      ],
+      [
+        "droid-128-00501",
+        12
+      ],
+      [
+        "droid-128-00501",
+        13
+      ],
+      [
+        "droid-128-00501",
+        14
+      ],
+      [
+        "droid-128-00501",
+        15
+      ],
+      [
+        "droid-128-00501",
+        16
+      ],
+      [
+        "droid-128-00501",
+        17
+      ],
+      [
+        "droid-128-00501",
+        18
+      ],
+      [
+        "droid-128-00501",
+        19
+      ],
+      [
+        "droid-128-00501",
+        20
+      ],
+      [
+        "droid-128-00501",
+        21
+      ],
+      [
+        "droid-128-00501",
+        22
+      ],
+      [
+        "droid-128-00501",
+        23
+      ],
+      [
+        "droid-128-00501",
+        24
+      ],
+      [
+        "droid-128-00501",
+        25
+      ],
+      [
+        "droid-128-00501",
+        26
+      ],
+      [
+        "droid-128-00501",
+        27
+      ],
+      [
+        "droid-128-00501",
+        28
+      ],
+      [
+        "droid-128-00501",
+        29
+      ],
+      [
+        "droid-128-00501",
+        30
+      ],
+      [
+        "droid-128-00501",
+        31
+      ],
+      [
+        "droid-128-00501",
+        32
+      ],
+      [
+        "droid-128-00501",
+        33
+      ],
+      [
+        "droid-128-00501",
+        34
+      ],
+      [
+        "droid-128-00502",
+        0
+      ],
+      [
+        "droid-128-00502",
+        1
+      ],
+      [
+        "droid-128-00502",
+        2
+      ],
+      [
+        "droid-128-00502",
+        3
+      ],
+      [
+        "droid-128-00502",
+        4
+      ],
+      [
+        "droid-128-00502",
+        5
+      ],
+      [
+        "droid-128-00502",
+        6
+      ],
+      [
+        "droid-128-00502",
+        7
+      ],
+      [
+        "droid-128-00502",
+        8
+      ],
+      [
+        "droid-128-00502",
+        9
+      ],
+      [
+        "droid-128-00502",
+        10
+      ],
+      [
+        "droid-128-00502",
+        11
+      ],
+      [
+        "droid-128-00502",
+        12
+      ],
+      [
+        "droid-128-00502",
+        13
+      ],
+      [
+        "droid-128-00502",
+        14
+      ],
+      [
+        "droid-128-00502",
+        15
+      ],
+      [
+        "droid-128-00502",
+        16
+      ],
+      [
+        "droid-128-00502",
+        17
+      ],
+      [
+        "droid-128-00502",
+        18
+      ],
+      [
+        "droid-128-00502",
+        19
+      ],
+      [
+        "droid-128-00502",
+        20
+      ],
+      [
+        "droid-128-00502",
+        21
+      ],
+      [
+        "droid-128-00502",
+        22
+      ],
+      [
+        "droid-128-00502",
+        23
+      ],
+      [
+        "droid-128-00502",
+        24
+      ],
+      [
+        "droid-128-00502",
+        25
+      ],
+      [
+        "droid-128-00502",
+        26
+      ],
+      [
+        "droid-128-00503",
+        0
+      ],
+      [
+        "droid-128-00503",
+        1
+      ],
+      [
+        "droid-128-00503",
+        2
+      ],
+      [
+        "droid-128-00503",
+        3
+      ],
+      [
+        "droid-128-00503",
+        4
+      ],
+      [
+        "droid-128-00503",
+        5
+      ],
+      [
+        "droid-128-00503",
+        6
+      ],
+      [
+        "droid-128-00503",
+        7
+      ],
+      [
+        "droid-128-00503",
+        8
+      ],
+      [
+        "droid-128-00503",
+        9
+      ],
+      [
+        "droid-128-00503",
+        10
+      ],
+      [
+        "droid-128-00503",
+        11
+      ],
+      [
+        "droid-128-00503",
+        12
+      ],
+      [
+        "droid-128-00503",
+        13
+      ],
+      [
+        "droid-128-00503",
+        14
+      ],
+      [
+        "droid-128-00503",
+        15
+      ],
+      [
+        "droid-128-00503",
+        16
+      ],
+      [
+        "droid-128-00503",
+        17
+      ],
+      [
+        "droid-128-00503",
+        18
+      ],
+      [
+        "droid-128-00503",
+        19
+      ],
+      [
+        "droid-128-00503",
+        20
+      ],
+      [
+        "droid-128-00503",
+        21
+      ],
+      [
+        "droid-128-00503",
+        22
+      ],
+      [
+        "droid-128-00504",
+        0
+      ],
+      [
+        "droid-128-00504",
+        1
+      ],
+      [
+        "droid-128-00504",
+        2
+      ],
+      [
+        "droid-128-00504",
+        3
+      ],
+      [
+        "droid-128-00504",
+        4
+      ],
+      [
+        "droid-128-00504",
+        5
+      ],
+      [
+        "droid-128-00504",
+        6
+      ],
+      [
+        "droid-128-00504",
+        7
+      ],
+      [
+        "droid-128-00504",
+        8
+      ],
+      [
+        "droid-128-00504",
+        9
+      ],
+      [
+        "droid-128-00504",
+        10
+      ],
+      [
+        "droid-128-00504",
+        11
+      ],
+      [
+        "droid-128-00504",
+        12
+      ],
+      [
+        "droid-128-00504",
+        13
+      ],
+      [
+        "droid-128-00504",
+        14
+      ],
+      [
+        "droid-128-00504",
+        15
+      ],
+      [
+        "droid-128-00504",
+        16
+      ],
+      [
+        "droid-128-00504",
+        17
+      ],
+      [
+        "droid-128-00504",
+        18
+      ],
+      [
+        "droid-128-00504",
+        19
+      ],
+      [
+        "droid-128-00504",
+        20
+      ],
+      [
+        "droid-128-00504",
+        21
+      ],
+      [
+        "droid-128-00504",
+        22
+      ],
+      [
+        "droid-128-00505",
+        0
+      ],
+      [
+        "droid-128-00505",
+        1
+      ],
+      [
+        "droid-128-00505",
+        2
+      ],
+      [
+        "droid-128-00505",
+        3
+      ],
+      [
+        "droid-128-00505",
+        4
+      ],
+      [
+        "droid-128-00505",
+        5
+      ],
+      [
+        "droid-128-00505",
+        6
+      ],
+      [
+        "droid-128-00505",
+        7
+      ],
+      [
+        "droid-128-00505",
+        8
+      ],
+      [
+        "droid-128-00505",
+        9
+      ],
+      [
+        "droid-128-00505",
+        10
+      ],
+      [
+        "droid-128-00505",
+        11
+      ],
+      [
+        "droid-128-00505",
+        12
+      ],
+      [
+        "droid-128-00505",
+        13
+      ],
+      [
+        "droid-128-00505",
+        14
+      ],
+      [
+        "droid-128-00505",
+        15
+      ],
+      [
+        "droid-128-00505",
+        16
+      ],
+      [
+        "droid-128-00505",
+        17
+      ],
+      [
+        "droid-128-00505",
+        18
+      ],
+      [
+        "droid-128-00505",
+        19
+      ],
+      [
+        "droid-128-00505",
+        20
+      ],
+      [
+        "droid-128-00505",
+        21
+      ],
+      [
+        "droid-128-00505",
+        22
+      ],
+      [
+        "droid-128-00505",
+        23
+      ],
+      [
+        "droid-128-00505",
+        24
+      ],
+      [
+        "droid-128-00505",
+        25
+      ],
+      [
+        "droid-128-00505",
+        26
+      ],
+      [
+        "droid-128-00505",
+        27
+      ],
+      [
+        "droid-128-00505",
+        28
+      ],
+      [
+        "droid-128-00505",
+        29
+      ],
+      [
+        "droid-128-00505",
+        30
+      ],
+      [
+        "droid-128-00506",
+        0
+      ],
+      [
+        "droid-128-00506",
+        1
+      ],
+      [
+        "droid-128-00506",
+        2
+      ],
+      [
+        "droid-128-00506",
+        3
+      ],
+      [
+        "droid-128-00506",
+        4
+      ],
+      [
+        "droid-128-00506",
+        5
+      ],
+      [
+        "droid-128-00506",
+        6
+      ],
+      [
+        "droid-128-00506",
+        7
+      ],
+      [
+        "droid-128-00506",
+        8
+      ],
+      [
+        "droid-128-00506",
+        9
+      ],
+      [
+        "droid-128-00506",
+        10
+      ],
+      [
+        "droid-128-00506",
+        11
+      ],
+      [
+        "droid-128-00506",
+        12
+      ],
+      [
+        "droid-128-00506",
+        13
+      ],
+      [
+        "droid-128-00506",
+        14
+      ],
+      [
+        "droid-128-00506",
+        15
+      ],
+      [
+        "droid-128-00506",
+        16
+      ],
+      [
+        "droid-128-00506",
+        17
+      ],
+      [
+        "droid-128-00507",
+        0
+      ],
+      [
+        "droid-128-00507",
+        1
+      ],
+      [
+        "droid-128-00507",
+        2
+      ],
+      [
+        "droid-128-00507",
+        3
+      ],
+      [
+        "droid-128-00507",
+        4
+      ],
+      [
+        "droid-128-00507",
+        5
+      ],
+      [
+        "droid-128-00507",
+        6
+      ],
+      [
+        "droid-128-00507",
+        7
+      ],
+      [
+        "droid-128-00507",
+        8
+      ],
+      [
+        "droid-128-00507",
+        9
+      ],
+      [
+        "droid-128-00507",
+        10
+      ],
+      [
+        "droid-128-00507",
+        11
+      ],
+      [
+        "droid-128-00507",
+        12
+      ],
+      [
+        "droid-128-00507",
+        13
+      ],
+      [
+        "droid-128-00507",
+        14
+      ],
+      [
+        "droid-128-00507",
+        15
+      ],
+      [
+        "droid-128-00507",
+        16
+      ],
+      [
+        "droid-128-00507",
+        17
+      ],
+      [
+        "droid-128-00507",
+        18
+      ],
+      [
+        "droid-128-00507",
+        19
+      ],
+      [
+        "droid-128-00507",
+        20
+      ],
+      [
+        "droid-128-00507",
+        21
+      ],
+      [
+        "droid-128-00507",
+        22
+      ],
+      [
+        "droid-128-00507",
+        23
+      ],
+      [
+        "droid-128-00507",
+        24
+      ],
+      [
+        "droid-128-00507",
+        25
+      ],
+      [
+        "droid-128-00507",
+        26
+      ],
+      [
+        "droid-128-00507",
+        27
+      ],
+      [
+        "droid-128-00507",
+        28
+      ]
+    ]
+  },
+  "rows": [
+    {
+      "repeat": 0,
+      "scheduler": "fifo-hash"
+    }
+  ],
+  "models": {
+    "compute": {
+      "fixed_seconds": 0.006754815932318927,
+      "input_seconds_per_byte": 4.117212739514673e-10,
+      "iteration_seconds_per_byte": 6.027821354062238e-11,
+      "output_seconds_per_byte": 1.1417312506058432e-10,
+      "functions": {
+        "decode_resize@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 4.044012801548095e-09,
+          "output_seconds_per_byte": 5.531258251183607e-09
+        },
+        "droid_fused@1": {
+          "fixed_seconds": 0.0016646810430393905,
+          "input_seconds_per_byte": 4.9820486009846376e-08,
+          "output_seconds_per_byte": 0.0
+        },
+        "encode_video@1": {
+          "fixed_seconds": 0.0005263369923886998,
+          "input_seconds_per_byte": 5.986832209455886e-09,
+          "output_seconds_per_byte": 1.353465639928019e-08
+        },
+        "frame_stats@1": {
+          "fixed_seconds": 0.0011383440506506906,
+          "input_seconds_per_byte": 5.037090972915627e-09,
+          "output_seconds_per_byte": 0.0
+        },
+        "state_parquet@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 2.1985737742869518e-07,
+          "output_seconds_per_byte": 0.0
+        }
+      }
+    },
+    "storage": {
+      "read_bps": [
+        263886701.59202722,
+        306417941.7969698,
+        323470219.8848858,
+        391811893.1032842,
+        375030281.3699396,
+        310277137.1483851,
+        332158058.2794343,
+        282431612.11467737,
+        316873678.5166354,
+        316873678.5166354,
+        316873678.5166354,
+        316873678.5166354,
+        316873678.5166354,
+        316873678.5166354,
+        316873678.5166354,
+        316873678.5166354
+      ],
+      "write_bps": [
+        469930585.7883295,
+        455803892.47028834,
+        397041328.81203914,
+        381300701.60106003,
+        370108991.1361739,
+        424371291.2772804,
+        431465493.52995986,
+        478702233.4808687,
+        427918392.4036201,
+        427918392.4036201,
+        427918392.4036201,
+        427918392.4036201,
+        427918392.4036201,
+        427918392.4036201,
+        427918392.4036201,
+        427918392.4036201
+      ]
+    },
+    "network": {
+      "tx_bps": [
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0
+      ],
+      "rx_bps": [
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0
+      ]
+    },
+    "calibrated": true,
+    "calibration_id": "1c0a3e7a50a34638aefaceabc4bb48e9+fused"
+  },
+  "dataset": {
+    "name": "droid-wave-0",
+    "shards": [
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000000",
+        "size": 22108335,
+        "dtype": "droid-episodes",
+        "partition": 0,
+        "sha256": "ff8c69260707e55266d604b119efac4298bae7e0149871902801d38155e712c0"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000001",
+        "size": 23809919,
+        "dtype": "droid-episodes",
+        "partition": 1,
+        "sha256": "51c5562c6b9f0affa2cd45a584272e7cf63a65794400054e20e32ec58b6a92da"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000002",
+        "size": 26609006,
+        "dtype": "droid-episodes",
+        "partition": 2,
+        "sha256": "724756814ea627e33057a1c78734ce6e75850ac0d92ca4842471891c2db1293e"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000003",
+        "size": 13576913,
+        "dtype": "droid-episodes",
+        "partition": 3,
+        "sha256": "f08a6d2e435f4ea4821589280c7be4df78f595acbe67d7b7761673e1f14028cc"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000004",
+        "size": 47208442,
+        "dtype": "droid-episodes",
+        "partition": 4,
+        "sha256": "48d32279df233d77772149f02a86d20f72f8be889984df2415b138fd887d4611"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00500/part-000005",
+        "size": 38923933,
+        "dtype": "droid-episodes",
+        "partition": 5,
+        "sha256": "79f6171ebf126f143d2e46ebed288fcbe07dc8d9f5e2b3889f9ee6671c3465cf"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00500/part-000006",
+        "size": 23793661,
+        "dtype": "droid-episodes",
+        "partition": 6,
+        "sha256": "6ab5f92e484c7ed099030fb4286476796ea534187f92757074a3e6ec4dfde0aa"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00500/part-000007",
+        "size": 22747886,
+        "dtype": "droid-episodes",
+        "partition": 7,
+        "sha256": "78a1eac95cddf3162436741292ba43e0fe60dcc9834bc292176b39fef4d2237e"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00500/part-000008",
+        "size": 44775810,
+        "dtype": "droid-episodes",
+        "partition": 8,
+        "sha256": "193e9d48bfcfa94831793dde8ece255763ac743a37dd51cfb51301139d65946b"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00500/part-000009",
+        "size": 41404066,
+        "dtype": "droid-episodes",
+        "partition": 9,
+        "sha256": "b45375f909a6b2d563ff436df144fa4cb43f2267bac12c4c837030d406fcdd2c"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00500/part-000010",
+        "size": 25629373,
+        "dtype": "droid-episodes",
+        "partition": 10,
+        "sha256": "169d4519b8a2a69af6063cbf53bb1aa6c18707c442e413733be53b725264691f"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00500/part-000011",
+        "size": 28568908,
+        "dtype": "droid-episodes",
+        "partition": 11,
+        "sha256": "d62fed4040eba7ad91806d48b878033eb0abb64295f639d838af5a2da5ebe9d4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000012",
+        "size": 29151224,
+        "dtype": "droid-episodes",
+        "partition": 12,
+        "sha256": "2150ce943fe411fc19399defe16bc7c2a5a496f8ceb6df74db499eb1838803c3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000013",
+        "size": 41487160,
+        "dtype": "droid-episodes",
+        "partition": 13,
+        "sha256": "90d990cf25b1c8c2b25769745d6ce345a6a4f34d2fff4bc32f710eb4308f129a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000014",
+        "size": 42447942,
+        "dtype": "droid-episodes",
+        "partition": 14,
+        "sha256": "701c792a38c0126e9c749d9023efd348a0a76670be29aa9bb3fb08d27151925f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000015",
+        "size": 35710341,
+        "dtype": "droid-episodes",
+        "partition": 15,
+        "sha256": "1ea89e81663abe605d1954d180505621704734a7c62b788448e4e82ceada959b"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000016",
+        "size": 38213592,
+        "dtype": "droid-episodes",
+        "partition": 16,
+        "sha256": "149af616008746ad4d2c1351d6e8c37f1cb077476a611f44dc3c5451d46dbfc4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000017",
+        "size": 32482652,
+        "dtype": "droid-episodes",
+        "partition": 17,
+        "sha256": "3486347bdf44fe925ec1c937e79aec68ad1d8891447ff57933f4e183be1cde09"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000018",
+        "size": 33247627,
+        "dtype": "droid-episodes",
+        "partition": 18,
+        "sha256": "7c7687c5c400e0e65767792d07b910518779cae751ffdab064a2b5a0b581289a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000019",
+        "size": 20336215,
+        "dtype": "droid-episodes",
+        "partition": 19,
+        "sha256": "5d858e9ed8700609ab711208a9311ffc428bfe1519ab966f0c488f2844cad927"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000020",
+        "size": 35595994,
+        "dtype": "droid-episodes",
+        "partition": 20,
+        "sha256": "50bde7720859f24357c89d28727a4631a8dd4a684d9336ba188c4725e1870bf2"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00500/part-000021",
+        "size": 34308289,
+        "dtype": "droid-episodes",
+        "partition": 21,
+        "sha256": "c54e2936312cb8418706d79e491d62f239299019c9de0b96b4fcda5fb9ae8aa4"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00500/part-000022",
+        "size": 28639357,
+        "dtype": "droid-episodes",
+        "partition": 22,
+        "sha256": "6b070b3a33f6a710457bcaa78ea90e52bcc4bee2d6a01490f674a3e1a245629b"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00500/part-000023",
+        "size": 35601111,
+        "dtype": "droid-episodes",
+        "partition": 23,
+        "sha256": "dedf0ada82c453ac17f45fd1800af8720ed2004020aa3e20b7bfaf45e7717976"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00500/part-000024",
+        "size": 32218284,
+        "dtype": "droid-episodes",
+        "partition": 24,
+        "sha256": "d9de4bbec948b28ee7d14296cb8374eece7b10a2d3bb0b125b6431540dff828a"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00500/part-000025",
+        "size": 40987748,
+        "dtype": "droid-episodes",
+        "partition": 25,
+        "sha256": "23b40109ac56ef03004e71e0aa73f3d917a53cb236fc3f376bda33ce31476856"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00500/part-000026",
+        "size": 44806271,
+        "dtype": "droid-episodes",
+        "partition": 26,
+        "sha256": "770d0c0ffe3cbb3cc2a1566d6fd2f5a2cabcaca7936ce14d0d015cb50c176b64"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00500/part-000027",
+        "size": 11022056,
+        "dtype": "droid-episodes",
+        "partition": 27,
+        "sha256": "0aafb8cc32280b9ebbbe8534c911f792b0f6c7bfcff0ba866e093c6130e7ff68"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000028",
+        "size": 38649209,
+        "dtype": "droid-episodes",
+        "partition": 28,
+        "sha256": "79b8b6b1c9c90cab2572e281411417bd41b8038ceca96255c29a10960f973916"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000029",
+        "size": 5300360,
+        "dtype": "droid-episodes",
+        "partition": 29,
+        "sha256": "7b9cb8969609d3c77676852a80e4f86a6acdca4a1a294750227494a475277478"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00500/part-000030",
+        "size": 34729849,
+        "dtype": "droid-episodes",
+        "partition": 30,
+        "sha256": "0bdd8ef7332ea8579b762c4b4f5419265e479cbe21951f15bd438631f488fbff"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000000",
+        "size": 36313880,
+        "dtype": "droid-episodes",
+        "partition": 31,
+        "sha256": "7e155dd0e7b61a990542e6c1e6f5a5d988c2ac79a0f0e1e083cbdc4366103b5d"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000001",
+        "size": 30708497,
+        "dtype": "droid-episodes",
+        "partition": 32,
+        "sha256": "fe5afce9d4dd4b91382fe7e61610ad188fe56495df10f68823e04a4e2756582c"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000002",
+        "size": 43249611,
+        "dtype": "droid-episodes",
+        "partition": 33,
+        "sha256": "bb422a622410d4d32cd587f404969d4717ebb552593dd7f2f3735f4e1bfe4452"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000003",
+        "size": 29302777,
+        "dtype": "droid-episodes",
+        "partition": 34,
+        "sha256": "4d7c515911f90ddca7cddecae83cd45a64005662cf0cf06d6a6f1fc29a43267b"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00501/part-000004",
+        "size": 33373204,
+        "dtype": "droid-episodes",
+        "partition": 35,
+        "sha256": "062604692e6b67f283b384e6987ca28624582856900add9abe49f795f16d039a"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00501/part-000005",
+        "size": 26335794,
+        "dtype": "droid-episodes",
+        "partition": 36,
+        "sha256": "3ec5c31529e3e3b92efb64a64b1a9de12c3a52cadac0ef56d30535776c99e411"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00501/part-000006",
+        "size": 19587924,
+        "dtype": "droid-episodes",
+        "partition": 37,
+        "sha256": "30d9782c5eabf3077ad11a4d06e9875511621b4ae52ed49065b57ecec706e991"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00501/part-000007",
+        "size": 28241388,
+        "dtype": "droid-episodes",
+        "partition": 38,
+        "sha256": "15aba5ed31cbbcc1c63fd67fda0ab2db6a2b73086522b3f31fa21b43d0ae89af"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00501/part-000008",
+        "size": 39818206,
+        "dtype": "droid-episodes",
+        "partition": 39,
+        "sha256": "73c87f453d4267ff531b6a9d072143ef77d8cd62194ea1a2407b15344fed4a6e"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00501/part-000009",
+        "size": 37607012,
+        "dtype": "droid-episodes",
+        "partition": 40,
+        "sha256": "d67d8f50c74ca4205b31bb81b03962a4e1748b07063ad2dda7919bdefe3638cd"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00501/part-000010",
+        "size": 32430411,
+        "dtype": "droid-episodes",
+        "partition": 41,
+        "sha256": "64fba9fe6b12916871335a06657d30943149673233f116be23ce4a8ff4a69fc9"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000011",
+        "size": 53021602,
+        "dtype": "droid-episodes",
+        "partition": 42,
+        "sha256": "905c304d04d56953a58828472e8bd45d4eb88f13f74b67f74423bbbd7e6147cb"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000012",
+        "size": 23710087,
+        "dtype": "droid-episodes",
+        "partition": 43,
+        "sha256": "1456ebb76d50e952549d3874d08d54627cf649aad6a3672b7a4287210d27a835"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000013",
+        "size": 37939717,
+        "dtype": "droid-episodes",
+        "partition": 44,
+        "sha256": "fba504239074876681ee263097e6f6aeac91ff7da7a22718d90ce74efd7902f4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000014",
+        "size": 39117738,
+        "dtype": "droid-episodes",
+        "partition": 45,
+        "sha256": "fcf2c78ca041f378914d3e7c8d460caae986e106e270568902b3a5ea9900fe63"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000015",
+        "size": 37783804,
+        "dtype": "droid-episodes",
+        "partition": 46,
+        "sha256": "9e74ea789f67d5b7eeafaf40b16d379f5e5ee507439721f24d80d550ecba480f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000016",
+        "size": 26592527,
+        "dtype": "droid-episodes",
+        "partition": 47,
+        "sha256": "f7b41ed86bdab20e5f7b6ca818a2ebcc0c6ff94218e1e7fa7f49dcfc2af93a67"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000017",
+        "size": 35351473,
+        "dtype": "droid-episodes",
+        "partition": 48,
+        "sha256": "ae5472489447f04a986550f46329df8487c5e902751073430df881a239d09e5a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000018",
+        "size": 39069459,
+        "dtype": "droid-episodes",
+        "partition": 49,
+        "sha256": "4c0dc3fd47a1ee0c6ccaa4380b7609e75c2bdc490d8d30dab201fdc71ab9afd3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000019",
+        "size": 41329931,
+        "dtype": "droid-episodes",
+        "partition": 50,
+        "sha256": "7e55a589fd0bff1b673814ce607d06abd539c6f8d90e452b232d7072fb261a7a"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00501/part-000020",
+        "size": 44579237,
+        "dtype": "droid-episodes",
+        "partition": 51,
+        "sha256": "4aba26c519e231658618249227ba237bdd8f368723f62e372fd40eef31ac5e77"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00501/part-000021",
+        "size": 35683282,
+        "dtype": "droid-episodes",
+        "partition": 52,
+        "sha256": "e0460bac8a5936227219db639e8e69697aadf8583773a88d110aa20d2bc6566b"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00501/part-000022",
+        "size": 30852527,
+        "dtype": "droid-episodes",
+        "partition": 53,
+        "sha256": "566cab468b4a9bcac2cf92d6d6d8411323e3fbb20ffae1e928c449c76e62288d"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00501/part-000023",
+        "size": 33649859,
+        "dtype": "droid-episodes",
+        "partition": 54,
+        "sha256": "2d0b18967ff06a420663f961f58d001dea51412c0eba2dd8b2f85e2f89e63a84"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00501/part-000024",
+        "size": 20586036,
+        "dtype": "droid-episodes",
+        "partition": 55,
+        "sha256": "93bf6e64e0c773e3624ceda514ca0e1612fd2f93fb1160ae12037f01f1f26ba0"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00501/part-000025",
+        "size": 33443422,
+        "dtype": "droid-episodes",
+        "partition": 56,
+        "sha256": "56ef7a561c84d0f9eefdf08a9b0f4d9196af2f7e2a99c5192769fcecbbe9b4df"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00501/part-000026",
+        "size": 34268841,
+        "dtype": "droid-episodes",
+        "partition": 57,
+        "sha256": "afd5b44a14d4a711702515eabdc7f674b6fbd1a83737e73d288590dedaf4de62"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000027",
+        "size": 13076251,
+        "dtype": "droid-episodes",
+        "partition": 58,
+        "sha256": "0b0d04148b2ecae5c5179303885aaff8327a92ad469d14a8a3544c73d96d493a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000028",
+        "size": 40279829,
+        "dtype": "droid-episodes",
+        "partition": 59,
+        "sha256": "37466b50ef03c2180a10c780267f475f00ff57d0c293eb43c198ab51dbe2c743"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000029",
+        "size": 37502205,
+        "dtype": "droid-episodes",
+        "partition": 60,
+        "sha256": "4f03cac337a802a6b3e7e61eaa71354278cd14366d6c3e30551a80f7a891cb5d"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000030",
+        "size": 40222573,
+        "dtype": "droid-episodes",
+        "partition": 61,
+        "sha256": "ee6562b6d4d52def1ce10c341ab4462448bdf935348f8bf97ccb4570c0a9cd28"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000031",
+        "size": 42109672,
+        "dtype": "droid-episodes",
+        "partition": 62,
+        "sha256": "c48eaa53ef643ab400bd4e106bb95d229fabc1b0ff9d6268dcadc7b5f6a9cf26"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000032",
+        "size": 31861078,
+        "dtype": "droid-episodes",
+        "partition": 63,
+        "sha256": "891f3cb42c7036928d96dc7dd163dea0b3280c789e7f458954afa167e01b5874"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000033",
+        "size": 50518080,
+        "dtype": "droid-episodes",
+        "partition": 64,
+        "sha256": "18f6f1315f899eb692f3b7ba4b6de6582267c5db897fb0bc2b176683753998ee"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00501/part-000034",
+        "size": 37448040,
+        "dtype": "droid-episodes",
+        "partition": 65,
+        "sha256": "c6954d5557befebc3bba8faaac5d5f5de21d0149aa7258070c77ba78be4750e4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000000",
+        "size": 45785468,
+        "dtype": "droid-episodes",
+        "partition": 66,
+        "sha256": "095db169b6598ea9f92d52b839e6b2592f130c3d8c0b1411213b0c4e9577ad0f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000001",
+        "size": 25809031,
+        "dtype": "droid-episodes",
+        "partition": 67,
+        "sha256": "2a7ee1e46f33a4a08c81f6721088b67637a0e710a43190df58a4aef378368c6f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000002",
+        "size": 36831824,
+        "dtype": "droid-episodes",
+        "partition": 68,
+        "sha256": "0982a90c8e1525470db72277ddf0346e6a2f4e4e70e57671ba51b62342ceac02"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00502/part-000003",
+        "size": 38374411,
+        "dtype": "droid-episodes",
+        "partition": 69,
+        "sha256": "779ef27059fce412c0c75497a4e2d5d542e13a9d190e7db85a422e9e511fa2d2"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00502/part-000004",
+        "size": 39558852,
+        "dtype": "droid-episodes",
+        "partition": 70,
+        "sha256": "2aef11f7f1d3de844734075501c59d759ae31ae078ae448976cb5c40a1d92c3b"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00502/part-000005",
+        "size": 22467793,
+        "dtype": "droid-episodes",
+        "partition": 71,
+        "sha256": "7580f7549279faa10308b08abbf674341808a1e528107836fc48ed3462d9033a"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00502/part-000006",
+        "size": 11694427,
+        "dtype": "droid-episodes",
+        "partition": 72,
+        "sha256": "c67ae9ae0e0e570a80934a97fa4cfd5cfe8c6ce1fa24f2743c3b5a654abdeed6"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00502/part-000007",
+        "size": 44185691,
+        "dtype": "droid-episodes",
+        "partition": 73,
+        "sha256": "7cb3beef5288ebd75ed5599460c4b76166f454c63d0f6d639406f34d089b6f8e"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00502/part-000008",
+        "size": 21117117,
+        "dtype": "droid-episodes",
+        "partition": 74,
+        "sha256": "231dc516dfe9f0027318acab023f9131c2105a3e07bd247ccf86a89aad4067eb"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00502/part-000009",
+        "size": 17879499,
+        "dtype": "droid-episodes",
+        "partition": 75,
+        "sha256": "6b200a71e0e3693829890d44b4cd7cdbcbe3535ef4e2814aeee733129c0360ca"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000010",
+        "size": 37464939,
+        "dtype": "droid-episodes",
+        "partition": 76,
+        "sha256": "535e3b9e06046a8f5c29a062dba8d274a45ad7c1c3d6a53394b7d5e0c40b6960"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000011",
+        "size": 26611662,
+        "dtype": "droid-episodes",
+        "partition": 77,
+        "sha256": "eaaf4e271fd671c87dbd1858bd57e06c5104431bd1aa786d719fc1da1f3155d6"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000012",
+        "size": 36338260,
+        "dtype": "droid-episodes",
+        "partition": 78,
+        "sha256": "5f58ca8958a2000fa58a127effd8d8fd8dedca7fe4f052953081f7a8c59d301e"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000013",
+        "size": 42811287,
+        "dtype": "droid-episodes",
+        "partition": 79,
+        "sha256": "00345e3c4ba9e3c6bbca7e3675391f55e1fdd7aa9a60c695c2b9c395834c6a92"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000014",
+        "size": 33891822,
+        "dtype": "droid-episodes",
+        "partition": 80,
+        "sha256": "e908cd53399d2322830925356ccb421e2e98c75d88c76f10a6aea42e0c1c8cd3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000015",
+        "size": 15743023,
+        "dtype": "droid-episodes",
+        "partition": 81,
+        "sha256": "84839c2a1cb2d863d4326106100113f2caa8eb56103d47b86549d98b813f00d6"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000016",
+        "size": 37001607,
+        "dtype": "droid-episodes",
+        "partition": 82,
+        "sha256": "26d7374ec6cf80e901fbf6843585eaa8183bc46642957cf2bb4e8d3bb2b36431"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000017",
+        "size": 26026478,
+        "dtype": "droid-episodes",
+        "partition": 83,
+        "sha256": "999db2ca2752d9909d539e36db9169ecf342e4165a9277de4524725d7f2cbea7"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000018",
+        "size": 29964591,
+        "dtype": "droid-episodes",
+        "partition": 84,
+        "sha256": "5c393aac823f40185a543fd7c80c2434d3995642965ce4a25ec05f7774cea81f"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00502/part-000019",
+        "size": 30229372,
+        "dtype": "droid-episodes",
+        "partition": 85,
+        "sha256": "5b0c2e3c339cd51c760ee933c395cd73e5cff472b60401e04d098aac1fd9f8dc"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00502/part-000020",
+        "size": 8200074,
+        "dtype": "droid-episodes",
+        "partition": 86,
+        "sha256": "965a4951b4228100ff65afa3af4be4ada14aa1d54146c99ca8f40c46b24a3238"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00502/part-000021",
+        "size": 38046222,
+        "dtype": "droid-episodes",
+        "partition": 87,
+        "sha256": "68c638b43070ec82b91ddb5c69238a2ce2da36abe3ca91758e6a7dff7263ef41"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00502/part-000022",
+        "size": 39191109,
+        "dtype": "droid-episodes",
+        "partition": 88,
+        "sha256": "3eeea8fc3ec31220b128b4f536a3836ed456c5aab63a03a44cd141fb8b3aca09"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00502/part-000023",
+        "size": 7204978,
+        "dtype": "droid-episodes",
+        "partition": 89,
+        "sha256": "4c6754308029f9d66f5a1d36b3e6c1de0bd88b68a17d4fb48b96bb69cae5c16f"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00502/part-000024",
+        "size": 42778915,
+        "dtype": "droid-episodes",
+        "partition": 90,
+        "sha256": "4d42cb96c58e955b81638085e0600af3f43163c9151344d0ff06c6a424773838"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00502/part-000025",
+        "size": 35699743,
+        "dtype": "droid-episodes",
+        "partition": 91,
+        "sha256": "1c439fbf76e0ed69ffa413242c88be1f603932333c495400af7480206fd47e89"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00502/part-000026",
+        "size": 13527952,
+        "dtype": "droid-episodes",
+        "partition": 92,
+        "sha256": "26aa829f3cc8e0194f75036414fe1067f58b93bbda6f1a34e09442d8f34ff36d"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000000",
+        "size": 38641015,
+        "dtype": "droid-episodes",
+        "partition": 93,
+        "sha256": "805367665ad4c39824be48e7ed64f4a074175dc0669322cbde3f6afa8b81a1d2"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000001",
+        "size": 35063571,
+        "dtype": "droid-episodes",
+        "partition": 94,
+        "sha256": "19415eb24240b38b7d38dee554a05c1e6331f09136505e265568f9ebf8f01d50"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00503/part-000002",
+        "size": 43738223,
+        "dtype": "droid-episodes",
+        "partition": 95,
+        "sha256": "cc4d31a324d4a0be10ccf2146fc9c4f1942318ad01299dd49fe98d5436f7ced1"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00503/part-000003",
+        "size": 27862829,
+        "dtype": "droid-episodes",
+        "partition": 96,
+        "sha256": "c76e43351b51b22b123b259d04106944eab52d27f2eefc222fc5d6ed52a0d167"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00503/part-000004",
+        "size": 13680508,
+        "dtype": "droid-episodes",
+        "partition": 97,
+        "sha256": "ebad82adabc64d6e18f0a3b42ea40ec81c15ef5334fb617a7fd357b4c5bbd539"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00503/part-000005",
+        "size": 40768944,
+        "dtype": "droid-episodes",
+        "partition": 98,
+        "sha256": "1e0264685ef0c97b1082f24b5247c146ba18223e1f20cd06893b97276e33c591"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00503/part-000006",
+        "size": 31057659,
+        "dtype": "droid-episodes",
+        "partition": 99,
+        "sha256": "b0e812ea3dbd1757cca25bf1128e9de1ac86a5ab25956bfffe41e3dc54a7cc3d"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00503/part-000007",
+        "size": 32471407,
+        "dtype": "droid-episodes",
+        "partition": 100,
+        "sha256": "49059b911ba477884b106ec25465531c0d553e9de446a6bafb3f3a1ddb3aad04"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00503/part-000008",
+        "size": 29331314,
+        "dtype": "droid-episodes",
+        "partition": 101,
+        "sha256": "d57940fa27b7cdc17535aceb72cab5e380afcc66a2f3d840fdf86abeb8434b15"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000009",
+        "size": 25861377,
+        "dtype": "droid-episodes",
+        "partition": 102,
+        "sha256": "0541712f2c24c063b22e9f3161fa2f64505bf7f3dbdc2bbc23b8223f51a4b8e4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000010",
+        "size": 15871163,
+        "dtype": "droid-episodes",
+        "partition": 103,
+        "sha256": "fa6112dae2d8c8d88751e6ac4788a74150cb28eeb1ea679095bf338c08a484c9"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000011",
+        "size": 51689273,
+        "dtype": "droid-episodes",
+        "partition": 104,
+        "sha256": "b99b2a550bfb2c327ca55fa0574f42aad6ba4a1fa30bdd776ac03b077c1c3add"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000012",
+        "size": 40201892,
+        "dtype": "droid-episodes",
+        "partition": 105,
+        "sha256": "de3eea97f28c8f2e3b87ca83f6dd334d09715e9fcda57b361e2a27f85e61842f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000013",
+        "size": 25592011,
+        "dtype": "droid-episodes",
+        "partition": 106,
+        "sha256": "16cfaeaaa7ac065b180cd0b904cf1a9adecef9b269c75af7827b59a3f77832a5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000014",
+        "size": 45510784,
+        "dtype": "droid-episodes",
+        "partition": 107,
+        "sha256": "e32ad92beda57b48100b27174015e0de6dbec67823234ea4b522b9dc3864bc3c"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000015",
+        "size": 28773023,
+        "dtype": "droid-episodes",
+        "partition": 108,
+        "sha256": "7fe40429dfdfd644964f12510c48900810d5381ad060d342a72e0b90e219955a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000016",
+        "size": 37106569,
+        "dtype": "droid-episodes",
+        "partition": 109,
+        "sha256": "c203c851ca35fbe788fbbe775d58b0259b7744fae327a67906f8265fd6baa30c"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00503/part-000017",
+        "size": 32596787,
+        "dtype": "droid-episodes",
+        "partition": 110,
+        "sha256": "66b1e654df49cdc0a014d2e1cde0c7e6bdadb3d26e8240c0707a7e2233930db8"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00503/part-000018",
+        "size": 29981588,
+        "dtype": "droid-episodes",
+        "partition": 111,
+        "sha256": "8f47c0efc101e951792ec507c145fbc46e0956334d7d5b11a767ec7c429bd944"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00503/part-000019",
+        "size": 13224466,
+        "dtype": "droid-episodes",
+        "partition": 112,
+        "sha256": "ec6f24a2acab87e94e18085f2250673bbdf5d977017d89b7f58f4c45facb21f7"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00503/part-000020",
+        "size": 39630735,
+        "dtype": "droid-episodes",
+        "partition": 113,
+        "sha256": "a11e949afafdf9b4a19de9c7afb8e34c50a6932cfeea64a5caf4536c4df1a413"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00503/part-000021",
+        "size": 37731055,
+        "dtype": "droid-episodes",
+        "partition": 114,
+        "sha256": "b9cf2651f4b1b549eb32f9c4aa0afd938837326200b1fc49ed4a1b542cc1f3de"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00503/part-000022",
+        "size": 9951507,
+        "dtype": "droid-episodes",
+        "partition": 115,
+        "sha256": "37f47557d71c23f527d4486707a97c9a095a0ac142124c1566c37ef63db641eb"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000000",
+        "size": 41925382,
+        "dtype": "droid-episodes",
+        "partition": 116,
+        "sha256": "5cade5f217c887212a3558e880bb58a6ca3bec346bdd663ffa36b74b30a5eee4"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00504/part-000001",
+        "size": 37077720,
+        "dtype": "droid-episodes",
+        "partition": 117,
+        "sha256": "71e37e67860640079e5445acacfd0d45414e59b0c4d051ac1c1cda112e91bd3f"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00504/part-000002",
+        "size": 36005694,
+        "dtype": "droid-episodes",
+        "partition": 118,
+        "sha256": "23933514e703c345c4213d917dc4f8fbebe6a82fc71307b71d1184fb654284b0"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00504/part-000003",
+        "size": 34818534,
+        "dtype": "droid-episodes",
+        "partition": 119,
+        "sha256": "d9c9bf872aa74078fd6640a3587fd6cc6cc68799adf9c874710327cf0ec6ea26"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00504/part-000004",
+        "size": 31114599,
+        "dtype": "droid-episodes",
+        "partition": 120,
+        "sha256": "e50533460e43fd4117276e474b782b78aa853cb8739c56bf0f6c30a2c72044de"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00504/part-000005",
+        "size": 42220383,
+        "dtype": "droid-episodes",
+        "partition": 121,
+        "sha256": "4d139182ff99a09d3b9bbeb22957272a6546956503f875f75612aeb6c711423d"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00504/part-000006",
+        "size": 23517378,
+        "dtype": "droid-episodes",
+        "partition": 122,
+        "sha256": "1c2305baadda77cea3126e928026da42de49f9de462ac9549b66be0530d4a75d"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00504/part-000007",
+        "size": 35662661,
+        "dtype": "droid-episodes",
+        "partition": 123,
+        "sha256": "f58cf2fbaf019c9914513839d83e654980654ce1014a783b4e7add2899cb91f5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000008",
+        "size": 8365281,
+        "dtype": "droid-episodes",
+        "partition": 124,
+        "sha256": "bd2f1a407f4b7e767a249364a9f407cf1608afcb58dbb8c3d0d0cba580c97312"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000009",
+        "size": 44900971,
+        "dtype": "droid-episodes",
+        "partition": 125,
+        "sha256": "e384dfad249965f751b235d66671f2cf51337a1187a152999cd575e998f191f9"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000010",
+        "size": 39241530,
+        "dtype": "droid-episodes",
+        "partition": 126,
+        "sha256": "418f5e394ac76c160e33691cc11ad77a78153bb4a318fba6660f66c1cee051bc"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000011",
+        "size": 31310033,
+        "dtype": "droid-episodes",
+        "partition": 127,
+        "sha256": "21fe7123b642d56088b1f9a32a9eaf1790c16ee6f10cdf4d41511c85ad903fa2"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000012",
+        "size": 33482862,
+        "dtype": "droid-episodes",
+        "partition": 128,
+        "sha256": "56637dc051ffee7f6e15c50963e6514022c64d64e0dcf23b0421fc9e4d84a3a3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000013",
+        "size": 19591145,
+        "dtype": "droid-episodes",
+        "partition": 129,
+        "sha256": "68431b45f3f7306596561bfcc16891445eb4458802541a16ac72aaa9603230f7"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000014",
+        "size": 44558109,
+        "dtype": "droid-episodes",
+        "partition": 130,
+        "sha256": "2301e2ad8dfebb13322c30f0612ff129e5832b8e63624c368c465c56eb26856f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000015",
+        "size": 32994079,
+        "dtype": "droid-episodes",
+        "partition": 131,
+        "sha256": "8183132604daf3bae089541ab21eebaf98049883f41308cd732fbdc924e1dff5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00504/part-000016",
+        "size": 22632142,
+        "dtype": "droid-episodes",
+        "partition": 132,
+        "sha256": "51846aee998c6c0f11ba2523598c3c47557812681111f334d636b48a4d14a3ef"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00504/part-000017",
+        "size": 38742061,
+        "dtype": "droid-episodes",
+        "partition": 133,
+        "sha256": "7d76dd0b0d708298a2857dc3d06b9ffd6b4f5fb17c67a67524be0707d10d96f9"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00504/part-000018",
+        "size": 26720250,
+        "dtype": "droid-episodes",
+        "partition": 134,
+        "sha256": "521c29f0fbdfb9cf5c352c74542fdb328e3206423915369d0862363f1360e3a3"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00504/part-000019",
+        "size": 15131155,
+        "dtype": "droid-episodes",
+        "partition": 135,
+        "sha256": "43b7e7ebfb3b4a0182cf3d57fd0faca5deb7f102b2e8fa4b7bfe19f05be72403"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00504/part-000020",
+        "size": 35931480,
+        "dtype": "droid-episodes",
+        "partition": 136,
+        "sha256": "5e3934a67e50a2dbf655869576028cff06d65dcba7788e54829f1a059a225d8a"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00504/part-000021",
+        "size": 38387648,
+        "dtype": "droid-episodes",
+        "partition": 137,
+        "sha256": "3151c105c094479425058a96973880a09ee07626d1f2b3f4a9505e74474a814a"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00504/part-000022",
+        "size": 22624122,
+        "dtype": "droid-episodes",
+        "partition": 138,
+        "sha256": "5972cddfa5db373f5e8991e8e40c65ab3520d941c9a7d5b82bd0ec74f10a6894"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00505/part-000000",
+        "size": 16083875,
+        "dtype": "droid-episodes",
+        "partition": 139,
+        "sha256": "eb05013aa4a8d45e282a3ac9ef485fe8a46bd7e971f38c22cb2406c06f623de3"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00505/part-000001",
+        "size": 32892226,
+        "dtype": "droid-episodes",
+        "partition": 140,
+        "sha256": "cae04b9867e0fdd6c203ff6168535e557b3c07f20781889daf3a3c08f899404b"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00505/part-000002",
+        "size": 40893524,
+        "dtype": "droid-episodes",
+        "partition": 141,
+        "sha256": "be86f18f55b4139b7575d1fce6e60da9cf7ac31a232e88558501856e2d971c3e"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00505/part-000003",
+        "size": 22806610,
+        "dtype": "droid-episodes",
+        "partition": 142,
+        "sha256": "057376b58a7a2886f2ef14022469b870b9afa85e065aa4b37ef1d3abaddb7794"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00505/part-000004",
+        "size": 21522234,
+        "dtype": "droid-episodes",
+        "partition": 143,
+        "sha256": "fecbd62413f57359d87ec5d5fc64a896779e1054931ec2e5d4dafbcd03f1e958"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00505/part-000005",
+        "size": 21770622,
+        "dtype": "droid-episodes",
+        "partition": 144,
+        "sha256": "1e13d9d8e10a6c165743e413ed202fe3b99a907669f5c8b639c5394537e6aecb"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00505/part-000006",
+        "size": 27262041,
+        "dtype": "droid-episodes",
+        "partition": 145,
+        "sha256": "beca6aa13557f310a456c72e81b1cb5aecef119bb9bfcdabaddf081ca1daab7c"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000007",
+        "size": 21018239,
+        "dtype": "droid-episodes",
+        "partition": 146,
+        "sha256": "33f2ff6412cf5189bb8dfd64d0869f91629a130681795f1aee9d816c20f37474"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000008",
+        "size": 38221131,
+        "dtype": "droid-episodes",
+        "partition": 147,
+        "sha256": "33dd0f6af3ec5fa752b715223aefb7e056e8ccb4972271a6550e98625f164fab"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000009",
+        "size": 15222086,
+        "dtype": "droid-episodes",
+        "partition": 148,
+        "sha256": "9b684110ea3f440608fb3d16e91eabefa129bde3aadf3cf26bd4ff0930962eb8"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000010",
+        "size": 38695297,
+        "dtype": "droid-episodes",
+        "partition": 149,
+        "sha256": "6947fbae3ce88d3c491eb1e1457235504929c67d042e5df4eb0969f84770adc3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000011",
+        "size": 21504821,
+        "dtype": "droid-episodes",
+        "partition": 150,
+        "sha256": "20422f2fb90870c52f9bb0fbe9cbefac398af4989abfc2e12d74ffe1d96e0dbf"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000012",
+        "size": 40887194,
+        "dtype": "droid-episodes",
+        "partition": 151,
+        "sha256": "866d793853cff42a369d0810eefa51364147370eb664905491282998b95c70e6"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000013",
+        "size": 38942340,
+        "dtype": "droid-episodes",
+        "partition": 152,
+        "sha256": "71ae13c485777c57c5ff10c52ed174e32e662e58e99cb968dad05c685b191c54"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000014",
+        "size": 33074634,
+        "dtype": "droid-episodes",
+        "partition": 153,
+        "sha256": "3ba18402e137b15e6a99dbd7a0be2f976a0d4904ef557a9a2784dd11a6d820fd"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000015",
+        "size": 36894393,
+        "dtype": "droid-episodes",
+        "partition": 154,
+        "sha256": "4623ba480e9e411a1fe0267049cf36e2e2bbb5aad1c01c55f340e2f173c69165"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00505/part-000016",
+        "size": 23030872,
+        "dtype": "droid-episodes",
+        "partition": 155,
+        "sha256": "6a8e06644306392adb01fd538ffb0ff5190bc5e1b10f882691f565b2c4f61048"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00505/part-000017",
+        "size": 23183360,
+        "dtype": "droid-episodes",
+        "partition": 156,
+        "sha256": "3cd023a806b146d0ef9a1b4483cb7b7a6ab983c56c5f41128be5117d23fc24fc"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00505/part-000018",
+        "size": 35488796,
+        "dtype": "droid-episodes",
+        "partition": 157,
+        "sha256": "099e8b74bf3001bd9c11578b6c63a71caf8137e3ccb61613ebe0faace7ea1715"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00505/part-000019",
+        "size": 34786474,
+        "dtype": "droid-episodes",
+        "partition": 158,
+        "sha256": "2f8f17798c133d8ea2c060e39973533e42333234cb3febb6567abb073f661f1e"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00505/part-000020",
+        "size": 44582813,
+        "dtype": "droid-episodes",
+        "partition": 159,
+        "sha256": "ecb1f07390c5f24045fd77ed71200d8045223ebe83a8f0cf29372d44a6801801"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00505/part-000021",
+        "size": 44763228,
+        "dtype": "droid-episodes",
+        "partition": 160,
+        "sha256": "9ce319ac21c638d5784649220420bffa74e7d6e9d48c9eafd790bfbfa941d704"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00505/part-000022",
+        "size": 23550899,
+        "dtype": "droid-episodes",
+        "partition": 161,
+        "sha256": "50488e455f9005274d8be56add1bb72edac7a302f8e1dcda07607061403d6c80"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000023",
+        "size": 46549737,
+        "dtype": "droid-episodes",
+        "partition": 162,
+        "sha256": "e4da77039ddf3145f39fce288c832c46ac51199b2d647eacc6ca95a1b9e565f7"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000024",
+        "size": 30363627,
+        "dtype": "droid-episodes",
+        "partition": 163,
+        "sha256": "c92de68489b96c2a785c5a07ff4bb2137f9f5679dc771cfb6804e6d9510276c1"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000025",
+        "size": 16233633,
+        "dtype": "droid-episodes",
+        "partition": 164,
+        "sha256": "52f03ebeca90f4994ed6202ab806b71c866e0fbf032f9976d67ef84cbcfad1e5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000026",
+        "size": 37076190,
+        "dtype": "droid-episodes",
+        "partition": 165,
+        "sha256": "83e6495a4592932cc3ae67b40fb2161eaa0debbb510bee399e1c72ffa34a3819"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000027",
+        "size": 37178078,
+        "dtype": "droid-episodes",
+        "partition": 166,
+        "sha256": "bebd229506cd08ca59ebc3fbdd1b138ac79aa6b69bdf192ee9059543e6b14b3e"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000028",
+        "size": 33859640,
+        "dtype": "droid-episodes",
+        "partition": 167,
+        "sha256": "590bd44ac0c49347289517e87e5bbb3b6e789ed0d65ea4697097e575493a66a4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000029",
+        "size": 35105018,
+        "dtype": "droid-episodes",
+        "partition": 168,
+        "sha256": "61dcb1f408a753193e54f05212c3370640cdecd6a933e84cf3776724a3c9f16a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00505/part-000030",
+        "size": 29793539,
+        "dtype": "droid-episodes",
+        "partition": 169,
+        "sha256": "e2df8570ad29b291e32c749f11351a075193f0d029805141ae8283339c43fa2e"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00506/part-000000",
+        "size": 27048052,
+        "dtype": "droid-episodes",
+        "partition": 170,
+        "sha256": "6633ec187e17dd55947084be096d7d9d1c5f971fd62bdc6821305e6f25d6a97c"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00506/part-000001",
+        "size": 31855930,
+        "dtype": "droid-episodes",
+        "partition": 171,
+        "sha256": "c7cb6a4d2c7614fefa8e6901edc726c3d2607030c65def019b1c660441bc1287"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00506/part-000002",
+        "size": 28345418,
+        "dtype": "droid-episodes",
+        "partition": 172,
+        "sha256": "d2bf00d738721eefd893fa3d2aedc2bfdae2ecb9291aaad74d712719373ebea0"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00506/part-000003",
+        "size": 27952431,
+        "dtype": "droid-episodes",
+        "partition": 173,
+        "sha256": "1056100f4077ccaade37e4a08b1d27062eacafa54e3d43b51448405b087b21f7"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00506/part-000004",
+        "size": 42928941,
+        "dtype": "droid-episodes",
+        "partition": 174,
+        "sha256": "2b4809aff008287a4699712c79ae299c9eba44c12a957144b0a964436459fab1"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00506/part-000005",
+        "size": 26336162,
+        "dtype": "droid-episodes",
+        "partition": 175,
+        "sha256": "86b6a161c44565188c7a0fbb1021a705e5a9000d3d250e62d93b87d3984982d7"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000006",
+        "size": 26129012,
+        "dtype": "droid-episodes",
+        "partition": 176,
+        "sha256": "5eb60373e9bef6f8d913f96ac400cd07328cf629d31b6e7d771fb9141aa4a609"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000007",
+        "size": 28754217,
+        "dtype": "droid-episodes",
+        "partition": 177,
+        "sha256": "8906b5ea46f5f3cd854242e362a2769778390b6cab5a179fa84f9173de1429aa"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000008",
+        "size": 28244883,
+        "dtype": "droid-episodes",
+        "partition": 178,
+        "sha256": "28d67868ea7c0bdb5e5341f15f0bf81d92f705939222fec31eb3c5ecb4ce990b"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000009",
+        "size": 34045116,
+        "dtype": "droid-episodes",
+        "partition": 179,
+        "sha256": "d3571b6e9be2bdcb8a1cb72fa3033dd16410ab436ce0effa4e25936e665656d2"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000010",
+        "size": 34433341,
+        "dtype": "droid-episodes",
+        "partition": 180,
+        "sha256": "cc12db07b9b62796af98bd0d8f5c7d06d31158fddd88f47bc76ac067883e116f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000011",
+        "size": 6105528,
+        "dtype": "droid-episodes",
+        "partition": 181,
+        "sha256": "764d09bec41fa29fa989194588d67971c592838641768305861813053138c1a3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000012",
+        "size": 38688849,
+        "dtype": "droid-episodes",
+        "partition": 182,
+        "sha256": "fcf95910f5d7973f9ca671d9dc151c6e802b0990632b6661b4f5f1dc44f4b320"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000013",
+        "size": 31142547,
+        "dtype": "droid-episodes",
+        "partition": 183,
+        "sha256": "1544c63ee7217724bebd00a928fa925d7fda099e64e7831c0e97986724709ebc"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00506/part-000014",
+        "size": 35782632,
+        "dtype": "droid-episodes",
+        "partition": 184,
+        "sha256": "7224131aa4acdab4757ede1e180315929ef67177f354e24994efca9cde029ecc"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00506/part-000015",
+        "size": 33747050,
+        "dtype": "droid-episodes",
+        "partition": 185,
+        "sha256": "b40ca29be53e2a4db35a4c12badd0f474a7951228412a9a5bb264f7c82817521"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00506/part-000016",
+        "size": 38081868,
+        "dtype": "droid-episodes",
+        "partition": 186,
+        "sha256": "3e8d48bbb0c4bf8bcfdbc0988d2295e9c00054e06e58bf83bd40f735968fa169"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00506/part-000017",
+        "size": 27876346,
+        "dtype": "droid-episodes",
+        "partition": 187,
+        "sha256": "d90b001ca6724044eead2afdee4759d95963d4712dfbf00d7c0be1869ae3c511"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00507/part-000000",
+        "size": 31261538,
+        "dtype": "droid-episodes",
+        "partition": 188,
+        "sha256": "720edab826cc02b9d81ea6bee936430034aeaf10b647e952755e6c986231443e"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00507/part-000001",
+        "size": 13364658,
+        "dtype": "droid-episodes",
+        "partition": 189,
+        "sha256": "9b2833d99fc8a5b7270b4238522988afde0d57564677d9097412a4434ee082a8"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00507/part-000002",
+        "size": 43432594,
+        "dtype": "droid-episodes",
+        "partition": 190,
+        "sha256": "986a8f423b8bb3115186171ad4a112f789f97c013102bfe960a68fd7e6573f8e"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00507/part-000003",
+        "size": 44322847,
+        "dtype": "droid-episodes",
+        "partition": 191,
+        "sha256": "3fa1773eba8920d63bfcaf3b08b13dfb27421dc74e841f9478e259e05cc23c4d"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00507/part-000004",
+        "size": 32003054,
+        "dtype": "droid-episodes",
+        "partition": 192,
+        "sha256": "1c5115b3437e4e3fe5b0ce21dab67777928c18ad98645e60db3c4c9b3f84e9b7"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000005",
+        "size": 24849170,
+        "dtype": "droid-episodes",
+        "partition": 193,
+        "sha256": "cea7674302f6a1a14f82020250e35b076616eb1f92472d565af15bbf1bf3f0d8"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000006",
+        "size": 38731450,
+        "dtype": "droid-episodes",
+        "partition": 194,
+        "sha256": "539bee6bc7b90e2e61dea01edfd989adade5891f79a3f3e6f2e70ce3436dd1ca"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000007",
+        "size": 27911656,
+        "dtype": "droid-episodes",
+        "partition": 195,
+        "sha256": "a9246d241e2e4f816690c457201f21f797720b40a63be9c007d44f99356a624e"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000008",
+        "size": 35963420,
+        "dtype": "droid-episodes",
+        "partition": 196,
+        "sha256": "17bb7f206fdc7256c10136e2f062b4ba2d2441b29f1e7894db2b613a34948864"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000009",
+        "size": 37003839,
+        "dtype": "droid-episodes",
+        "partition": 197,
+        "sha256": "134bc75d6869c48e583dbea4f1b03da12a7c25e03d63c23b860de8c2ecb96c16"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000010",
+        "size": 25559821,
+        "dtype": "droid-episodes",
+        "partition": 198,
+        "sha256": "09983ec78d498160d13b318bd0d2bc970adbfc7f4d3d3f92d031027aa98b364a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000011",
+        "size": 35347261,
+        "dtype": "droid-episodes",
+        "partition": 199,
+        "sha256": "69a12624e8127c08560ea60debc6e05a4a313fe10f2778d42b80cb422f782d85"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000012",
+        "size": 26253776,
+        "dtype": "droid-episodes",
+        "partition": 200,
+        "sha256": "4da450c260f0d77ab37ceb43a1d066f3ddd7e56a8eecfa8d2e3aed75e694fa35"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000013",
+        "size": 33653971,
+        "dtype": "droid-episodes",
+        "partition": 201,
+        "sha256": "70af2c0c0508bb1ddfe1ec92411d1f2079a5bbe1db27cadb869a4d14efd8f8e4"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/droid-128-00507/part-000014",
+        "size": 26436822,
+        "dtype": "droid-episodes",
+        "partition": 202,
+        "sha256": "1fc28c393b1fd65b51b53c6c06f0761d5714c0a9b89a9a27a731cec8c42390b2"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/droid-128-00507/part-000015",
+        "size": 24126475,
+        "dtype": "droid-episodes",
+        "partition": 203,
+        "sha256": "8753667ce371a6d3e9aaa561997b1ed8071c848e8608a30176ae2d04edeb8445"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/droid-128-00507/part-000016",
+        "size": 27653367,
+        "dtype": "droid-episodes",
+        "partition": 204,
+        "sha256": "2dc2f0158da31eb056e489c6bd10c14b63323526947bafac03310dfa903aeba4"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/droid-128-00507/part-000017",
+        "size": 33873294,
+        "dtype": "droid-episodes",
+        "partition": 205,
+        "sha256": "a7e2f73876ad3b569df814d32145faf631875ce5c1744fc01272c4d61c909e34"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/droid-128-00507/part-000018",
+        "size": 35392081,
+        "dtype": "droid-episodes",
+        "partition": 206,
+        "sha256": "2a8c7cbbb7d4e6247551511e70e480404be5d542bd0c7222c9c07010cc986bf6"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/droid-128-00507/part-000019",
+        "size": 41130523,
+        "dtype": "droid-episodes",
+        "partition": 207,
+        "sha256": "89fd6d4cef21ed97a03645f7f8077f96f83356e90f756f9e0f349ee5ef51d6e9"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/droid-128-00507/part-000020",
+        "size": 35461885,
+        "dtype": "droid-episodes",
+        "partition": 208,
+        "sha256": "273e2f1fed2be83379c7d1f9a129cb644b3a4dc8f8bab6a53ce29f313da736eb"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000021",
+        "size": 37018710,
+        "dtype": "droid-episodes",
+        "partition": 209,
+        "sha256": "3469332715be5d998a4b5d7a0b00276d71312426c899c7188967f26e7a10f828"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000022",
+        "size": 31031260,
+        "dtype": "droid-episodes",
+        "partition": 210,
+        "sha256": "8d062865c228c107c4ac632452ba58d94e521736c8fff9a195eecf67e3533f8b"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000023",
+        "size": 42008981,
+        "dtype": "droid-episodes",
+        "partition": 211,
+        "sha256": "b66ee0f23b2f3f5bae1b6287f9d39611ea556375a6dd1ea32bc59fb9330456bf"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000024",
+        "size": 31902337,
+        "dtype": "droid-episodes",
+        "partition": 212,
+        "sha256": "ea0956fbfa4d8f4b6a49ef1a08bfbdd2020c3c855cbb598ac3eb06f2da2c0c83"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000025",
+        "size": 9567734,
+        "dtype": "droid-episodes",
+        "partition": 213,
+        "sha256": "b0878825030f705596554052b39758061ccce0c652cc66e3c30fbe93a0f15dc5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000026",
+        "size": 44045452,
+        "dtype": "droid-episodes",
+        "partition": 214,
+        "sha256": "9290be0a0e4fd7a825a1acb0645637428d1c79fdca9d83ad90ab854d386ceda2"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000027",
+        "size": 38953801,
+        "dtype": "droid-episodes",
+        "partition": 215,
+        "sha256": "65137b5064b07bfc773de2e7e9e3f2162885eaf0979603e6fa9bfcf308142102"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/droid-128-00507/part-000028",
+        "size": 34083497,
+        "dtype": "droid-episodes",
+        "partition": 216,
+        "sha256": "26053e4abdcbdc046d39018d0476580cc35766bf2c13eab2ea52bf7b2656a983"
+      }
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "sched-pilot",
+  "kind": "synthetic",
+  "lab": "infra/labs/cephdag8.json",
+  "results_host": "/mnt/mass/cephdag",
+  "measure_mbit": 400,
+  "bulk_mbit": 10000,
+  "functions": [],
+  "verify": true,
+  "seed": 9103,
+  "budget_ms": null,
+  "modes": {
+    "cs": {
+      "cluster": "cephdag/clusters/cephdag8-cs.json",
+      "models": "/results/calibration/cephdag8-cs/models.json",
+      "policies": [
+        "heft-cc",
+        "backlog",
+        "lp-plan",
+        "data-local",
+        "greedy-wait",
+        "heft"
+      ]
+    }
+  },
+  "synthetic": {
+    "dataset": "sched-pilot-skew-8g-64m",
+    "resident_gib": 8,
+    "shard_mib": 64,
+    "placement": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "repeats": 1,
+    "intensities": [
+      1,
+      128
+    ],
+    "workloads": [
+      {
+        "workload": "independent",
+        "gib": 8,
+        "ratio": 0.25
+      }
+    ],
+    "delete_at_end": true
+  },
+  "estimate": {
+    "workers": 8,
+    "read_bps": 500000000.0,
+    "write_bps": 470000000.0,
+    "link_bps": 47000000.0,
+    "map_coefficients": [
+      0.0,
+      4.952e-10,
+      6.022e-11,
+      4.526e-10
+    ],
+    "run_overhead_seconds": 60,
+    "switch_seconds": 10,
+    "verify_seconds": 210,
+    "bulk_write_bps": 150000000.0,
+    "delete_seconds": 120,
+    "nearfull_gib_per_node": 47.6
+  }
+}

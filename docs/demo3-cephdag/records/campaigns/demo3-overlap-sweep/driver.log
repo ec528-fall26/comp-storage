@@ -1,0 +1,243 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets create-synthetic demo3-overlap-16g-64m --gib 16 --shard-mib 64 --placement 0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs.json
+{"dataset": "demo3-overlap-16g-64m", "shards": 256}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 377.84940455904734,
+    "shared_rx": 377.4881879575615
+  },
+  "1": {
+    "shared_tx": 376.3067481534681,
+    "shared_rx": 377.48800173024097
+  },
+  "2": {
+    "shared_tx": 377.4382908971602,
+    "shared_rx": 377.4882324185942
+  },
+  "3": {
+    "shared_tx": 377.540767294878,
+    "shared_rx": 379.5853470877635
+  },
+  "4": {
+    "shared_tx": 377.4379511509354,
+    "shared_rx": 378.5993442148378
+  },
+  "5": {
+    "shared_tx": 376.9241722176207,
+    "shared_rx": 378.2502514666643
+  },
+  "6": {
+    "shared_tx": 377.33505960155736,
+    "shared_rx": 378.6402592694218
+  },
+  "7": {
+    "shared_tx": 377.4380644132902,
+    "shared_rx": 377.48842535623766
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9603 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i1-r0-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 12.910539542004699, "scheduler_seconds": 0.0317307300720131, "network_tx_bytes": 228090875, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 13.892632151997532, "scheduler_seconds": 0.037056002955068834, "network_tx_bytes": 360668377, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9604 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i16-r0-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 13.984308729995973, "scheduler_seconds": 0.03150348301278427, "network_tx_bytes": 232652568, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 14.897618542003329, "scheduler_seconds": 0.039308766776230186, "network_tx_bytes": 300334785, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i16-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 64 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9605 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i64-r0-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 20.21048124099616, "scheduler_seconds": 0.037079987188917585, "network_tx_bytes": 249452913, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "heft", "wall_seconds": 22.1940196689975, "scheduler_seconds": 0.032764475035946816, "network_tx_bytes": 787650040, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i64-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9606 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i256-r0-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 60.535698667998076, "scheduler_seconds": 0.02946156298276037, "network_tx_bytes": 5285912007, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 46.9989631310018, "scheduler_seconds": 0.03883809968829155, "network_tx_bytes": 184842629, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i256-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9607 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i1024-r0-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 167.49687270000868, "scheduler_seconds": 0.031600992384483106, "network_tx_bytes": 8416116197, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 143.01151251599367, "scheduler_seconds": 0.040051941003184766, "network_tx_bytes": 370170597, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1024-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 4096 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9608 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i4096-r0-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 537.1087865230074, "scheduler_seconds": 0.038974516253801994, "network_tx_bytes": 1389072372, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "heft", "wall_seconds": 555.5637926609925, "scheduler_seconds": 0.032797560779727064, "network_tx_bytes": 9330563854, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i4096-r0-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9603 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i1-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 71.56866394699318, "scheduler_seconds": 0.008771004009759054, "network_tx_bytes": 4381029563, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9604 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i16-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 74.85274792699784, "scheduler_seconds": 0.009289145775255747, "network_tx_bytes": 4381885533, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i16-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 64 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9605 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i64-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 81.50664244999643, "scheduler_seconds": 0.009489046919043176, "network_tx_bytes": 4388514353, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i64-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9606 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i256-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 105.82956650000415, "scheduler_seconds": 0.010334483376936987, "network_tx_bytes": 4420275843, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i256-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9607 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i1024-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 205.78501339399372, "scheduler_seconds": 0.010475619797944091, "network_tx_bytes": 4572965483, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1024-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 4096 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9608 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i4096-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 596.7938962479966, "scheduler_seconds": 0.010733142073149793, "network_tx_bytes": 5221020135, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i4096-r0-disagg/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg2
+cephdag8 is in mode disagg2: 16 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg2
+cephdag8 mode disagg2: 32 links at 400 Mbit/s, 16 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9603 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i1-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 61.74565077999432, "scheduler_seconds": 0.00727545190602541, "network_tx_bytes": 4340979558, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9604 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i16-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 64.47398569500365, "scheduler_seconds": 0.006737492003594525, "network_tx_bytes": 4337959640, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i16-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 64 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9605 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i64-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 68.7429375339998, "scheduler_seconds": 0.006883546971948817, "network_tx_bytes": 4338447236, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i64-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9606 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i256-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 74.14397489398834, "scheduler_seconds": 0.0079297058400698, "network_tx_bytes": 4340283555, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i256-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9607 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i1024-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 118.27930573500635, "scheduler_seconds": 0.008996294913231395, "network_tx_bytes": 4379388945, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1024-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 4096 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9608 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i4096-r0-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 401.667604303002, "scheduler_seconds": 0.012119103033910505, "network_tx_bytes": 5076093387, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i4096-r0-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9609 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i1-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 67.56583221600158, "scheduler_seconds": 0.006634037912590429, "network_tx_bytes": 4335895321, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1-r1-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9610 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i16-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 66.05812091899861, "scheduler_seconds": 0.006920452025951818, "network_tx_bytes": 4335700281, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i16-r1-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 64 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9611 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i64-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 67.76944323099451, "scheduler_seconds": 0.006862293987069279, "network_tx_bytes": 4336492054, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i64-r1-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9612 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i256-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 72.68991930500488, "scheduler_seconds": 0.0076385300199035555, "network_tx_bytes": 4340583800, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i256-r1-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9613 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i1024-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 121.41572042899497, "scheduler_seconds": 0.009769794138264842, "network_tx_bytes": 4394123606, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1024-r1-disagg2/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 4096 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9614 --models /results/derived-models/cephdag8-disagg2/models.json --cluster cephdag/clusters/cephdag8-disagg2.json --output /results/campaigns/demo3-overlap-sweep/independent-i4096-r1-disagg2/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 379.38636910500645, "scheduler_seconds": 0.012585295960889198, "network_tx_bytes": 5047722481, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i4096-r1-disagg2/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check disagg
+cephdag8 mode disagg: 32 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9609 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i1-r1-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 71.16573131500627, "scheduler_seconds": 0.008750625187531114, "network_tx_bytes": 4381682849, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1-r1-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9610 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i16-r1-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 73.64123465499142, "scheduler_seconds": 0.009249915805412456, "network_tx_bytes": 4377305730, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i16-r1-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 64 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9611 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i64-r1-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 82.02320373999828, "scheduler_seconds": 0.00930859480286017, "network_tx_bytes": 4388968975, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i64-r1-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9612 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i256-r1-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 108.59323099598987, "scheduler_seconds": 0.009950221152394079, "network_tx_bytes": 4426022817, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i256-r1-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9613 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i1024-r1-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 208.02136092199362, "scheduler_seconds": 0.010073372002807446, "network_tx_bytes": 4585137173, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1024-r1-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 4096 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies fifo-hash --repeats 1 --seed 9614 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/demo3-overlap-sweep/independent-i4096-r1-disagg/a1 --no-warm
+{"index": 0, "runs": 1, "scheduler": "fifo-hash", "wall_seconds": 596.8774902099976, "scheduler_seconds": 0.011369255094905384, "network_tx_bytes": 5238799009, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i4096-r1-disagg/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json check cs
+cephdag8 mode cs: 24 links at 400 Mbit/s, 8 workers, HEALTH_WARN
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9609 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i1-r1-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 14.237253657003748, "scheduler_seconds": 0.03152189002139494, "network_tx_bytes": 232454474, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 14.091718032999779, "scheduler_seconds": 0.036117034978815354, "network_tx_bytes": 428773940, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9610 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i16-r1-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 15.504086806991836, "scheduler_seconds": 0.0374892809195444, "network_tx_bytes": 233406846, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "heft", "wall_seconds": 14.802587703001336, "scheduler_seconds": 0.032177014858461916, "network_tx_bytes": 232999094, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i16-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 64 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9611 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i64-r1-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 21.102618318007444, "scheduler_seconds": 0.04168332587869372, "network_tx_bytes": 185605296, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "heft", "wall_seconds": 24.77174762300274, "scheduler_seconds": 0.03281614079605788, "network_tx_bytes": 792340938, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i64-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 256 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9612 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i256-r1-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 61.39583853300428, "scheduler_seconds": 0.030915184266632423, "network_tx_bytes": 5284842847, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 48.0250908970047, "scheduler_seconds": 0.03983049558883067, "network_tx_bytes": 187227595, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i256-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1024 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9613 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i1024-r1-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "data-local", "wall_seconds": 145.00020392698934, "scheduler_seconds": 0.038225316180614755, "network_tx_bytes": 374060051, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "heft", "wall_seconds": 170.12977466499433, "scheduler_seconds": 0.032139194081537426, "network_tx_bytes": 8407560509, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i1024-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 4096 --ratio 0.25 --dataset demo3-overlap-16g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 16 --dataset-gib 16 --shard-mib 64 --policies heft,data-local --repeats 1 --seed 9614 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/demo3-overlap-sweep/independent-i4096-r1-cs/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 558.7109369260143, "scheduler_seconds": 0.03103480176650919, "network_tx_bytes": 9376574123, "removed_bytes": 4294967296}
+{"index": 1, "runs": 2, "scheduler": "data-local", "wall_seconds": 543.3987868319964, "scheduler_seconds": 0.04150213234242983, "network_tx_bytes": 1397596377, "removed_bytes": 4294967296}
+{"complete": "/results/campaigns/demo3-overlap-sweep/independent-i4096-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete demo3-overlap-16g-64m --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"demo3-overlap-16g-64m": 256}}
+# exit 0

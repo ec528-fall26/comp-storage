@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/aakash/experiments/cephdag-demo3/infra/lab.py", line 1115, in <module>
+    main()
+    ~~~~^^
+  File "/home/aakash/experiments/cephdag-demo3/infra/lab.py", line 1108, in main
+    verify(lab, args.value, args.mbit or shaped_mbit(lab), args.probe)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aakash/experiments/cephdag-demo3/infra/lab.py", line 905, in verify
+    require_bandwidth(rates, mbit)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/aakash/experiments/cephdag-demo3/infra/lab.py", line 543, in require_bandwidth
+    raise RuntimeError(f"shaping validation failed at nodes {failed}: {rates}")
+RuntimeError: shaping validation failed at nodes [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]: {0: {'shared_tx': 231563.3608322895, 'shared_rx': 152782.2500066051}, 1: {'shared_tx': 151299.7371196523, 'shared_rx': 233381.57114082575}, 2: {'shared_tx': 152656.69816107207, 'shared_rx': 231733.3079332901}, 3: {'shared_tx': 151870.64264810993, 'shared_rx': 231130.60983346205}, 4: {'shared_tx': 224003.8763059245, 'shared_rx': 228412.72364588242}, 5: {'shared_tx': 74473.020886131, 'shared_rx': 151184.68902064688}, 6: {'shared_tx': 150711.24018224838, 'shared_rx': 152590.53364227674}, 7: {'shared_tx': 150694.95094456238, 'shared_rx': 151622.46243511364}, 8: {'shared_tx': 225556.76398327987, 'shared_rx': 149715.40492179518}, 9: {'shared_tx': 149808.53237949996, 'shared_rx': 75348.18835913797}, 10: {'shared_tx': 77244.89950554934, 'shared_rx': 150529.64860564104}, 11: {'shared_tx': 153780.27609062535, 'shared_rx': 231210.60727050842}, 12: {'shared_tx': 75820.98042122449, 'shared_rx': 231453.2977086144}, 13: {'shared_tx': 233337.1425349659, 'shared_rx': 228693.16831155377}, 14: {'shared_tx': 153837.64723684356, 'shared_rx': 152147.3908144105}, 15: {'shared_tx': 76225.17369581544, 'shared_rx': 150176.8508711211}}

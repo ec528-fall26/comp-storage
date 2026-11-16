@@ -1,0 +1,16 @@
+{
+  "name": "cephdag8",
+  "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+  "storage_nodes": 8,
+  "compute_nodes": 8,
+  "osd_cpus": 1,
+  "worker_cpus": 2,
+  "osd_memory_mib": 3072,
+  "worker_memory_mib": 3072,
+  "osd_gib": 56,
+  "worker_slots": 1,
+  "first_subnet": "172.30.144.0/24",
+  "bandwidth_mbit": 400,
+  "replicas": 1,
+  "results_dir": "/mnt/mass/cephdag"
+}

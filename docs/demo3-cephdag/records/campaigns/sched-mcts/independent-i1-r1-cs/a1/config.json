@@ -1,0 +1,1283 @@
+{
+  "args": {
+    "workload": "independent",
+    "iterations": "1",
+    "ratio": "0.25",
+    "droid_shards": "None",
+    "resolution": "128",
+    "droid_fused": "False",
+    "wave_gib": "16.0",
+    "policies": "native-mcts-heuristic-128,heft-cc,beam-4,data-local",
+    "repeats": "1",
+    "seed": "9106",
+    "budget_ms": "None",
+    "dataset_gib": "8.0",
+    "source_gib": "8.0",
+    "shard_mib": "64",
+    "dataset": "sched-mcts-8g-64m",
+    "placement": "0,0,0,0,0,0,0,1,2,3,4,5,6,7",
+    "no_warm": "True",
+    "models": "/results/calibration/cephdag8-cs/models.json",
+    "validation": "None",
+    "bandwidth_mbit": "None",
+    "cluster": "cephdag/clusters/cephdag8-cs.json",
+    "ceph_data": "/var/lib/ceph",
+    "output": "/results/campaigns/sched-mcts/independent-i1-r1-cs/a1"
+  },
+  "case": {
+    "shape": "independent",
+    "iterations": 1,
+    "ratio": 0.25
+  },
+  "rows": [
+    {
+      "repeat": 0,
+      "scheduler": "beam-4"
+    },
+    {
+      "repeat": 0,
+      "scheduler": "data-local"
+    },
+    {
+      "repeat": 0,
+      "scheduler": "native-mcts-heuristic-128"
+    },
+    {
+      "repeat": 0,
+      "scheduler": "heft-cc"
+    }
+  ],
+  "models": {
+    "compute": {
+      "fixed_seconds": 0.0,
+      "input_seconds_per_byte": 4.951665954746252e-10,
+      "iteration_seconds_per_byte": 6.021562293175251e-11,
+      "output_seconds_per_byte": 4.525915050790351e-10,
+      "functions": {
+        "decode_resize@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 3.6785505632911485e-09,
+          "output_seconds_per_byte": 5.664247357136322e-09
+        },
+        "encode_video@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 5.985550223636223e-09,
+          "output_seconds_per_byte": 1.3730350774182569e-08
+        },
+        "frame_stats@1": {
+          "fixed_seconds": 0.002035024667428524,
+          "input_seconds_per_byte": 0.0,
+          "output_seconds_per_byte": 5.1410786460843895e-06
+        },
+        "state_parquet@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 2.1991401882049962e-07,
+          "output_seconds_per_byte": 0.0
+        }
+      }
+    },
+    "storage": {
+      "read_bps": [
+        263886701.59202722,
+        306417941.7969698,
+        323470219.8848858,
+        391811893.1032842,
+        375030281.3699396,
+        310277137.1483851,
+        332158058.2794343,
+        282431612.11467737
+      ],
+      "write_bps": [
+        469930585.7883295,
+        455803892.47028834,
+        397041328.81203914,
+        381300701.60106003,
+        370108991.1361739,
+        424371291.2772804,
+        431465493.52995986,
+        478702233.4808687
+      ]
+    },
+    "network": {
+      "tx_bps": [
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0
+      ],
+      "rx_bps": [
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0,
+        47087500.0
+      ]
+    },
+    "calibrated": true,
+    "calibration_id": "63d36a187cf84662a61b828d46b8ba08"
+  },
+  "dataset": {
+    "name": "sched-mcts-8g-64m-prefix-8589934592",
+    "shards": [
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000000",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 0,
+        "sha256": "48fbeb96764cb6f29c23c05e4359d953ebec4e99f0a12efb3b150c392e8a3e6b"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000001",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 1,
+        "sha256": "0c288764ce17589ea01147fd17f6bbbef070094eadc083d567a78b0d84f67141"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000002",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 2,
+        "sha256": "26dc33d09e3fd5388ea352cdbb5ffaf96cd4ed153e989ac99a7f41bd8c3fd705"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000003",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 3,
+        "sha256": "7e4d3f05f28a897c9766a48afcd83e0272d65eba6827c494380d7f99a3595031"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000004",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 4,
+        "sha256": "9e6cd83b3bd01065b5d540d110d27fda3d398ea34ab1fbc2c174b5b0eb1a5fb8"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000005",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 5,
+        "sha256": "f26a0847f43dad338e89335d2f0b472bb44ac90f7d2e65c426b40c435eea8b6b"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000006",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 6,
+        "sha256": "8ae53f5396554432338541f52ae73011478d7be31c73942942c07f7f28269490"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000007",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 7,
+        "sha256": "a3c441559139bdca790d809e2ddfee75a1ba5f510a517582dfa1e9758ba3fd36"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000008",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 8,
+        "sha256": "6862a9cf77561018a264d7ceb5caf3ba1738f0a2e8ebbaebcb4e70151d7cf564"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000009",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 9,
+        "sha256": "2c378fcf04c058ca89eb43a1de4dc2d331c7964e1a50d7eebaac2a039c00c02a"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000010",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 10,
+        "sha256": "464cd3dd341dff83fb448384e03e8611da6f688df66427612e3d0c3769cc73ce"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000011",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 11,
+        "sha256": "babe1ec6dd095b42a25fedd5a6da742a93388f65fe064fcaf636fa0ae90f6686"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000012",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 12,
+        "sha256": "7038bc78dc38ac6c4a541f2e6e1958d758f95087824dd7ea189aa1715b6a7d7a"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000013",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 13,
+        "sha256": "c8c6e9f183e94d7af838e66945e31df586caf87dfcf84d82097992844228e6fe"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000014",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 14,
+        "sha256": "39cee036941a9a8912ed6bc71d4f78f10dd473013fdcaa46d5e6b4bf697584c6"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000015",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 15,
+        "sha256": "18a1c52cb0ba78d1476276a0934ad683710222d5e9c98f7199d1b0f38219afbe"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000016",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 16,
+        "sha256": "2d4a00b8db99465b635457e050b194aed33abf9952ff4f0ec787a50fb3e8a1e3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000017",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 17,
+        "sha256": "956b83de7f2c4450f9e590874363fde890e21bfa0ea5e222d8f3c5b617b16ab5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000018",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 18,
+        "sha256": "fb9dfcffe60107b07f69d22adb50188140ca2d074ca067242917c942784317a5"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000019",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 19,
+        "sha256": "5861a514a8f99ada3177615d8024df305862ed5c038167d25d32829669087614"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000020",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 20,
+        "sha256": "d5b7c48ff9f1f23c477d7847935cb67dfbc1453d03fef1fd0ba6c99840b7ecf4"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000021",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 21,
+        "sha256": "28ec7a3e654e94edea6d703959089d4b49bb301e6b3cc03d5a2b9eef51628996"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000022",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 22,
+        "sha256": "f8c5c014034edba64c19fed38e786ae1c3265c1855b8b9d4c260776162522e7e"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000023",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 23,
+        "sha256": "2cd0defa1787a33da62eda2687800fbaee32539b7367dd554e2bcf040a522265"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000024",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 24,
+        "sha256": "4c90a7563358d124a0987e23bc24d3e13f299c48b36e335637e9c09eae00232f"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000025",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 25,
+        "sha256": "50b5e9f4ed50989afa9d26da87cb8eb333c93931f43c1508866c349b48c9a908"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000026",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 26,
+        "sha256": "8366ff1ce63efd6424c859510e450efcd111c7f4c3dbbbee5a91110d8e3b3b98"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000027",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 27,
+        "sha256": "1347ce8426526c3aad61351ee537b633127f6a14f070fb272db3a6b0175840cf"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000028",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 28,
+        "sha256": "0ad117b7f7f77ae387f1a3937f07bed4714b401d621c1625845a090fd34e39d0"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000029",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 29,
+        "sha256": "83eec34e30f342b07937f20143e2e2d76ded92e2c31ec3cfe3877260faf3430f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000030",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 30,
+        "sha256": "2fda57deb7df75e2fd352d729b8c7d6e0f9aad9e58873b924fb51f92da7ffbc2"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000031",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 31,
+        "sha256": "ec86d6ea23b0623b80d200b69e6dfaf0d6f5eee6211532c06b3240e3ee6d0a22"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000032",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 32,
+        "sha256": "9a2728ea758f58c8870e408cf6f403856b6a94798db3053b45611306d9efac47"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000033",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 33,
+        "sha256": "2c77c5515bf01b6eec56008c1c058b97b1f048569d675e42f055677eac4d0d5f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000034",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 34,
+        "sha256": "f9b71ab98146f0b7e0ebba423d57b06123d0d9ec0ad0a77b466d7bd2ef0259df"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000035",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 35,
+        "sha256": "f1aedb2609f46b15bcd2ab0f84a906bf5752c592f90c7b9eb3c8242f60f5fd50"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000036",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 36,
+        "sha256": "ead3d2e3f351beb715df82037fdba2f20a6524e2bcc6f54995d4d64e4402e589"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000037",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 37,
+        "sha256": "21526a5957184081c0262ef45b372c681bc90db43493ba8d159998af2184adb6"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000038",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 38,
+        "sha256": "0f803db6fadc5cb0a9c72f837edfcd02b60fece9b99508b66fafcfe0c23d3280"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000039",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 39,
+        "sha256": "31d6990d9e32438ceb60cb83fb6e73ee9110405abd5b0f576ad88ddebef96a95"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000040",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 40,
+        "sha256": "19c7664e44c45283faab282b9025015c342bd7e33c78ca92d832de15d371b264"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000041",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 41,
+        "sha256": "056bd1088611759d0c034f4aa9080c0c7fce7b0c042102b70eefff0046a238c9"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000042",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 42,
+        "sha256": "841f4e6439144c6b68393bf9a09dfb083618eccfbb1a86464531e90a74cfd575"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000043",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 43,
+        "sha256": "1fbba12ccd4016e131d045eee2ce50c9fa19e78911ae4914d22017ce03efbc36"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000044",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 44,
+        "sha256": "cc5eee50b09eabee419aea8913463ef5f09a2803e44cd339d89d02154b555ddc"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000045",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 45,
+        "sha256": "448f4923685abbeba6ec5bc35de6f8db720461d41c768c33a2aab7a2831358a0"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000046",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 46,
+        "sha256": "eacfef64c79f1c9562187bedf38d4b52eeaf557f87520af20d10eb275593c322"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000047",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 47,
+        "sha256": "349a8489e660ce7a88ac673460088b0f2720d9d2dac84da8cd09faee62af0365"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000048",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 48,
+        "sha256": "6be9bc8eeda0883eeb882bb2b66e1036dcf2f64cf8d014d59d4afcb8b5689dc9"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000049",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 49,
+        "sha256": "8cb132843b45a69b8e7df2ef2b4a2afba84f71d66be229319d36072fbbe48bcf"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000050",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 50,
+        "sha256": "65fe4e068208c8a58b66f8e92b0c2c36ab180d8bd0565f457966ec12deb4e70f"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000051",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 51,
+        "sha256": "9812fbd5453416d80e6512bc3c2a8c692f0e31ac35d9e9ca4d9c161f50c31c2b"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000052",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 52,
+        "sha256": "a80ee7e521298f786a6dbb8d00877b68d274d9adaeed5b8728581b241ed6d4d1"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000053",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 53,
+        "sha256": "83b3cd8fab482595e45090f52035e20ca5ce028e726008bd3fb0f9834e7934b0"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000054",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 54,
+        "sha256": "a569306dc6ad2928880c27052e41a42f9a29f083cc5bba7788546ef42556cedc"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000055",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 55,
+        "sha256": "e7e248d50a7a97f3b3641813292e9fced6f48af9e41aaee829b557ba01576729"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000056",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 56,
+        "sha256": "5e9dc8863e0b8ac07e7328f2da5ea1c181b5d4126218b6e026ab89bf11080257"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000057",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 57,
+        "sha256": "e0bbabfe0bdb4ddff6d6a25bbb90e7bb9a1caf1c236a4e8d6301d97e82150f6d"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000058",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 58,
+        "sha256": "44f86ce44511ed3a9a8e32f6bc2f261a63cf7457fa56e78724fb5238aa4dd8d1"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000059",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 59,
+        "sha256": "ffb5ea13a9f98470ce1817e57ca60d046fdd3e6ae8ed3c9a247fe8609f344836"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000060",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 60,
+        "sha256": "4b85063da5a8e82b80bd40a0caac6371e65ccce23aea522117c135b0b167a5b7"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000061",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 61,
+        "sha256": "82cdd23f51a68534138f3a9e5b493df2ba547a8c5ccd8133dcb259501197ab0f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000062",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 62,
+        "sha256": "d88c4133cbc145e7371836bad2655488b8f9fb2eca1ea7061152d0a1f31cb389"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000063",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 63,
+        "sha256": "df23e23c6bb19cefe0ea46791d3377594c3fb4fa680fe8c38e021a9cc3169fe6"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000064",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 64,
+        "sha256": "a7e86b9b9f1ec15167ebe23a668a93f554092c74e0909f79941de4ed9d27f4c3"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000065",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 65,
+        "sha256": "df0ec57dbdfd5128e6c8f80f6e1f6462f4b54f12c2a7a1bfdfa879fe2a623835"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000066",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 66,
+        "sha256": "36db5e46441c605e3166b87de03a8f80cf62b5bba60c2a1f224bb21fee90666c"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000067",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 67,
+        "sha256": "2db5b4d50f154e4fff0b41dad062d5f592639c5b08103b1d2d0d09ed9dcdc6f1"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000068",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 68,
+        "sha256": "94a6f65e72cbdf604f5b85b13077698a450b88d0ad958b3ea2ba332141690bc7"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000069",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 69,
+        "sha256": "4c3612553f3360d5a4bf65724119bb74d5fe54ada82a430ae15033c0bb25895a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000070",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 70,
+        "sha256": "36675faa6423cea9b98a629d01962e52308e8f3516eaf49178a3d800ff66bfd2"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000071",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 71,
+        "sha256": "956e06e7011816c755cf76dd91c6a54fc003b3d64e3d6c87f703aa92584bc382"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000072",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 72,
+        "sha256": "bb91be508f0f3e84d3cba8e816225e3ec3c053daa502892cbf285f828189cbe1"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000073",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 73,
+        "sha256": "277d0a7f1606d2ab56a2591fe0a240bed02a81c98243185d334d38a7fd714180"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000074",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 74,
+        "sha256": "51b2fc805dfe85d93edf8c5f74030a4484432ec3497a8768a45f93144baa7bba"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000075",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 75,
+        "sha256": "cebe0d5a8c7402cf1a2fcead3751c394718a441760d4536bb569dc9f0d885cb3"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000076",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 76,
+        "sha256": "0356cc1d23e8c346997140c52694f4f7645867992c0003b754e47a09570c8769"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000077",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 77,
+        "sha256": "c035eaf11acbd1a546a5355b1f96235ce53feb99968bd67d4411cc30b01e92cc"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000078",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 78,
+        "sha256": "2d2b64fafe0df98975dd026614808a7486d5b96115d1d9f4deff342e8436c442"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000079",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 79,
+        "sha256": "2864059567a1c81ed2c5f151cbecc67aaf928d9b956e08ed68986677a23e9541"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000080",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 80,
+        "sha256": "9f3e51f503c55e40140d8498a547aa2b9ad67db6e0f5e3d9d940d1a7d3ae0118"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000081",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 81,
+        "sha256": "eba263ebd16d0bb6235011f3d2379a1ca4ee33be7b8c1459b243467ebb4b3883"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000082",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 82,
+        "sha256": "13284376c6a957c619d2b4c37162491e6f92c6583c16a1bb2f23cf5dbd21e238"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000083",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 83,
+        "sha256": "157ae6d921b52ec0fe3719d968053bc4f2f34ee961d38cb4e64ff8811618250a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000084",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 84,
+        "sha256": "2b973f49a40595668ba958095977e37bed131b5530218ad663d012d71b974dcb"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000085",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 85,
+        "sha256": "41c4309fc66405691d786cc28c87cbc97d84ddc16e1841e29fdc8d33fa9c94a1"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000086",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 86,
+        "sha256": "454d1df18ff0c405b0eaaa6f7f934962dcd2f82f4d8cb859c6ec98e8bb221e7e"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000087",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 87,
+        "sha256": "dee6ba4ca96cd697ec01bafb551ce1437fe7825a53f32b556b00d19a7e58e9b8"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000088",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 88,
+        "sha256": "d9f714c1fad39f596231906919355abc771ff68a30dd14a9a8b6f930ef637980"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000089",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 89,
+        "sha256": "120f5d96f622e7ad30e1616d3d21be265d246053544c2f7a31befee6c63412d4"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000090",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 90,
+        "sha256": "c7da62809dbe9b7bb9efa0a71380230a0f700afee49354c9197a3076f8485cb5"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000091",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 91,
+        "sha256": "67c0282bb4b48fb65f446cb339813c77c07f04c44abbc5c2ba4d7a151214128c"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000092",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 92,
+        "sha256": "73cff6fcdd819fe21433a80239c6ccf6b53fd4d975280de5172309b8666d87bd"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000093",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 93,
+        "sha256": "b97e9473fa040c63fcb1910bcc9ccc9d78626b43b62aa11a152fc9a25525522f"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000094",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 94,
+        "sha256": "913458ed80fce63928f5cefe712cf22e71e8eb438e014a23a4d9a85dfdf845f7"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000095",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 95,
+        "sha256": "d9bee898d2ab2307b8df8fde528e2672b8207be4d28f1c211f5f32808f3556d7"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000096",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 96,
+        "sha256": "fbb38e02dac5194f358687b4808386bbdea53aaab0026a62d6cfe7464d3d20bd"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000097",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 97,
+        "sha256": "b0b81f4bff6bba4af5ecf76b4049889d12a65b9e72a0862c83515f8c1d600e76"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000098",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 98,
+        "sha256": "67fb64a097dfaf090510c8960e60ab656c4784750450390fcd8cc1a3a6f1c17e"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000099",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 99,
+        "sha256": "f8dcde72d18b4b11e95d8bb09253a35eab165a9f75118858111c26fc3ab120e0"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000100",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 100,
+        "sha256": "ac5ab0539c9ac340fedfa88632adebec8269250c10a5409c1f50f2d922e2f749"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000101",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 101,
+        "sha256": "0d0e400a2169c72028dcc7b500e01f09a85a2d52abc04e849483ab20ee487b9a"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000102",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 102,
+        "sha256": "8118dff2dec329bae9441d6140cb54e1fddec1772231dbfc648742a7ab8beb18"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000103",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 103,
+        "sha256": "c0dd3da1630d94df0744b007bbb90dcf9d4ab60a3414a30ed1d332aac160ec4f"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000104",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 104,
+        "sha256": "7ab53d8691e7b702c223f39af26d3ff8c37f8b1e9db729f40f2cac2be81bc1f5"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000105",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 105,
+        "sha256": "29fc29af7f0b50119231af4a45996aee4992473c2d34f9fc92bf0cafc2f76572"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000106",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 106,
+        "sha256": "c7b061bbb58e51437cb20bfd074c3bea71ef4bf8931fed5516bdd682e506def6"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000107",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 107,
+        "sha256": "0161c7ac6e14aa2cac83a003e09d2eceac5398541b3d76644350bd3898fd92e2"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000108",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 108,
+        "sha256": "c63e7bc380ce402114f2d2f61dc1aa3bde8554511488360c4cf17f3788c60ff0"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000109",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 109,
+        "sha256": "b17bd15a9b75594ad96c873d0b79415ffdc945fe3038cc07d853e7edc69c961c"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000110",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 110,
+        "sha256": "7d3a5e1a7d3a69317b864cac4de5efef1ff572bb8018972061f948bd68c9c68e"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000111",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 111,
+        "sha256": "8120c0354a6e3abf25cc317eada05e7714a2374996e9054c9b6e6f2b45998bf0"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000112",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 112,
+        "sha256": "9efc87ded4ba55d5149af0518c349edf7f1f890ac307d341bd77dbfae83672ce"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000113",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 113,
+        "sha256": "383eac94e0dc220ae249ebc79da1a3f026bdba793c4dd6b5f4531d4a13fd024d"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000114",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 114,
+        "sha256": "458cbb6dd3cb664530c0891bdd829ca32e23a7666ff1fae5e2c84c4bfddecb52"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000115",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 115,
+        "sha256": "ed572741fbd77fc8b88752cdb85874015ea998e47e366110b942c9057d0f96ff"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000116",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 116,
+        "sha256": "fc9aac97a07e1b57acc26a47e106ce40a22d5896506c8d7857fe31cca5da3525"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000117",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 117,
+        "sha256": "0e0ab63049bf1bcc5cc9a753f79fe85fb036db3963b79caedfac1ffd4b59f665"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000118",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 118,
+        "sha256": "55187c1c68dc2721d9f574505700af255478dfa62f0022941d6838084078c730"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/sched-mcts-8g-64m/part-000119",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 119,
+        "sha256": "b3fa40362bf82e1fe9d62d858de1492365abbbed3a87833a52d86cd987b26535"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/sched-mcts-8g-64m/part-000120",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 120,
+        "sha256": "8e44612d11ffb0ee511ee90d0a42fa287b51a062358a9a8960b39ca7f445e1c2"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/sched-mcts-8g-64m/part-000121",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 121,
+        "sha256": "956b54a08e6785f9caa2d0ab6072e07a82045ceb9fedea80e212c8c2410fc9fd"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/sched-mcts-8g-64m/part-000122",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 122,
+        "sha256": "5b4f1d23d65aa01efce729b8beb58be566927aa405c618c1ce1afc48cf0fd3d1"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/sched-mcts-8g-64m/part-000123",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 123,
+        "sha256": "f910393c297797f634745b52124674759bb0c52245c78e95a70f7fb7003bc404"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/sched-mcts-8g-64m/part-000124",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 124,
+        "sha256": "55c41174d3260ed915a4746b40c6771ba2952db58697260bf571ad8cd64e3ce0"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/sched-mcts-8g-64m/part-000125",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 125,
+        "sha256": "2b69e584e38e6b4b71e9055db9bb81adab4e7b538568efc603631c35991c9a83"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000126",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 126,
+        "sha256": "aa451b4c2a1e6ea7f61c5c077b746aec24491f1121e45a1163c2e391021a4d10"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/sched-mcts-8g-64m/part-000127",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 127,
+        "sha256": "53e4d002350397e6c5e74a19b7efc33c90e8b7eb1606d08fbfa0d0889599ec77"
+      }
+    ]
+  }
+}

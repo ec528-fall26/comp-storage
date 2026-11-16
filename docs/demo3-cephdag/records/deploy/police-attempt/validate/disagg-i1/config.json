@@ -1,0 +1,442 @@
+{
+  "args": {
+    "workload": "independent",
+    "iterations": "1",
+    "ratio": "0.25",
+    "droid_shards": "None",
+    "resolution": "128",
+    "wave_gib": "16.0",
+    "policies": "fifo-hash,heft",
+    "repeats": "1",
+    "seed": "9103",
+    "budget_ms": "None",
+    "dataset_gib": "2.0",
+    "source_gib": "2.0",
+    "shard_mib": "64",
+    "dataset": "smoke-2g-64m",
+    "placement": "0,1,2,3,4,5,6,7",
+    "no_warm": "True",
+    "models": "/results/calibration/cephdag8-disagg/models.json",
+    "validation": "None",
+    "bandwidth_mbit": "None",
+    "cluster": "cephdag/clusters/cephdag8-disagg.json",
+    "ceph_data": "/var/lib/ceph",
+    "output": "/results/smoke/validate/disagg-i1"
+  },
+  "case": {
+    "shape": "independent",
+    "iterations": 1,
+    "ratio": 0.25
+  },
+  "rows": [
+    {
+      "repeat": 0,
+      "scheduler": "heft"
+    },
+    {
+      "repeat": 0,
+      "scheduler": "fifo-hash"
+    }
+  ],
+  "models": {
+    "compute": {
+      "fixed_seconds": 0.0007185334393305027,
+      "input_seconds_per_byte": 1.9810264598107711e-10,
+      "iteration_seconds_per_byte": 5.510143819656754e-11,
+      "output_seconds_per_byte": 5.890331968406986e-11,
+      "functions": {
+        "decode_resize@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 4.3040306625786195e-09,
+          "output_seconds_per_byte": 5.358754241001056e-09
+        },
+        "encode_video@1": {
+          "fixed_seconds": 0.006988108467503155,
+          "input_seconds_per_byte": 5.554116210866915e-09,
+          "output_seconds_per_byte": 1.4587316316524974e-08
+        },
+        "frame_stats@1": {
+          "fixed_seconds": 0.0025354548209197783,
+          "input_seconds_per_byte": 4.990151274157187e-09,
+          "output_seconds_per_byte": 0.0
+        },
+        "state_parquet@1": {
+          "fixed_seconds": 0.0,
+          "input_seconds_per_byte": 2.2443408452114046e-07,
+          "output_seconds_per_byte": 0.0
+        }
+      }
+    },
+    "storage": {
+      "read_bps": [
+        570360121.1303606,
+        795154494.2135482,
+        857861313.64677,
+        849765199.8650323,
+        880887131.5889494,
+        800588011.1745191,
+        801774444.5938551,
+        718735237.8730294,
+        801181227.8841871,
+        801181227.8841871,
+        801181227.8841871,
+        801181227.8841871,
+        801181227.8841871,
+        801181227.8841871,
+        801181227.8841871,
+        801181227.8841871
+      ],
+      "write_bps": [
+        602502047.6048359,
+        603734628.355188,
+        537881819.9244702,
+        612779038.3957064,
+        676686187.5966942,
+        620080290.4111083,
+        597016876.8074645,
+        644113252.9062161,
+        608256833.3754473,
+        608256833.3754473,
+        608256833.3754473,
+        608256833.3754473,
+        608256833.3754473,
+        608256833.3754473,
+        608256833.3754473,
+        608256833.3754473
+      ]
+    },
+    "network": {
+      "tx_bps": [
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0
+      ],
+      "rx_bps": [
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0,
+        49462500.0
+      ]
+    },
+    "calibrated": true,
+    "calibration_id": "719d6575ec464c3dbad346c0b5d997b6"
+  },
+  "dataset": {
+    "name": "smoke-2g-64m-prefix-2147483648",
+    "shards": [
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/smoke-2g-64m/part-000000",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 0,
+        "sha256": "48fbeb96764cb6f29c23c05e4359d953ebec4e99f0a12efb3b150c392e8a3e6b"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/smoke-2g-64m/part-000001",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 1,
+        "sha256": "0c288764ce17589ea01147fd17f6bbbef070094eadc083d567a78b0d84f67141"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/smoke-2g-64m/part-000002",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 2,
+        "sha256": "26dc33d09e3fd5388ea352cdbb5ffaf96cd4ed153e989ac99a7f41bd8c3fd705"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/smoke-2g-64m/part-000003",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 3,
+        "sha256": "7e4d3f05f28a897c9766a48afcd83e0272d65eba6827c494380d7f99a3595031"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/smoke-2g-64m/part-000004",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 4,
+        "sha256": "9e6cd83b3bd01065b5d540d110d27fda3d398ea34ab1fbc2c174b5b0eb1a5fb8"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/smoke-2g-64m/part-000005",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 5,
+        "sha256": "f26a0847f43dad338e89335d2f0b472bb44ac90f7d2e65c426b40c435eea8b6b"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/smoke-2g-64m/part-000006",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 6,
+        "sha256": "8ae53f5396554432338541f52ae73011478d7be31c73942942c07f7f28269490"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/smoke-2g-64m/part-000007",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 7,
+        "sha256": "a3c441559139bdca790d809e2ddfee75a1ba5f510a517582dfa1e9758ba3fd36"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/smoke-2g-64m/part-000008",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 8,
+        "sha256": "6862a9cf77561018a264d7ceb5caf3ba1738f0a2e8ebbaebcb4e70151d7cf564"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/smoke-2g-64m/part-000009",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 9,
+        "sha256": "2c378fcf04c058ca89eb43a1de4dc2d331c7964e1a50d7eebaac2a039c00c02a"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/smoke-2g-64m/part-000010",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 10,
+        "sha256": "464cd3dd341dff83fb448384e03e8611da6f688df66427612e3d0c3769cc73ce"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/smoke-2g-64m/part-000011",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 11,
+        "sha256": "babe1ec6dd095b42a25fedd5a6da742a93388f65fe064fcaf636fa0ae90f6686"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/smoke-2g-64m/part-000012",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 12,
+        "sha256": "7038bc78dc38ac6c4a541f2e6e1958d758f95087824dd7ea189aa1715b6a7d7a"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/smoke-2g-64m/part-000013",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 13,
+        "sha256": "c8c6e9f183e94d7af838e66945e31df586caf87dfcf84d82097992844228e6fe"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/smoke-2g-64m/part-000014",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 14,
+        "sha256": "39cee036941a9a8912ed6bc71d4f78f10dd473013fdcaa46d5e6b4bf697584c6"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/smoke-2g-64m/part-000015",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 15,
+        "sha256": "18a1c52cb0ba78d1476276a0934ad683710222d5e9c98f7199d1b0f38219afbe"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/smoke-2g-64m/part-000016",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 16,
+        "sha256": "2d4a00b8db99465b635457e050b194aed33abf9952ff4f0ec787a50fb3e8a1e3"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/smoke-2g-64m/part-000017",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 17,
+        "sha256": "956b83de7f2c4450f9e590874363fde890e21bfa0ea5e222d8f3c5b617b16ab5"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/smoke-2g-64m/part-000018",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 18,
+        "sha256": "fb9dfcffe60107b07f69d22adb50188140ca2d074ca067242917c942784317a5"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/smoke-2g-64m/part-000019",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 19,
+        "sha256": "5861a514a8f99ada3177615d8024df305862ed5c038167d25d32829669087614"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/smoke-2g-64m/part-000020",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 20,
+        "sha256": "d5b7c48ff9f1f23c477d7847935cb67dfbc1453d03fef1fd0ba6c99840b7ecf4"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/smoke-2g-64m/part-000021",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 21,
+        "sha256": "28ec7a3e654e94edea6d703959089d4b49bb301e6b3cc03d5a2b9eef51628996"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/smoke-2g-64m/part-000022",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 22,
+        "sha256": "f8c5c014034edba64c19fed38e786ae1c3265c1855b8b9d4c260776162522e7e"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/smoke-2g-64m/part-000023",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 23,
+        "sha256": "2cd0defa1787a33da62eda2687800fbaee32539b7367dd554e2bcf040a522265"
+      },
+      {
+        "kind": "object",
+        "pool": "node0",
+        "key": "datasets/smoke-2g-64m/part-000024",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 24,
+        "sha256": "4c90a7563358d124a0987e23bc24d3e13f299c48b36e335637e9c09eae00232f"
+      },
+      {
+        "kind": "object",
+        "pool": "node1",
+        "key": "datasets/smoke-2g-64m/part-000025",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 25,
+        "sha256": "50b5e9f4ed50989afa9d26da87cb8eb333c93931f43c1508866c349b48c9a908"
+      },
+      {
+        "kind": "object",
+        "pool": "node2",
+        "key": "datasets/smoke-2g-64m/part-000026",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 26,
+        "sha256": "8366ff1ce63efd6424c859510e450efcd111c7f4c3dbbbee5a91110d8e3b3b98"
+      },
+      {
+        "kind": "object",
+        "pool": "node3",
+        "key": "datasets/smoke-2g-64m/part-000027",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 27,
+        "sha256": "1347ce8426526c3aad61351ee537b633127f6a14f070fb272db3a6b0175840cf"
+      },
+      {
+        "kind": "object",
+        "pool": "node4",
+        "key": "datasets/smoke-2g-64m/part-000028",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 28,
+        "sha256": "0ad117b7f7f77ae387f1a3937f07bed4714b401d621c1625845a090fd34e39d0"
+      },
+      {
+        "kind": "object",
+        "pool": "node5",
+        "key": "datasets/smoke-2g-64m/part-000029",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 29,
+        "sha256": "83eec34e30f342b07937f20143e2e2d76ded92e2c31ec3cfe3877260faf3430f"
+      },
+      {
+        "kind": "object",
+        "pool": "node6",
+        "key": "datasets/smoke-2g-64m/part-000030",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 30,
+        "sha256": "2fda57deb7df75e2fd352d729b8c7d6e0f9aad9e58873b924fb51f92da7ffbc2"
+      },
+      {
+        "kind": "object",
+        "pool": "node7",
+        "key": "datasets/smoke-2g-64m/part-000031",
+        "size": 67108864,
+        "dtype": "float32",
+        "partition": 31,
+        "sha256": "ec86d6ea23b0623b80d200b69e6dfaf0d6f5eee6211532c06b3240e3ee6d0a22"
+      }
+    ]
+  }
+}

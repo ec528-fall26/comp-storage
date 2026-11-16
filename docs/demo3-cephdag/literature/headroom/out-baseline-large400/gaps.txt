@@ -1,0 +1,52 @@
+shape scheduler worker wall planning tasks head busy overhead gaps tail  (medians over repeats)
+competing   beam-4      w0   76.88   14.69 1436.00    0.11   59.98    8.83    7.94    0.00
+competing   beam-4      w1   76.88   14.69  771.00    0.11   34.04    4.99   36.55    1.11
+competing   beam-4      w2   76.88   14.69  865.00    0.11   37.48    5.75   33.64    0.14
+competing   greedy      w0   98.47   15.78 1285.00    0.12   58.86   27.08   13.63    0.03
+competing   greedy      w1   98.47   15.78  856.00    0.11   78.25   12.37    7.51    0.07
+competing   greedy      w2   98.47   15.78  950.00    0.10   75.57   14.74    8.31    0.00
+competing   greedy-wait w0   96.86   54.60 1375.00    0.13   56.72   13.98   26.36    0.04
+competing   greedy-wait w1   96.86   54.60  798.00    0.12   35.19    6.86   54.79    0.00
+competing   greedy-wait w2   96.86   54.60  894.00    0.11   36.55    9.71   46.38    4.05
+competing   heft        w0   74.80    3.10 1284.00    1.52   55.57   15.66    2.92    0.00
+competing   heft        w1   74.80    3.10  852.00    1.52   51.17    8.79    8.66    5.63
+competing   heft        w2   74.80    3.10  936.00    1.52   56.50    8.15    3.94    5.71
+competing   stealing    w0   79.91    2.61 1192.00    0.16   53.34   21.31    5.12    0.00
+competing   stealing    w1   79.91    2.61  931.00    0.15   66.33    8.80    3.72    0.63
+competing   stealing    w2   79.91    2.61  949.00    0.15   66.79    9.41    3.36    0.50
+independent beam-4      w0   58.54    7.61 1024.00    0.08   49.24    6.23    2.98    0.00
+independent beam-4      w1   58.54    7.61  512.00    0.08   29.35    2.53   25.63    0.34
+independent beam-4      w2   58.54    7.61  512.00    0.07   28.75    3.38   25.81    0.34
+independent greedy      w0   85.23   10.32  878.00    0.10   42.54   29.43   12.91    0.25
+independent greedy      w1   85.23   10.32  582.00    0.09   67.16   12.82    5.16    0.00
+independent greedy      w2   85.23   10.32  587.00    0.08   67.02   12.76    5.14    0.25
+independent greedy-wait w0   66.03   33.27 1024.00    0.11   46.94    8.56   10.58    0.00
+independent greedy-wait w1   66.03   33.27  512.00    0.09   26.30    3.51   34.75    1.28
+independent greedy-wait w2   66.03   33.27  512.00    0.08   26.17    5.30   33.26    1.26
+independent heft        w0   68.30    1.70  927.00    0.71   45.31   20.63    1.54    0.00
+independent heft        w1   68.30    1.70  548.00    0.72   47.62    7.78    3.32    9.05
+independent heft        w2   68.30    1.70  573.00    0.72   54.43    6.60    2.86    3.90
+independent stealing    w0   70.49    3.92  918.00    0.18   45.61   21.56    2.98    0.00
+independent stealing    w1   70.49    3.92  563.00    0.18   63.98    4.57    2.43    0.25
+independent stealing    w2   70.49    3.92  567.00    0.17   63.23    4.33    2.50    0.16
+median per-task dispatch+notice overhead (ms):
+  competing   anneal-16                   23.16
+  competing   beam-4                       6.49
+  competing   cpop                         9.24
+  competing   greedy                      15.44
+  competing   greedy-wait                 10.16
+  competing   heft                        10.32
+  competing   local-16                    21.15
+  competing   native-mcts-heuristic-128   10.95
+  competing   peft                         9.95
+  competing   stealing                     9.94
+  independent anneal-16                   23.41
+  independent beam-4                       6.08
+  independent cpop                        13.83
+  independent greedy                      22.48
+  independent greedy-wait                  8.36
+  independent heft                        14.19
+  independent local-16                    15.64
+  independent native-mcts-heuristic-128   17.42
+  independent peft                        13.88
+  independent stealing                     8.12

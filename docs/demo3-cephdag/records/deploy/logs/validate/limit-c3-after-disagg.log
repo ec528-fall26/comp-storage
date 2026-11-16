@@ -1,0 +1,6 @@
+table netdev cephdag_eth0 {
+	chain egress {
+		type filter hook egress device "eth0" priority filter; policy accept;
+		limit rate over 50000000 bytes/second burst 128 kbytes drop
+	}
+}

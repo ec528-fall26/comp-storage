@@ -1,0 +1,42 @@
+== independent
+  model_lb_separate_tx_rx              35.28 s  net 1.661 GiB  binding slot:0=35.3, tx:0=35.3, slot:1=35.3, slot:2=35.3
+  model_lb_shared_link                 35.28 s  net 1.661 GiB  binding slot:0=35.3, slot:1=35.3, link:0=35.3, slot:2=35.3
+  empirical_p10_lb_separate_tx_rx      37.51 s  net 1.360 GiB  binding slot:1=37.5, slot:0=37.5, slot:2=37.5, read:0=34.6
+  empirical_p10_lb_shared_link         37.51 s  net 1.360 GiB  binding slot:2=37.5, slot:0=37.5, slot:1=37.5, read:0=34.6
+  empirical_p50_lb_separate_tx_rx      40.89 s  net 1.339 GiB  binding slot:2=40.9, slot:0=40.9, slot:1=40.9, read:0=34.6
+  empirical_p50_lb_shared_link         40.89 s  net 1.339 GiB  binding slot:2=40.9, slot:0=40.9, slot:1=40.9, read:0=34.6
+  model_all_local                      39.07 s  per node 39.1, 19.5, 13.1
+  empirical_p10_all_local              40.99 s  per node 41.0, 20.7, 20.1
+  empirical_p50_all_local              44.63 s  per node 44.6, 23.4, 22.9
+  missing empirical keys: [] []
+  beam-4                     wall   58.54 plan   7.61 busy max  49.24 min  28.75 sum  107.4 | read   50.1 comp   7.6 write  31.6 | remote 0.000 GiB n=3
+  greedy-wait                wall   66.03 plan  33.27 busy max  46.94 min  26.17 sum   99.4 | read   50.8 comp   7.8 write  27.8 | remote 0.000 GiB n=3
+  heft                       wall   68.30 plan   1.70 busy max  54.43 min  45.31 sum  147.4 | read   95.6 comp   7.9 write  28.6 | remote 1.656 GiB n=3
+  cpop                       wall   68.42 plan   1.65 busy max  54.30 min  45.58 sum  147.2 | read   96.7 comp   8.0 write  28.0 | remote 1.656 GiB n=3
+  peft                       wall   68.62 plan   1.72 busy max  54.66 min  45.18 sum  147.2 | read   95.9 comp   7.9 write  28.5 | remote 1.656 GiB n=3
+  stealing                   wall   70.49 plan   3.92 busy max  63.98 min  45.61 sum  173.1 | read  118.9 comp   8.0 write  29.8 | remote 1.656 GiB n=3
+  local-16                   wall   81.67 plan  29.90 busy max  58.68 min  45.49 sum  162.3 | read  112.1 comp   7.7 write  29.5 | remote 2.616 GiB n=3
+  greedy                     wall   85.23 plan  10.32 busy max  67.16 min  42.54 sum  176.7 | read  129.6 comp   7.6 write  26.3 | remote 3.344 GiB n=3
+  native-mcts-heuristic-128  wall   85.45 plan   7.69 busy max  69.00 min  52.45 sum  190.4 | read  128.4 comp   7.8 write  39.5 | remote 3.362 GiB n=3
+  anneal-16                  wall  133.76 plan  28.03 busy max 108.81 min  92.65 sum  309.8 | read  247.4 comp   7.5 write  41.0 | remote 7.117 GiB n=3
+== competing
+  model_lb_separate_tx_rx              28.83 s  net 0.910 GiB  binding slot:1=28.8, slot:0=28.8, slot:2=28.8, tx:0=20.7
+  model_lb_shared_link                 28.83 s  net 0.910 GiB  binding slot:1=28.8, slot:0=28.8, slot:2=28.8, link:0=20.7
+  empirical_p10_lb_separate_tx_rx      36.24 s  net 0.461 GiB  binding slot:2=36.2, slot:0=36.2, slot:1=36.2, read:0=18.0
+  empirical_p10_lb_shared_link         36.24 s  net 0.461 GiB  binding slot:0=36.2, slot:2=36.2, slot:1=36.2, read:0=18.0
+  empirical_p50_lb_separate_tx_rx      40.93 s  net 0.478 GiB  binding slot:1=40.9, slot:2=40.9, slot:0=40.9, read:0=19.5
+  empirical_p50_lb_shared_link         40.93 s  net 0.478 GiB  binding slot:1=40.9, slot:2=40.9, slot:0=40.9, read:0=19.5
+  model_all_local                      35.86 s  per node 35.9, 17.9, 14.2
+  empirical_p10_all_local              49.72 s  per node 49.7, 25.0, 24.6
+  empirical_p50_all_local              55.17 s  per node 55.2, 28.9, 28.1
+  missing empirical keys: [] []
+  heft                       wall   74.80 plan   3.10 busy max  56.50 min  51.17 sum  163.2 | read   62.8 comp  25.9 write  52.3 | remote 1.392 GiB n=3
+  beam-4                     wall   76.88 plan  14.69 busy max  59.98 min  34.04 sum  131.5 | read   35.0 comp  24.9 write  51.0 | remote 0.078 GiB n=3
+  stealing                   wall   79.91 plan   2.61 busy max  66.79 min  53.34 sum  186.8 | read   82.9 comp  24.6 write  56.2 | remote 1.590 GiB n=3
+  cpop                       wall   80.35 plan   3.23 busy max  57.22 min  47.42 sum  160.2 | read   60.5 comp  25.0 write  53.2 | remote 1.162 GiB n=3
+  peft                       wall   80.73 plan   3.22 busy max  64.10 min  52.80 sum  171.8 | read   70.2 comp  25.1 write  54.1 | remote 1.774 GiB n=3
+  native-mcts-heuristic-128  wall   87.69 plan  13.29 busy max  66.16 min  59.54 sum  192.2 | read   70.8 comp  24.9 write  74.9 | remote 2.535 GiB n=3
+  greedy-wait                wall   96.86 plan  54.60 busy max  56.72 min  35.19 sum  128.8 | read   40.9 comp  24.2 write  44.9 | remote 0.357 GiB n=3
+  greedy                     wall   98.47 plan  15.78 busy max  78.25 min  58.86 sum  212.8 | read  117.1 comp  24.7 write  50.4 | remote 3.313 GiB n=3
+  local-16                   wall  127.83 plan  71.41 busy max  75.49 min  67.36 sum  216.2 | read  103.9 comp  24.6 write  68.7 | remote 3.843 GiB n=3
+  anneal-16                  wall  141.77 plan  72.33 busy max  85.82 min  78.02 sum  248.4 | read  128.5 comp  24.6 write  76.0 | remote 4.869 GiB n=3

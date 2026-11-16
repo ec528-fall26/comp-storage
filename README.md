@@ -24,6 +24,23 @@ compute node moved 797 MB between the hosts. The same job on the storage node mo
 0.2 MB (99.97% less), took the same time (304 s) and produced a byte-identical dataset.
 Slides: [`slides/demo-2.pdf`](slides/demo-2.pdf). Demo video: `slides/demo-2-video.mp4`.
 
+## Demo 3: multiple storage nodes and scheduling
+
+[`cephdag/`](cephdag/README.md) runs static task graphs on nodes that both store data in Ceph
+RADOS and compute on it, and chooses where each task runs and where its output is stored. Its lab,
+cephdag8, is one Ceph 20.2.4 cluster of Docker containers on one host: 8 storage nodes that also
+compute, and 8 compute-only nodes as the disaggregated baseline, with every link shaped to
+400 Mbit/s. It holds the schedulers compared in Demo 3 (data-local, HEFT, heft-cc, backlog,
+lp-plan2, beam search, native MCTS and others) and the DROID pipeline as a workload. Results,
+figures and the raw run rows behind them are in
+[`docs/demo3-cephdag/`](docs/demo3-cephdag/README.md). Start with the design document,
+[`docs/design-document-multinode.md`](docs/design-document-multinode.md).
+
+Aakash's current slides are in [`slides/demo-3-aakash.pptx`](slides/demo-3-aakash.pptx),
+with a [ten-minute slide-by-slide narrative](docs/demo3-narrative.md). The complete
+experiment records, analysis scripts, slide sources, and source-history bundles are
+included under [`docs/demo3-cephdag/`](docs/demo3-cephdag/README.md).
+
 ## Quick start
 
 On any Linux machine with Docker, or a Mac with Docker Desktop; no cloud account

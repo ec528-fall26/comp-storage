@@ -1,0 +1,139 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets create-synthetic dryrun-tiny-4g-64m --gib 4 --shard-mib 64 --placement 0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs.json
+{"dataset": "dryrun-tiny-4g-64m", "shards": 64}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 377.4383285896792,
+    "shared_rx": 377.48811497636586
+  },
+  "1": {
+    "shared_tx": 377.1296159814775,
+    "shared_rx": 377.48811497636586
+  },
+  "2": {
+    "shared_tx": 377.54076729530084,
+    "shared_rx": 377.4878507350553
+  },
+  "3": {
+    "shared_tx": 376.8213182783729,
+    "shared_rx": 377.4880017296974
+  },
+  "4": {
+    "shared_tx": 377.33551226081795,
+    "shared_rx": 379.58565956505873
+  },
+  "5": {
+    "shared_tx": 377.8503494025322,
+    "shared_rx": 380.24401619521296
+  },
+  "6": {
+    "shared_tx": 377.02710145962317,
+    "shared_rx": 378.59893139389334
+  },
+  "7": {
+    "shared_tx": 377.23246983842694,
+    "shared_rx": 377.4879253930298
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset dryrun-tiny-4g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 4 --dataset-gib 2 --shard-mib 64 --policies data-local,heft,beam-4 --repeats 1 --seed 9103 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/dryrun-tiny/independent-i1-r0-cs/a1 --no-warm
+{"index": 0, "runs": 3, "scheduler": "heft", "wall_seconds": 1.9833264880003298, "scheduler_seconds": 0.0032969769981718855, "network_tx_bytes": 4623019, "removed_bytes": 536870912}
+{"index": 1, "runs": 3, "scheduler": "data-local", "wall_seconds": 2.904492988000129, "scheduler_seconds": 0.004053073002069141, "network_tx_bytes": 206005406, "removed_bytes": 536870912}
+{"index": 2, "runs": 3, "scheduler": "beam-4", "wall_seconds": 1.4883747569997468, "scheduler_seconds": 0.09030458899769656, "network_tx_bytes": 3285424, "removed_bytes": 536870912}
+{"complete": "/results/campaigns/dryrun-tiny/independent-i1-r0-cs/a1"}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg
+cephdag8 is in mode disagg: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify disagg
+{
+  "0": {
+    "shared_tx": 376.92413520426265,
+    "shared_rx": 377.34436188840607
+  },
+  "1": {
+    "shared_tx": 377.33521067990137,
+    "shared_rx": 379.58493143117096
+  },
+  "2": {
+    "shared_tx": 377.3352103920158,
+    "shared_rx": 377.48799124390166
+  },
+  "3": {
+    "shared_tx": 376.8212431196816,
+    "shared_rx": 377.48809819900725
+  },
+  "4": {
+    "shared_tx": 377.43832856917624,
+    "shared_rx": 380.1417384064487
+  },
+  "5": {
+    "shared_tx": 376.9238706779511,
+    "shared_rx": 377.4881527251547
+  },
+  "6": {
+    "shared_tx": 376.8213185869577,
+    "shared_rx": 379.58578749237466
+  },
+  "7": {
+    "shared_tx": 377.33513496592667,
+    "shared_rx": 377.4880394785315
+  },
+  "8": {
+    "shared_tx": 377.3352105152142,
+    "shared_rx": 380.1237331959034
+  },
+  "9": {
+    "shared_tx": 376.82139395137216,
+    "shared_rx": 377.4878884831043
+  },
+  "10": {
+    "shared_tx": 376.821431068059,
+    "shared_rx": 377.4880394784862
+  },
+  "11": {
+    "shared_tx": 377.3350219091591,
+    "shared_rx": 377.4880394785315
+  },
+  "12": {
+    "shared_tx": 377.5413336074674,
+    "shared_rx": 379.5850069287033
+  },
+  "13": {
+    "shared_tx": 376.82090403176727,
+    "shared_rx": 377.4878129855115
+  },
+  "14": {
+    "shared_tx": 376.92379504638046,
+    "shared_rx": 377.4883037207932
+  },
+  "15": {
+    "shared_tx": 376.9238329238329,
+    "shared_rx": 378.5370023024677
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset dryrun-tiny-4g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 4 --dataset-gib 2 --shard-mib 64 --policies fifo-hash,heft --repeats 1 --seed 9103 --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/campaigns/dryrun-tiny/independent-i1-r0-disagg/a1 --no-warm
+{"index": 0, "runs": 2, "scheduler": "heft", "wall_seconds": 17.381265597999572, "scheduler_seconds": 0.0035982369986413687, "network_tx_bytes": 546680622, "removed_bytes": 536870912}
+{"index": 1, "runs": 2, "scheduler": "fifo-hash", "wall_seconds": 9.911530612000206, "scheduler_seconds": 0.0010313299976587587, "network_tx_bytes": 548184849, "removed_bytes": 536870912}
+{"complete": "/results/campaigns/dryrun-tiny/independent-i1-r0-disagg/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete dryrun-tiny-4g-64m --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"dryrun-tiny-4g-64m": 64}}
+# exit 0

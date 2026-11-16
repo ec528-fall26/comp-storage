@@ -1,0 +1,905 @@
+{
+  "name": "cephdag8",
+  "services": {
+    "n0": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n0",
+      "hostname": "n0",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "0",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link0": {
+          "ipv4_address": "172.30.144.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd0",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n1": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n1",
+      "hostname": "n1",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "1",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link1": {
+          "ipv4_address": "172.30.145.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd1",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n2": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n2",
+      "hostname": "n2",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "2",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link2": {
+          "ipv4_address": "172.30.146.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd2",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n3": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n3",
+      "hostname": "n3",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "3",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link3": {
+          "ipv4_address": "172.30.147.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd3",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n4": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n4",
+      "hostname": "n4",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "4",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link4": {
+          "ipv4_address": "172.30.148.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd4",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n5": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n5",
+      "hostname": "n5",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "5",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link5": {
+          "ipv4_address": "172.30.149.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd5",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n6": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n6",
+      "hostname": "n6",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "6",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link6": {
+          "ipv4_address": "172.30.150.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd6",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "n7": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-n7",
+      "hostname": "n7",
+      "cpus": 3,
+      "mem_limit": "6144m",
+      "memswap_limit": "6144m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "7",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link7": {
+          "ipv4_address": "172.30.151.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "osd7",
+          "target": "/var/lib/ceph",
+          "volume": {
+            "nocopy": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c0": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c0",
+      "hostname": "c0",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "8",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link8": {
+          "ipv4_address": "172.30.152.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c1": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c1",
+      "hostname": "c1",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "9",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link9": {
+          "ipv4_address": "172.30.153.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c2": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c2",
+      "hostname": "c2",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "10",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link10": {
+          "ipv4_address": "172.30.154.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c3": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c3",
+      "hostname": "c3",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "11",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link11": {
+          "ipv4_address": "172.30.155.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c4": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c4",
+      "hostname": "c4",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "12",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link12": {
+          "ipv4_address": "172.30.156.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c5": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c5",
+      "hostname": "c5",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "13",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link13": {
+          "ipv4_address": "172.30.157.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c6": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c6",
+      "hostname": "c6",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "14",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link14": {
+          "ipv4_address": "172.30.158.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "c7": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-c7",
+      "hostname": "c7",
+      "cpus": 2,
+      "mem_limit": "3072m",
+      "memswap_limit": "3072m",
+      "pids_limit": 512,
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "environment": {
+        "ROLE": "node",
+        "NODE": "15",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link15": {
+          "ipv4_address": "172.30.159.10"
+        }
+      },
+      "restart": "no",
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/mnt/mass/cephdag",
+          "target": "/results"
+        }
+      ],
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "router": {
+      "image": "cephdag-lab:20.2.4-amd64-scale20261112",
+      "container_name": "cephdag8-router",
+      "cpus": 0.25,
+      "mem_limit": "128m",
+      "memswap_limit": "128m",
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "sysctls": {
+        "net.ipv4.ip_forward": "1"
+      },
+      "environment": {
+        "ROLE": "router",
+        "BANDWIDTH_MBIT": "400",
+        "SUBNETS": "172.30.144.0/24,172.30.145.0/24,172.30.146.0/24,172.30.147.0/24,172.30.148.0/24,172.30.149.0/24,172.30.150.0/24,172.30.151.0/24,172.30.152.0/24,172.30.153.0/24,172.30.154.0/24,172.30.155.0/24,172.30.156.0/24,172.30.157.0/24,172.30.158.0/24,172.30.159.0/24"
+      },
+      "networks": {
+        "link0": {
+          "ipv4_address": "172.30.144.254"
+        },
+        "link1": {
+          "ipv4_address": "172.30.145.254"
+        },
+        "link2": {
+          "ipv4_address": "172.30.146.254"
+        },
+        "link3": {
+          "ipv4_address": "172.30.147.254"
+        },
+        "link4": {
+          "ipv4_address": "172.30.148.254"
+        },
+        "link5": {
+          "ipv4_address": "172.30.149.254"
+        },
+        "link6": {
+          "ipv4_address": "172.30.150.254"
+        },
+        "link7": {
+          "ipv4_address": "172.30.151.254"
+        },
+        "link8": {
+          "ipv4_address": "172.30.152.254"
+        },
+        "link9": {
+          "ipv4_address": "172.30.153.254"
+        },
+        "link10": {
+          "ipv4_address": "172.30.154.254"
+        },
+        "link11": {
+          "ipv4_address": "172.30.155.254"
+        },
+        "link12": {
+          "ipv4_address": "172.30.156.254"
+        },
+        "link13": {
+          "ipv4_address": "172.30.157.254"
+        },
+        "link14": {
+          "ipv4_address": "172.30.158.254"
+        },
+        "link15": {
+          "ipv4_address": "172.30.159.254"
+        }
+      },
+      "restart": "no",
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    }
+  },
+  "networks": {
+    "link0": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.144.0/24"
+          }
+        ]
+      }
+    },
+    "link1": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.145.0/24"
+          }
+        ]
+      }
+    },
+    "link2": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.146.0/24"
+          }
+        ]
+      }
+    },
+    "link3": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.147.0/24"
+          }
+        ]
+      }
+    },
+    "link4": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.148.0/24"
+          }
+        ]
+      }
+    },
+    "link5": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.149.0/24"
+          }
+        ]
+      }
+    },
+    "link6": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.150.0/24"
+          }
+        ]
+      }
+    },
+    "link7": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.151.0/24"
+          }
+        ]
+      }
+    },
+    "link8": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.152.0/24"
+          }
+        ]
+      }
+    },
+    "link9": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.153.0/24"
+          }
+        ]
+      }
+    },
+    "link10": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.154.0/24"
+          }
+        ]
+      }
+    },
+    "link11": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.155.0/24"
+          }
+        ]
+      }
+    },
+    "link12": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.156.0/24"
+          }
+        ]
+      }
+    },
+    "link13": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.157.0/24"
+          }
+        ]
+      }
+    },
+    "link14": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.158.0/24"
+          }
+        ]
+      }
+    },
+    "link15": {
+      "internal": true,
+      "enable_ipv6": false,
+      "ipam": {
+        "config": [
+          {
+            "subnet": "172.30.159.0/24"
+          }
+        ]
+      }
+    }
+  },
+  "volumes": {
+    "osd0": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd1": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd2": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd3": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd4": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd5": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd6": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    },
+    "osd7": {
+      "labels": {
+        "org.cephdag.lab": "ca6774df-5935-4ad1-a942-498e00ff798a"
+      }
+    }
+  }
+}

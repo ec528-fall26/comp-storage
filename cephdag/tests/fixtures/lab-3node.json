@@ -1,0 +1,2104 @@
+{
+ "commit": "b30483e",
+ "steps": "up, bootstrap, resume, shape 400.0, stop",
+ "compose": {
+  "name": "cephdag",
+  "services": {
+   "n0": {
+    "image": "cephdag-lab:20.2.4-amd64-baseline20261103",
+    "container_name": "cephdag-n0",
+    "hostname": "n0",
+    "cpus": 2,
+    "mem_limit": "2560m",
+    "memswap_limit": "2560m",
+    "pids_limit": 512,
+    "cap_add": [
+     "NET_ADMIN"
+    ],
+    "environment": {
+     "ROLE": "node",
+     "NODE": "0",
+     "BANDWIDTH_MBIT": "100"
+    },
+    "networks": {
+     "link0": {
+      "ipv4_address": "172.30.80.10"
+     }
+    },
+    "volumes": [
+     {
+      "type": "volume",
+      "source": "osd0",
+      "target": "/var/lib/ceph",
+      "volume": {
+       "nocopy": true
+      }
+     }
+    ],
+    "restart": "no",
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   },
+   "n1": {
+    "image": "cephdag-lab:20.2.4-amd64-baseline20261103",
+    "container_name": "cephdag-n1",
+    "hostname": "n1",
+    "cpus": 2,
+    "mem_limit": "2560m",
+    "memswap_limit": "2560m",
+    "pids_limit": 512,
+    "cap_add": [
+     "NET_ADMIN"
+    ],
+    "environment": {
+     "ROLE": "node",
+     "NODE": "1",
+     "BANDWIDTH_MBIT": "100"
+    },
+    "networks": {
+     "link1": {
+      "ipv4_address": "172.30.81.10"
+     }
+    },
+    "volumes": [
+     {
+      "type": "volume",
+      "source": "osd1",
+      "target": "/var/lib/ceph",
+      "volume": {
+       "nocopy": true
+      }
+     }
+    ],
+    "restart": "no",
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   },
+   "n2": {
+    "image": "cephdag-lab:20.2.4-amd64-baseline20261103",
+    "container_name": "cephdag-n2",
+    "hostname": "n2",
+    "cpus": 2,
+    "mem_limit": "2560m",
+    "memswap_limit": "2560m",
+    "pids_limit": 512,
+    "cap_add": [
+     "NET_ADMIN"
+    ],
+    "environment": {
+     "ROLE": "node",
+     "NODE": "2",
+     "BANDWIDTH_MBIT": "100"
+    },
+    "networks": {
+     "link2": {
+      "ipv4_address": "172.30.82.10"
+     }
+    },
+    "volumes": [
+     {
+      "type": "volume",
+      "source": "osd2",
+      "target": "/var/lib/ceph",
+      "volume": {
+       "nocopy": true
+      }
+     }
+    ],
+    "restart": "no",
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   },
+   "router": {
+    "image": "cephdag-lab:20.2.4-amd64-baseline20261103",
+    "container_name": "cephdag-router",
+    "cpus": 0.25,
+    "mem_limit": "128m",
+    "memswap_limit": "128m",
+    "cap_add": [
+     "NET_ADMIN"
+    ],
+    "sysctls": {
+     "net.ipv4.ip_forward": "1"
+    },
+    "environment": {
+     "ROLE": "router",
+     "BANDWIDTH_MBIT": "100"
+    },
+    "networks": {
+     "link0": {
+      "ipv4_address": "172.30.80.254"
+     },
+     "link1": {
+      "ipv4_address": "172.30.81.254"
+     },
+     "link2": {
+      "ipv4_address": "172.30.82.254"
+     }
+    },
+    "restart": "no",
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   }
+  },
+  "networks": {
+   "link0": {
+    "internal": true,
+    "enable_ipv6": false,
+    "ipam": {
+     "config": [
+      {
+       "subnet": "172.30.80.0/24"
+      }
+     ]
+    }
+   },
+   "link1": {
+    "internal": true,
+    "enable_ipv6": false,
+    "ipam": {
+     "config": [
+      {
+       "subnet": "172.30.81.0/24"
+      }
+     ]
+    }
+   },
+   "link2": {
+    "internal": true,
+    "enable_ipv6": false,
+    "ipam": {
+     "config": [
+      {
+       "subnet": "172.30.82.0/24"
+      }
+     ]
+    }
+   }
+  },
+  "volumes": {
+   "osd0": {
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   },
+   "osd1": {
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   },
+   "osd2": {
+    "labels": {
+     "org.cephdag.lab": "00000000-0000-0000-0000-000000000001"
+    }
+   }
+  }
+ },
+ "lifecycle": [
+  {
+   "args": [
+    "docker",
+    "ps",
+    "-a",
+    "--format",
+    "{{.Names}}"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "volume",
+    "ls",
+    "--format",
+    "{{.Name}}"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "network",
+    "ls",
+    "-q"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "network",
+    "inspect",
+    "id0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "compose",
+    "-f",
+    "<state>/compose.json",
+    "up",
+    "-d",
+    "--no-build"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-router"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-router"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "find",
+    "/var/lib/ceph",
+    "-mindepth",
+    "1",
+    "-maxdepth",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "find",
+    "/var/lib/ceph",
+    "-mindepth",
+    "1",
+    "-maxdepth",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "find",
+    "/var/lib/ceph",
+    "-mindepth",
+    "1",
+    "-maxdepth",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "umask 077; cat > /etc/ceph/ceph.conf"
+   ],
+   "data": "[global]\nfsid = 00000000-0000-0000-0000-000000000001\nmon_initial_members = a\nmon_host = [v2:172.30.80.10:3300,v1:172.30.80.10:6789]\nauth_cluster_required = cephx\nauth_service_required = cephx\nauth_client_required = cephx\nosd_pool_default_size = 1\nosd_pool_default_min_size = 1\nmon_allow_pool_size_one = true\nosd_pool_default_pg_autoscale_mode = off\nlog_to_file = false\nlog_to_stderr = true\nerr_to_stderr = true\nmon_cluster_log_to_file = false\nosd_memory_target = 1073741824\nosd_memory_target_autotune = false\nbluestore_block_size = 51539607552\nbluestore_compression_mode = none\nosd_scrub_begin_hour = 0\nosd_scrub_end_hour = 0\n[client]\nkeyring = /var/lib/ceph/admin.keyring\n\n[osd]\npublic_addr = 172.30.80.10\ncluster_addr = 172.30.80.10\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n1",
+    "bash",
+    "-c",
+    "umask 077; cat > /etc/ceph/ceph.conf"
+   ],
+   "data": "[global]\nfsid = 00000000-0000-0000-0000-000000000001\nmon_initial_members = a\nmon_host = [v2:172.30.80.10:3300,v1:172.30.80.10:6789]\nauth_cluster_required = cephx\nauth_service_required = cephx\nauth_client_required = cephx\nosd_pool_default_size = 1\nosd_pool_default_min_size = 1\nmon_allow_pool_size_one = true\nosd_pool_default_pg_autoscale_mode = off\nlog_to_file = false\nlog_to_stderr = true\nerr_to_stderr = true\nmon_cluster_log_to_file = false\nosd_memory_target = 1073741824\nosd_memory_target_autotune = false\nbluestore_block_size = 51539607552\nbluestore_compression_mode = none\nosd_scrub_begin_hour = 0\nosd_scrub_end_hour = 0\n[client]\nkeyring = /var/lib/ceph/admin.keyring\n\n[osd]\npublic_addr = 172.30.81.10\ncluster_addr = 172.30.81.10\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n2",
+    "bash",
+    "-c",
+    "umask 077; cat > /etc/ceph/ceph.conf"
+   ],
+   "data": "[global]\nfsid = 00000000-0000-0000-0000-000000000001\nmon_initial_members = a\nmon_host = [v2:172.30.80.10:3300,v1:172.30.80.10:6789]\nauth_cluster_required = cephx\nauth_service_required = cephx\nauth_client_required = cephx\nosd_pool_default_size = 1\nosd_pool_default_min_size = 1\nmon_allow_pool_size_one = true\nosd_pool_default_pg_autoscale_mode = off\nlog_to_file = false\nlog_to_stderr = true\nerr_to_stderr = true\nmon_cluster_log_to_file = false\nosd_memory_target = 1073741824\nosd_memory_target_autotune = false\nbluestore_block_size = 51539607552\nbluestore_compression_mode = none\nosd_scrub_begin_hour = 0\nosd_scrub_end_hour = 0\n[client]\nkeyring = /var/lib/ceph/admin.keyring\n\n[osd]\npublic_addr = 172.30.82.10\ncluster_addr = 172.30.82.10\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph-authtool",
+    "--create-keyring",
+    "/var/lib/ceph/mon.keyring",
+    "--gen-key",
+    "-n",
+    "mon.",
+    "--cap",
+    "mon",
+    "allow *"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph-authtool",
+    "--create-keyring",
+    "/var/lib/ceph/admin.keyring",
+    "--gen-key",
+    "-n",
+    "client.admin",
+    "--cap",
+    "mon",
+    "allow *",
+    "--cap",
+    "osd",
+    "allow *",
+    "--cap",
+    "mgr",
+    "allow *",
+    "--cap",
+    "mds",
+    "allow *"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph-authtool",
+    "/var/lib/ceph/mon.keyring",
+    "--import-keyring",
+    "/var/lib/ceph/admin.keyring"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "cat",
+    "/var/lib/ceph/admin.keyring"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n1",
+    "bash",
+    "-c",
+    "umask 077; cat > /var/lib/ceph/admin.keyring"
+   ],
+   "data": "KEY\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n2",
+    "bash",
+    "-c",
+    "umask 077; cat > /var/lib/ceph/admin.keyring"
+   ],
+   "data": "KEY\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "monmaptool",
+    "--create",
+    "--addv",
+    "a",
+    "[v2:172.30.80.10:3300,v1:172.30.80.10:6789]",
+    "--fsid",
+    "00000000-0000-0000-0000-000000000001",
+    "/tmp/monmap"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "mkdir",
+    "-p",
+    "/var/lib/ceph/mon/ceph-a"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph-mon",
+    "--mkfs",
+    "-i",
+    "a",
+    "--monmap",
+    "/tmp/monmap",
+    "--keyring",
+    "/var/lib/ceph/mon.keyring",
+    "--setuser",
+    "root",
+    "--setgroup",
+    "root"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "exec ceph-mon -f -i a --setuser root --setgroup root > /var/lib/ceph/mon.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "status",
+    "-f",
+    "json"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "mkdir",
+    "-p",
+    "/var/lib/ceph/mgr/ceph-a"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "auth",
+    "get-or-create",
+    "mgr.a",
+    "mon",
+    "allow profile mgr",
+    "osd",
+    "allow *",
+    "mds",
+    "allow *",
+    "-o",
+    "/var/lib/ceph/mgr/ceph-a/keyring"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "exec ceph-mgr -f -i a --setuser root --setgroup root > /var/lib/ceph/mgr.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "create",
+    "00000000-0000-0000-0000-000000000002",
+    "0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "mkdir",
+    "-p",
+    "/var/lib/ceph/osd/ceph-0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph-authtool",
+    "--create-keyring",
+    "/var/lib/ceph/osd/ceph-0/keyring",
+    "--gen-key",
+    "-n",
+    "osd.0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "cat",
+    "/var/lib/ceph/osd/ceph-0/keyring"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n0",
+    "ceph",
+    "auth",
+    "add",
+    "osd.0",
+    "mon",
+    "allow profile osd",
+    "osd",
+    "allow *",
+    "-i",
+    "-"
+   ],
+   "data": "KEY\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph-osd",
+    "--mkfs",
+    "-i",
+    "0",
+    "--osd-uuid",
+    "00000000-0000-0000-0000-000000000002",
+    "--setuser",
+    "root",
+    "--setgroup",
+    "root"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "crush",
+    "add",
+    "osd.0",
+    "0.046875",
+    "root=default",
+    "host=n0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "exec ceph-osd -f -i 0 --setuser root --setgroup root > /var/lib/ceph/osd.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "create",
+    "00000000-0000-0000-0000-000000000003",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "mkdir",
+    "-p",
+    "/var/lib/ceph/osd/ceph-1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "ceph-authtool",
+    "--create-keyring",
+    "/var/lib/ceph/osd/ceph-1/keyring",
+    "--gen-key",
+    "-n",
+    "osd.1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "cat",
+    "/var/lib/ceph/osd/ceph-1/keyring"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n0",
+    "ceph",
+    "auth",
+    "add",
+    "osd.1",
+    "mon",
+    "allow profile osd",
+    "osd",
+    "allow *",
+    "-i",
+    "-"
+   ],
+   "data": "KEY\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "ceph-osd",
+    "--mkfs",
+    "-i",
+    "1",
+    "--osd-uuid",
+    "00000000-0000-0000-0000-000000000003",
+    "--setuser",
+    "root",
+    "--setgroup",
+    "root"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "crush",
+    "add",
+    "osd.1",
+    "0.046875",
+    "root=default",
+    "host=n1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n1",
+    "bash",
+    "-c",
+    "exec ceph-osd -f -i 1 --setuser root --setgroup root > /var/lib/ceph/osd.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "create",
+    "00000000-0000-0000-0000-000000000004",
+    "2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "mkdir",
+    "-p",
+    "/var/lib/ceph/osd/ceph-2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "ceph-authtool",
+    "--create-keyring",
+    "/var/lib/ceph/osd/ceph-2/keyring",
+    "--gen-key",
+    "-n",
+    "osd.2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "cat",
+    "/var/lib/ceph/osd/ceph-2/keyring"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-i",
+    "cephdag-n0",
+    "ceph",
+    "auth",
+    "add",
+    "osd.2",
+    "mon",
+    "allow profile osd",
+    "osd",
+    "allow *",
+    "-i",
+    "-"
+   ],
+   "data": "KEY\n"
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "ceph-osd",
+    "--mkfs",
+    "-i",
+    "2",
+    "--osd-uuid",
+    "00000000-0000-0000-0000-000000000004",
+    "--setuser",
+    "root",
+    "--setgroup",
+    "root"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "crush",
+    "add",
+    "osd.2",
+    "0.046875",
+    "root=default",
+    "host=n2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n2",
+    "bash",
+    "-c",
+    "exec ceph-osd -f -i 2 --setuser root --setgroup root > /var/lib/ceph/osd.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "dump",
+    "-f",
+    "json"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "crush",
+    "rule",
+    "create-replicated",
+    "pin0",
+    "n0",
+    "osd"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "create",
+    "node0",
+    "32",
+    "32",
+    "replicated",
+    "pin0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "set",
+    "node0",
+    "size",
+    "1",
+    "--yes-i-really-mean-it"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "set",
+    "node0",
+    "min_size",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "application",
+    "enable",
+    "node0",
+    "cephdag"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "crush",
+    "rule",
+    "create-replicated",
+    "pin1",
+    "n1",
+    "osd"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "create",
+    "node1",
+    "32",
+    "32",
+    "replicated",
+    "pin1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "set",
+    "node1",
+    "size",
+    "1",
+    "--yes-i-really-mean-it"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "set",
+    "node1",
+    "min_size",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "application",
+    "enable",
+    "node1",
+    "cephdag"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "crush",
+    "rule",
+    "create-replicated",
+    "pin2",
+    "n2",
+    "osd"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "create",
+    "node2",
+    "32",
+    "32",
+    "replicated",
+    "pin2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "set",
+    "node2",
+    "size",
+    "1",
+    "--yes-i-really-mean-it"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "set",
+    "node2",
+    "min_size",
+    "1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "pool",
+    "application",
+    "enable",
+    "node2",
+    "cephdag"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "set",
+    "noscrub"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "osd",
+    "set",
+    "nodeep-scrub"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "pg",
+    "stat",
+    "-f",
+    "json"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-router"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "start",
+    "cephdag-n0",
+    "cephdag-n1",
+    "cephdag-n2",
+    "cephdag-router"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "cat",
+    "/etc/ceph/ceph.conf"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "cat",
+    "/etc/ceph/ceph.conf"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "cat",
+    "/etc/ceph/ceph.conf"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ps",
+    "-eo",
+    "comm"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "exec ceph-mon -f -i a --setuser root --setgroup root >> /var/lib/ceph/mon.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ps",
+    "-eo",
+    "comm"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "exec ceph-mgr -f -i a --setuser root --setgroup root >> /var/lib/ceph/mgr.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ps",
+    "-eo",
+    "comm"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n0",
+    "bash",
+    "-c",
+    "exec ceph-osd -f -i 0 --setuser root --setgroup root >> /var/lib/ceph/osd.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "ps",
+    "-eo",
+    "comm"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n1",
+    "bash",
+    "-c",
+    "exec ceph-osd -f -i 1 --setuser root --setgroup root >> /var/lib/ceph/osd.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "ps",
+    "-eo",
+    "comm"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "-d",
+    "cephdag-n2",
+    "bash",
+    "-c",
+    "exec ceph-osd -f -i 2 --setuser root --setgroup root >> /var/lib/ceph/osd.log 2>&1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "pg",
+    "stat",
+    "-f",
+    "json"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "ceph",
+    "status"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-router"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n0",
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "400.0mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n1",
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "400.0mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-n2",
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "400.0mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-router",
+    "ip",
+    "-j",
+    "link"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-router",
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "400.0mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-router",
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth1",
+    "root",
+    "tbf",
+    "rate",
+    "400.0mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "exec",
+    "cephdag-router",
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth2",
+    "root",
+    "tbf",
+    "rate",
+    "400.0mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n0"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n1"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-n2"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "inspect",
+    "cephdag-router"
+   ],
+   "data": null
+  },
+  {
+   "args": [
+    "docker",
+    "stop",
+    "cephdag-n0",
+    "cephdag-n1",
+    "cephdag-n2",
+    "cephdag-router"
+   ],
+   "data": null
+  }
+ ],
+ "network": {
+  "n0": [
+   [
+    "ip",
+    "tunnel",
+    "add",
+    "lab",
+    "mode",
+    "ipip",
+    "local",
+    "172.30.80.10",
+    "remote",
+    "172.30.80.254",
+    "dev",
+    "eth0"
+   ],
+   [
+    "ip",
+    "addr",
+    "replace",
+    "10.77.0.1/30",
+    "dev",
+    "lab"
+   ],
+   [
+    "ip",
+    "link",
+    "set",
+    "lab",
+    "up",
+    "mtu",
+    "1480"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.81.0/24",
+    "via",
+    "10.77.0.2",
+    "dev",
+    "lab",
+    "src",
+    "172.30.80.10"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.82.0/24",
+    "via",
+    "10.77.0.2",
+    "dev",
+    "lab",
+    "src",
+    "172.30.80.10"
+   ],
+   [
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "100mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ]
+  ],
+  "n1": [
+   [
+    "ip",
+    "tunnel",
+    "add",
+    "lab",
+    "mode",
+    "ipip",
+    "local",
+    "172.30.81.10",
+    "remote",
+    "172.30.81.254",
+    "dev",
+    "eth0"
+   ],
+   [
+    "ip",
+    "addr",
+    "replace",
+    "10.77.1.1/30",
+    "dev",
+    "lab"
+   ],
+   [
+    "ip",
+    "link",
+    "set",
+    "lab",
+    "up",
+    "mtu",
+    "1480"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.80.0/24",
+    "via",
+    "10.77.1.2",
+    "dev",
+    "lab",
+    "src",
+    "172.30.81.10"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.82.0/24",
+    "via",
+    "10.77.1.2",
+    "dev",
+    "lab",
+    "src",
+    "172.30.81.10"
+   ],
+   [
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "100mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ]
+  ],
+  "n2": [
+   [
+    "ip",
+    "tunnel",
+    "add",
+    "lab",
+    "mode",
+    "ipip",
+    "local",
+    "172.30.82.10",
+    "remote",
+    "172.30.82.254",
+    "dev",
+    "eth0"
+   ],
+   [
+    "ip",
+    "addr",
+    "replace",
+    "10.77.2.1/30",
+    "dev",
+    "lab"
+   ],
+   [
+    "ip",
+    "link",
+    "set",
+    "lab",
+    "up",
+    "mtu",
+    "1480"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.80.0/24",
+    "via",
+    "10.77.2.2",
+    "dev",
+    "lab",
+    "src",
+    "172.30.82.10"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.81.0/24",
+    "via",
+    "10.77.2.2",
+    "dev",
+    "lab",
+    "src",
+    "172.30.82.10"
+   ],
+   [
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "100mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ]
+  ],
+  "router": [
+   [
+    "ip",
+    "route",
+    "replace",
+    "table",
+    "100",
+    "172.30.80.0/24",
+    "dev",
+    "eth2",
+    "src",
+    "172.30.80.254"
+   ],
+   [
+    "ip",
+    "rule",
+    "add",
+    "priority",
+    "100",
+    "from",
+    "172.30.80.254/32",
+    "lookup",
+    "100"
+   ],
+   [
+    "ip",
+    "tunnel",
+    "add",
+    "lab0",
+    "mode",
+    "ipip",
+    "local",
+    "172.30.80.254",
+    "remote",
+    "172.30.80.10",
+    "dev",
+    "eth2"
+   ],
+   [
+    "ip",
+    "addr",
+    "replace",
+    "10.77.0.2/30",
+    "dev",
+    "lab0"
+   ],
+   [
+    "ip",
+    "link",
+    "set",
+    "lab0",
+    "up",
+    "mtu",
+    "1480"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.80.10/32",
+    "via",
+    "10.77.0.1",
+    "dev",
+    "lab0"
+   ],
+   [
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth2",
+    "root",
+    "tbf",
+    "rate",
+    "100mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "table",
+    "101",
+    "172.30.81.0/24",
+    "dev",
+    "eth1",
+    "src",
+    "172.30.81.254"
+   ],
+   [
+    "ip",
+    "rule",
+    "add",
+    "priority",
+    "101",
+    "from",
+    "172.30.81.254/32",
+    "lookup",
+    "101"
+   ],
+   [
+    "ip",
+    "tunnel",
+    "add",
+    "lab1",
+    "mode",
+    "ipip",
+    "local",
+    "172.30.81.254",
+    "remote",
+    "172.30.81.10",
+    "dev",
+    "eth1"
+   ],
+   [
+    "ip",
+    "addr",
+    "replace",
+    "10.77.1.2/30",
+    "dev",
+    "lab1"
+   ],
+   [
+    "ip",
+    "link",
+    "set",
+    "lab1",
+    "up",
+    "mtu",
+    "1480"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.81.10/32",
+    "via",
+    "10.77.1.1",
+    "dev",
+    "lab1"
+   ],
+   [
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth1",
+    "root",
+    "tbf",
+    "rate",
+    "100mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "table",
+    "102",
+    "172.30.82.0/24",
+    "dev",
+    "eth0",
+    "src",
+    "172.30.82.254"
+   ],
+   [
+    "ip",
+    "rule",
+    "add",
+    "priority",
+    "102",
+    "from",
+    "172.30.82.254/32",
+    "lookup",
+    "102"
+   ],
+   [
+    "ip",
+    "tunnel",
+    "add",
+    "lab2",
+    "mode",
+    "ipip",
+    "local",
+    "172.30.82.254",
+    "remote",
+    "172.30.82.10",
+    "dev",
+    "eth0"
+   ],
+   [
+    "ip",
+    "addr",
+    "replace",
+    "10.77.2.2/30",
+    "dev",
+    "lab2"
+   ],
+   [
+    "ip",
+    "link",
+    "set",
+    "lab2",
+    "up",
+    "mtu",
+    "1480"
+   ],
+   [
+    "ip",
+    "route",
+    "replace",
+    "172.30.82.10/32",
+    "via",
+    "10.77.2.1",
+    "dev",
+    "lab2"
+   ],
+   [
+    "tc",
+    "qdisc",
+    "replace",
+    "dev",
+    "eth0",
+    "root",
+    "tbf",
+    "rate",
+    "100mbit",
+    "burst",
+    "128kb",
+    "latency",
+    "400ms"
+   ]
+  ]
+ }
+}

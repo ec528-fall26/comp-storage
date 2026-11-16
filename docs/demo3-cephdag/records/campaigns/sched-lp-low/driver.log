@@ -1,0 +1,97 @@
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json stop-workers
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 10000
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets create-synthetic sched-lp-low-8g-64m --gib 8 --shard-mib 64 --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs.json
+{"dataset": "sched-lp-low-8g-64m", "shards": 128}
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs
+cephdag8 is in mode cs: 8 workers answer /state
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+# exit 0
+$ python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+{
+  "0": {
+    "shared_tx": 376.51283198956526,
+    "shared_rx": 377.4884924654774
+  },
+  "1": {
+    "shared_tx": 376.92398381697177,
+    "shared_rx": 378.5993447563699
+  },
+  "2": {
+    "shared_tx": 376.1934455813313,
+    "shared_rx": 378.59949565491127
+  },
+  "3": {
+    "shared_tx": 377.33532373651803,
+    "shared_rx": 377.48767876746643
+  },
+  "4": {
+    "shared_tx": 376.92356926217354,
+    "shared_rx": 377.487963980984
+  },
+  "5": {
+    "shared_tx": 376.8208661953509,
+    "shared_rx": 378.2498189179568
+  },
+  "6": {
+    "shared_tx": 377.438026741591,
+    "shared_rx": 379.5850434190608
+  },
+  "7": {
+    "shared_tx": 377.3350973350973,
+    "shared_rx": 381.6837282399691
+  }
+}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset sched-lp-low-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies lp-plan2,heft-cc,backlog,data-local --repeats 1 --seed 9103 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-lp-low/independent-i1-r0-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "backlog", "wall_seconds": 17.325229716021568, "scheduler_seconds": 0.008876000851159915, "network_tx_bytes": 687396213, "removed_bytes": 2147483648}
+{"index": 1, "runs": 4, "scheduler": "data-local", "wall_seconds": 18.736587999999756, "scheduler_seconds": 0.014757470664335415, "network_tx_bytes": 1292924499, "removed_bytes": 2147483648}
+{"index": 2, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 18.320014119002735, "scheduler_seconds": 0.05184981191996485, "network_tx_bytes": 2369529573, "removed_bytes": 2147483648}
+{"index": 3, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 13.765949988999637, "scheduler_seconds": 0.05242867092601955, "network_tx_bytes": 486388184, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-lp-low/independent-i1-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset sched-lp-low-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies lp-plan2,heft-cc,backlog,data-local --repeats 1 --seed 9104 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-lp-low/independent-i16-r0-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 18.881816021021223, "scheduler_seconds": 0.05037676080246456, "network_tx_bytes": 2639578425, "removed_bytes": 2147483648}
+{"index": 1, "runs": 4, "scheduler": "data-local", "wall_seconds": 22.08629975700751, "scheduler_seconds": 0.015048024128191173, "network_tx_bytes": 1362291870, "removed_bytes": 2147483648}
+{"index": 2, "runs": 4, "scheduler": "backlog", "wall_seconds": 20.314191186014796, "scheduler_seconds": 0.008586522162659094, "network_tx_bytes": 823599454, "removed_bytes": 2147483648}
+{"index": 3, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 15.91693976399256, "scheduler_seconds": 0.05902430185233243, "network_tx_bytes": 624264647, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-lp-low/independent-i16-r0-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset sched-lp-low-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies lp-plan2,heft-cc,backlog,data-local --repeats 1 --seed 9105 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-lp-low/independent-i1-r1-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "backlog", "wall_seconds": 15.73839558698819, "scheduler_seconds": 0.01045170080033131, "network_tx_bytes": 619654059, "removed_bytes": 2147483648}
+{"index": 1, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 12.699003609013744, "scheduler_seconds": 0.05518866717466153, "network_tx_bytes": 485889294, "removed_bytes": 2147483648}
+{"index": 2, "runs": 4, "scheduler": "data-local", "wall_seconds": 22.242794612015132, "scheduler_seconds": 0.013918768934672698, "network_tx_bytes": 1359898617, "removed_bytes": 2147483648}
+{"index": 3, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 19.0164169339987, "scheduler_seconds": 0.05117553405580111, "network_tx_bytes": 2371000081, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-lp-low/independent-i1-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset sched-lp-low-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies lp-plan2,heft-cc,backlog,data-local --repeats 1 --seed 9106 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-lp-low/independent-i16-r1-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "backlog", "wall_seconds": 18.932414479990257, "scheduler_seconds": 0.009342484030639753, "network_tx_bytes": 757701044, "removed_bytes": 2147483648}
+{"index": 1, "runs": 4, "scheduler": "data-local", "wall_seconds": 21.203162969002733, "scheduler_seconds": 0.014884301228448749, "network_tx_bytes": 1293198836, "removed_bytes": 2147483648}
+{"index": 2, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 16.375935118994676, "scheduler_seconds": 0.06074334937147796, "network_tx_bytes": 625965149, "removed_bytes": 2147483648}
+{"index": 3, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 18.975035957992077, "scheduler_seconds": 0.05071409174706787, "network_tx_bytes": 2639214869, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-lp-low/independent-i16-r1-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 1 --ratio 0.25 --dataset sched-lp-low-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies lp-plan2,heft-cc,backlog,data-local --repeats 1 --seed 9107 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-lp-low/independent-i1-r2-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "backlog", "wall_seconds": 15.812343646015506, "scheduler_seconds": 0.0095599518972449, "network_tx_bytes": 619279611, "removed_bytes": 2147483648}
+{"index": 1, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 17.729420782998204, "scheduler_seconds": 0.04906468212720938, "network_tx_bytes": 2369501412, "removed_bytes": 2147483648}
+{"index": 2, "runs": 4, "scheduler": "data-local", "wall_seconds": 21.376650096994126, "scheduler_seconds": 0.014364080940140411, "network_tx_bytes": 1292303583, "removed_bytes": 2147483648}
+{"index": 3, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 12.753199433005648, "scheduler_seconds": 0.054726557893445715, "network_tx_bytes": 486311100, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-lp-low/independent-i1-r2-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.run --workload independent --iterations 16 --ratio 0.25 --dataset sched-lp-low-8g-64m --placement 0,0,0,0,0,0,0,1,2,3,4,5,6,7 --source-gib 8 --dataset-gib 8 --shard-mib 64 --policies lp-plan2,heft-cc,backlog,data-local --repeats 1 --seed 9108 --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/campaigns/sched-lp-low/independent-i16-r2-cs/a1 --no-warm
+{"index": 0, "runs": 4, "scheduler": "backlog", "wall_seconds": 18.988765829009935, "scheduler_seconds": 0.010350140248192474, "network_tx_bytes": 757423365, "removed_bytes": 2147483648}
+{"index": 1, "runs": 4, "scheduler": "heft-cc", "wall_seconds": 19.012554728018586, "scheduler_seconds": 0.05102551603340544, "network_tx_bytes": 2639178141, "removed_bytes": 2147483648}
+{"index": 2, "runs": 4, "scheduler": "lp-plan2", "wall_seconds": 16.012533742992673, "scheduler_seconds": 0.06453597490326501, "network_tx_bytes": 624443513, "removed_bytes": 2147483648}
+{"index": 3, "runs": 4, "scheduler": "data-local", "wall_seconds": 22.87215857100091, "scheduler_seconds": 0.015297388803446665, "network_tx_bytes": 1428344108, "removed_bytes": 2147483648}
+{"complete": "/results/campaigns/sched-lp-low/independent-i16-r2-cs/a1"}
+# exit 0
+$ docker exec cephdag8-n0 python3 -m experiments.datasets delete sched-lp-low-8g-64m --cluster cephdag/clusters/cephdag8-cs.json
+{"deleted": {"sched-lp-low-8g-64m": 128}}
+# exit 0

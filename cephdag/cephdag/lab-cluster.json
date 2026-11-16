@@ -1,0 +1,10 @@
+{
+  "nodes": [
+    {"pool": "node0", "worker": "http://172.30.80.10:8080"},
+    {"pool": "node1", "worker": "http://172.30.81.10:8080"},
+    {"pool": "node2", "worker": "http://172.30.82.10:8080"}
+  ],
+  "metadata_pool": "node0",
+  "ceph_conf": "/etc/ceph/ceph.conf",
+  "namespace": "cephdag"
+}

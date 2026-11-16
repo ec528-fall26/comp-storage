@@ -1,0 +1,21 @@
+  cluster:
+    id:     7ccd876b-0e42-4202-88e4-8766bd30e5d1
+    health: HEALTH_WARN
+            mon is allowing insecure global_id reclaim
+            mon a is low on available space
+            noscrub,nodeep-scrub flag(s) set
+            9 pool(s) have no replicas configured
+ 
+  services:
+    mon: 1 daemons, quorum a (age 15s) [leader: a]
+    mgr: a(active, since 14s)
+    osd: 8 osds: 8 up (since 6s), 8 in (since 49m)
+         flags noscrub,nodeep-scrub
+ 
+  data:
+    pools:   9 pools, 257 pgs
+    objects: 3.70k objects, 2.8 GiB
+    usage:   6.2 GiB used, 442 GiB / 448 GiB avail
+    pgs:     257 active+clean
+ 
+

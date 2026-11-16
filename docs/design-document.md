@@ -12,8 +12,11 @@ matching inputs with equivalent outputs, with runtime and transferred bytes for 
 | --- | --- | --- | --- |
 | Serverless API | Built; ran on AWS from a laptop over plain HTTP | `src/cstore/api.py`, `bin/cstore-client` | experiments 11, 12 |
 | Reduced network transfer, equivalent outputs, runtime and bytes for both modes | Measured on AWS with one storage node | section 5 | experiment 12 |
-| Multiple storage nodes (Kubernetes and Rook) | Not in this version | TODO(team) | |
-| Dependency-aware placement or scheduling | Not in this version | TODO(team) | |
+| Multiple storage nodes (Kubernetes and Rook) | Built as Docker containers with Ceph 20.2.4 on one host, not Kubernetes and Rook: 8 storage nodes and 8 compute-only nodes on one cluster | `cephdag/infra/`, [part 2](design-document-multinode.md) | part 2, experiments 1 to 3 |
+| Dependency-aware placement or scheduling | Built and measured on that cluster: a dozen policies that place each task and its outputs | `cephdag/cephdag/policies/`, [part 2](design-document-multinode.md) | part 2, experiments 4 to 6 |
+
+The last two rows have their own document, [part 2: many storage nodes and
+scheduling](design-document-multinode.md).
 
 **What changed since the proposal.** The proposal's workload was converting all of DROID
 from RLDS to LeRobot. Demo 2 built that conversion, and Demo 3 keeps it. Demo 3 adds a

@@ -1,0 +1,132 @@
+[
+  {"demo1": 1},
+  {"demo1": 2},
+  {"demo1": 3},
+  {
+    "figure": "droid_pipeline",
+    "title": "Why computational storage?",
+    "subtitle": "The preprocessing pipeline",
+    "seconds": 35,
+    "say": "Before anyone trains on DROID, it is preprocessed. Each chunk of episodes goes through four tasks: decode and resize the camera frames, encode them as video, compute statistics, and write the robot state to a table. Look at the middle. The decoded frames are more than twice the size of what we started with, and two tasks read them. Every arrow here is data being read or written."
+  },
+  {"demo1": 5},
+  {
+    "figure": "task_stages",
+    "title": "Why computational storage?",
+    "subtitle": "Where a task's time goes",
+    "seconds": 40,
+    "say": "Here is where one task's time goes when storage and compute are separate. With one pass over the data it reads for 2.3 seconds, computes for two hundredths of a second, and writes for half a second. 99% of the task is moving data. The same task on the storage node takes 0.4 seconds. Even when the task computes for a full second, the separate system spends more time moving data than computing."
+  },
+  {
+    "figure": "hot_node",
+    "title": "Why scheduling?",
+    "subtitle": "Data is not spread evenly",
+    "seconds": 30,
+    "say": "Running each task where its data is works when the data is spread evenly. It rarely is. Here one node holds 65 of 128 shards, seven times the work of any other node, so the others finish early and sit idle. The obvious fix is to move work off the busy node. But everything that leaves it goes through its one link."
+  },
+  {
+    "figure": "blind_plan",
+    "title": "Why scheduling?",
+    "subtitle": "A plan that ignores the shared link",
+    "seconds": 40,
+    "say": "HEFT, the standard scheduler for task graphs, plans each transfer as if it had the link to itself. On this data it moves 31 tasks off the busy node and expects to finish in 11.5 seconds. But 31 shards through one link take 44 seconds. It measured 45.5, twice as slow as running every task where its data is. So the scheduler has to know two things: how long the network takes, and who else is using it."
+  },
+  {
+    "figure": "client_code",
+    "title": "Computational Storage Design",
+    "subtitle": "Interface",
+    "seconds": 35,
+    "say": "The client describes its work as a graph over stored data: map this function over every partition, then reduce. Each call says how much compute a task needs and how large its output will be. Then it submits the graph with the name of a scheduling policy. That name is the one thing we change between experiments."
+  },
+  {
+    "figure": "scheduler_view",
+    "title": "Computational Storage Design",
+    "subtitle": "What the scheduler sees and decides",
+    "seconds": 45,
+    "say": "Every time a task starts or finishes, the coordinator asks the policy one question: what next? The policy sees the graph, where every object is stored and which workers and links are busy, and the measured speed of each disk, link and CPU. It answers with a task, the worker that runs it, and the node that stores each output. Or it says wait. Where a task runs and where its output goes are separate decisions."
+  },
+  {
+    "figure": "lab_combined",
+    "title": "Benchmarks",
+    "subtitle": "Combined: workers on the storage nodes",
+    "seconds": 25,
+    "say": "To measure this we built a Ceph cluster of eight storage nodes, each with its own pool and a worker, as Docker containers on one machine. Every link is limited to 400 megabits per second, so moving data is the expensive step, as it is for a large dataset on a shared network."
+  },
+  {
+    "figure": "lab_separate",
+    "title": "Benchmarks",
+    "subtitle": "Separate: same data, workers moved",
+    "seconds": 25,
+    "say": "The baseline is the same cluster holding the same data. Only the place where the work runs changes: eight compute-only nodes, so every input and every output crosses a link. Same disks, same links, same CPU for each worker. A difference in time can only come from where the work ran."
+  },
+  {
+    "figure": "speedup_vs_intensity",
+    "title": "Results",
+    "subtitle": "The less a task computes, the more it saves",
+    "seconds": 40,
+    "say": "First result: how much it saves depends on how much the task computes. When tasks mostly read and write, combined is 5.6 times faster. As the compute per byte grows, the minute that the separate system spends moving data matters less, and the advantage falls to 1.08. It never goes below one."
+  },
+  {
+    "figure": "speedup_vs_network",
+    "title": "Results",
+    "subtitle": "The slower the network, the more it saves",
+    "seconds": 40,
+    "say": "It also depends on the network. At 400 megabits combined is 5.7 times faster. At 2.5 gigabits, where a link carries about as much as a disk reads, it is 1.3. This is why Mason's run on AWS, with a fast network and a slower disk, took the same time both ways. What computational storage saves is the cost of moving the data."
+  },
+  {
+    "figure": "droid_numbers",
+    "title": "Results",
+    "subtitle": "DROID, 496 GB",
+    "seconds": 40,
+    "say": "Now the real pipeline: 496 gigabytes of DROID, 64,000 tasks. Combined finished in an hour and a half. Separate took almost six. And separate moved 4.1 terabytes over the network to process half a terabyte, because every arrow in the pipeline crossed a link, and the frames crossed three times. Combined moved six gigabytes."
+  },
+  {
+    "figure": "scheduling_skew",
+    "title": "Results",
+    "subtitle": "Uneven data: book the link",
+    "seconds": 40,
+    "say": "Back to uneven data. The dashed line is running each task where its data is. Plain HEFT is up to twice as slow as that. We made one change to it: every transfer reserves time on the sending link and on the receiving link, so two moves out of one node cannot overlap in the plan. That version beats staying local at every intensity, by 5 to 21 percent."
+  },
+  {
+    "figure": "pipeline_planning",
+    "title": "Results",
+    "subtitle": "The real pipeline: planning costs time",
+    "seconds": 35,
+    "say": "On the real pipeline with a busy node, the planners lose to staying local. The lighter part of each bar is time spent planning while every worker waits. Our best planner, a linear program solved once, produces the fastest schedule, but it takes 17 to 23 seconds to compute it. Making planning cheaper is the open problem."
+  },
+  {
+    "figure": "findings",
+    "title": "What we found",
+    "subtitle": "The three challenges from Demo 1",
+    "seconds": 30,
+    "say": "Demo 1 ended with three challenges. Here is what we measured for each. Locality: computing where the data is made DROID 3.8 times faster. Arithmetic intensity: the gain runs from 5.6 times for light tasks down to 1.08 for heavy ones. Straggler nodes: moving work off a busy node only pays if the scheduler books the link, which took that case from 45 seconds to 18. Next is planning that is cheap enough for the real pipeline."
+  },
+  {
+    "figure": "software_architecture",
+    "title": "Backup",
+    "subtitle": "Architecture",
+    "seconds": 30,
+    "say": "The client submits a graph to the coordinator on node 0. The coordinator asks the policy what to run next and sends each task to a worker. A worker reads its inputs from Ceph, computes, and writes each output to the pool it was told."
+  },
+  {
+    "figure": "lp_against_heft_cc",
+    "title": "Backup",
+    "subtitle": "A plan solved once, against link-aware HEFT",
+    "seconds": 30,
+    "say": "A linear program decides once how many tasks each node takes from each other node, and a dispatcher follows it. On the uneven data it is faster than link-aware HEFT at every intensity, by 6 to 28 percent, and moves less data."
+  },
+  {
+    "figure": "search_against_heuristic",
+    "title": "Backup",
+    "subtitle": "Search (MCTS) against link-aware HEFT",
+    "seconds": 30,
+    "say": "Monte Carlo tree search with 128 iterations per decision was 49 and 44 percent slower than link-aware HEFT at 1 and 128 iterations, and moved the most data of any policy. At 1024 iterations the two are within the drift between runs."
+  },
+  {
+    "figure": "equal_worker_counts",
+    "title": "Backup",
+    "subtitle": "Why the worker counts must match",
+    "seconds": 30,
+    "say": "With 8 workers on the combined side against 16 on the separate side, separate pulls ahead on compute-heavy work: 0.72 at 4096 iterations. That measures the worker count. With 16 on each side, combined stays ahead everywhere."
+  }
+]

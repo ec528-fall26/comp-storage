@@ -1,0 +1,987 @@
+{
+ "models_calibration_id": "8b52c1236b614354a97c49337f56ba82",
+ "cases": {
+  "independent": {
+   "model_lb_separate_tx_rx": {
+    "seconds": 35.283707630555796,
+    "binding": [
+     [
+      "slot:0",
+      35.283707630555796
+     ],
+     [
+      "tx:0",
+      35.283707630555796
+     ],
+     [
+      "slot:1",
+      35.283707630555796
+     ],
+     [
+      "slot:2",
+      35.28370763055579
+     ]
+    ],
+    "network_gib": 1.6610062516112833,
+    "placement": {
+     "map from node0 -> worker0 store0": 924.7,
+     "map from node0 -> worker1 store2": 41.7,
+     "map from node0 -> worker2 store0": 57.6,
+     "map from node1 -> worker1 store1": 227.5,
+     "map from node1 -> worker1 store2": 284.5,
+     "map from node2 -> worker2 store0": 512.0
+    }
+   },
+   "model_lb_shared_link": {
+    "seconds": 35.283707630555796,
+    "binding": [
+     [
+      "slot:0",
+      35.283707630555796
+     ],
+     [
+      "slot:1",
+      35.283707630555796
+     ],
+     [
+      "link:0",
+      35.28370763055578
+     ],
+     [
+      "slot:2",
+      35.283707630555774
+     ]
+    ],
+    "network_gib": 1.6610062516112833,
+    "placement": {
+     "map from node0 -> worker0 store0": 924.7,
+     "map from node0 -> worker1 store2": 41.7,
+     "map from node0 -> worker2 store1": 57.6,
+     "map from node1 -> worker1 store1": 227.5,
+     "map from node1 -> worker1 store2": 284.5,
+     "map from node2 -> worker2 store1": 512.0
+    }
+   },
+   "model_all_local": [
+    39.07294134179517,
+    {
+     "0": 39.07294134179517,
+     "1": 19.480327258531076,
+     "2": 13.130155007999464
+    }
+   ],
+   "empirical_p10_lb_separate_tx_rx": {
+    "seconds": 37.50556270198,
+    "binding": [
+     [
+      "slot:1",
+      37.50556270198998
+     ],
+     [
+      "slot:0",
+      37.50556270198001
+     ],
+     [
+      "slot:2",
+      37.50556270197629
+     ],
+     [
+      "read:0",
+      34.56178474426322
+     ]
+    ],
+    "network_gib": 1.3599763693493963,
+    "placement": {
+     "map from node0 -> worker0 store0": 937.0,
+     "map from node0 -> worker1 store1": 42.7,
+     "map from node0 -> worker2 store2": 44.3,
+     "map from node1 -> worker1 store1": 512.0,
+     "map from node2 -> worker2 store2": 512.0
+    }
+   },
+   "empirical_p10_lb_shared_link": {
+    "seconds": 37.505562701980004,
+    "binding": [
+     [
+      "slot:2",
+      37.50556270198185
+     ],
+     [
+      "slot:0",
+      37.505562701980026
+     ],
+     [
+      "slot:1",
+      37.5055627019712
+     ],
+     [
+      "read:0",
+      34.56178474426212
+     ]
+    ],
+    "network_gib": 1.3599763693488796,
+    "placement": {
+     "map from node0 -> worker0 store0": 937.0,
+     "map from node0 -> worker1 store1": 42.7,
+     "map from node0 -> worker2 store2": 44.3,
+     "map from node1 -> worker1 store1": 512.0,
+     "map from node2 -> worker2 store2": 512.0
+    }
+   },
+   "empirical_p10_all_local": [
+    40.989619851112366,
+    {
+     "0": 40.989619851112366,
+     "1": 20.65316046476364,
+     "2": 20.081640541553497
+    }
+   ],
+   "empirical_p10_floors": {
+    "('compute', 1, 16777216)": 0.0030938156181946398,
+    "('compute', 1, 16777216, 0)": 0.0032258345745503902,
+    "('compute', 1, 16777216, 1)": 0.0032938930671662092,
+    "('compute', 1, 16777216, 2)": 0.0028443024260923267,
+    "('read', 16777216, False)": 0.37497961297631266,
+    "('read', 16777216, False, 0)": 0.38598458892665805,
+    "('read', 16777216, False, 1)": 0.3751896888948977,
+    "('read', 16777216, False, 2)": 0.37466436508111656,
+    "('read', 16777216, True)": 0.020986159099265933,
+    "('read', 16777216, True, 0)": 0.021154470811598002,
+    "('read', 16777216, True, 1)": 0.021225516009144484,
+    "('read', 16777216, True, 2)": 0.02055819593369961,
+    "('unstaged', 0, True)": 0.004912523669190705,
+    "('unstaged', 0, True, 0)": 0.004899263987317682,
+    "('unstaged', 0, True, 1)": 0.00493030296638608,
+    "('unstaged', 0, True, 2)": 0.004926432715728879,
+    "('write', 131072, False)": 0.011313776718452573,
+    "('write', 131072, False, 0)": 0.011835330864414573,
+    "('write', 131072, False, 1)": 0.011193060036748647,
+    "('write', 131072, False, 2)": 0.011275755427777766,
+    "('write', 131072, True)": 0.0108090965077281,
+    "('write', 131072, True, 0)": 0.010749356262385846,
+    "('write', 131072, True, 1)": 0.010888491990044713,
+    "('write', 131072, True, 2)": 0.010893023107200861
+   },
+   "empirical_p10_missing_keys": [],
+   "empirical_p50_lb_separate_tx_rx": {
+    "seconds": 40.890279459949795,
+    "binding": [
+     [
+      "slot:2",
+      40.89027945995064
+     ],
+     [
+      "slot:0",
+      40.89027945994978
+     ],
+     [
+      "slot:1",
+      40.8902794599472
+     ],
+     [
+      "read:0",
+      34.56178474426256
+     ]
+    ],
+    "network_gib": 1.3393741853150245,
+    "placement": {
+     "map from node0 -> worker0 store0": 938.3,
+     "map from node0 -> worker1 store1": 42.2,
+     "map from node0 -> worker2 store2": 43.6,
+     "map from node1 -> worker1 store1": 512.0,
+     "map from node2 -> worker2 store2": 512.0
+    }
+   },
+   "empirical_p50_lb_shared_link": {
+    "seconds": 40.89027945994979,
+    "binding": [
+     [
+      "slot:2",
+      40.89027945995013
+     ],
+     [
+      "slot:0",
+      40.89027945994979
+     ],
+     [
+      "slot:1",
+      40.89027945994943
+     ],
+     [
+      "read:0",
+      34.561784744262695
+     ]
+    ],
+    "network_gib": 1.339374185315086,
+    "placement": {
+     "map from node0 -> worker0 store0": 938.3,
+     "map from node0 -> worker1 store1": 42.2,
+     "map from node0 -> worker2 store2": 43.6,
+     "map from node1 -> worker1 store1": 512.0,
+     "map from node2 -> worker2 store2": 512.0
+    }
+   },
+   "empirical_p50_all_local": [
+    44.62595796585083,
+    {
+     "0": 44.62595796585083,
+     "1": 23.36810976266861,
+     "2": 22.928866267204285
+    }
+   ],
+   "empirical_p50_floors": {
+    "('compute', 1, 16777216)": 0.0036520231515169144,
+    "('compute', 1, 16777216, 0)": 0.0037129190750420094,
+    "('compute', 1, 16777216, 1)": 0.003744157962501049,
+    "('compute', 1, 16777216, 2)": 0.0034070350229740143,
+    "('read', 16777216, False)": 0.3939539031125605,
+    "('read', 16777216, False, 0)": 0.4098272870760411,
+    "('read', 16777216, False, 1)": 0.3929890019353479,
+    "('read', 16777216, False, 2)": 0.3898498371709138,
+    "('read', 16777216, True)": 0.022687715012580156,
+    "('read', 16777216, True, 0)": 0.02270049904473126,
+    "('read', 16777216, True, 1)": 0.02302103245165199,
+    "('read', 16777216, True, 2)": 0.022292645880952477,
+    "('unstaged', 0, True)": 0.005918056238442659,
+    "('unstaged', 0, True, 0)": 0.005851299036294222,
+    "('unstaged', 0, True, 1)": 0.006014251848682761,
+    "('unstaged', 0, True, 2)": 0.0059724110178649426,
+    "('write', 131072, False)": 0.02136162295937538,
+    "('write', 131072, False, 0)": 0.02494064997881651,
+    "('write', 131072, False, 1)": 0.018240554491057992,
+    "('write', 131072, False, 2)": 0.01954243704676628,
+    "('write', 131072, True)": 0.011899201082997024,
+    "('write', 131072, True, 0)": 0.01131531991995871,
+    "('write', 131072, True, 1)": 0.012861397117376328,
+    "('write', 131072, True, 2)": 0.013110850006341934
+   },
+   "empirical_p50_missing_keys": [],
+   "measured_medians": {
+    "beam-4": {
+     "wall": 58.535350860795006,
+     "planning": 7.608208070509136,
+     "max_worker_busy": 49.24127548094839,
+     "min_worker_busy": 28.752717128489166,
+     "sum_worker_busy": 107.35734751191922,
+     "read": 50.145761406980455,
+     "compute": 7.625843126093969,
+     "write": 31.62728890380822,
+     "remote_gib": 0.0,
+     "n": 3
+    },
+    "greedy-wait": {
+     "wall": 66.02505222614855,
+     "planning": 33.269566129660234,
+     "max_worker_busy": 46.941968326922506,
+     "min_worker_busy": 26.166228616843,
+     "sum_worker_busy": 99.40433272672817,
+     "read": 50.760448078857735,
+     "compute": 7.83609902090393,
+     "write": 27.817618837812915,
+     "remote_gib": 0.0,
+     "n": 3
+    },
+    "heft": {
+     "wall": 68.29936580895446,
+     "planning": 1.6975183573085815,
+     "max_worker_busy": 54.43228167435154,
+     "min_worker_busy": 45.310805186396465,
+     "sum_worker_busy": 147.40059697371908,
+     "read": 95.5622154942248,
+     "compute": 7.917914626188576,
+     "write": 28.565776424715295,
+     "remote_gib": 1.65625,
+     "n": 3
+    },
+    "cpop": {
+     "wall": 68.41582091199234,
+     "planning": 1.6478980472311378,
+     "max_worker_busy": 54.29998746258207,
+     "min_worker_busy": 45.57906460156664,
+     "sum_worker_busy": 147.16335311857983,
+     "read": 96.6758780896198,
+     "compute": 7.9601394140627235,
+     "write": 27.96338379685767,
+     "remote_gib": 1.65625,
+     "n": 3
+    },
+    "peft": {
+     "wall": 68.62085243617184,
+     "planning": 1.7202658078167588,
+     "max_worker_busy": 54.66127837705426,
+     "min_worker_busy": 45.180814707884565,
+     "sum_worker_busy": 147.20301424176432,
+     "read": 95.88174678827636,
+     "compute": 7.894038543570787,
+     "write": 28.538631673902273,
+     "remote_gib": 1.65625,
+     "n": 3
+    },
+    "stealing": {
+     "wall": 70.4939971959684,
+     "planning": 3.9238943371456116,
+     "max_worker_busy": 63.983687405707315,
+     "min_worker_busy": 45.60513513884507,
+     "sum_worker_busy": 173.07316647237167,
+     "read": 118.89190064440481,
+     "compute": 8.042034432757646,
+     "write": 29.779754027258605,
+     "remote_gib": 1.65625,
+     "n": 3
+    },
+    "local-16": {
+     "wall": 81.6734605669044,
+     "planning": 29.89738291944377,
+     "max_worker_busy": 58.683919289615005,
+     "min_worker_busy": 45.49293075897731,
+     "sum_worker_busy": 162.2729429609608,
+     "read": 112.08828620519489,
+     "compute": 7.7483681563753635,
+     "write": 29.450929433573037,
+     "remote_gib": 2.615966796875,
+     "n": 3
+    },
+    "greedy": {
+     "wall": 85.22835187311284,
+     "planning": 10.315584728727117,
+     "max_worker_busy": 67.15866916743107,
+     "min_worker_busy": 42.53528195875697,
+     "sum_worker_busy": 176.7136578024365,
+     "read": 129.6409947243519,
+     "compute": 7.616586223477498,
+     "write": 26.33841275027953,
+     "remote_gib": 3.34375,
+     "n": 3
+    },
+    "native-mcts-heuristic-128": {
+     "wall": 85.44684471515939,
+     "planning": 7.689488212345168,
+     "max_worker_busy": 68.99602738162503,
+     "min_worker_busy": 52.45318395155482,
+     "sum_worker_busy": 190.43002700991929,
+     "read": 128.3963332006242,
+     "compute": 7.751634729560465,
+     "write": 39.53535202727653,
+     "remote_gib": 3.3623046875,
+     "n": 3
+    },
+    "anneal-16": {
+     "wall": 133.76474807900377,
+     "planning": 28.02728900895454,
+     "max_worker_busy": 108.80713790538721,
+     "min_worker_busy": 92.64866846078075,
+     "sum_worker_busy": 309.79325529560447,
+     "read": 247.39682593918405,
+     "compute": 7.518029381055385,
+     "write": 40.97851294372231,
+     "remote_gib": 7.1171875,
+     "n": 3
+    }
+   }
+  },
+  "competing": {
+   "model_lb_separate_tx_rx": {
+    "seconds": 28.82768550407705,
+    "binding": [
+     [
+      "slot:1",
+      28.827685504077056
+     ],
+     [
+      "slot:0",
+      28.82768550407705
+     ],
+     [
+      "slot:2",
+      28.82768550407705
+     ],
+     [
+      "tx:0",
+      20.70010989656764
+     ]
+    ],
+    "network_gib": 0.9103192069044311,
+    "placement": {
+     "a from node0 -> worker0 store0": 244.3,
+     "a from node0 -> worker1 store1": 11.7,
+     "a from node1 -> worker1 store1": 128.0,
+     "a from node2 -> worker2 store2": 128.0,
+     "b from node0 -> worker0 store0": 256.0,
+     "b from node1 -> worker1 store1": 128.0,
+     "b from node2 -> worker2 store2": 128.0,
+     "c from node0 -> worker1 store1": 80.1,
+     "c from node0 -> worker2 store2": 175.9,
+     "c from node1 -> worker1 store1": 128.0,
+     "c from node2 -> worker2 store2": 128.0,
+     "d from node0 -> worker1 store1": 80.1,
+     "d from node0 -> worker2 store2": 175.9,
+     "d from node1 -> worker1 store1": 128.0,
+     "d from node2 -> worker2 store2": 128.0,
+     "e from node0 -> worker1 store1": 80.1,
+     "e from node0 -> worker2 store2": 175.9,
+     "e from node1 -> worker1 store1": 128.0,
+     "e from node2 -> worker2 store2": 128.0,
+     "f from node0 -> worker1 store1": 80.1,
+     "f from node0 -> worker2 store2": 175.9,
+     "f from node1 -> worker1 store1": 128.0,
+     "f from node2 -> worker2 store2": 128.0
+    }
+   },
+   "model_lb_shared_link": {
+    "seconds": 28.82768550407705,
+    "binding": [
+     [
+      "slot:1",
+      28.827685504077056
+     ],
+     [
+      "slot:0",
+      28.82768550407705
+     ],
+     [
+      "slot:2",
+      28.82768550407705
+     ],
+     [
+      "link:0",
+      20.70010989656764
+     ]
+    ],
+    "network_gib": 0.9103192069044311,
+    "placement": {
+     "a from node0 -> worker0 store0": 244.3,
+     "a from node0 -> worker1 store1": 11.7,
+     "a from node1 -> worker1 store1": 128.0,
+     "a from node2 -> worker2 store2": 128.0,
+     "b from node0 -> worker0 store0": 256.0,
+     "b from node1 -> worker1 store1": 128.0,
+     "b from node2 -> worker2 store2": 128.0,
+     "c from node0 -> worker1 store1": 80.1,
+     "c from node0 -> worker2 store2": 175.9,
+     "c from node1 -> worker1 store1": 128.0,
+     "c from node2 -> worker2 store2": 128.0,
+     "d from node0 -> worker1 store1": 80.1,
+     "d from node0 -> worker2 store2": 175.9,
+     "d from node1 -> worker1 store1": 128.0,
+     "d from node2 -> worker2 store2": 128.0,
+     "e from node0 -> worker1 store1": 80.1,
+     "e from node0 -> worker2 store2": 175.9,
+     "e from node1 -> worker1 store1": 128.0,
+     "e from node2 -> worker2 store2": 128.0,
+     "f from node0 -> worker1 store1": 80.1,
+     "f from node0 -> worker2 store2": 175.9,
+     "f from node1 -> worker1 store1": 128.0,
+     "f from node2 -> worker2 store2": 128.0
+    }
+   },
+   "model_all_local": [
+    35.85730756853198,
+    {
+     "0": 35.85730756853198,
+     "1": 17.931809918659056,
+     "2": 14.23742574959273
+    }
+   ],
+   "empirical_p10_lb_separate_tx_rx": {
+    "seconds": 36.236488189749615,
+    "binding": [
+     [
+      "slot:2",
+      36.236488189749615
+     ],
+     [
+      "slot:0",
+      36.2364881897496
+     ],
+     [
+      "slot:1",
+      36.2364881897496
+     ],
+     [
+      "read:0",
+      18.00863890001068
+     ]
+    ],
+    "network_gib": 0.46137675975258385,
+    "placement": {
+     "a from node0 -> worker0 store0": 19.8,
+     "a from node0 -> worker0 store1": 115.9,
+     "a from node0 -> worker0 store2": 120.3,
+     "a from node1 -> worker1 store1": 128.0,
+     "a from node2 -> worker2 store2": 128.0,
+     "b from node0 -> worker0 store0": 256.0,
+     "b from node1 -> worker1 store1": 128.0,
+     "b from node2 -> worker2 store2": 128.0,
+     "c from node0 -> worker0 store0": 19.8,
+     "c from node0 -> worker1 store1": 115.9,
+     "c from node0 -> worker2 store2": 120.3,
+     "c from node1 -> worker1 store1": 128.0,
+     "c from node2 -> worker2 store2": 128.0,
+     "d from node0 -> worker0 store0": 19.8,
+     "d from node0 -> worker1 store1": 115.9,
+     "d from node0 -> worker2 store2": 120.3,
+     "d from node1 -> worker1 store1": 128.0,
+     "d from node2 -> worker2 store2": 128.0,
+     "e from node0 -> worker0 store0": 19.8,
+     "e from node0 -> worker1 store1": 115.9,
+     "e from node0 -> worker2 store2": 120.3,
+     "e from node1 -> worker1 store1": 128.0,
+     "e from node2 -> worker2 store2": 128.0,
+     "f from node0 -> worker0 store0": 19.8,
+     "f from node0 -> worker1 store1": 115.9,
+     "f from node0 -> worker2 store2": 120.3,
+     "f from node1 -> worker1 store1": 128.0,
+     "f from node2 -> worker2 store2": 128.0
+    }
+   },
+   "empirical_p10_lb_shared_link": {
+    "seconds": 36.236488189749615,
+    "binding": [
+     [
+      "slot:0",
+      36.23648818974962
+     ],
+     [
+      "slot:2",
+      36.236488189749615
+     ],
+     [
+      "slot:1",
+      36.23648818974961
+     ],
+     [
+      "read:0",
+      18.008638900010673
+     ]
+    ],
+    "network_gib": 0.46137675975258374,
+    "placement": {
+     "a from node0 -> worker0 store0": 19.8,
+     "a from node0 -> worker0 store1": 115.9,
+     "a from node0 -> worker0 store2": 120.3,
+     "a from node1 -> worker1 store1": 128.0,
+     "a from node2 -> worker2 store2": 128.0,
+     "b from node0 -> worker0 store0": 256.0,
+     "b from node1 -> worker1 store1": 128.0,
+     "b from node2 -> worker2 store2": 128.0,
+     "c from node0 -> worker0 store0": 19.8,
+     "c from node0 -> worker1 store1": 115.9,
+     "c from node0 -> worker2 store2": 120.3,
+     "c from node1 -> worker1 store1": 128.0,
+     "c from node2 -> worker2 store2": 128.0,
+     "d from node0 -> worker0 store0": 19.8,
+     "d from node0 -> worker1 store1": 115.9,
+     "d from node0 -> worker2 store2": 120.3,
+     "d from node1 -> worker1 store1": 128.0,
+     "d from node2 -> worker2 store2": 128.0,
+     "e from node0 -> worker0 store0": 19.8,
+     "e from node0 -> worker1 store1": 115.9,
+     "e from node0 -> worker2 store2": 120.3,
+     "e from node1 -> worker1 store1": 128.0,
+     "e from node2 -> worker2 store2": 128.0,
+     "f from node0 -> worker0 store0": 19.8,
+     "f from node0 -> worker1 store1": 115.9,
+     "f from node0 -> worker2 store2": 120.3,
+     "f from node1 -> worker1 store1": 128.0,
+     "f from node2 -> worker2 store2": 128.0
+    }
+   },
+   "empirical_p10_all_local": [
+    49.71839249134064,
+    {
+     "0": 49.71839249134064,
+     "1": 24.95524442195892,
+     "2": 24.59349108040333
+    }
+   ],
+   "empirical_p10_floors": {
+    "('compute', 32, 1048576)": 0.001968253613449633,
+    "('compute', 32, 1048576, 0)": 0.0019715561997145415,
+    "('compute', 32, 1048576, 1)": 0.00196628721896559,
+    "('compute', 32, 1048576, 2)": 0.001966953044757247,
+    "('compute', 32, 16777216)": 0.031053320481441916,
+    "('compute', 32, 16777216, 0)": 0.031233362993225454,
+    "('compute', 32, 16777216, 1)": 0.03118188155349344,
+    "('compute', 32, 16777216, 2)": 0.030696895672008395,
+    "('compute', 8, 1048576)": 0.0006195860216394067,
+    "('compute', 8, 1048576, 0)": 0.0006182841490954161,
+    "('compute', 8, 1048576, 1)": 0.0006236579269170761,
+    "('compute', 8, 1048576, 2)": 0.0006184868980199099,
+    "('compute', 8, 1572864)": 0.0006435287883505225,
+    "('compute', 8, 1572864, 0)": 0.0006409698631614447,
+    "('compute', 8, 1572864, 1)": 0.0006483886856585741,
+    "('compute', 8, 1572864, 2)": 0.0006416880758479237,
+    "('compute', 8, 16777216)": 0.0096091401996091,
+    "('compute', 8, 16777216, 0)": 0.009804294211789966,
+    "('compute', 8, 16777216, 1)": 0.00969011103734374,
+    "('compute', 8, 16777216, 2)": 0.00932231405749917,
+    "('compute', 8, 2097152)": 0.0006353988079354167,
+    "('compute', 8, 2097152, 0)": 0.0006343438290059566,
+    "('compute', 8, 2097152, 1)": 0.0006420329678803683,
+    "('compute', 8, 2097152, 2)": 0.0006329808849841357,
+    "('read', 1048576, False)": 0.021249791560694575,
+    "('read', 1048576, False, 0)": 0.02128773620352149,
+    "('read', 1048576, False, 1)": 0.02125151001382619,
+    "('read', 1048576, False, 2)": 0.02123503459151834,
+    "('read', 1048576, True)": 0.0014666030183434486,
+    "('read', 1048576, True, 0)": 0.001477271132171154,
+    "('read', 1048576, True, 1)": 0.001472694519907236,
+    "('read', 1048576, True, 2)": 0.0014499719254672527,
+    "('read', 16777216, False)": 0.3747019653674215,
+    "('read', 16777216, False, 0)": 0.396379489148967,
+    "('read', 16777216, False, 1)": 0.37503955732099714,
+    "('read', 16777216, False, 2)": 0.3744241084437817,
+    "('read', 16777216, True)": 0.02122792536392808,
+    "('read', 16777216, True, 0)": 0.021398675767704843,
+    "('read', 16777216, True, 1)": 0.02145640254020691,
+    "('read', 16777216, True, 2)": 0.02077386900782585,
+    "('read', 524288, False)": 0.009441907983273268,
+    "('read', 524288, False, 0)": 0.009437792957760394,
+    "('read', 524288, False, 1)": 0.009433619910851121,
+    "('read', 524288, False, 2)": 0.009451857930980623,
+    "('read', 524288, True)": 0.0008304221089929342,
+    "('read', 524288, True, 0)": 0.0008208737941458822,
+    "('read', 524288, True, 1)": 0.0008487076964229345,
+    "('read', 524288, True, 2)": 0.0008361841784790159,
+    "('unstaged', 0, True)": 0.004839578783139587,
+    "('unstaged', 0, True, 0)": 0.0048265486722812055,
+    "('unstaged', 0, True, 1)": 0.004862553277052939,
+    "('unstaged', 0, True, 2)": 0.004836705164052546,
+    "('write', 1048576, False)": 0.031669926806353034,
+    "('write', 1048576, False, 0)": 0.03175692362710834,
+    "('write', 1048576, False, 1)": 0.0316292688716203,
+    "('write', 1048576, False, 2)": 0.03166653518564999,
+    "('write', 1048576, True)": 0.011924607050605118,
+    "('write', 1048576, True, 0)": 0.011895116046071052,
+    "('write', 1048576, True, 1)": 0.011952355015091598,
+    "('write', 1048576, True, 2)": 0.011954889865592122,
+    "('write', 393216, False)": 0.0167789596831426,
+    "('write', 393216, False, 0)": 0.016812987485900523,
+    "('write', 393216, False, 1)": 0.016760245198383927,
+    "('write', 393216, False, 2)": 0.01678518047556281,
+    "('write', 393216, True)": 0.010810208460316061,
+    "('write', 393216, True, 0)": 0.010775769804604351,
+    "('write', 393216, True, 1)": 0.010967104369774461,
+    "('write', 393216, True, 2)": 0.010765161039307714,
+    "('write', 524288, False)": 0.01975851538591087,
+    "('write', 524288, False, 0)": 0.019807384256273507,
+    "('write', 524288, False, 1)": 0.019732328597456217,
+    "('write', 524288, False, 2)": 0.019758235709741712,
+    "('write', 524288, True)": 0.01102720748167485,
+    "('write', 524288, True, 0)": 0.010989552410319448,
+    "('write', 524288, True, 1)": 0.011133658187463879,
+    "('write', 524288, True, 2)": 0.011018597125075757
+   },
+   "empirical_p10_missing_keys": [],
+   "empirical_p50_lb_separate_tx_rx": {
+    "seconds": 40.9274422258746,
+    "binding": [
+     [
+      "slot:1",
+      40.9274422258746
+     ],
+     [
+      "slot:2",
+      40.9274422258746
+     ],
+     [
+      "slot:0",
+      40.92744222587459
+     ],
+     [
+      "read:0",
+      19.45813898772917
+     ]
+    ],
+    "network_gib": 0.47798100875584715,
+    "placement": {
+     "a from node0 -> worker0 store0": 256.0,
+     "a from node1 -> worker1 store1": 128.0,
+     "a from node2 -> worker2 store2": 128.0,
+     "b from node0 -> worker0 store0": 256.0,
+     "b from node1 -> worker1 store1": 128.0,
+     "b from node2 -> worker2 store2": 128.0,
+     "c from node0 -> worker0 store0": 28.8,
+     "c from node0 -> worker1 store1": 77.3,
+     "c from node0 -> worker2 store2": 149.9,
+     "c from node1 -> worker1 store1": 128.0,
+     "c from node2 -> worker2 store2": 128.0,
+     "d from node0 -> worker0 store0": 156.8,
+     "d from node0 -> worker1 store1": 77.3,
+     "d from node0 -> worker2 store2": 21.9,
+     "d from node1 -> worker1 store1": 128.0,
+     "d from node2 -> worker2 store2": 128.0,
+     "e from node0 -> worker0 store0": 156.8,
+     "e from node0 -> worker1 store1": 77.3,
+     "e from node0 -> worker2 store2": 21.9,
+     "e from node1 -> worker1 store1": 128.0,
+     "e from node2 -> worker2 store2": 128.0,
+     "f from node0 -> worker0 store0": 28.8,
+     "f from node0 -> worker1 store1": 77.3,
+     "f from node0 -> worker2 store2": 149.9,
+     "f from node1 -> worker1 store1": 128.0,
+     "f from node2 -> worker2 store2": 128.0
+    }
+   },
+   "empirical_p50_lb_shared_link": {
+    "seconds": 40.9274422258746,
+    "binding": [
+     [
+      "slot:1",
+      40.9274422258746
+     ],
+     [
+      "slot:2",
+      40.9274422258746
+     ],
+     [
+      "slot:0",
+      40.92744222587459
+     ],
+     [
+      "read:0",
+      19.45813898772917
+     ]
+    ],
+    "network_gib": 0.47798100875584715,
+    "placement": {
+     "a from node0 -> worker0 store0": 256.0,
+     "a from node1 -> worker1 store1": 128.0,
+     "a from node2 -> worker2 store2": 128.0,
+     "b from node0 -> worker0 store0": 256.0,
+     "b from node1 -> worker1 store1": 128.0,
+     "b from node2 -> worker2 store2": 128.0,
+     "c from node0 -> worker0 store0": 28.8,
+     "c from node0 -> worker1 store1": 77.3,
+     "c from node0 -> worker2 store2": 149.9,
+     "c from node1 -> worker1 store1": 128.0,
+     "c from node2 -> worker2 store2": 128.0,
+     "d from node0 -> worker0 store0": 156.8,
+     "d from node0 -> worker1 store1": 77.3,
+     "d from node0 -> worker2 store2": 21.9,
+     "d from node1 -> worker1 store1": 128.0,
+     "d from node2 -> worker2 store2": 128.0,
+     "e from node0 -> worker0 store0": 156.8,
+     "e from node0 -> worker1 store1": 77.3,
+     "e from node0 -> worker2 store2": 21.9,
+     "e from node1 -> worker1 store1": 128.0,
+     "e from node2 -> worker2 store2": 128.0,
+     "f from node0 -> worker0 store0": 28.8,
+     "f from node0 -> worker1 store1": 77.3,
+     "f from node0 -> worker2 store2": 149.9,
+     "f from node1 -> worker1 store1": 128.0,
+     "f from node2 -> worker2 store2": 128.0
+    }
+   },
+   "empirical_p50_all_local": [
+    55.1680044233799,
+    {
+     "0": 55.1680044233799,
+     "1": 28.92262552678585,
+     "2": 28.1108720600605
+    }
+   ],
+   "empirical_p50_floors": {
+    "('compute', 32, 1048576)": 0.0021056444384157658,
+    "('compute', 32, 1048576, 0)": 0.00209611002355814,
+    "('compute', 32, 1048576, 1)": 0.0021062360610812902,
+    "('compute', 32, 1048576, 2)": 0.0021179080940783024,
+    "('compute', 32, 16777216)": 0.03262040950357914,
+    "('compute', 32, 16777216, 0)": 0.032792606856673956,
+    "('compute', 32, 16777216, 1)": 0.032677046954631805,
+    "('compute', 32, 16777216, 2)": 0.0322762590367347,
+    "('compute', 8, 1048576)": 0.0006728523876518011,
+    "('compute', 8, 1048576, 0)": 0.0006661259103566408,
+    "('compute', 8, 1048576, 1)": 0.0006865879986435175,
+    "('compute', 8, 1048576, 2)": 0.0006702370010316372,
+    "('compute', 8, 1572864)": 0.0007151266327127814,
+    "('compute', 8, 1572864, 0)": 0.0007194335339590907,
+    "('compute', 8, 1572864, 1)": 0.0007167059229686856,
+    "('compute', 8, 1572864, 2)": 0.0007083039963617921,
+    "('compute', 8, 16777216)": 0.010437426972202957,
+    "('compute', 8, 16777216, 0)": 0.01060769846662879,
+    "('compute', 8, 16777216, 1)": 0.01036317110992968,
+    "('compute', 8, 16777216, 2)": 0.010142788989469409,
+    "('compute', 8, 2097152)": 0.0007201029220595956,
+    "('compute', 8, 2097152, 0)": 0.0007051171269267797,
+    "('compute', 8, 2097152, 1)": 0.000734386034309864,
+    "('compute', 8, 2097152, 2)": 0.000722803408280015,
+    "('read', 1048576, False)": 0.021727051120251417,
+    "('read', 1048576, False, 0)": 0.021845913026481867,
+    "('read', 1048576, False, 1)": 0.02173343056347221,
+    "('read', 1048576, False, 2)": 0.021662009530700743,
+    "('read', 1048576, True)": 0.001749661983922124,
+    "('read', 1048576, True, 0)": 0.0017491821199655533,
+    "('read', 1048576, True, 1)": 0.0017661715392023325,
+    "('read', 1048576, True, 2)": 0.001735992031171918,
+    "('read', 16777216, False)": 0.39478513482026756,
+    "('read', 16777216, False, 0)": 0.43603074189741164,
+    "('read', 16777216, False, 1)": 0.39269569888710976,
+    "('read', 16777216, False, 2)": 0.3944184815045446,
+    "('read', 16777216, True)": 0.02336307498626411,
+    "('read', 16777216, True, 0)": 0.02336270408704877,
+    "('read', 16777216, True, 1)": 0.02377726335544139,
+    "('read', 16777216, True, 2)": 0.022904244950041175,
+    "('read', 524288, False)": 0.009934525936841965,
+    "('read', 524288, False, 0)": 0.00994401948992163,
+    "('read', 524288, False, 1)": 0.009925330057740211,
+    "('read', 524288, False, 2)": 0.009940588963218033,
+    "('read', 524288, True)": 0.0009285681881010532,
+    "('read', 524288, True, 0)": 0.0009062520693987608,
+    "('read', 524288, True, 1)": 0.0009539048187434673,
+    "('read', 524288, True, 2)": 0.0009400275303050876,
+    "('unstaged', 0, True)": 0.0057864050613716245,
+    "('unstaged', 0, True, 0)": 0.005754310521297157,
+    "('unstaged', 0, True, 1)": 0.005829591769725084,
+    "('unstaged', 0, True, 2)": 0.005793007207103074,
+    "('write', 1048576, False)": 0.038055994431488216,
+    "('write', 1048576, False, 0)": 0.03961295750923455,
+    "('write', 1048576, False, 1)": 0.03736775601282716,
+    "('write', 1048576, False, 2)": 0.03740896098315716,
+    "('write', 1048576, True)": 0.013963214471004903,
+    "('write', 1048576, True, 0)": 0.013333420967683196,
+    "('write', 1048576, True, 1)": 0.014142097905278206,
+    "('write', 1048576, True, 2)": 0.014616617001593113,
+    "('write', 393216, False)": 0.02243653149344027,
+    "('write', 393216, False, 0)": 0.023843878065235913,
+    "('write', 393216, False, 1)": 0.022253525909036398,
+    "('write', 393216, False, 2)": 0.02190622198395431,
+    "('write', 393216, True)": 0.01279374083969742,
+    "('write', 393216, True, 0)": 0.011646570987068117,
+    "('write', 393216, True, 1)": 0.015271928859874606,
+    "('write', 393216, True, 2)": 0.012084534158930182,
+    "('write', 524288, False)": 0.026688861078582704,
+    "('write', 524288, False, 0)": 0.028939686017110944,
+    "('write', 524288, False, 1)": 0.02589218015782535,
+    "('write', 524288, False, 2)": 0.026364939636550844,
+    "('write', 524288, True)": 0.012892336584627628,
+    "('write', 524288, True, 0)": 0.012029236531816423,
+    "('write', 524288, True, 1)": 0.014516717521473765,
+    "('write', 524288, True, 2)": 0.012240364449098706
+   },
+   "empirical_p50_missing_keys": [],
+   "measured_medians": {
+    "heft": {
+     "wall": 74.8025752210524,
+     "planning": 3.0997078551445156,
+     "max_worker_busy": 56.50244638393633,
+     "min_worker_busy": 51.170731047634035,
+     "sum_worker_busy": 163.24609264917672,
+     "read": 62.834052476333454,
+     "compute": 25.862215503351763,
+     "write": 52.26635752245784,
+     "remote_gib": 1.39208984375,
+     "n": 3
+    },
+    "beam-4": {
+     "wall": 76.88487136899494,
+     "planning": 14.69042189582251,
+     "max_worker_busy": 59.97516364254989,
+     "min_worker_busy": 34.035422020126134,
+     "sum_worker_busy": 131.4787764060311,
+     "read": 34.958485309034586,
+     "compute": 24.897757672471926,
+     "write": 51.02815523906611,
+     "remote_gib": 0.0775146484375,
+     "n": 3
+    },
+    "stealing": {
+     "wall": 79.9117012959905,
+     "planning": 2.6072757102083415,
+     "max_worker_busy": 66.78626645449549,
+     "min_worker_busy": 53.33852270594798,
+     "sum_worker_busy": 186.84960222407244,
+     "read": 82.8642088251654,
+     "compute": 24.554226553067565,
+     "write": 56.239487575599924,
+     "remote_gib": 1.58984375,
+     "n": 3
+    },
+    "cpop": {
+     "wall": 80.34624703484587,
+     "planning": 3.2271852190606296,
+     "max_worker_busy": 57.21803345088847,
+     "min_worker_busy": 47.423340945271775,
+     "sum_worker_busy": 160.2276101973839,
+     "read": 60.483593160286546,
+     "compute": 24.988790748640895,
+     "write": 53.24187610251829,
+     "remote_gib": 1.162109375,
+     "n": 3
+    },
+    "peft": {
+     "wall": 80.73349356511608,
+     "planning": 3.218921641120687,
+     "max_worker_busy": 64.1049091971945,
+     "min_worker_busy": 52.795557042816654,
+     "sum_worker_busy": 171.79584672721103,
+     "read": 70.15160805406049,
+     "compute": 25.061162454774603,
+     "write": 54.05878867954016,
+     "remote_gib": 1.7744140625,
+     "n": 3
+    },
+    "native-mcts-heuristic-128": {
+     "wall": 87.69200110808015,
+     "planning": 13.290952961426228,
+     "max_worker_busy": 66.15974728041328,
+     "min_worker_busy": 59.54295404884033,
+     "sum_worker_busy": 192.1739257897716,
+     "read": 70.80413451557979,
+     "compute": 24.889991560252383,
+     "write": 74.87484989641234,
+     "remote_gib": 2.5352783203125,
+     "n": 3
+    },
+    "greedy-wait": {
+     "wall": 96.85964694595896,
+     "planning": 54.60148899909109,
+     "max_worker_busy": 56.71855815965682,
+     "min_worker_busy": 35.186013056198135,
+     "sum_worker_busy": 128.7657941307407,
+     "read": 40.89460369758308,
+     "compute": 24.233224846422672,
+     "write": 44.94595326646231,
+     "remote_gib": 0.357421875,
+     "n": 3
+    },
+    "greedy": {
+     "wall": 98.47319006710313,
+     "planning": 15.775429675821215,
+     "max_worker_busy": 78.2490048869513,
+     "min_worker_busy": 58.86218247236684,
+     "sum_worker_busy": 212.79500033264048,
+     "read": 117.07475994783454,
+     "compute": 24.72757240338251,
+     "write": 50.360153118148446,
+     "remote_gib": 3.31298828125,
+     "n": 3
+    },
+    "local-16": {
+     "wall": 127.82725616497919,
+     "planning": 71.40635861759074,
+     "max_worker_busy": 75.49428212014027,
+     "min_worker_busy": 67.3605329762213,
+     "sum_worker_busy": 216.18841432314366,
+     "read": 103.86893104156479,
+     "compute": 24.635688243201002,
+     "write": 68.66474036965519,
+     "remote_gib": 3.8427734375,
+     "n": 3
+    },
+    "anneal-16": {
+     "wall": 141.76956742885523,
+     "planning": 72.32879403838888,
+     "max_worker_busy": 85.81880026566796,
+     "min_worker_busy": 78.01607144018635,
+     "sum_worker_busy": 248.39179822406732,
+     "read": 128.48935074964538,
+     "compute": 24.611757626524195,
+     "write": 75.96155160339549,
+     "remote_gib": 4.8685302734375,
+     "n": 3
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,167 @@
+7.3.3-1-cachyos
+17ad72e verify: rate each iperf3 flow at its sender; behind tbf a receiver often closes its summary ~10 s late and under-reports a link the byte counters show at 378 Mbit
+/dev/nvme0n1p2  3.7T  2.7T 1021G  73% /
+== 19:50:07 shape: python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+   ok in 1 s: 
+== 19:50:08 mode-cs: python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+   ok in 0 s: cephdag8 is in mode cs: 8 workers answer /state
+== 19:50:08 mode-cs-again: python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+   ok in 1 s: cephdag8 is in mode cs: 8 workers answer /state
+== 19:50:09 verify-cs: python3 infra/lab.py --lab infra/labs/cephdag8.json verify cs
+   ok in 182 s: }
+      7 0       1 2 (count zombies-per-node)
+== 19:53:11 mode-disagg: python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+   ok in 4 s: cephdag8 is in mode disagg: 8 workers answer /state
+== 19:53:15 mode-disagg-again: python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+   ok in 0 s: cephdag8 is in mode disagg: 8 workers answer /state
+== 19:53:15 tc-c3-after-disagg: docker exec cephdag8-c3 tc qdisc show dev eth0
+   ok in 1 s: qdisc tbf 8025: root refcnt 33 rate 400Mbit burst 128Kb lat 400ms 
+qdisc tbf 8025: root refcnt 33 rate 400Mbit burst 128Kb lat 400ms 
+== 19:53:16 verify-disagg: python3 infra/lab.py --lab infra/labs/cephdag8.json verify disagg
+   ok in 380 s: }
+     15 0       1 2 (count zombies-per-node)
+weakest shared rate over both modes: 376.7 Mbit/s
+== 19:59:37 mode-cs-2: python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+   ok in 12 s: cephdag8 is in mode cs: 8 workers answer /state
+== 19:59:49 ingest-0-1: coordinator experiments.droid_ingest --shards 0-1 --resolution 128 --placement 0,1,2,3,4,5,6,7 --source-dir /results/droid/raw --cluster cephdag/clusters/cephdag8-cs.json
+   ok in 54 s: droid-128-00001: 54 episodes, 34 partitions, 1057.6 MB in 26.7 s (39.5 MB/s)
+== 20:00:43 create-smoke: coordinator experiments.datasets create-synthetic smoke-2g-64m --gib 2 --shard-mib 64 --placement 0,1,2,3,4,5,6,7 --cluster cephdag/clusters/cephdag8-cs.json
+   ok in 44 s: {"dataset": "smoke-2g-64m", "shards": 32}
+== 20:01:27 calibrate-cs: coordinator experiments.calibrate --network-mbit 376.7 --cluster cephdag/clusters/cephdag8-cs.json --droid droid-128-02047 --output /results/calibration/cephdag8-cs
+   ok in 75 s: 00.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0]}, "calibrated": true, "calibration_id": "8af0aa9fb4ee4a2898153f51adc66374"}, "fit_rmse": 0.00112428378111814}
+== 20:02:42 cs-i1: coordinator experiments.run --workload independent --ratio 0.25 --dataset smoke-2g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 2 --dataset-gib 2 --shard-mib 64 --seed 9103 --iterations 1 --policies data-local,heft,beam-4 --repeats 1 --no-warm --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/smoke/validate/cs-i1
+   ok in 40 s: {"complete": "/results/smoke/validate/cs-i1"}
+== 20:03:22 cs-i128: coordinator experiments.run --workload independent --ratio 0.25 --dataset smoke-2g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 2 --dataset-gib 2 --shard-mib 64 --seed 9103 --iterations 128 --policies data-local,heft,beam-4 --repeats 1 --no-warm --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/smoke/validate/cs-i128
+   ok in 97 s: {"complete": "/results/smoke/validate/cs-i128"}
+== 20:04:59 cs-i2048: coordinator experiments.run --workload independent --ratio 0.25 --dataset smoke-2g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 2 --dataset-gib 2 --shard-mib 64 --seed 9103 --iterations 2048 --policies beam-4 --repeats 1 --no-warm --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/smoke/validate/cs-i2048
+   ok in 267 s: {"complete": "/results/smoke/validate/cs-i2048"}
+== 20:09:26 cs-droid: coordinator experiments.run --workload droid --droid-shards 0-1 --resolution 128 --wave-gib 1000000 --seed 9203 --policies greedy,beam-4 --repeats 1 --no-warm --models /results/calibration/cephdag8-cs/models.json --cluster cephdag/clusters/cephdag8-cs.json --output /results/smoke/validate/cs-droid
+   ok in 183 s: {"complete": "/results/smoke/validate/cs-droid"}
+== 20:12:29 mode-disagg-2: python3 infra/lab.py --lab infra/labs/cephdag8.json mode disagg --functions cephdag.droid
+   ok in 4 s: cephdag8 is in mode disagg: 8 workers answer /state
+== 20:12:33 calibrate-disagg: coordinator experiments.calibrate --network-mbit 376.7 --cluster cephdag/clusters/cephdag8-disagg.json --droid droid-128-02047 --storage-from /results/calibration/cephdag8-cs/calibration.json --output /results/calibration/cephdag8-disagg
+   ok in 273 s: .0, 47087500.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0, 47087500.0]}, "calibrated": true, "calibration_id": "87b31a044b984d628759ce0d0aadc1b1"}, "fit_rmse": 0.0016504855224246187}
+== 20:17:06 disagg-i1: coordinator experiments.run --workload independent --ratio 0.25 --dataset smoke-2g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 2 --dataset-gib 2 --shard-mib 64 --seed 9103 --iterations 1 --policies fifo-hash,heft --repeats 1 --no-warm --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/smoke/validate/disagg-i1
+   ok in 39 s: {"complete": "/results/smoke/validate/disagg-i1"}
+== 20:17:45 disagg-i128: coordinator experiments.run --workload independent --ratio 0.25 --dataset smoke-2g-64m --placement 0,1,2,3,4,5,6,7 --source-gib 2 --dataset-gib 2 --shard-mib 64 --seed 9103 --iterations 128 --policies fifo-hash,heft --repeats 1 --no-warm --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/smoke/validate/disagg-i128
+   ok in 57 s: {"complete": "/results/smoke/validate/disagg-i128"}
+== 20:18:42 disagg-droid: coordinator experiments.run --workload droid --droid-shards 0-1 --resolution 128 --wave-gib 1000000 --seed 9203 --policies fifo-hash --repeats 1 --no-warm --models /results/calibration/cephdag8-disagg/models.json --cluster cephdag/clusters/cephdag8-disagg.json --output /results/smoke/validate/disagg-droid
+   ok in 143 s: {"complete": "/results/smoke/validate/disagg-droid"}
+| run | mode | policy | iterations | tasks | wall s | policy s | payload over network GB | worker NIC rx GB | worker NIC tx GB | verified | outputs sha256 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| cs-droid | cs | beam-4 | DROID | 272 | 31.12 | 1.510 | 0.358 | 0.425 | 0.425 | True | 041002e05056 |
+| cs-droid | cs | greedy | DROID | 272 | 72.56 | 60.081 | 0.812 | 0.845 | 0.845 | True | 041002e05056 |
+| cs-i1 | cs | heft | 1 | 32 | 1.60 | 0.003 | 0.000 | 0.004 | 0.004 | True | 0f318e55a107 |
+| cs-i1 | cs | data-local | 1 | 32 | 1.53 | 0.004 | 0.000 | 0.004 | 0.004 | True | 0f318e55a107 |
+| cs-i1 | cs | beam-4 | 1 | 32 | 1.57 | 0.104 | 0.000 | 0.003 | 0.003 | True | 0f318e55a107 |
+| cs-i128 | cs | heft | 128 | 32 | 20.32 | 0.004 | 0.000 | 0.044 | 0.044 | True | ac306eca697e |
+| cs-i128 | cs | data-local | 128 | 32 | 20.58 | 0.005 | 0.201 | 0.243 | 0.243 | True | ac306eca697e |
+| cs-i128 | cs | beam-4 | 128 | 32 | 19.86 | 0.227 | 0.000 | 0.044 | 0.044 | True | ac306eca697e |
+| cs-i2048 | cs | beam-4 | 2048 | 32 | 254.79 | 0.211 | 0.067 | 0.617 | 0.617 | True | 648be59703b4 |
+| disagg-droid | disagg | fifo-hash | DROID | 272 | 103.80 | 0.009 | 17.415 | 11.382 | 6.212 | True | 041002e05056 |
+| disagg-i1 | disagg | heft | 1 | 32 | 16.28 | 0.003 | 2.684 | 2.154 | 0.545 | True | 0f318e55a107 |
+| disagg-i1 | disagg | fifo-hash | 1 | 32 | 9.52 | 0.001 | 2.684 | 2.155 | 0.547 | True | 0f318e55a107 |
+| disagg-i128 | disagg | heft | 128 | 32 | 21.35 | 0.004 | 2.684 | 2.160 | 0.555 | True | ac306eca697e |
+| disagg-i128 | disagg | fifo-hash | 128 | 32 | 22.69 | 0.002 | 2.684 | 2.166 | 0.564 | True | ac306eca697e |
+cephdag8-c0 peak=538MiB cur=264MiB max=3221225472 oom=0 oom_kill=0 python3=327MiB sh=3MiB 
+cephdag8-c1 peak=573MiB cur=296MiB max=3221225472 oom=0 oom_kill=0 python3=364MiB sh=3MiB 
+cephdag8-c2 peak=551MiB cur=345MiB max=3221225472 oom=0 oom_kill=0 python3=415MiB sh=3MiB 
+cephdag8-c3 peak=647MiB cur=400MiB max=3221225472 oom=0 oom_kill=0 python3=471MiB awk=3MiB 
+cephdag8-c4 peak=524MiB cur=288MiB max=3221225472 oom=0 oom_kill=0 python3=359MiB sh=3MiB 
+cephdag8-c5 peak=613MiB cur=325MiB max=3221225472 oom=0 oom_kill=0 python3=400MiB ps=3MiB 
+cephdag8-c6 peak=596MiB cur=322MiB max=3221225472 oom=0 oom_kill=0 python3=391MiB awk=3MiB 
+cephdag8-c7 peak=660MiB cur=381MiB max=3221225472 oom=0 oom_kill=0 python3=450MiB sh=3MiB 
+cephdag8-n0 peak=3679MiB cur=2780MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=257MiB ceph-mgr=195MiB 
+cephdag8-n1 peak=952MiB cur=215MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=213MiB awk=3MiB 
+cephdag8-n2 peak=930MiB cur=240MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=233MiB awk=3MiB 
+cephdag8-n3 peak=962MiB cur=218MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=209MiB ps=3MiB 
+cephdag8-n4 peak=861MiB cur=199MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=194MiB ps=3MiB 
+cephdag8-n5 peak=929MiB cur=199MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=200MiB awk=3MiB 
+cephdag8-n6 peak=859MiB cur=198MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=193MiB sh=3MiB 
+cephdag8-n7 peak=1046MiB cur=390MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=207MiB sh=3MiB 
+cephdag8-router peak=19MiB cur=11MiB max=134217728 oom=0 oom_kill=0 sh=3MiB ps=3MiB 
+osd.0 mempool total 64 MiB
+osd.1 mempool total 69 MiB
+osd.2 mempool total 73 MiB
+osd.3 mempool total 60 MiB
+osd.4 mempool total 54 MiB
+osd.5 mempool total 57 MiB
+osd.6 mempool total 56 MiB
+osd.7 mempool total 67 MiB
+== 20:21:05 dryrun: python3 experiments/campaign.py run /mnt/mass/cephdag/deploy/dryrun-tiny.json
+   ok in 680 s: dryrun-tiny: complete
+== 20:32:25 dryrun-rerun: python3 experiments/campaign.py run /mnt/mass/cephdag/deploy/dryrun-tiny.json
+   ok in 0 s: dryrun-tiny: 4 of 4 done
+{"time": 1794543677.9947476, "event": "started", "step": "create", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/create/a1"}
+{"time": 1794543691.8998632, "event": "completed", "step": "create", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/create/a1", "seconds": 13.90503628999977}
+{"time": 1794543691.8999584, "event": "started", "step": "independent-i1-r0-cs", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/independent-i1-r0-cs/a1"}
+{"time": 1794543918.8030922, "event": "completed", "step": "independent-i1-r0-cs", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/independent-i1-r0-cs/a1", "seconds": 226.90311036000003, "case": "independent-i1-r0", "mode": "cs", "outputs_sha256": "0f318e55a107557e3a4a734027b8bf2b1bd7e9e24e00288db9d297f6f5450531"}
+{"time": 1794543918.8031442, "event": "started", "step": "independent-i1-r0-disagg", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/independent-i1-r0-disagg/a1"}
+{"time": 1794544344.5115993, "event": "completed", "step": "independent-i1-r0-disagg", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/independent-i1-r0-disagg/a1", "seconds": 425.7084346500001, "case": "independent-i1-r0", "mode": "disagg", "outputs_sha256": "0f318e55a107557e3a4a734027b8bf2b1bd7e9e24e00288db9d297f6f5450531"}
+{"time": 1794544344.5116506, "event": "started", "step": "delete", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/delete/a1"}
+{"time": 1794544344.9979339, "event": "completed", "step": "delete", "attempt": 1, "output": "/results/campaigns/dryrun-tiny/delete/a1", "seconds": 0.48623930399980964}
+== 20:32:25 delete-smoke: coordinator experiments.datasets delete smoke-2g-64m --droid-shards 0-1 --cluster cephdag/clusters/cephdag8-cs.json
+   ok in 0 s: {"deleted": {"smoke-2g-64m": 32, "droid-128-00000": 34, "droid-128-00001": 34}}
+== 20:32:25 mode-cs-final: python3 infra/lab.py --lab infra/labs/cephdag8.json mode cs --functions cephdag.droid
+   ok in 13 s: cephdag8 is in mode cs: 8 workers answer /state
+== 20:32:38 shape-final: python3 infra/lab.py --lab infra/labs/cephdag8.json shape 400
+   ok in 1 s: 
+cephdag8-n0 peak=3679MiB cur=2744MiB max=6442450944 oom=0 oom_kill=0 ceph-mgr=196MiB ceph-osd=183MiB 
+cephdag8-n1 peak=952MiB cur=193MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=158MiB python3=53MiB 
+cephdag8-n2 peak=930MiB cur=190MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=158MiB python3=54MiB 
+cephdag8-n3 peak=962MiB cur=193MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=159MiB python3=54MiB 
+cephdag8-n4 peak=861MiB cur=183MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=151MiB python3=53MiB 
+cephdag8-n5 peak=929MiB cur=187MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=154MiB python3=53MiB 
+cephdag8-n6 peak=859MiB cur=184MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=152MiB python3=53MiB 
+cephdag8-n7 peak=1046MiB cur=358MiB max=6442450944 oom=0 oom_kill=0 ceph-osd=149MiB python3=53MiB 
+cephdag8-router peak=21MiB cur=11MiB max=134217728 oom=0 oom_kill=0 sh=3MiB ps=3MiB 
+osd.0 mempool total 15 MiB
+osd.1 mempool total 15 MiB
+osd.2 mempool total 18 MiB
+osd.3 mempool total 18 MiB
+osd.4 mempool total 9 MiB
+osd.5 mempool total 9 MiB
+osd.6 mempool total 11 MiB
+osd.7 mempool total 14 MiB
+  cluster:
+    id:     7ccd876b-0e42-4202-88e4-8766bd30e5d1
+    health: HEALTH_WARN
+            mon is allowing insecure global_id reclaim
+            mon a is low on available space
+            noscrub,nodeep-scrub flag(s) set
+            9 pool(s) have no replicas configured
+ 
+  services:
+    mon: 1 daemons, quorum a (age 59m) [leader: a]
+    mgr: a(active, since 59m)
+    osd: 8 osds: 8 up (since 59m), 8 in (since 109m)
+         flags noscrub,nodeep-scrub
+ 
+  data:
+    pools:   9 pools, 257 pgs
+    objects: 7.36k objects, 4.8 GiB
+    usage:   5.4 GiB used, 443 GiB / 448 GiB avail
+    pgs:     257 active+clean
+ 
+  io:
+    client:   13 MiB/s rd, 3.7 KiB/s wr, 2 op/s rd, 16 op/s wr
+ 
+--- RAW STORAGE ---
+CLASS     SIZE    AVAIL     USED  RAW USED  %RAW USED
+hdd    448 GiB  443 GiB  5.4 GiB   5.4 GiB       1.21
+TOTAL  448 GiB  443 GiB  5.4 GiB   5.4 GiB       1.21
+ 
+--- POOLS ---
+POOL   ID  PGS   STORED  OBJECTS     USED  %USED  MAX AVAIL
+.mgr    1    1  449 KiB        2  452 KiB      0    419 GiB
+node0   2   32  640 MiB    3.35k  650 MiB   1.20     52 GiB
+node1   3   32  620 MiB      607  622 MiB   1.14     53 GiB
+node2   4   32  624 MiB      555  625 MiB   1.15     53 GiB
+node3   5   32  642 MiB      567  644 MiB   1.18     53 GiB
+node4   6   32  614 MiB      569  616 MiB   1.13     53 GiB
+node5   7   32  604 MiB      580  606 MiB   1.11     53 GiB
+node6   8   32  576 MiB      554  577 MiB   1.06     53 GiB
+node7   9   32  614 MiB      573  616 MiB   1.13     53 GiB
+      7 0       1 2 (count zombies-per-node)
+/dev/nvme0n1p2  3.7T  2.7T 1017G  73% /
+validation complete
